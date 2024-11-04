@@ -9,9 +9,9 @@ import 'package:forms360_uikit/src/widgets/buttons/custom_button/provider/custom
 class UiButton {
   Widget button({
     required String title,
-    SizeButton? sizeButton,
-    ButtonType? buttonType,
-    ButtonState? buttonState,
+    SizeButtonKit? sizeButton,
+    ButtonTypeKit? buttonType,
+    ButtonStateKit? buttonState,
     required Future<void> Function() onPressed,
   }) =>
       _CustomButton(
@@ -25,17 +25,17 @@ class UiButton {
 
 class _CustomButton extends ConsumerWidget {
   final String title;
-  final ButtonType? buttonType;
-  final SizeButton? sizeButton;
-  final ButtonState? buttonState;
+  final ButtonTypeKit? buttonType;
+  final SizeButtonKit? sizeButton;
+  final ButtonStateKit? buttonState;
   final Future<void> Function() onPressed;
 
   const _CustomButton({
     required this.title,
     required this.onPressed,
-    this.sizeButton = SizeButton.big,
-    this.buttonType = ButtonType.primary,
-    this.buttonState = ButtonState.enabled,
+    this.sizeButton = SizeButtonKit.big,
+    this.buttonType = ButtonTypeKit.primary,
+    this.buttonState = ButtonStateKit.enabled,
   });
 
   @override
@@ -45,7 +45,7 @@ class _CustomButton extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
-        if (buttonState != ButtonState.disabled && !buttonProvider.isLoading) {
+        if (buttonState != ButtonStateKit.disabled && !buttonProvider.isLoading) {
           provider.onTap(onPressed);
         }
       },
@@ -70,12 +70,12 @@ class _CustomButton extends ConsumerWidget {
   BoxBorder? _borderColor(BuildContext context) {
     Color color = Theme.of(context).colorScheme.primary;
 
-    if (buttonType == ButtonType.primary) return null;
+    if (buttonType == ButtonTypeKit.primary) return null;
 
-    if (buttonType == ButtonType.tertiary) {
+    if (buttonType == ButtonTypeKit.tertiary) {
       color = Colors.white;
     }
-    if (buttonState == ButtonState.disabled) {
+    if (buttonState == ButtonStateKit.disabled) {
       color = Color(0xFFC9DEEE);
     }
 
@@ -85,10 +85,10 @@ class _CustomButton extends ConsumerWidget {
   TextStyle _textButtonColor(BuildContext context) {
     Color textColor = Colors.white;
 
-    if (buttonType == ButtonType.secondary) {
+    if (buttonType == ButtonTypeKit.secondary) {
       textColor = Theme.of(context).colorScheme.primary;
     }
-    if (buttonState == ButtonState.disabled) {
+    if (buttonState == ButtonStateKit.disabled) {
       textColor = Theme.of(context).colorScheme.primary;
     }
 
@@ -97,20 +97,20 @@ class _CustomButton extends ConsumerWidget {
 
   Color _buttonColor(BuildContext context) {
     switch (buttonType!) {
-      case ButtonType.primary:
+      case ButtonTypeKit.primary:
         return Theme.of(context).colorScheme.primary;
-      case ButtonType.secondary:
+      case ButtonTypeKit.secondary:
         return Colors.white;
-      case ButtonType.tertiary:
+      case ButtonTypeKit.tertiary:
         return Colors.transparent;
     }
   }
 
-  double _generateSize(SizeButton size) {
+  double _generateSize(SizeButtonKit size) {
     switch (size) {
-      case SizeButton.big:
+      case SizeButtonKit.big:
         return 60;
-      case SizeButton.small:
+      case SizeButtonKit.small:
         return 40;
     }
   }
