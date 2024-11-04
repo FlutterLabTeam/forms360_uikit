@@ -51,7 +51,7 @@ class _CustomButton extends ConsumerWidget {
         }
       },
       child: Container(
-        height: _generateSize(sizeButton!),
+        height: _generateSize(sizeButton),
         decoration: BoxDecoration(
           color: _buttonColor(context),
           border: _borderColor(context),
@@ -97,7 +97,7 @@ class _CustomButton extends ConsumerWidget {
   }
 
   Color _buttonColor(BuildContext context) {
-    switch (buttonType!) {
+    switch (buttonType) {
       case ButtonTypeKit.primary:
         return Theme.of(context).colorScheme.primary;
       case ButtonTypeKit.secondary:
