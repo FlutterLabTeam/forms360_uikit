@@ -8,7 +8,7 @@ class CustomButtonController extends _$CustomButtonController {
   @override
   FutureOr<CustomButtonState> build() => CustomButtonState.init();
 
-  onTap(Future<void> Function() callback, ) async {
+  onTap(Function() callback, ) async {
     state = const AsyncValue.loading();
     await callback();
     _setState(state.value!);

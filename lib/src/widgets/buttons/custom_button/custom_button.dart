@@ -9,7 +9,7 @@ import 'package:forms360_uikit/src/widgets/buttons/custom_button/provider/custom
 class UiButton {
   Widget button({
     required String title,
-    required Future<void> Function() onPressed,
+    required Function() onPressed,
     SizeButtonKit sizeButton = SizeButtonKit.big,
     ButtonTypeKit buttonType = ButtonTypeKit.primary,
     ButtonStateKit buttonState = ButtonStateKit.enabled,
@@ -25,10 +25,10 @@ class UiButton {
 
 class _CustomButton extends ConsumerWidget {
   final String title;
+  final Function() onPressed;
   final ButtonTypeKit buttonType;
   final SizeButtonKit sizeButton;
   final ButtonStateKit buttonState;
-  final Future<void> Function() onPressed;
 
   const _CustomButton({
     required this.title,
