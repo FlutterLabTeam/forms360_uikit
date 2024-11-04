@@ -9,10 +9,10 @@ import 'package:forms360_uikit/src/widgets/buttons/custom_button/provider/custom
 class UiButton {
   Widget button({
     required String title,
-    SizeButtonKit? sizeButton,
-    ButtonTypeKit? buttonType,
-    ButtonStateKit? buttonState,
     required Future<void> Function() onPressed,
+    SizeButtonKit sizeButton = SizeButtonKit.big,
+    ButtonTypeKit buttonType = ButtonTypeKit.primary,
+    ButtonStateKit buttonState = ButtonStateKit.enabled,
   }) =>
       _CustomButton(
         title: title,
@@ -25,17 +25,17 @@ class UiButton {
 
 class _CustomButton extends ConsumerWidget {
   final String title;
-  final ButtonTypeKit? buttonType;
-  final SizeButtonKit? sizeButton;
-  final ButtonStateKit? buttonState;
+  final ButtonTypeKit buttonType;
+  final SizeButtonKit sizeButton;
+  final ButtonStateKit buttonState;
   final Future<void> Function() onPressed;
 
   const _CustomButton({
     required this.title,
     required this.onPressed,
-    this.sizeButton = SizeButtonKit.big,
-    this.buttonType = ButtonTypeKit.primary,
-    this.buttonState = ButtonStateKit.enabled,
+    required this.sizeButton,
+    required this.buttonType,
+    required this.buttonState,
   });
 
   @override
@@ -45,7 +45,8 @@ class _CustomButton extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
-        if (buttonState != ButtonStateKit.disabled && !buttonProvider.isLoading) {
+        if (buttonState != ButtonStateKit.disabled &&
+            !buttonProvider.isLoading) {
           provider.onTap(onPressed);
         }
       },
