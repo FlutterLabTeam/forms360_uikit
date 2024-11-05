@@ -4,14 +4,14 @@ import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 
 class Inputs {
   Widget primary({
+    bool enabled = true,
     required String label,
     required bool isPassword,
     required String hintText,
-    final bool enabled = true,
-    final void Function(String)? onChanged,
-    final TextEditingController? controller,
-    required PrimaryInputColorKit inputColor,
+    void Function(String)? onChanged,
+    TextEditingController? controller,
     final String? Function(String?)? validator,
+    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
   }) =>
       PrimaryInput(
         label: label,
