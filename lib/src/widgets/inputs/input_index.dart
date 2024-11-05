@@ -6,7 +6,7 @@ class Inputs {
   Widget primary({
     bool enabled = true,
     required String label,
-    required bool isPassword,
+    bool isPassword = false,
     required String hintText,
     void Function(String)? onChanged,
     TextEditingController? controller,

@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/src/model/font_family_type.dart';
 import 'package:forms360_uikit/src/extension/font_family_extension.dart';
+import 'package:forms360_uikit/src/util/ui_color.dart';
 
 class FormsTextStyle {
+  TextStyle get title => _baseTextStyle.copyWith(
+        fontSize: 50,
+        color: UiColor().blue,
+        fontWeight: FontWeight.w500,
+        fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+      );
+
   TextStyle get primary => _baseTextStyle.copyWith(
         fontSize: 40,
         fontWeight: FontWeight.w400,
