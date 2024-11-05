@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:forms360_uikit/src/model/input_types.dart';
 import 'package:forms360_uikit/src/util/texts.dart';
+import 'package:forms360_uikit/src/model/input_types.dart';
 
 class PrimaryInput extends StatefulWidget {
   const PrimaryInput({
