@@ -45,8 +45,7 @@ class _CustomButton extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
-        if (buttonState != ButtonStateKit.disabled &&
-            !buttonProvider.isLoading) {
+        if (buttonState != ButtonStateKit.disabled && !buttonProvider.isLoading) {
           provider.onTap(onPressed);
         }
       },
