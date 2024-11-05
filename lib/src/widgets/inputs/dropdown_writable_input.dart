@@ -37,8 +37,6 @@ class DropdownWritableInput extends StatefulWidget {
 }
 
 class _DropdownWritableInputState extends State<DropdownWritableInput> {
-  String? _selectedValue;
-
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
 
   List<String> getSuggestions(String query) {
@@ -135,9 +133,7 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
               return null;
             }
           },
-          onSaved: (value) => widget.type == DropdownWritableInputType.SINGLE
-              ? _selectedValue = value
-              : widget.selectedValues.add(value!),
+          onSaved: (value) => widget.selectedValues.add(value!),
           displayAllSuggestionWhenTap: true,
         ),
         if (widget.selectedValues.isNotEmpty)
