@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:forms360_uikit/src/model/input_types.dart';
 import 'package:forms360_uikit/src/util/texts.dart';
-
-enum PrimaryInputColor {
-  BLACK,
-  BLUE,
-}
 
 class PrimaryInput extends StatefulWidget {
   const PrimaryInput({
@@ -13,16 +9,16 @@ class PrimaryInput extends StatefulWidget {
     this.validator,
     this.controller,
     required this.label,
-    this.enabled = true,
+    required this.enabled,
     required this.hintText,
     required this.isPassword,
-    this.inputColor = PrimaryInputColor.BLACK,
+    required this.inputColor,
   });
 
   final String label;
   final String hintText;
   final bool isPassword;
-  final PrimaryInputColor inputColor;
+  final PrimaryInputColorKit inputColor;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -34,6 +30,7 @@ class PrimaryInput extends StatefulWidget {
 
 class _PrimaryInputState extends State<PrimaryInput> {
   bool _obscureText = true;
+  FormsTextStyle textStyle = FormsTextStyle();
 
   @override
   void initState() {
@@ -57,75 +54,46 @@ class _PrimaryInputState extends State<PrimaryInput> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.label,
-        labelStyle: FormsTextStyle().primary.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: widget.inputColor == PrimaryInputColor.BLACK
-                  ? Colors.black
-                  : Theme.of(context).colorScheme.primary,
-            ),
-        hintStyle: FormsTextStyle().primary.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: widget.inputColor == PrimaryInputColor.BLACK
-                  ? Colors.black
-                  : Theme.of(context).colorScheme.primary,
-            ),
+        labelStyle: textStyle.input.copyWith(color: _generateColorInput()),
+        hintStyle: textStyle.primary.copyWith(color: _generateColorInput()),
         border: OutlineInputBorder(
           borderSide: BorderSide(
-              color: widget.inputColor == PrimaryInputColor.BLACK
-                  ? Colors.black
-                  : widget.enabled
-                      ? Theme.of(context).colorScheme.primary
-                      : Color(0xff99B3C6)),
+            color: widget.inputColor == PrimaryInputColorKit.BLACK
+                ? Colors.black
+                : widget.enabled
+                    ? Theme.of(context).colorScheme.primary
+                    : Color(0xff99B3C6),
+          ),
         ),
         disabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: widget.inputColor == PrimaryInputColor.BLACK
-                ? Colors.black
-                : Theme.of(context).colorScheme.primary,
-          ),
+          borderSide: BorderSide(color: _generateColorInput()),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: widget.inputColor == PrimaryInputColor.BLACK
-                ? Colors.black
-                : Theme.of(context).colorScheme.primary,
-          ),
+          borderSide: BorderSide(color: _generateColorInput()),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: widget.inputColor == PrimaryInputColor.BLACK
-                ? Colors.black
-                : Theme.of(context).colorScheme.primary,
-          ),
+          borderSide: BorderSide(color: _generateColorInput()),
         ),
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: widget.inputColor == PrimaryInputColor.BLACK
-                      ? Colors.black
-                      : Theme.of(context).colorScheme.primary,
-                ),
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: _generateColorInput()),
                 onPressed: _togglePasswordVisibility,
               )
             : null,
       ),
       cursorHeight: 16,
-      style: FormsTextStyle().primary.copyWith(
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-            color: widget.inputColor == PrimaryInputColor.BLACK
-                ? Colors.black
-                : Theme.of(context).colorScheme.primary,
-          ),
-      cursorColor: widget.inputColor == PrimaryInputColor.BLACK
-          ? Colors.black
-          : Theme.of(context).colorScheme.primary,
+      validator: widget.validator,
+      cursorColor: _generateColorInput(),
       textInputAction: TextInputAction.done,
       obscureText: widget.isPassword && _obscureText,
-      validator: widget.validator,
+      style: textStyle.input.copyWith(color: _generateColorInput()),
     );
+  }
+
+  Color _generateColorInput() {
+    if (widget.inputColor == PrimaryInputColorKit.BLACK) return Colors.black;
+    return Theme.of(context).colorScheme.primary;
   }
 }

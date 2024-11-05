@@ -21,6 +21,12 @@ class FormsTextStyle {
         fontFamily: FontFamilyType.BE_VIETNAM.toName(),
       );
 
+  TextStyle get input => _baseTextStyle.copyWith(
+        fontSize: 20,
+        fontWeight: FontWeight.w300,
+        fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+      );
+
   /// BASE
   final TextStyle _baseTextStyle = TextStyle(
     color: Color(0xFF000000),

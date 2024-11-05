@@ -1,0 +1,1 @@
+enum PrimaryInputColorKit { BLACK, BLUE }
