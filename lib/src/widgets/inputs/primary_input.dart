@@ -55,7 +55,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
         hintText: widget.hintText,
         labelText: widget.label,
         labelStyle: textStyle.input.copyWith(color: _generateColorInput()),
-        hintStyle: textStyle.primary.copyWith(color: _generateColorInput()),
+        hintStyle: textStyle.input.copyWith(color: _generateColorInput()),
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
