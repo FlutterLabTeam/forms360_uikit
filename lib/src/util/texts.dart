@@ -22,7 +22,7 @@ class FormsTextStyle {
       );
 
   TextStyle get input => _baseTextStyle.copyWith(
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: FontWeight.w300,
         fontFamily: FontFamilyType.BE_VIETNAM.toName(),
       );
