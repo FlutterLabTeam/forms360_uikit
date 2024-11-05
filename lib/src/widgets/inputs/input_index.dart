@@ -3,7 +3,7 @@ import 'package:forms360_uikit/src/model/input_types.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 
 class Inputs {
-  Widget buttons({
+  Widget primary({
     required String label,
     required bool isPassword,
     required String hintText,
