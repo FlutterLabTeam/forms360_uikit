@@ -1,6 +1,5 @@
-import 'package:forms360_uikit/src/theme/colors.dart';
+import 'package:forms360_uikit/src/theme/colors/index_color.dart';
 
-class ThemeColor {
-  AppearanceKitColors dark = AppearanceKitColors.dark();
-  AppearanceKitColors light = AppearanceKitColors.light();
+class Theme {
+  ThemeColor color = ThemeColor();
 }
