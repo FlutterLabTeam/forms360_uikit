@@ -3,11 +3,6 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/util/texts.dart';
 import 'package:drop_down_search_field/drop_down_search_field.dart';
 
-enum DropdownWritableInputType {
-  MULTI,
-  SINGLE,
-}
-
 class DropdownWritableInput extends StatefulWidget {
   DropdownWritableInput({
     super.key,
@@ -62,12 +57,18 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             decoration: InputDecoration(
               hintText: widget.hintText,
               labelText: widget.label,
-              border: OutlineInputBorder(borderSide: BorderSide(color: _generateColor())),
-              enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: _generateColor())),
-              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: _generateColor())),
-              disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: _generateColor())),
-              hintStyle: FormsTextStyle().input.copyWith(color: _generateColor()),
-              labelStyle: FormsTextStyle().input.copyWith(color: _generateColor()),
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: _generateColor())),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: _generateColor())),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: _generateColor())),
+              disabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: _generateColor())),
+              hintStyle:
+                  FormsTextStyle().input.copyWith(color: _generateColor()),
+              labelStyle:
+                  FormsTextStyle().input.copyWith(color: _generateColor()),
             ),
             controller: widget.dropdownSearchFieldController,
           ),
