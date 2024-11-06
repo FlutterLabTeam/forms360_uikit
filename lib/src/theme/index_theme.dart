@@ -1,5 +1,5 @@
 import 'package:forms360_uikit/src/theme/colors.dart';
 
 class ThemeKit {
-  static final themeColor = AppearanceKitColors;
+   final themeColor = AppearanceKitColors;
 }
