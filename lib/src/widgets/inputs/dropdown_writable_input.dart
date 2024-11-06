@@ -54,47 +54,28 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
       children: [
         DropDownSearchFormField(
           textFieldConfiguration: TextFieldConfiguration(
-            style: FormsTextStyle().primary.copyWith(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
+            style: FormsTextStyle().input.copyWith(
                   color: _generateColor(),
+                  fontWeight: FontWeight.w400,
                 ),
             cursorColor: _generateColor(),
             decoration: InputDecoration(
               hintText: widget.hintText,
               labelText: widget.label,
-              labelStyle: FormsTextStyle()
-                  .primary
-                  .copyWith(fontSize: 16, color: _generateColor()),
-              hintStyle: FormsTextStyle()
-                  .primary
-                  .copyWith(fontSize: 16, color: _generateColor()),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: _generateColor()),
-              ),
-              disabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: _generateColor()),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: _generateColor()),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: _generateColor()),
-              ),
+              border: OutlineInputBorder(borderSide: BorderSide(color: _generateColor())),
+              enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: _generateColor())),
+              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: _generateColor())),
+              disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: _generateColor())),
+              hintStyle: FormsTextStyle().input.copyWith(color: _generateColor()),
+              labelStyle: FormsTextStyle().input.copyWith(color: _generateColor()),
             ),
             controller: widget.dropdownSearchFieldController,
           ),
-          suggestionsCallback: (pattern) {
-            return getSuggestions(pattern);
-          },
+          suggestionsCallback: (pattern) => getSuggestions(pattern),
           itemBuilder: (context, String suggestion) {
-            return ListTile(
-              title: Text(suggestion),
-            );
+            return ListTile(title: Text(suggestion));
           },
-          itemSeparatorBuilder: (context, index) {
-            return const Divider();
-          },
+          itemSeparatorBuilder: (context, index) => Divider(),
           transitionBuilder: (context, suggestionsBox, controller) {
             return suggestionsBox;
           },
