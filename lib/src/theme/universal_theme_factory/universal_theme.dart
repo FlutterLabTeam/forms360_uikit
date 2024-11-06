@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
-import 'package:forms360_uikit/src/theme/text/texts.dart';
 import 'package:forms360_uikit/src/model/theme_models/theme_data.dart';
 import 'package:forms360_uikit/src/model/theme_models/theme_data_factory.dart';
 
