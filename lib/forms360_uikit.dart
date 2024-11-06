@@ -10,6 +10,6 @@ export 'package:forms360_uikit/src/model/font_family_type.dart';
 //abstract class
 class FormsKit {
   static UtilKit util = UtilKit();
-  static ThemeKit theme = ThemeKit();
   static UiWidget widget = UiWidget();
+  static ThemeColor colors = ThemeColor();
 }
