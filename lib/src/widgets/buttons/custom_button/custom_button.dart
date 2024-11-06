@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:forms360_uikit/src/theme/text/texts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:forms360_uikit/src/theme/text/texts.dart';
 import 'package:forms360_uikit/src/model/button_type.dart';
 import 'package:forms360_uikit/src/widgets/async_value_widget.dart';
 import 'package:forms360_uikit/src/widgets/buttons/custom_button/widget/buttons.dart';
@@ -92,7 +92,7 @@ class _CustomButton extends ConsumerWidget {
       textColor = Theme.of(context).colorScheme.primary;
     }
 
-    return FormsTextStyle().button.copyWith(color: textColor);
+    return  AppearanceKitTextTheme.build().button.copyWith(color: textColor);
   }
 
   Color _buttonColor(BuildContext context) {

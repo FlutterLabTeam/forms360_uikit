@@ -49,7 +49,7 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
       children: [
         DropDownSearchFormField(
           textFieldConfiguration: TextFieldConfiguration(
-            style: FormsTextStyle().input.copyWith(
+            style: AppearanceKitTextTheme.build().input.copyWith(
                   color: _generateColor(),
                   fontWeight: FontWeight.w400,
                 ),
@@ -65,10 +65,12 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
                   borderSide: BorderSide(color: _generateColor())),
               disabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: _generateColor())),
-              hintStyle:
-                  FormsTextStyle().input.copyWith(color: _generateColor()),
-              labelStyle:
-                  FormsTextStyle().input.copyWith(color: _generateColor()),
+              hintStyle: AppearanceKitTextTheme.build()
+                  .input
+                  .copyWith(color: _generateColor()),
+              labelStyle: AppearanceKitTextTheme.build()
+                  .input
+                  .copyWith(color: _generateColor()),
             ),
             controller: widget.dropdownSearchFieldController,
           ),

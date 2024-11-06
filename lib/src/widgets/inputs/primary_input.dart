@@ -30,7 +30,6 @@ class PrimaryInput extends StatefulWidget {
 
 class _PrimaryInputState extends State<PrimaryInput> {
   bool _obscureText = true;
-  FormsTextStyle textStyle = FormsTextStyle();
 
   @override
   void initState() {
@@ -54,8 +53,8 @@ class _PrimaryInputState extends State<PrimaryInput> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.label,
-        labelStyle: textStyle.input.copyWith(color: _generateColorInput()),
-        hintStyle: textStyle.input.copyWith(color: _generateColorInput()),
+        labelStyle: AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput()),
+        hintStyle: AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput()),
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
@@ -88,7 +87,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
       cursorColor: _generateColorInput(),
       textInputAction: TextInputAction.done,
       obscureText: widget.isPassword && _obscureText,
-      style: textStyle.input.copyWith(color: _generateColorInput()),
+      style: AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput()),
     );
   }
 
