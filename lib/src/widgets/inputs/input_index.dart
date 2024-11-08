@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 
 class Inputs {
@@ -52,5 +53,16 @@ class Inputs {
         onSuggestionSelected: onSuggestionSelected,
         onSelectedValuesChanged: onSelectedValuesChanged,
         dropdownSearchFieldController: dropdownSearchFieldController,
+      );
+
+  Widget otpInput({
+    Function(String)? onSubmit,
+    Function(String)? onCodeChanged,
+    required List<TextEditingController?> controls,
+  }) =>
+      OTPInput(
+        onSubmit: onSubmit,
+        controls: controls,
+        onCodeChanged: onCodeChanged,
       );
 }
