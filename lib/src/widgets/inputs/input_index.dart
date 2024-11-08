@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
-import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
 
 class Inputs {
   Widget primary({
@@ -60,7 +60,7 @@ class Inputs {
     Function(String)? onCodeChanged,
     required List<TextEditingController?> controls,
   }) =>
-      OTPInput(
+      OtpInput(
         onSubmit: onSubmit,
         controls: controls,
         onCodeChanged: onCodeChanged,
