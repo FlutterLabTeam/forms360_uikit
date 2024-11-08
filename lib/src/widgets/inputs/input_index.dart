@@ -5,6 +5,7 @@ import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 
 class Inputs {
   Widget primary({
+    bool isBig = false,
     bool enabled = true,
     required String label,
     bool isPassword = false,
@@ -15,6 +16,7 @@ class Inputs {
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
   }) =>
       PrimaryInput(
+        isBig: isBig,
         label: label,
         enabled: enabled,
         hintText: hintText,

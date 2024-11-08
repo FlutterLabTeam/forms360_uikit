@@ -8,6 +8,7 @@ class PrimaryInput extends StatefulWidget {
     this.onChanged,
     this.validator,
     this.controller,
+    required this.isBig,
     required this.label,
     required this.enabled,
     required this.hintText,
@@ -15,6 +16,7 @@ class PrimaryInput extends StatefulWidget {
     required this.inputColor,
   });
 
+  final bool isBig;
   final String label;
   final String hintText;
   final bool isPassword;
@@ -48,13 +50,18 @@ class _PrimaryInputState extends State<PrimaryInput> {
     return TextFormField(
       key: widget.key,
       enabled: widget.enabled,
-      controller: widget.controller,
       onChanged: widget.onChanged,
+      controller: widget.controller,
+      maxLines: !widget.isBig ? 1 : 5,
       decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.label,
-        labelStyle: AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput()),
-        hintStyle: AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput()),
+        labelStyle: AppearanceKitTextTheme.build()
+            .input
+            .copyWith(color: _generateColorInput()),
+        hintStyle: AppearanceKitTextTheme.build()
+            .input
+            .copyWith(color: _generateColorInput()),
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
@@ -87,7 +94,9 @@ class _PrimaryInputState extends State<PrimaryInput> {
       cursorColor: _generateColorInput(),
       textInputAction: TextInputAction.done,
       obscureText: widget.isPassword && _obscureText,
-      style: AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput()),
+      style: AppearanceKitTextTheme.build()
+          .input
+          .copyWith(color: _generateColorInput()),
     );
   }
 

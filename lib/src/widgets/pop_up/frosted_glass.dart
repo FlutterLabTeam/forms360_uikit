@@ -12,9 +12,11 @@ import 'dart:ui';
 import 'package:go_router/go_router.dart';
 
 class FrostedGlassBox extends StatelessWidget {
-  const FrostedGlassBox(
-      {Key? key, required this.theWidth, required this.theHeight})
-      : super(key: key);
+  const FrostedGlassBox({
+    Key? key,
+    required this.theWidth,
+    required this.theHeight,
+  }) : super(key: key);
 
   final theWidth;
   final theHeight;
