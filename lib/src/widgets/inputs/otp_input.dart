@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
-class OTPInput extends StatelessWidget {
+class OtpInput extends StatelessWidget {
+  final void Function(String)? onSubmit;
+  final void Function(String)? onCodeChanged;
+  final List<TextEditingController?> controls;
 
-  OTPInput({
+  const OtpInput({
     super.key,
     this.onSubmit,
     this.onCodeChanged,
     required this.controls,
   });
-
-  void Function(String)? onCodeChanged;
-  void Function(String)? onSubmit;
-  List<TextEditingController?> controls;
 
   @override
   Widget build(BuildContext context) {
