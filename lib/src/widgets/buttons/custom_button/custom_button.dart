@@ -46,7 +46,7 @@ class _CustomButtonState extends State<_CustomButton> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        if (widget.buttonState != ButtonStateKit.disabled && isLoading) {
+        if (widget.buttonState != ButtonStateKit.disabled && !isLoading) {
           setState(() => isLoading = true);
           await widget.onPressed();
           setState(() => isLoading = false);
