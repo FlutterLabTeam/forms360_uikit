@@ -47,7 +47,9 @@ class _CustomButtonState extends State<_CustomButton> {
     return InkWell(
       onTap: () async {
         if (widget.buttonState != ButtonStateKit.disabled && isLoading) {
-          onTap(widget.onPressed());
+          setState(() => isLoading = true);
+          await widget.onPressed();
+          setState(() => isLoading = false);
         }
       },
       child: Container(
@@ -112,12 +114,6 @@ class _CustomButtonState extends State<_CustomButton> {
       case SizeButtonKit.small:
         return 40;
     }
-  }
-
-  onTap(Function() callback, ) async {
-    setState(() => isLoading = true);
-    await callback();
-    setState(() => isLoading = false);
   }
 }
 
