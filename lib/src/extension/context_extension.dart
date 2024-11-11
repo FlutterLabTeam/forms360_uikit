@@ -7,14 +7,11 @@ extension ContextExtension on BuildContext {
         child: child,
       );
 
-  Color get primaryColor => Theme.of(this).colorScheme.primary;
-  Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary;
-
-  Color get surfaceColor => Theme.of(this).colorScheme.surface;
-  Color get onSurfaceColor => Theme.of(this).colorScheme.onSurface;
-  Color get surfaceContainer => Theme.of(this).colorScheme.surfaceContainer;
-
-  Color get secondaryColor => Theme.of(this).colorScheme.secondary;
-
-  Color get errorColor => Theme.of(this).colorScheme.error;
+  Color get errorColor => Theme.of(this).colorScheme.error; //red
+  Color get primaryColor => Theme.of(this).colorScheme.primary;//blue
+  Color get surfaceColor => Theme.of(this).colorScheme.surface;//light blue
+  Color get secondaryColor => Theme.of(this).colorScheme.secondary; // green
+  Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary; ///dark blue
+  Color get onSurfaceColor => Theme.of(this).colorScheme.onSurface;//blue sea water
+  Color get surfaceContainer => Theme.of(this).colorScheme.surfaceContainer;//white
 }
