@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
+import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
@@ -64,5 +65,14 @@ class Inputs {
         onSubmit: onSubmit,
         controls: controls,
         onCodeChanged: onCodeChanged,
+      );
+
+  Widget checkBox({
+    required bool state,
+    required Function() onTap,
+  }) =>
+      CheckBox(
+        onTap: onTap,
+        state: state,
       );
 }
