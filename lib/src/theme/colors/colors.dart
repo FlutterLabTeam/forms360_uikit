@@ -47,7 +47,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
 
         secondary: Color(0xFF4cae50),
 
-        background: Color(0xFFf5f7fa),
+        background: Color(0xffffffff),
       );
 
   factory AppearanceKitColors.dark() => const AppearanceKitColors(
