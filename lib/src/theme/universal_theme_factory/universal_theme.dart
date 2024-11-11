@@ -16,11 +16,11 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
       defaultTextTheme: defaultTextStyle,
       materialTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: colors.primary).copyWith(
-          surface: colors.surface,
-          onSurface: colors.onSurface,
-          primary: colors.primary,
-          onPrimary: colors.onPrimary,
           error: colors.error,
+          surface: colors.surface,
+          primary: colors.primary,
+          onSurface: colors.onSurface,
+          onPrimary: colors.onPrimary,
         ),
         elevatedButtonTheme: elevatedButtonTheme(
           colors: colors,

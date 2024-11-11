@@ -14,7 +14,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
   final Color onPrimary;
   final Color secondary;
   final Color onSurface;
-  final Color background;
+  final Color surfaceContainer;
 
   final Color grey1;
   final Color grey2;
@@ -32,7 +32,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
     required this.onPrimary,
     required this.onSurface,
     required this.secondary,
-    required this.background,
+    required this.surfaceContainer,
   });
 
   factory AppearanceKitColors.light() => const AppearanceKitColors(
@@ -43,11 +43,13 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
         error: Color(0xFFCF6679),
 
         primary: Color(0xFF1e5c8b),
-        surface: Color(0xFFe2f2fd),
         onPrimary: Color(0xFF132248),
-        secondary: Color(0xFF4cae50),
+
+        surface: Color(0xFFe2f2fd),
         onSurface: Color(0xFFcbeef3),
-        background: Color(0xFFf5f7fa),
+        surfaceContainer: Color(0xFFf5f7fa),
+
+        secondary: Color(0xFF4cae50),
       );
 
   factory AppearanceKitColors.dark() => const AppearanceKitColors(
@@ -57,7 +59,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
         primary: Color(0xFF1E88E5),
         onPrimary: Color(0xFF1e5c8b),
         secondary: Color(0xFFFFFFFF),
-        background: Color(0xFF0A0A0A),
+        surfaceContainer: Color(0xFF0A0A0A),
         onSurface: Color(0xFFFFFFFF),
 
         grey1: Color(0xFF263238),
@@ -73,7 +75,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
     Color? onPrimary,
     Color? onSurface,
     Color? secondary,
-    Color? background,
+    Color? surfaceContainer,
 
     Color? grey1,
     Color? grey2,
@@ -86,7 +88,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
       secondary: secondary ?? this.secondary,
       onPrimary: onPrimary ?? this.onPrimary,
       onSurface: onSurface ?? this.onSurface,
-      background: background ?? this.background,
+      surfaceContainer: surfaceContainer ?? this.surfaceContainer,
 
       grey1: grey1 ?? this.grey1,
       grey2: grey2 ?? this.grey2,
@@ -108,7 +110,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
       onPrimary: Color.lerp(onPrimary, other.onPrimary, t)!,
       secondary: Color.lerp(secondary, other.secondary, t)!,
       onSurface: Color.lerp(onSurface, other.onSurface, t)!,
-      background: Color.lerp(background, other.background, t)!,
+      surfaceContainer: Color.lerp(surfaceContainer, other.surfaceContainer, t)!,
 
       grey1: Color.lerp(grey1, other.grey1, t)!,
       grey2: Color.lerp(grey2, other.grey2, t)!,
