@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
-import 'package:forms360_uikit/src/model/theme_models/theme_data.dart';
-import 'package:forms360_uikit/src/model/theme_models/theme_data_factory.dart';
 
 /// This is a uniform theme
 /// But you can use it to create multiple themes for iOS, Android, Web, Desktop...
@@ -54,22 +52,18 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
     required AppearanceKitTextTheme textTheme,
   }) =>
       NavigationRailThemeData(
-        backgroundColor: colors.surface,
         elevation: 0,
-        selectedIconTheme: IconThemeData(
-          color: colors.primary,
-        ),
-        unselectedIconTheme: IconThemeData(
-          color: colors.grey2,
-        ),
+        backgroundColor: colors.surface,
+        selectedIconTheme: IconThemeData(color: colors.primary),
+        unselectedIconTheme: IconThemeData(color: colors.grey2),
         selectedLabelTextStyle: textTheme.primary.copyWith(
-          color: colors.primary,
           fontSize: 16,
+          color: colors.primary,
           fontWeight: FontWeight.w700,
         ),
         unselectedLabelTextStyle: textTheme.primary.copyWith(
-          color: colors.onSurface,
           fontSize: 16,
+          color: colors.onSurface,
           fontWeight: FontWeight.w700,
         ),
       );
@@ -92,8 +86,8 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
           ),
           textStyle: textTheme.primary.copyWith(
             fontSize: 16,
-            fontWeight: FontWeight.w700,
             color: colors.onPrimary,
+            fontWeight: FontWeight.w700,
           ),
           elevation: 0,
         ),
@@ -107,37 +101,26 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
         fillColor: colors.surface,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(
-            color: colors.grey1.withOpacity(.15),
-          ),
+          borderSide: BorderSide(color: colors.grey1.withOpacity(.15)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(
-            color: colors.primary,
-          ),
+          borderSide: BorderSide(color: colors.primary),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(
-            color: colors.error,
-            width: 2,
-          ),
+          borderSide: BorderSide(color: colors.error, width: 2),
         ),
         filled: true,
         hintStyle: textTheme.primary.copyWith(
-          color: colors.grey2,
           fontSize: 16,
+          color: colors.grey2,
           fontWeight: FontWeight.w300,
         ),
-        labelStyle: textTheme.primary.copyWith(
-          color: colors.grey2,
-        ),
+        labelStyle: textTheme.primary.copyWith(color: colors.grey2),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5.0),
-          borderSide: BorderSide(
-            color: colors.grey2,
-          ),
+          borderSide: BorderSide(color: colors.grey2),
         ),
       );
 
@@ -155,7 +138,7 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
       TextTheme(
         headlineLarge: defaultTextStyle.primary.copyWith(
           fontSize: 32,
-          color: colors.onBackground,
+          color: colors.onPrimary,
           fontWeight: FontWeight.w700,
         ),
       );
