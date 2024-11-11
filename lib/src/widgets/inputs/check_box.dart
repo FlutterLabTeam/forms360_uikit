@@ -18,12 +18,13 @@ class CheckBox extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(8),
         child: Material(
-          child: Padding(
-            padding: EdgeInsets.all(3),
-            child: Icon(Icons.check, color: context.surfaceContainerColor),
+          child: Icon(
+            Icons.check,
+            size: 17,
+            color: context.surfaceContainerColor,
           ),
+          borderRadius: BorderRadius.circular(4),
           color: state ? context.onPrimaryColor : context.surfaceContainerColor,
-          borderRadius: BorderRadius.circular(6),
         ),
       ),
     );
