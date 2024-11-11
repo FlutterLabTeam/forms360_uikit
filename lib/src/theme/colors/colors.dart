@@ -12,6 +12,8 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
   final Color grey2;
   final Color grey3;
 
+  final Color background;
+
   const AppearanceKitColors({
     required this.grey1,
     required this.grey2,
@@ -25,6 +27,8 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
     required this.onSurface,
     required this.secondary,
     required this.surfaceContainer,
+
+    required this.background,
   });
 
   factory AppearanceKitColors.light() => const AppearanceKitColors(
@@ -42,6 +46,8 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
         surfaceContainer: Color(0xFFf5f7fa),
 
         secondary: Color(0xFF4cae50),
+
+        background: Color(0xFFf5f7fa),
       );
 
   factory AppearanceKitColors.dark() => const AppearanceKitColors(
@@ -57,6 +63,8 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
         grey1: Color(0xFF263238),
         grey2: Color(0xFF7D8488),
         grey3: Color(0xFFBEC1C3),
+
+        background: Color(0xFFf5f7fa),
       );
 
   @override
@@ -85,6 +93,9 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
       grey1: grey1 ?? this.grey1,
       grey2: grey2 ?? this.grey2,
       grey3: grey3 ?? this.grey3,
+
+
+      background: background,
     );
   }
 
@@ -107,6 +118,8 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
       grey1: Color.lerp(grey1, other.grey1, t)!,
       grey2: Color.lerp(grey2, other.grey2, t)!,
       grey3: Color.lerp(grey3, other.grey3, t)!,
+
+      background: Color.lerp(background, other.background, t)!,
     );
   }
 }
