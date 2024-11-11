@@ -39,7 +39,7 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
           textTheme: defaultTextStyle,
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: colors.surface,
+          backgroundColor: colors.surfaceContainer,
           foregroundColor: colors.onSurface,
           elevation: 0,
         ),
@@ -53,7 +53,7 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
   }) =>
       NavigationRailThemeData(
         elevation: 0,
-        backgroundColor: colors.surface,
+        backgroundColor: colors.surfaceContainer,
         selectedIconTheme: IconThemeData(color: colors.primary),
         unselectedIconTheme: IconThemeData(color: colors.grey2),
         selectedLabelTextStyle: textTheme.primary.copyWith(
@@ -76,7 +76,7 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(200, 48),
           foregroundColor: colors.onPrimary,
-          backgroundColor: colors.primary,
+          backgroundColor: colors.surfaceContainer,
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: 2,
