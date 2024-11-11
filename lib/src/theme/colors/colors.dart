@@ -41,9 +41,9 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
         primary: Color(0xFF1e5c8b),
         onPrimary: Color(0xFF132248),
 
-        surface: Color(0xFFe2f2fd),
+        surface: Color(0xFFf5f7fa),
         onSurface: Color(0xFFcbeef3),
-        surfaceContainer: Color(0xFFf5f7fa),
+        surfaceContainer: Color(0xFFe2f2fd),
 
         secondary: Color(0xFF4cae50),
 
