@@ -18,6 +18,9 @@ extension ContextExtension on BuildContext {
   Color get surfaceContainerColor => Theme.of(this).colorScheme.surfaceContainer; //light blue
 
 //colors them access by context
+  TextStyle get titleText =>
+      AppearanceKitTextTheme.build().title.copyWith(color: onPrimaryColor);
+
   TextStyle get buttonText =>
       AppearanceKitTextTheme.build().button.copyWith(color: onPrimaryColor);
 
