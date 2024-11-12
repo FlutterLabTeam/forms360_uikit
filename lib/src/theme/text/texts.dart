@@ -7,6 +7,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
   final TextStyle primary;
   final TextStyle secondary;
   final TextStyle description;
+  final TextStyle smallDescription;
 
   const AppearanceKitTextTheme({
     required this.input,
@@ -14,9 +15,15 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     required this.primary,
     required this.secondary,
     required this.description,
+    required this.smallDescription,
   });
 
   factory AppearanceKitTextTheme.build() => AppearanceKitTextTheme(
+        smallDescription: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w300,
+          fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+        ),
         button: TextStyle(
           fontSize: 16,
           color: Colors.white,
@@ -55,6 +62,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     TextStyle? primary,
     TextStyle? secondary,
     TextStyle? description,
+    TextStyle? smallDescription,
   }) =>
       AppearanceKitTextTheme(
         input: input ?? this.input,
@@ -62,6 +70,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
         primary: primary ?? this.primary,
         secondary: secondary ?? this.secondary,
         description: description ?? this.description,
+        smallDescription: smallDescription ?? this.smallDescription,
       );
 
   @override
@@ -77,6 +86,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
       primary: TextStyle.lerp(primary, other.primary, t)!,
       secondary: TextStyle.lerp(secondary, other.secondary, t)!,
       description: TextStyle.lerp(description, other.description, t)!,
+      smallDescription: TextStyle.lerp(smallDescription, other.smallDescription, t)!,
     );
   }
 }

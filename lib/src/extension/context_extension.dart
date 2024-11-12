@@ -33,4 +33,8 @@ extension ContextExtension on BuildContext {
 
   TextStyle get secondaryText =>
       AppearanceKitTextTheme.build().secondary.copyWith(color: onPrimaryColor);
+
+  TextStyle get smallDescriptionText => AppearanceKitTextTheme.build()
+      .smallDescription
+      .copyWith(color: onPrimaryColor);
 }
