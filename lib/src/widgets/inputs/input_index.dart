@@ -69,7 +69,7 @@ class Inputs {
 
   Widget checkBox({
     required bool state,
-    required Function() onTap,
+    required Function(bool) onTap,
   }) =>
       CheckBox(
         onTap: onTap,
