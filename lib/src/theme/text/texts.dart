@@ -3,6 +3,7 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 
 class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
   final TextStyle input;
+  final TextStyle title;
   final TextStyle button;
   final TextStyle primary;
   final TextStyle secondary;
@@ -11,6 +12,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
 
   const AppearanceKitTextTheme({
     required this.input,
+    required this.title,
     required this.button,
     required this.primary,
     required this.secondary,
@@ -48,6 +50,11 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
           fontWeight: FontWeight.w400,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
         ),
+        title: TextStyle(
+          fontSize: 50,
+          fontWeight: FontWeight.w500,
+          fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+        ),
         secondary: TextStyle(
           fontSize: 20,
           color: Color.fromARGB(255, 0, 52, 124),
@@ -58,6 +65,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
   @override
   ThemeExtension<AppearanceKitTextTheme> copyWith({
     TextStyle? input,
+    TextStyle? title,
     TextStyle? button,
     TextStyle? primary,
     TextStyle? secondary,
@@ -66,6 +74,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
   }) =>
       AppearanceKitTextTheme(
         input: input ?? this.input,
+        title: title ?? this.title,
         button: button ?? this.button,
         primary: primary ?? this.primary,
         secondary: secondary ?? this.secondary,
@@ -81,6 +90,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     if (other is! AppearanceKitTextTheme) return this;
 
     return AppearanceKitTextTheme(
+      title: TextStyle.lerp(title, other.title, t)!,
       input: TextStyle.lerp(input, other.input, t)!,
       button: TextStyle.lerp(button, other.button, t)!,
       primary: TextStyle.lerp(primary, other.primary, t)!,
