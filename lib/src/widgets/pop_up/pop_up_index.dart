@@ -6,7 +6,7 @@ class PopUpIndex {
   Future<void> general(
     BuildContext context, {
     required Widget child,
-    PopUpSize popUpSize = PopUpSize.LONG,
+    required PopUpSize popUpSize,
   }) =>
       generalPopUp(context, child: child, popUpSize: popUpSize);
 }
