@@ -20,7 +20,6 @@ class _StandardPage extends StatelessWidget {
   final String labelPage;
 
   const _StandardPage({
-    super.key,
     required this.child,
     required this.image,
     required this.labelPage,
