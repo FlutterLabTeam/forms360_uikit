@@ -3,14 +3,14 @@ import 'package:forms360_uikit/src/extension/context_extension.dart';
 
 class CheckBox extends StatelessWidget {
   final bool state;
-  final Function() onTap;
+  final Function(bool) onTap;
 
   const CheckBox({super.key, required this.state, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap:() => onTap(!state),
       customBorder: CircleBorder(),
       hoverColor: Colors.transparent,
       highlightColor: Colors.black12,
