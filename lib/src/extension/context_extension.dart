@@ -11,7 +11,7 @@ extension ContextExtension on BuildContext {
       PopUpIndex().general(
         this,
         child: child,
-        popUpSize: PopUpSize.SHORT,
+        popUpSize: popUpSize,
       );
 
   //colors them access by context
