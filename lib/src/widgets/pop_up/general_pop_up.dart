@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:forms360_uikit/src/widgets/pop_up/frosted_glass.dart';
 import 'package:go_router/go_router.dart';
+import 'package:forms360_uikit/src/model/pop_up_model.dart';
+import 'package:forms360_uikit/src/widgets/pop_up/frosted_glass.dart';
 
 Future<dynamic> generalPopUp(
-    BuildContext context, {
-      required Widget child,
-    }) async {
+  BuildContext context, {
+  required Widget child,
+  PopUpSize popUpSize = PopUpSize.SHORT,
+}) async {
   return await showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -25,7 +27,7 @@ Future<dynamic> generalPopUp(
                       Container(
                         width: MediaQuery.of(context).size.width * 5,
                         constraints: BoxConstraints(
-                          maxWidth: 600,
+                          maxWidth: generateSize(popUpSize),
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -43,7 +45,9 @@ Future<dynamic> generalPopUp(
                                     IconButton(
                                         icon: Icon(
                                           Icons.close,
-                                          color: Theme.of(context).colorScheme.primary,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
                                         ),
                                         onPressed: () => context.pop(context))
                                   ],
@@ -73,4 +77,15 @@ Future<dynamic> generalPopUp(
       );
     },
   );
+}
+
+double generateSize(PopUpSize popUpSize) {
+  switch (popUpSize) {
+    case PopUpSize.LONG:
+      return 1300;
+    case PopUpSize.MEDIUM:
+      return 900;
+    case PopUpSize.SHORT:
+      return 600;
+  }
 }
