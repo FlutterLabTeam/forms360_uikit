@@ -6,7 +6,7 @@ import 'package:forms360_uikit/src/widgets/pop_up/frosted_glass.dart';
 Future<dynamic> generalPopUp(
   BuildContext context, {
   required Widget child,
-  PopUpSize popUpSize = PopUpSize.SHORT,
+  required PopUpSize popUpSize,
 }) async {
   return await showDialog(
     context: context,
