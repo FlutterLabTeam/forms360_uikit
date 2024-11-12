@@ -24,7 +24,7 @@ class SelectButton extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(),
           alignment: Alignment.bottomLeft,
-          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
           child: Text(
             label,
             textAlign: TextAlign.start,
