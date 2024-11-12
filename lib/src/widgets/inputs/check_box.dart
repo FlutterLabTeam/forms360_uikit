@@ -24,7 +24,7 @@ class CheckBox extends StatelessWidget {
             color: context.surfaceContainerColor,
           ),
           borderRadius: BorderRadius.circular(4),
-          color: state ? context.onPrimaryColor : context.surfaceContainerColor,
+          color: state ? context.primaryColor : context.surfaceContainerColor,
         ),
       ),
     );
