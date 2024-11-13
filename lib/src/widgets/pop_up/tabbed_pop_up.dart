@@ -37,23 +37,12 @@ Future<dynamic> tabbedPopUp(
                         child: Padding(
                           padding: const EdgeInsets.all(26.0),
                           child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 64,
-                                    horizontal: 64.0,
-                                  ),
-                                  child: Container(
-                                    child: TabbedWidget(
-                                      pageController: pageController,
-                                      children: children,
-                                    ),
-                                    width: double.infinity,
-                                  ),
-                                )
-                              ],
+                            child: Container(
+                              child: TabbedWidget(
+                                pageController: pageController,
+                                children: children,
+                              ),
+                              width: double.infinity,
                             ),
                           ),
                         ),
