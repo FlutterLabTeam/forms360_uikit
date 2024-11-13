@@ -38,6 +38,7 @@ Future<dynamic> tabbedPopUp(
                           padding: const EdgeInsets.all(26.0),
                           child: SingleChildScrollView(
                             child: Container(
+                              height: MediaQuery.of(context).size.height * 0.8,
                               child: TabbedWidget(
                                 pageController: pageController,
                                 children: children,
