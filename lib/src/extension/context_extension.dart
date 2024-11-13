@@ -14,7 +14,7 @@ extension ContextExtension on BuildContext {
         popUpSize: popUpSize,
       );
 
-  Future<void> openTabbedPopUp({
+  Future<void> openCustomPopUp({
     required Widget header,
     required Widget body,
     required Widget footer,
@@ -28,7 +28,7 @@ extension ContextExtension on BuildContext {
         popUpSize: popUpSize,
       );
 
-  Future<void> openCustomPopUp({
+  Future<void> openTabbedPopUp({
     required final GlobalKey<TabbedWidgetState> tabbedWidgetKey,
     required List<Widget> children,
     PopUpSize popUpSize = PopUpSize.LONG,
