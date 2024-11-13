@@ -14,14 +14,16 @@ extension ContextExtension on BuildContext {
       );
 
   Future<void> openTabbedPopUp({
-    required PageController pageController,
-    required List<Widget> children,
+    required Widget header,
+    required Widget body,
+    required Widget footer,
     PopUpSize popUpSize = PopUpSize.LONG,
   }) =>
-      PopUpIndex().tabbed(
+      PopUpIndex().custom(
         this,
-        pageController: pageController,
-        children: children,
+        header: header,
+        body: body,
+        footer: footer,
         popUpSize: popUpSize,
       );
 

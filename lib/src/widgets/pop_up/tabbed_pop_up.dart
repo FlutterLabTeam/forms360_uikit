@@ -3,10 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:forms360_uikit/src/model/pop_up_model.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/frosted_glass.dart';
 
-Future<dynamic> tabbedPopUp(
+Future<dynamic> customPopUp(
   BuildContext context, {
-  required List<Widget> children,
-  required PageController pageController,
+  required Widget? header,
+  required Widget body,
+  required Widget footer,
   required PopUpSize popUpSize,
 }) async {
   return await showDialog(
@@ -40,25 +41,22 @@ Future<dynamic> tabbedPopUp(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    buildBackButton(context, pageController),
-                                    buildTabLines(
-                                        context, pageController, children),
-                                    buildCloseButton(context)
-                                  ],
-                                ),
-                                buildCloseButton(context),
+                                header ??
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [buildCloseButton(context)],
+                                    ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 64,
                                     horizontal: 64.0,
                                   ),
                                   child: Container(
-                                    child: PageView(
-                                      controller: pageController,
-                                      children: children,
+                                    child: Column(
+                                      children: [
+                                        Expanded(child: body),
+                                        footer,
+                                      ],
                                     ),
                                     width: double.infinity,
                                   ),

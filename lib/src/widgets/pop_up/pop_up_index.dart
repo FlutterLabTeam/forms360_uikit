@@ -11,14 +11,13 @@ class PopUpIndex {
   }) =>
       generalPopUp(context, child: child, popUpSize: popUpSize);
 
-  Future<void> tabbed(
+  Future<void> custom(
     BuildContext context, {
-    required PageController pageController,
-    required List<Widget> children,
+    required Widget header,
+    required Widget body,
+    required Widget footer,
     required PopUpSize popUpSize,
   }) =>
-      tabbedPopUp(context,
-          pageController: pageController,
-          children: children,
-          popUpSize: popUpSize);
+      customPopUp(context,
+          header: header, body: header, footer: footer, popUpSize: popUpSize);
 }
