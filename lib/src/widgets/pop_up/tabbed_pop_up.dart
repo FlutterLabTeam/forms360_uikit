@@ -5,7 +5,7 @@ import 'package:forms360_uikit/src/widgets/pop_up/frosted_glass.dart';
 
 Future<dynamic> tabbedPopUp(
   BuildContext context, {
-  required final GlobalKey<TabbedWidgetState> tabbedWidgetKey,
+  required PageController pageController,
   required List<Widget> children,
   required PopUpSize popUpSize,
 }) async {
@@ -47,7 +47,7 @@ Future<dynamic> tabbedPopUp(
                                   ),
                                   child: Container(
                                     child: TabbedWidget(
-                                      key: tabbedWidgetKey,
+                                      pageController: pageController,
                                       children: children,
                                     ),
                                     width: double.infinity,
@@ -70,27 +70,34 @@ Future<dynamic> tabbedPopUp(
   );
 }
 
+abstract class TabPageController {
+  void nextPage();
+  void previousPage();
+}
+
 class TabbedWidget extends StatefulWidget {
   final List<Widget> children;
-  const TabbedWidget({super.key, required this.children});
+  final PageController pageController;
+  const TabbedWidget(
+      {super.key, required this.children, required this.pageController});
 
   @override
   TabbedWidgetState createState() => TabbedWidgetState();
 }
 
-class TabbedWidgetState extends State<TabbedWidget> {
-  final PageController _pageController = PageController();
+class TabbedWidgetState extends State<TabbedWidget>
+    implements TabPageController {
   int _currentPage = 0;
 
   @override
   void dispose() {
-    _pageController.dispose();
+    widget.pageController.dispose();
     super.dispose();
   }
 
   void nextPage() {
     if (_currentPage < widget.children.length - 1) {
-      _pageController.nextPage(
+      widget.pageController.nextPage(
         duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
@@ -99,7 +106,7 @@ class TabbedWidgetState extends State<TabbedWidget> {
 
   void previousPage() {
     if (_currentPage > 0) {
-      _pageController.previousPage(
+      widget.pageController.previousPage(
         duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
@@ -108,46 +115,41 @@ class TabbedWidgetState extends State<TabbedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Tabbed Widget'),
-      ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: previousPage,
-              ),
-              Expanded(
-                child: CustomPageIndicator(
-                  currentPage: _currentPage,
-                  pageCount: widget.children.length, // Number of pages
-                ),
-              ),
-              IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () {
-                  Navigator.of(context).pop(); // Close the dialog
-                },
-              ),
-            ],
-          ),
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (int page) {
-                setState(() {
-                  _currentPage = page;
-                });
-              },
-              children: widget.children,
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: previousPage,
             ),
+            Expanded(
+              child: CustomPageIndicator(
+                currentPage: _currentPage,
+                pageCount: widget.children.length, // Number of pages
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.close),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+            ),
+          ],
+        ),
+        Expanded(
+          child: PageView(
+            controller: widget.pageController,
+            onPageChanged: (int page) {
+              setState(() {
+                _currentPage = page;
+              });
+            },
+            children: widget.children,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

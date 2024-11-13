@@ -29,13 +29,13 @@ extension ContextExtension on BuildContext {
       );
 
   Future<void> openTabbedPopUp({
-    required final GlobalKey<TabbedWidgetState> tabbedWidgetKey,
+    required PageController pageController,
     required List<Widget> children,
     PopUpSize popUpSize = PopUpSize.LONG,
   }) =>
       PopUpIndex().tabbed(
         this,
-        tabbedWidgetKey: tabbedWidgetKey,
+        pageController: pageController,
         children: children,
         popUpSize: popUpSize,
       );
