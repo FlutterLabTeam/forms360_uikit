@@ -3,10 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:forms360_uikit/src/model/pop_up_model.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/frosted_glass.dart';
 
-Future<dynamic> tabbedPopUp(
+Future<dynamic> customPopUp(
   BuildContext context, {
-  required final GlobalKey<TabbedWidgetState> tabbedWidgetKey,
-  required List<Widget> children,
+  required Widget? header,
+  required Widget body,
+  required Widget footer,
   required PopUpSize popUpSize,
 }) async {
   return await showDialog(
@@ -40,15 +41,22 @@ Future<dynamic> tabbedPopUp(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
+                                header ??
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [buildCloseButton(context)],
+                                    ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 64,
                                     horizontal: 64.0,
                                   ),
                                   child: Container(
-                                    child: TabbedWidget(
-                                      key: tabbedWidgetKey,
-                                      children: children,
+                                    child: Column(
+                                      children: [
+                                        Expanded(child: body),
+                                        footer,
+                                      ],
                                     ),
                                     width: double.infinity,
                                   ),
@@ -68,120 +76,6 @@ Future<dynamic> tabbedPopUp(
       );
     },
   );
-}
-
-class TabbedWidget extends StatefulWidget {
-  final List<Widget> children;
-  const TabbedWidget({super.key, required this.children});
-
-  @override
-  TabbedWidgetState createState() => TabbedWidgetState();
-}
-
-class TabbedWidgetState extends State<TabbedWidget> {
-  final PageController _pageController = PageController();
-  int _currentPage = 0;
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void nextPage() {
-    if (_currentPage < widget.children.length - 1) {
-      _pageController.nextPage(
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
-  void previousPage() {
-    if (_currentPage > 0) {
-      _pageController.previousPage(
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Tabbed Widget'),
-      ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: previousPage,
-              ),
-              Expanded(
-                child: CustomPageIndicator(
-                  currentPage: _currentPage,
-                  pageCount: widget.children.length, // Number of pages
-                ),
-              ),
-              IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () {
-                  Navigator.of(context).pop(); // Close the dialog
-                },
-              ),
-            ],
-          ),
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (int page) {
-                setState(() {
-                  _currentPage = page;
-                });
-              },
-              children: widget.children,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class CustomPageIndicator extends StatelessWidget {
-  final int currentPage;
-  final int pageCount;
-
-  const CustomPageIndicator({
-    Key? key,
-    required this.currentPage,
-    required this.pageCount,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 4.0,
-      margin: EdgeInsets.symmetric(vertical: 16.0),
-      child: Row(
-        children: List.generate(pageCount, (index) {
-          return Expanded(
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 4.0),
-              height: 4.0,
-              color: index == currentPage
-                  ? Theme.of(context).primaryColor
-                  : Colors.grey[300],
-            ),
-          );
-        }),
-      ),
-    );
-  }
 }
 
 buildTabLines(BuildContext context, PageController pageController,
