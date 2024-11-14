@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/pop_up_index.dart';
-import 'package:forms360_uikit/src/widgets/pop_up/tabbed_pop_up.dart';
 
 extension ContextExtension on BuildContext {
   Future<void> openPopUp(
@@ -11,20 +10,6 @@ extension ContextExtension on BuildContext {
       PopUpIndex().general(
         this,
         child: child,
-        popUpSize: popUpSize,
-      );
-
-  Future<void> openCustomPopUp({
-    required Widget header,
-    required Widget body,
-    required Widget footer,
-    PopUpSize popUpSize = PopUpSize.LONG,
-  }) =>
-      PopUpIndex().custom(
-        this,
-        header: header,
-        body: body,
-        footer: footer,
         popUpSize: popUpSize,
       );
 

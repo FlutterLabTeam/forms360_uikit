@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:forms360_uikit/src/model/pop_up_model.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/frosted_glass.dart';
 
@@ -8,6 +7,7 @@ Future<dynamic> tabbedPopUp(
   required PageController pageController,
   required List<Widget> children,
   required PopUpSize popUpSize,
+  double height = 0.6,
 }) async {
   return await showDialog(
     context: context,
@@ -38,7 +38,8 @@ Future<dynamic> tabbedPopUp(
                           padding: const EdgeInsets.all(26.0),
                           child: SingleChildScrollView(
                             child: Container(
-                              height: MediaQuery.of(context).size.height * 0.8,
+                              height:
+                                  MediaQuery.of(context).size.height * height,
                               child: TabbedWidget(
                                 pageController: pageController,
                                 children: children,
@@ -156,7 +157,7 @@ class CustomPageIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 4.0,
-      margin: EdgeInsets.symmetric(vertical: 16.0),
+      margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 60.0),
       child: Row(
         children: List.generate(pageCount, (index) {
           return Expanded(
