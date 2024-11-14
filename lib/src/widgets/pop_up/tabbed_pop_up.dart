@@ -60,11 +60,6 @@ Future<dynamic> tabbedPopUp(
   );
 }
 
-abstract class TabPageController {
-  void nextPage();
-  void previousPage();
-}
-
 class TabbedWidget extends StatefulWidget {
   final List<Widget> children;
   final PageController pageController;
@@ -75,8 +70,7 @@ class TabbedWidget extends StatefulWidget {
   TabbedWidgetState createState() => TabbedWidgetState();
 }
 
-class TabbedWidgetState extends State<TabbedWidget>
-    implements TabPageController {
+class TabbedWidgetState extends State<TabbedWidget> {
   int _currentPage = 0;
 
   @override
@@ -85,7 +79,7 @@ class TabbedWidgetState extends State<TabbedWidget>
     super.dispose();
   }
 
-  void nextPage() {
+  nextPage() {
     if (_currentPage < widget.children.length - 1) {
       widget.pageController.nextPage(
         duration: Duration(milliseconds: 300),
@@ -94,7 +88,7 @@ class TabbedWidgetState extends State<TabbedWidget>
     }
   }
 
-  void previousPage() {
+  previousPage() {
     if (_currentPage > 0) {
       widget.pageController.previousPage(
         duration: Duration(milliseconds: 300),
@@ -110,15 +104,19 @@ class TabbedWidgetState extends State<TabbedWidget>
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: previousPage,
-            ),
+            _currentPage == 0
+                ? Container()
+                : IconButton(
+                    icon: Icon(Icons.arrow_back_ios),
+                    onPressed: previousPage,
+                  ),
             Expanded(
-              child: CustomPageIndicator(
-                currentPage: _currentPage,
-                pageCount: widget.children.length, // Number of pages
-              ),
+              child: _currentPage == 0
+                  ? Container()
+                  : CustomPageIndicator(
+                      currentPage: _currentPage,
+                      pageCount: widget.children.length, // Number of pages
+                    ),
             ),
             IconButton(
               icon: Icon(Icons.close),
@@ -174,62 +172,6 @@ class CustomPageIndicator extends StatelessWidget {
       ),
     );
   }
-}
-
-buildTabLines(BuildContext context, PageController pageController,
-    List<Widget> children) {
-  return Row(
-    children: List.generate(
-      children.length,
-      (index) => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          height: 5,
-          width: 20,
-          decoration: BoxDecoration(
-            color: pageController.page == index
-                ? Theme.of(context).colorScheme.primary
-                : Colors.grey,
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
-buildBackButton(BuildContext context, PageController pageController) {
-  if (pageController.page == 0) return Container();
-  return IconButton(
-    icon: Icon(
-      Icons.arrow_back_ios,
-      color: Theme.of(context).colorScheme.primary,
-    ),
-    onPressed: () {
-      if (pageController.page!.toInt() == 0) {
-        context.pop(context);
-      } else {
-        pageController.previousPage(
-          duration: Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-        );
-      }
-    },
-  );
-}
-
-Row buildCloseButton(BuildContext context) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.end,
-    children: [
-      IconButton(
-          icon: Icon(
-            Icons.close,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-          onPressed: () => context.pop(context))
-    ],
-  );
 }
 
 double generateSize(PopUpSize popUpSize) {
