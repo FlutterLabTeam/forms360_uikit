@@ -7,7 +7,6 @@ Future<dynamic> tabbedPopUp(
   required PageController pageController,
   required List<Widget> children,
   required PopUpSize popUpSize,
-  double height = 0.6,
 }) async {
   return await showDialog(
     context: context,
@@ -27,6 +26,7 @@ Future<dynamic> tabbedPopUp(
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width * 5,
+                        height: MediaQuery.of(context).size.height * 0.9,
                         constraints: BoxConstraints(
                           maxWidth: generateSize(popUpSize),
                         ),
@@ -38,8 +38,10 @@ Future<dynamic> tabbedPopUp(
                           padding: const EdgeInsets.all(26.0),
                           child: SingleChildScrollView(
                             child: Container(
-                              height:
-                                  MediaQuery.of(context).size.height * height,
+                              constraints: BoxConstraints(
+                                maxHeight:
+                                    MediaQuery.of(context).size.height * 0.8,
+                              ),
                               child: TabbedWidget(
                                 pageController: pageController,
                                 children: children,
