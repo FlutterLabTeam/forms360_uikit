@@ -18,17 +18,18 @@ class SearchInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      key: key,
       controller: controller,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Color(0xFFF5F7FA),
         prefixIcon: Icon(
           Icons.search,
           color: Theme.of(context).colorScheme.primary,
         ),
-        hintText: hintText,
         labelText: label,
+        hintText: hintText,
         labelStyle: context.primaryText.copyWith(
-          fontSize: 16,
+          fontSize: 20,
           fontWeight: FontWeight.w400,
           color: Color(0xFFC0CDE1),
         ),
@@ -38,16 +39,19 @@ class SearchInput extends StatelessWidget {
           color: Color(0xFFC0CDE1),
         ),
         disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
           borderSide: BorderSide(
             color: Color(0xFFF5F7FA),
           ),
         ),
         enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
           borderSide: BorderSide(
             color: Color(0xFFF5F7FA),
           ),
         ),
         focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
           borderSide: BorderSide(
             color: Color(0xFFF5F7FA),
           ),
@@ -61,7 +65,6 @@ class SearchInput extends StatelessWidget {
       ),
       cursorColor: Theme.of(context).colorScheme.primary,
       textInputAction: TextInputAction.done,
-      validator: validator,
     );
   }
 }
