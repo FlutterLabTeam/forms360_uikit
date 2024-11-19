@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:forms360_uikit/src/extension/context_extension.dart';
 
 class OtpInput extends StatelessWidget {
   final void Function(String)? onSubmit;
@@ -36,7 +37,7 @@ class OtpInput extends StatelessWidget {
       focusedBorderColor: Colors.blue,
       contentPadding: EdgeInsets.all(20),
       showCursor: false,
-      textStyle: TextStyle(fontSize: 50),
+      textStyle: context.titleText,
       onSubmit: onSubmit,
     );
   }
