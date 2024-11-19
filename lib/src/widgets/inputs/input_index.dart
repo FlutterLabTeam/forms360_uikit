@@ -4,6 +4,7 @@ import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
 
 class Inputs {
   Widget primary({
@@ -74,5 +75,18 @@ class Inputs {
       CheckBox(
         onTap: onTap,
         state: state,
+      );
+
+  Widget searchInput({
+    required String label,
+    required String hintText,
+    required TextEditingController controller,
+    final String? Function(String?)? validator,
+  }) =>
+      SearchInput(
+        label: label,
+        hintText: hintText,
+        validator: validator,
+        controller: controller,
       );
 }
