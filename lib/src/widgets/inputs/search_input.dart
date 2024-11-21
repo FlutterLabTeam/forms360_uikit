@@ -23,7 +23,7 @@ class SearchInput extends StatelessWidget {
       maxLength: maxLength,
       controller: controller,
       decoration: InputDecoration(
-        counter: Container(),
+        counterText: "",
         filled: true,
         fillColor: Color(0xFFF5F7FA),
         prefixIcon: Icon(

@@ -57,7 +57,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
       controller: widget.controller,
       maxLines: !widget.isBig ? 1 : 5,
       decoration: InputDecoration(
-        counter: Container(),
+        counterText: "",
         hintText: widget.hintText,
         labelText: widget.label,
         labelStyle: AppearanceKitTextTheme.build()
