@@ -47,7 +47,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
         primary: TextStyle(
           fontSize: 40,
           color: Color(0xFF000000),
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
         ),
         title: TextStyle(
