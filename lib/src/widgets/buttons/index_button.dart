@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:forms360_uikit/src/widgets/buttons/text_button/text_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/custom_button/custom_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/select_button/select_button.dart';
-import 'package:forms360_uikit/src/widgets/buttons/text_button/text_button.dart';
 
 class UiButton {
   Widget button({

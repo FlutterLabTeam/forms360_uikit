@@ -8,6 +8,7 @@ import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
 
 class Inputs {
   Widget primary({
+    int? maxLength,
     bool isBig = false,
     bool enabled = true,
     required String label,
@@ -23,6 +24,7 @@ class Inputs {
         label: label,
         enabled: enabled,
         hintText: hintText,
+        maxLength: maxLength,
         validator: validator,
         onChanged: onChanged,
         isPassword: isPassword,
@@ -78,6 +80,7 @@ class Inputs {
       );
 
   Widget searchInput({
+    int? maxLength,
     required String label,
     required String hintText,
     required TextEditingController controller,
@@ -87,6 +90,7 @@ class Inputs {
         label: label,
         hintText: hintText,
         validator: validator,
+        maxLength: maxLength,
         controller: controller,
       );
 }

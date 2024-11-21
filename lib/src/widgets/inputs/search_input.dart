@@ -4,13 +4,15 @@ import 'package:forms360_uikit/src/extension/context_extension.dart';
 class SearchInput extends StatelessWidget {
   const SearchInput({
     super.key,
-    required this.label,
-    required this.hintText,
+    this.maxLength,
     this.validator,
     this.controller,
+    required this.label,
+    required this.hintText,
   });
 
   final String label;
+  final int? maxLength;
   final String hintText;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
@@ -18,8 +20,10 @@ class SearchInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength: maxLength,
       controller: controller,
       decoration: InputDecoration(
+        counter: Container(),
         filled: true,
         fillColor: Color(0xFFF5F7FA),
         prefixIcon: Icon(

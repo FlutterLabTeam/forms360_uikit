@@ -6,6 +6,7 @@ class PrimaryInput extends StatefulWidget {
   const PrimaryInput({
     super.key,
     this.onChanged,
+    this.maxLength,
     this.validator,
     this.controller,
     required this.isBig,
@@ -17,14 +18,15 @@ class PrimaryInput extends StatefulWidget {
   });
 
   final bool isBig;
+  final bool enabled;
   final String label;
+  final int? maxLength;
   final String hintText;
   final bool isPassword;
   final PrimaryInputColorKit inputColor;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
-  final bool enabled;
 
   @override
   _PrimaryInputState createState() => _PrimaryInputState();
@@ -51,9 +53,11 @@ class _PrimaryInputState extends State<PrimaryInput> {
       key: widget.key,
       enabled: widget.enabled,
       onChanged: widget.onChanged,
+      maxLength: widget.maxLength,
       controller: widget.controller,
       maxLines: !widget.isBig ? 1 : 5,
       decoration: InputDecoration(
+        counter: Container(),
         hintText: widget.hintText,
         labelText: widget.label,
         labelStyle: AppearanceKitTextTheme.build()
