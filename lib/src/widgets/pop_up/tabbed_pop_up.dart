@@ -7,6 +7,7 @@ Future<dynamic> tabbedPopUp(
   required PageController pageController,
   required List<Widget> children,
   required PopUpSize popUpSize,
+  required List<Widget> footers,
 }) async {
   return await showDialog(
     context: context,
@@ -25,7 +26,6 @@ Future<dynamic> tabbedPopUp(
                   child: Stack(
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width * 5,
                         height: MediaQuery.of(context).size.height * 0.9,
                         constraints: BoxConstraints(
                           maxWidth: generateSize(popUpSize),
@@ -43,6 +43,7 @@ Future<dynamic> tabbedPopUp(
                                     MediaQuery.of(context).size.height * 0.8,
                               ),
                               child: TabbedWidget(
+                                footers: footers,
                                 pageController: pageController,
                                 children: children,
                               ),
@@ -65,9 +66,14 @@ Future<dynamic> tabbedPopUp(
 
 class TabbedWidget extends StatefulWidget {
   final List<Widget> children;
+  final List<Widget> footers;
+
   final PageController pageController;
   const TabbedWidget(
-      {super.key, required this.children, required this.pageController});
+      {super.key,
+      required this.children,
+      required this.footers,
+      required this.pageController});
 
   @override
   TabbedWidgetState createState() => TabbedWidgetState();
@@ -102,45 +108,97 @@ class TabbedWidgetState extends State<TabbedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return PopUpBodyTemplate(
+        title: buildNavigatorUi(context),
+        body: Column(
           children: [
-            _currentPage == 0
-                ? Container()
-                : IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
-                    onPressed: previousPage,
-                  ),
             Expanded(
-              child: _currentPage == 0
-                  ? Container()
-                  : CustomPageIndicator(
-                      currentPage: _currentPage,
-                      pageCount: widget.children.length, // Number of pages
-                    ),
-            ),
-            IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
+              child: PageView(
+                controller: widget.pageController,
+                onPageChanged: (int page) {
+                  setState(() {
+                    _currentPage = page;
+                  });
+                },
+                children: widget.children,
+              ),
             ),
           ],
         ),
-        Expanded(
-          child: PageView(
-            controller: widget.pageController,
-            onPageChanged: (int page) {
-              setState(() {
-                _currentPage = page;
-              });
-            },
-            children: widget.children,
+        footer: widget.footers[_currentPage]);
+  }
+
+  Container buildNavigatorUi(BuildContext context) {
+    return Container(
+      height: 50,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _currentPage == 0
+              ? Container()
+              : IconButton(
+                  icon: Icon(Icons.arrow_back_ios),
+                  onPressed: previousPage,
+                ),
+          Expanded(
+            child: _currentPage == 0
+                ? Container()
+                : CustomPageIndicator(
+                    currentPage: _currentPage,
+                    pageCount: widget.children.length, // Number of pages
+                  ),
           ),
-        ),
-      ],
+          IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PopUpBodyTemplate extends StatelessWidget {
+  final Widget? title;
+
+  final Widget body;
+
+  final Widget? footer;
+
+  const PopUpBodyTemplate({
+    super.key,
+    this.title,
+    required this.body,
+    required this.footer,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints:
+          BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.9),
+      child: Column(
+        children: [
+          Container(
+            child: title ?? Container(),
+            // color: Colors.blueAccent,
+          ),
+          Expanded(
+            child: body,
+          ),
+          footer == null
+              ? Container()
+              : SizedBox(
+                  height: 40,
+                  child: Container(
+                    constraints: BoxConstraints(minHeight: 200),
+                    child: footer,
+                    // color: Colors.red,
+                  )),
+        ],
+      ),
     );
   }
 }
@@ -159,7 +217,7 @@ class CustomPageIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 4.0,
-      margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 60.0),
+      margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
       child: Row(
         children: List.generate(pageCount, (index) {
           return Expanded(

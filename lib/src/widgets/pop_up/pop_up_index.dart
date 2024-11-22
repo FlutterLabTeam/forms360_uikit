@@ -16,9 +16,11 @@ class PopUpIndex {
     required final PageController pageController,
     required List<Widget> children,
     required PopUpSize popUpSize,
+    required List<Widget> footers,
   }) =>
       tabbedPopUp(context,
           pageController: pageController,
           children: children,
+          footers: footers,
           popUpSize: popUpSize);
 }
