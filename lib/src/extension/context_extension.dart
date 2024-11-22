@@ -16,6 +16,7 @@ extension ContextExtension on BuildContext {
   Future<void> openTabbedPopUp({
     required PageController pageController,
     required List<Widget> children,
+    required List<Widget> footers,
     PopUpSize popUpSize = PopUpSize.LONG,
   }) =>
       PopUpIndex().tabbed(
@@ -23,6 +24,7 @@ extension ContextExtension on BuildContext {
         pageController: pageController,
         children: children,
         popUpSize: popUpSize,
+        footers: footers,
       );
 
   //colors them access by context
