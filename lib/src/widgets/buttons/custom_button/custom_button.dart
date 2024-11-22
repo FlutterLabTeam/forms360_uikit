@@ -73,7 +73,7 @@ class CustomButtonState extends State<CustomButton> {
       textColor = Theme.of(context).colorScheme.primary;
     }
     if (widget.buttonState == ButtonStateKit.disabled) {
-      textColor = Theme.of(context).colorScheme.primary;
+      textColor = Color(0xFFC9DEEE);
     }
 
     return AppearanceKitTextTheme.build().button.copyWith(color: textColor);
