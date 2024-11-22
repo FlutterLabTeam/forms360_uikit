@@ -21,12 +21,12 @@ class OtpInput extends StatelessWidget {
         controls.clear();
         controls.addAll(controllers);
       },
-      numberOfFields: 5,
-      borderColor: Colors.blue,
-      fillColor: Color(0xFFE8EDF1),
       filled: true,
       showFieldAsBox: true,
+      borderColor: Colors.blue,
+      fillColor: Color(0xFFE8EDF1),
       onCodeChanged: onCodeChanged,
+      numberOfFields: controls.length,
       borderRadius: BorderRadius.all(Radius.circular(60)),
       clearText: true,
       autoFocus: true,
