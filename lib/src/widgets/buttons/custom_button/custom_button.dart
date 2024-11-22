@@ -34,6 +34,7 @@ class CustomButtonState extends State<CustomButton> {
         borderRadius: BorderRadius.circular(8),
       ),
       child: InkWell(
+        borderRadius: BorderRadius.circular(8),
         onTap: () async {
           if (widget.buttonState != ButtonStateKit.disabled && !isLoading) {
             setState(() => isLoading = true);
