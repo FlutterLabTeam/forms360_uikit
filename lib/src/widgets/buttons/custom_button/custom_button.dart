@@ -27,43 +27,39 @@ class CustomButtonState extends State<CustomButton> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () async {
-        if (widget.buttonState != ButtonStateKit.disabled && !isLoading) {
-          setState(() => isLoading = true);
-          await widget.onPressed();
-          setState(() => isLoading = false);
-        }
-      },
-      child: Container(
-        height: _generateSize(widget.sizeButton),
-        decoration: BoxDecoration(
-          color: _buttonColor(context),
-          border: _borderColor(context),
-          borderRadius: BorderRadius.circular(8),
+    return Material(
+      color: _buttonColor(context),
+      shape: RoundedRectangleBorder(
+        side: _borderColor(context),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: InkWell(
+        onTap: () async {
+          if (widget.buttonState != ButtonStateKit.disabled && !isLoading) {
+            setState(() => isLoading = true);
+            await widget.onPressed();
+            setState(() => isLoading = false);
+          }
+        },
+        child: SizedBox(
+          height: _generateSize(widget.sizeButton),
+          child: isLoading
+              ? Center(child: ButtonLoading())
+              : Center(
+                  child: Text(widget.title, style: _textButtonColor(context)),
+                ),
         ),
-        child: isLoading
-            ? Center(child: ButtonLoading())
-            : Center(
-                child: Text(widget.title, style: _textButtonColor(context)),
-              ),
       ),
     );
   }
 
-  BoxBorder? _borderColor(BuildContext context) {
-    Color color = Theme.of(context).colorScheme.primary;
+  BorderSide _borderColor(BuildContext context) {
+    Color col = Theme.of(context).colorScheme.primary;
+    if (widget.buttonType == ButtonTypeKit.tertiary) col = Colors.white;
+    if (widget.buttonType == ButtonTypeKit.primary) return BorderSide.none;
+    if (widget.buttonState == ButtonStateKit.disabled) col = Color(0xFFC9DEEE);
 
-    if (widget.buttonType == ButtonTypeKit.primary) return null;
-
-    if (widget.buttonType == ButtonTypeKit.tertiary) {
-      color = Colors.white;
-    }
-    if (widget.buttonState == ButtonStateKit.disabled) {
-      color = Color(0xFFC9DEEE);
-    }
-
-    return Border.all(width: 2, color: color);
+    return BorderSide(width: 2, color: col);
   }
 
   TextStyle _textButtonColor(BuildContext context) {
