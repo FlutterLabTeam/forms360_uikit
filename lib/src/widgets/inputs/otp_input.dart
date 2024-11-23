@@ -27,10 +27,10 @@ class OtpInput extends StatelessWidget {
       borderColor: Colors.blue,
       fillColor: Color(0xFFE8EDF1),
       onCodeChanged: onCodeChanged,
-      numberOfFields: controls.length,/*
+      numberOfFields: controls.length,
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.digitsOnly,
-      ],*/
+      ],
       borderRadius: BorderRadius.all(Radius.circular(60)),
       clearText: true,
       autoFocus: true,
