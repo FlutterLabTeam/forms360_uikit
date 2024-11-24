@@ -85,6 +85,7 @@ class Inputs {
     required String hintText,
     required TextEditingController controller,
     final String? Function(String?)? validator,
+    bool isClearButtonVisible = false,
   }) =>
       SearchInput(
         label: label,
@@ -92,5 +93,6 @@ class Inputs {
         validator: validator,
         maxLength: maxLength,
         controller: controller,
+        isClearButtonVisible: isClearButtonVisible,
       );
 }

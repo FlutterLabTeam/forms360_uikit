@@ -9,6 +9,7 @@ class SearchInput extends StatelessWidget {
     this.controller,
     required this.label,
     required this.hintText,
+    this.isClearButtonVisible = false,
   });
 
   final String label;
@@ -16,6 +17,7 @@ class SearchInput extends StatelessWidget {
   final String hintText;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final isClearButtonVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,17 @@ class SearchInput extends StatelessWidget {
       maxLength: maxLength,
       controller: controller,
       decoration: InputDecoration(
+        suffixIcon: isClearButtonVisible
+            ? IconButton(
+                icon: Icon(
+                  Icons.clear,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                onPressed: () {
+                  controller!.clear();
+                },
+              )
+            : null,
         counterText: "",
         filled: true,
         fillColor: Color(0xFFF5F7FA),
