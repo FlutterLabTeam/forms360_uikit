@@ -40,6 +40,7 @@ class DateInput extends StatelessWidget {
               child: AbsorbPointer(
                 child: Center(
                   child: TextFormField(
+                    validator: validator,
                     autofocus: false,
                     maxLength: maxLength,
                     controller: controller,
