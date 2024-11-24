@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
+import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
@@ -93,6 +94,25 @@ class Inputs {
         validator: validator,
         maxLength: maxLength,
         controller: controller,
+      );
+  Widget dateInput({
+    required String label,
+    required String hintText,
+    required TextEditingController controller,
+    required bool isClearButtonVisible,
+    required double width,
+    required int? maxLength,
+    required GestureTapCallback? onTap,
+    required String? Function(String?)? validator,
+  }) =>
+      DateInput(
+        label: label,
+        hintText: hintText,
+        validator: validator,
+        maxLength: maxLength,
+        controller: controller,
         isClearButtonVisible: isClearButtonVisible,
+        onTap: onTap,
+        width: width,
       );
 }
