@@ -1,0 +1,9 @@
+enum MenuItemType {
+  USERS,
+  AUDIT,
+  LIBRARY,
+  INDUSTRY,
+  DASHBOARD,
+  PERMISSIONS,
+  ANNOUNCEMENT,
+}
