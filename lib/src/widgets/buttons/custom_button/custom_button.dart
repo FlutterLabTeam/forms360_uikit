@@ -36,13 +36,16 @@ class CustomButtonState extends State<CustomButton> {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
-        onTap: _onTap(() async {
-          if (widget.buttonState != ButtonStateKit.disabled && !isLoading) {
-            setState(() => isLoading = true);
-            await widget.onPressed();
-            setState(() => isLoading = false);
-          }
-        }),
+        onTap: widget.buttonState != ButtonStateKit.disabled
+            ? () async {
+                if (widget.buttonState != ButtonStateKit.disabled &&
+                    !isLoading) {
+                  setState(() => isLoading = true);
+                  await widget.onPressed();
+                  setState(() => isLoading = false);
+                }
+              }
+            : null,
         child: SizedBox(
           height: _generateSize(widget.sizeButton),
           child: isLoading
@@ -53,12 +56,6 @@ class CustomButtonState extends State<CustomButton> {
         ),
       ),
     );
-  }
-
-  _onTap(Function() onTap) async {
-    widget.buttonState != ButtonStateKit.disabled
-        ? await widget.onPressed()
-        : null;
   }
 
   BorderSide _borderColor(BuildContext context) {
