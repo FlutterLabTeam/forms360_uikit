@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forms360_uikit/src/extension/context_extension.dart';
 import 'package:forms360_uikit/src/theme/text/texts.dart';
 import 'package:forms360_uikit/src/model/button_type.dart';
 import 'package:forms360_uikit/src/widgets/buttons/custom_button/widget/buttons.dart';
@@ -57,23 +58,23 @@ class CustomButtonState extends State<CustomButton> {
     if (widget.buttonType == ButtonTypeKit.primary) return null;
 
     if (widget.buttonType == ButtonTypeKit.tertiary) {
-      color = Colors.white;
+      color = context.surfaceColor;
     }
     if (widget.buttonState == ButtonStateKit.disabled) {
-      color = Color(0xFFC9DEEE);
+      color = context.onSurfaceColor;
     }
 
     return Border.all(width: 2, color: color);
   }
 
   TextStyle _textButtonColor(BuildContext context) {
-    Color textColor = Colors.white;
+    Color textColor = context.surfaceColor;
 
     if (widget.buttonType == ButtonTypeKit.secondary) {
       textColor = Theme.of(context).colorScheme.primary;
     }
     if (widget.buttonState == ButtonStateKit.disabled) {
-      textColor = Color(0xFFC9DEEE);
+      textColor = context.onSurfaceColor;
     }
 
     return AppearanceKitTextTheme.build().button.copyWith(color: textColor);
@@ -84,7 +85,7 @@ class CustomButtonState extends State<CustomButton> {
       case ButtonTypeKit.primary:
         return Theme.of(context).colorScheme.primary;
       case ButtonTypeKit.secondary:
-        return Colors.white;
+        return context.surfaceColor;
       case ButtonTypeKit.tertiary:
         return Colors.transparent;
     }
