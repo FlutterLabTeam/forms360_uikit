@@ -27,6 +27,16 @@ extension ContextExtension on BuildContext {
         footers: footers,
       );
 
+  Future<void> openSuccessPopUp({
+    required String message,
+    required String okText,
+  }) =>
+      PopUpIndex().successPopUp(
+        this,
+        message: message,
+        okText: okText,
+      );
+
   //colors them access by context
   Color get errorColor => Theme.of(this).colorScheme.error; //red
   Color get primaryColor => Theme.of(this).colorScheme.primary; //blue
