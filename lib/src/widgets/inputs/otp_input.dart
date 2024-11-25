@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:forms360_uikit/src/extension/context_extension.dart';
 
@@ -21,12 +22,15 @@ class OtpInput extends StatelessWidget {
         controls.clear();
         controls.addAll(controllers);
       },
-      numberOfFields: 5,
-      borderColor: Colors.blue,
-      fillColor: Color(0xFFE8EDF1),
       filled: true,
       showFieldAsBox: true,
+      borderColor: Colors.blue,
+      fillColor: Color(0xFFE8EDF1),
       onCodeChanged: onCodeChanged,
+      numberOfFields: controls.length,
+      inputFormatters: <TextInputFormatter>[
+        FilteringTextInputFormatter.digitsOnly,
+      ],
       borderRadius: BorderRadius.all(Radius.circular(60)),
       clearText: true,
       autoFocus: true,
