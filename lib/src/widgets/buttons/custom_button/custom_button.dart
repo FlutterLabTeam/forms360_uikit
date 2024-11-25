@@ -55,8 +55,11 @@ class CustomButtonState extends State<CustomButton> {
     );
   }
 
-  Function()? _onTap(Function() onTap) =>
-      widget.buttonState != ButtonStateKit.disabled ? widget.onPressed : null;
+  _onTap(Function() onTap) async {
+    widget.buttonState != ButtonStateKit.disabled
+        ? await widget.onPressed()
+        : null;
+  }
 
   BorderSide _borderColor(BuildContext context) {
     Color col = Theme.of(context).colorScheme.primary;
