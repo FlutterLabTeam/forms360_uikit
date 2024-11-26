@@ -51,6 +51,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
         ),
         title: TextStyle(
+          height: 0,
           fontSize: 50,
           fontWeight: FontWeight.bold,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
@@ -96,7 +97,8 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
       primary: TextStyle.lerp(primary, other.primary, t)!,
       secondary: TextStyle.lerp(secondary, other.secondary, t)!,
       description: TextStyle.lerp(description, other.description, t)!,
-      smallDescription: TextStyle.lerp(smallDescription, other.smallDescription, t)!,
+      smallDescription:
+          TextStyle.lerp(smallDescription, other.smallDescription, t)!,
     );
   }
 }
