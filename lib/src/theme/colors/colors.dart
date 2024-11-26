@@ -27,16 +27,16 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
   });
 
   factory AppearanceKitColors.light() => const AppearanceKitColors(
-        grey1: Color(0xFFBEC1C3),
+        grey1: Color(0xFFA3B2BC),
         grey2: Color(0xFF7D8488),
         grey3: Color(0xFF263238),
         error: Color(0xFFCF6679),
         primary: Color(0xFF1e5c8b),
-        onPrimary: Color(0xFF132248),
         surface: Color(0xffffffff),
+        onPrimary: Color(0xFF132248),
         onSurface: Color(0xFFcbeef3),
-        surfaceContainer: Color(0xFFDEEAF4),
         secondary: Color(0xFF4cae50),
+        surfaceContainer: Color(0xFFDEEAF4),
       );
 
   factory AppearanceKitColors.dark() => const AppearanceKitColors(
