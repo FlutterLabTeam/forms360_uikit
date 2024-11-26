@@ -1,4 +1,4 @@
-enum MenuItemType {
+enum MenuItemTypeKit {
   USERS,
   AUDIT,
   LIBRARY,

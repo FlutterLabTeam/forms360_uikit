@@ -21,7 +21,7 @@ class ManagementPage extends StatelessWidget {
   final String assetPath;
   final Widget endContent;
   final Widget startContent;
-  final MenuItemType selectedMenuItem;
+  final MenuItemTypeKit selectedMenuItem;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
 
@@ -67,7 +67,7 @@ class SmallScreenWidget extends StatelessWidget {
   });
 
   final Widget endContent;
-  final MenuItemType selectedMenuItem;
+  final MenuItemTypeKit selectedMenuItem;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class MediumScreenWidget extends StatelessWidget {
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
   final double spacing;
-  final MenuItemType selectedMenuItem;
+  final MenuItemTypeKit selectedMenuItem;
   final Widget endContent;
 
   @override
@@ -166,7 +166,7 @@ class BigScreenWidget extends StatelessWidget {
   final String assetPath;
   final Widget endContent;
   final Widget startContent;
-  final MenuItemType selectedMenuItem;
+  final MenuItemTypeKit selectedMenuItem;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
 

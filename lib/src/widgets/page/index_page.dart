@@ -15,7 +15,7 @@ class UiPage {
     required double spacing,
     required Widget endContent,
     required Widget startContent,
-    required MenuItemType selectedMenuItem,
+    required MenuItemTypeKit selectedMenuItem,
     String assetPath = 'assets/images/clients/users_background.png',
     MainAxisAlignment rowMainAxisAlignment = MainAxisAlignment.start,
     CrossAxisAlignment rowCrossAxisAlignment = CrossAxisAlignment.start,

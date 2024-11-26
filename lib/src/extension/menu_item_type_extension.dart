@@ -1,62 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 
-extension MenuIconTypeExtension on MenuItemType {
+extension MenuIconTypeExtension on MenuItemTypeKit {
   Image get iconSelected {
     switch (this) {
-      case MenuItemType.DASHBOARD:
+      case MenuItemTypeKit.DASHBOARD:
         return Image.asset('assets/icons/menu/dashboard_selected.png');
-      case MenuItemType.USERS:
+      case MenuItemTypeKit.USERS:
         return Image.asset('assets/icons/menu/clients_selected.png');
-      case MenuItemType.AUDIT:
+      case MenuItemTypeKit.AUDIT:
         return Image.asset('assets/icons/menu/audit_selected.png');
-      case MenuItemType.PERMISSIONS:
+      case MenuItemTypeKit.PERMISSIONS:
         return Image.asset('assets/icons/menu/permissions_selected.png');
-      case MenuItemType.ANNOUNCEMENT:
+      case MenuItemTypeKit.ANNOUNCEMENT:
         return Image.asset('assets/icons/menu/announcement_selected.png');
-      case MenuItemType.INDUSTRY:
+      case MenuItemTypeKit.INDUSTRY:
         return Image.asset('assets/icons/menu/industry_selected.png');
-      case MenuItemType.LIBRARY:
+      case MenuItemTypeKit.LIBRARY:
         return Image.asset('assets/icons/menu/library_selected.png');
     }
   }
 
   Image get iconUnselected {
     switch (this) {
-      case MenuItemType.DASHBOARD:
+      case MenuItemTypeKit.DASHBOARD:
         return Image.asset('assets/icons/menu/dashboard_unselected.png');
-      case MenuItemType.USERS:
+      case MenuItemTypeKit.USERS:
         return Image.asset('assets/icons/menu/clients_unselected.png');
-      case MenuItemType.AUDIT:
+      case MenuItemTypeKit.AUDIT:
         return Image.asset('assets/icons/menu/audit_unselected.png');
-      case MenuItemType.PERMISSIONS:
+      case MenuItemTypeKit.PERMISSIONS:
         return Image.asset('assets/icons/menu/permissions_unselected.png');
-      case MenuItemType.ANNOUNCEMENT:
+      case MenuItemTypeKit.ANNOUNCEMENT:
         return Image.asset('assets/icons/menu/announcement_unselected.png');
-      case MenuItemType.INDUSTRY:
+      case MenuItemTypeKit.INDUSTRY:
         return Image.asset('assets/icons/menu/industry_unselected.png');
-      case MenuItemType.LIBRARY:
+      case MenuItemTypeKit.LIBRARY:
         return Image.asset('assets/icons/menu/library_unselected.png');
     }
   }
 }
 
-extension MenuIconTypeStringExtension on MenuItemType {
+extension MenuIconTypeStringExtension on MenuItemTypeKit {
   String get toMenuTitle {
     switch (this) {
-      case MenuItemType.DASHBOARD:
+      case MenuItemTypeKit.DASHBOARD:
         return 'Dashboard';
-      case MenuItemType.USERS:
+      case MenuItemTypeKit.USERS:
         return 'Users';
-      case MenuItemType.AUDIT:
+      case MenuItemTypeKit.AUDIT:
         return 'Audit';
-      case MenuItemType.PERMISSIONS:
+      case MenuItemTypeKit.PERMISSIONS:
         return 'Permissions';
-      case MenuItemType.ANNOUNCEMENT:
+      case MenuItemTypeKit.ANNOUNCEMENT:
         return 'Notify';
-      case MenuItemType.INDUSTRY:
+      case MenuItemTypeKit.INDUSTRY:
         return 'Industry';
-      case MenuItemType.LIBRARY:
+      case MenuItemTypeKit.LIBRARY:
         return 'Library';
     }
   }
@@ -69,7 +69,7 @@ class MenuIcon extends StatelessWidget {
     this.isSelected = false,
   });
 
-  final MenuItemType type;
+  final MenuItemTypeKit type;
   final bool isSelected;
 
   @override

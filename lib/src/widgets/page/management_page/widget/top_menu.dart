@@ -11,7 +11,7 @@ class TopMenu extends StatefulWidget {
   });
 
   final bool isHorizontal;
-  final MenuItemType selectedMenuItem;
+  final MenuItemTypeKit selectedMenuItem;
 
   @override
   State<TopMenu> createState() => _TopMenuState();
@@ -90,38 +90,38 @@ class _TopMenuState extends State<TopMenu> {
 
   List<Widget> get _listComponents => [
         MenuIcon(
-          type: MenuItemType.DASHBOARD,
-          isSelected: widget.selectedMenuItem == MenuItemType.DASHBOARD,
+          type: MenuItemTypeKit.DASHBOARD,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
         ),
         SizedBox(width: 12),
         MenuIcon(
-          type: MenuItemType.USERS,
-          isSelected: widget.selectedMenuItem == MenuItemType.USERS,
+          type: MenuItemTypeKit.USERS,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
         ),
         SizedBox(width: 12),
         MenuIcon(
-          type: MenuItemType.AUDIT,
-          isSelected: widget.selectedMenuItem == MenuItemType.AUDIT,
+          type: MenuItemTypeKit.AUDIT,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
         ),
         SizedBox(width: 12),
         MenuIcon(
-          type: MenuItemType.PERMISSIONS,
-          isSelected: widget.selectedMenuItem == MenuItemType.PERMISSIONS,
+          type: MenuItemTypeKit.PERMISSIONS,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
         ),
         SizedBox(width: 12),
         MenuIcon(
-          type: MenuItemType.ANNOUNCEMENT,
-          isSelected: widget.selectedMenuItem == MenuItemType.ANNOUNCEMENT,
+          type: MenuItemTypeKit.ANNOUNCEMENT,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
         ),
         SizedBox(width: 12),
         MenuIcon(
-          type: MenuItemType.INDUSTRY,
-          isSelected: widget.selectedMenuItem == MenuItemType.INDUSTRY,
+          type: MenuItemTypeKit.INDUSTRY,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
         ),
         SizedBox(width: 12),
         MenuIcon(
-          type: MenuItemType.LIBRARY,
-          isSelected: widget.selectedMenuItem == MenuItemType.LIBRARY,
+          type: MenuItemTypeKit.LIBRARY,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.LIBRARY,
         ),
         Spacer(),
         AvatarCircularInitial(name: 'A', size: 24),
@@ -130,38 +130,38 @@ class _TopMenuState extends State<TopMenu> {
   List<Widget> get _columnComponents => [
         SizedBox(height: 52),
         MenuIcon(
-          type: MenuItemType.DASHBOARD,
-          isSelected: widget.selectedMenuItem == MenuItemType.DASHBOARD,
+          type: MenuItemTypeKit.DASHBOARD,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
         ),
         SizedBox(height: 52),
         MenuIcon(
-          type: MenuItemType.USERS,
-          isSelected: widget.selectedMenuItem == MenuItemType.USERS,
+          type: MenuItemTypeKit.USERS,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
         ),
         SizedBox(height: 52),
         MenuIcon(
-          type: MenuItemType.AUDIT,
-          isSelected: widget.selectedMenuItem == MenuItemType.AUDIT,
+          type: MenuItemTypeKit.AUDIT,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
         ),
         SizedBox(height: 52),
         MenuIcon(
-          type: MenuItemType.PERMISSIONS,
-          isSelected: widget.selectedMenuItem == MenuItemType.PERMISSIONS,
+          type: MenuItemTypeKit.PERMISSIONS,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
         ),
         SizedBox(height: 52),
         MenuIcon(
-          type: MenuItemType.ANNOUNCEMENT,
-          isSelected: widget.selectedMenuItem == MenuItemType.ANNOUNCEMENT,
+          type: MenuItemTypeKit.ANNOUNCEMENT,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
         ),
         SizedBox(height: 52),
         MenuIcon(
-          type: MenuItemType.INDUSTRY,
-          isSelected: widget.selectedMenuItem == MenuItemType.INDUSTRY,
+          type: MenuItemTypeKit.INDUSTRY,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
         ),
         SizedBox(height: 52),
         MenuIcon(
-          type: MenuItemType.LIBRARY,
-          isSelected: widget.selectedMenuItem == MenuItemType.LIBRARY,
+          type: MenuItemTypeKit.LIBRARY,
+          isSelected: widget.selectedMenuItem == MenuItemTypeKit.LIBRARY,
         ),
         SizedBox(height: 52),
       ];
