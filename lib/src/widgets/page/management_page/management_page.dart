@@ -201,19 +201,14 @@ class BigScreenWidget extends StatelessWidget {
                 ),
                 color: Colors.white,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 100.0,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    TopMenu(selectedMenuItem: selectedMenuItem),
-                    SizedBox(height: 30),
-                    endContent,
-                  ],
-                ),
+              child: ListView(
+                padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 100.0),
+                /*mainAxisSize: MainAxisSize.max,*/
+                children: [
+                  TopMenu(selectedMenuItem: selectedMenuItem),
+                  SizedBox(height: 30),
+                  endContent,
+                ],
               ),
             ),
           ),
