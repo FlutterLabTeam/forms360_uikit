@@ -12,7 +12,7 @@ class UiPage {
       BackgroundPage(child: child, image: image, labelPage: labelPage);
 
   Widget managementPage({
-    required double spacing,
+    double spacing = 36,
     required Widget endContent,
     required Widget startContent,
     required MenuItemTypeKit selectedMenuItem,
