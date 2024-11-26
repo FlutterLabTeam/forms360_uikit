@@ -6,6 +6,7 @@ export 'package:forms360_uikit/src/model/input_types.dart';
 export 'package:forms360_uikit/src/model/button_type.dart';
 export 'package:forms360_uikit/src/model/pop_up_model.dart';
 export 'package:forms360_uikit/src/model/font_family_type.dart';
+export 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 export 'package:forms360_uikit/src/model/theme_models/theme_data.dart';
 export 'package:forms360_uikit/src/model/theme_models/theme_data_factory.dart';
 
