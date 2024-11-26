@@ -21,6 +21,7 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
           primary: colors.primary,
           onSurface: colors.onSurface,
           onPrimary: colors.onPrimary,
+          secondary: colors.secondary,
         ),
         elevatedButtonTheme: elevatedButtonTheme(
           colors: colors,
