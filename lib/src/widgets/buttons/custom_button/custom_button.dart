@@ -61,7 +61,7 @@ class CustomButtonState extends State<CustomButton> {
   BorderSide _borderColor(BuildContext context) {
     Color col = Theme.of(context).colorScheme.primary;
     if (widget.buttonType == ButtonTypeKit.tertiary) col = context.surfaceColor;
-    if (widget.buttonType == ButtonTypeKit.primary && widget.buttonType  == ButtonTypeKit.fourth) return BorderSide.none;
+    if (widget.buttonType == ButtonTypeKit.primary || widget.buttonType  == ButtonTypeKit.fourth) return BorderSide.none;
     if (widget.buttonState == ButtonStateKit.disabled) {
       col = context.onSurfaceColor;
     }
