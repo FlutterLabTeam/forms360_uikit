@@ -91,7 +91,7 @@ class CustomButtonState extends State<CustomButton> {
       case ButtonTypeKit.tertiary:
         return Colors.transparent;
       case ButtonTypeKit.fourth:
-        return context.primaryColor.withOpacity(0.5);
+        return context.primaryColor.withOpacity(0.4);
     }
   }
 
