@@ -85,11 +85,13 @@ class CustomButtonState extends State<CustomButton> {
   Color _buttonColor(BuildContext context) {
     switch (widget.buttonType) {
       case ButtonTypeKit.primary:
-        return Theme.of(context).colorScheme.primary;
+        return context.primaryColor;
       case ButtonTypeKit.secondary:
         return context.surfaceColor;
       case ButtonTypeKit.tertiary:
         return Colors.transparent;
+      case ButtonTypeKit.fourth:
+        return context.onSurfaceColor;
     }
   }
 
