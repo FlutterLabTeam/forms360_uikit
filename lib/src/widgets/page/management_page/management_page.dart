@@ -130,16 +130,25 @@ class MediumScreenWidget extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  TopMenu(selectedMenuItem: selectedMenuItem),
-                  SizedBox(height: 30),
-                  ListView(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 40,
+                  Padding(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 100.0,
+                      vertical: 40,
                     ),
-                    children: [
-                      endContent,
-                    ],
+                    child: TopMenu(selectedMenuItem: selectedMenuItem),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      padding: const EdgeInsets.only(
+                        left: 100.0,
+                        right: 100.0,
+                        bottom: 40,
+                      ),
+                      children: [
+                        SizedBox(height: 30),
+                        endContent,
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -204,16 +213,25 @@ class BigScreenWidget extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  TopMenu(selectedMenuItem: selectedMenuItem),
-                  SizedBox(height: 30),
-                  ListView(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 40,
+                  Padding(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 100.0,
+                      vertical: 40,
                     ),
-                    children: [
-                      endContent,
-                    ],
+                    child: TopMenu(selectedMenuItem: selectedMenuItem),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      padding: const EdgeInsets.only(
+                        left: 100.0,
+                        right: 100.0,
+                        bottom: 40,
+                      ),
+                      children: [
+                        SizedBox(height: 30),
+                        endContent,
+                      ],
+                    ),
                   ),
                 ],
               ),
