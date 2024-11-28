@@ -128,12 +128,19 @@ class MediumScreenWidget extends StatelessWidget {
                 ),
                 color: Colors.white,
               ),
-              child: ListView(
-                padding: EdgeInsets.symmetric(vertical: 40, horizontal: 40.0),
+              child: Column(
                 children: [
                   TopMenu(selectedMenuItem: selectedMenuItem),
                   SizedBox(height: 30),
-                  endContent,
+                  ListView(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 40,
+                      horizontal: 100.0,
+                    ),
+                    children: [
+                      endContent,
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -195,12 +202,19 @@ class BigScreenWidget extends StatelessWidget {
                 ),
                 color: Colors.white,
               ),
-              child: ListView(
-                padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 100.0),
+              child: Column(
                 children: [
                   TopMenu(selectedMenuItem: selectedMenuItem),
                   SizedBox(height: 30),
-                  endContent,
+                  ListView(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 40,
+                      horizontal: 100.0,
+                    ),
+                    children: [
+                      endContent,
+                    ],
+                  ),
                 ],
               ),
             ),
