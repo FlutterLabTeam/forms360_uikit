@@ -51,7 +51,6 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
         ),
         title: TextStyle(
-          height: 0,
           fontSize: 50,
           fontWeight: FontWeight.bold,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
