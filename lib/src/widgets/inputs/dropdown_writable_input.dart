@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
-import 'package:forms360_uikit/src/theme/text/texts.dart';
 import 'package:drop_down_search_field/drop_down_search_field.dart';
 
 class DropdownWritableInput extends StatefulWidget {
@@ -94,8 +93,10 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
               if (widget.onSelectedValuesChanged != null) {
                 widget.onSelectedValuesChanged!(widget.selectedValues);
               }
+              widget.onSuggestionSelected(suggestion);
             } else {
               widget.dropdownSearchFieldController.text = suggestion;
+              widget.onSuggestionSelected(suggestion);
             }
           },
           suggestionsBoxController: suggestionBoxController,
