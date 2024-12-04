@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:forms360_uikit/src/extension/context_extension.dart';
+
+import 'otp_text_field.dart';
 
 class OtpInput extends StatelessWidget {
   final void Function(String)? onSubmit;
