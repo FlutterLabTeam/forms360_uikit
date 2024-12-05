@@ -1,5 +1,5 @@
-enum SizeButton { big, small }
+enum SizeButtonKit { big, small }
 
-enum ButtonState { enabled, disabled }
+enum ButtonStateKit { enabled, disabled }
 
-enum ButtonType { primary, secondary, tertiary }
+enum ButtonTypeKit { primary, secondary, tertiary, fourth}

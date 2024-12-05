@@ -1,0 +1,9 @@
+enum MenuItemTypeKit {
+  USERS,
+  AUDIT,
+  LIBRARY,
+  INDUSTRY,
+  DASHBOARD,
+  PERMISSIONS,
+  ANNOUNCEMENT,
+}

@@ -1,116 +1,105 @@
 import 'package:flutter/material.dart';
-import 'package:forms360_uikit/src/util/texts.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:forms360_uikit/src/theme/text/texts.dart';
 import 'package:forms360_uikit/src/model/button_type.dart';
-import 'package:forms360_uikit/src/widgets/async_value_widget.dart';
+import 'package:forms360_uikit/src/extension/context_extension.dart';
 import 'package:forms360_uikit/src/widgets/buttons/custom_button/widget/buttons.dart';
-import 'package:forms360_uikit/src/widgets/buttons/custom_button/provider/custom_button_controller.dart';
 
-class UiButton {
-  Widget button({
-    required String title,
-    SizeButton? sizeButton,
-    ButtonType? buttonType,
-    ButtonState? buttonState,
-    required Future<void> Function() onPressed,
-  }) =>
-      _CustomButton(
-        title: title,
-        onPressed: onPressed,
-        buttonType: buttonType,
-        sizeButton: sizeButton,
-        buttonState: buttonState,
-      );
-}
-
-class _CustomButton extends ConsumerWidget {
+class CustomButton extends StatefulWidget {
   final String title;
-  final ButtonType? buttonType;
-  final SizeButton? sizeButton;
-  final ButtonState? buttonState;
-  final Future<void> Function() onPressed;
+  final Function() onPressed;
+  final ButtonTypeKit buttonType;
+  final SizeButtonKit sizeButton;
+  final ButtonStateKit buttonState;
 
-  const _CustomButton({
+  const CustomButton({
     required this.title,
     required this.onPressed,
-    this.sizeButton = SizeButton.big,
-    this.buttonType = ButtonType.primary,
-    this.buttonState = ButtonState.enabled,
+    required this.sizeButton,
+    required this.buttonType,
+    required this.buttonState,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final provider = ref.read(customButtonControllerProvider.notifier);
-    final buttonProvider = ref.watch(customButtonControllerProvider);
+  State<CustomButton> createState() => CustomButtonState();
+}
 
-    return InkWell(
-      onTap: () {
-        if (buttonState != ButtonState.disabled && !buttonProvider.isLoading) {
-          provider.onTap(onPressed);
-        }
-      },
-      child: Container(
-        height: _generateSize(sizeButton!),
-        decoration: BoxDecoration(
-          color: _buttonColor(context),
-          border: _borderColor(context),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: AsyncValueWidget(
-          loadingWidget: ButtonLoading(),
-          value: buttonProvider,
-          data: (data) => Center(
-            child: Text(title, style: _textButtonColor(context)),
-          ),
+class CustomButtonState extends State<CustomButton> {
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: _buttonColor(context),
+      shape: RoundedRectangleBorder(
+        side: _borderColor(context),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(8),
+        onTap: widget.buttonState != ButtonStateKit.disabled
+            ? () async {
+                if (widget.buttonState != ButtonStateKit.disabled &&
+                    !isLoading) {
+                  setState(() => isLoading = true);
+                  await widget.onPressed();
+                  setState(() => isLoading = false);
+                }
+              }
+            : null,
+        child: SizedBox(
+          height: _generateSize(widget.sizeButton),
+          child: isLoading
+              ? Center(child: ButtonLoading())
+              : Center(
+                  child: Text(widget.title, style: _textButtonColor(context)),
+                ),
         ),
       ),
     );
   }
 
-  BoxBorder? _borderColor(BuildContext context) {
-    Color color = Theme.of(context).colorScheme.primary;
-
-    if (buttonType == ButtonType.primary) return null;
-
-    if (buttonType == ButtonType.tertiary) {
-      color = Colors.white;
-    }
-    if (buttonState == ButtonState.disabled) {
-      color = Color(0xFFC9DEEE);
+  BorderSide _borderColor(BuildContext context) {
+    Color col = Theme.of(context).colorScheme.primary;
+    if (widget.buttonType == ButtonTypeKit.tertiary) col = context.surfaceColor;
+    if (widget.buttonType == ButtonTypeKit.primary || widget.buttonType  == ButtonTypeKit.fourth) return BorderSide.none;
+    if (widget.buttonState == ButtonStateKit.disabled) {
+      col = context.onSurfaceColor;
     }
 
-    return Border.all(width: 2, color: color);
+    return BorderSide(width: 2, color: col);
   }
 
   TextStyle _textButtonColor(BuildContext context) {
-    Color textColor = Colors.white;
+    Color textColor = context.surfaceColor;
 
-    if (buttonType == ButtonType.secondary) {
+    if (widget.buttonType == ButtonTypeKit.secondary) {
       textColor = Theme.of(context).colorScheme.primary;
     }
-    if (buttonState == ButtonState.disabled) {
-      textColor = Theme.of(context).colorScheme.primary;
+    if (widget.buttonState == ButtonStateKit.disabled) {
+      textColor = context.onSurfaceColor;
     }
 
-    return FormsTextStyle().button.copyWith(color: textColor);
+    return AppearanceKitTextTheme.build().button.copyWith(color: textColor);
   }
 
   Color _buttonColor(BuildContext context) {
-    switch (buttonType!) {
-      case ButtonType.primary:
-        return Theme.of(context).colorScheme.primary;
-      case ButtonType.secondary:
-        return Colors.white;
-      case ButtonType.tertiary:
+    switch (widget.buttonType) {
+      case ButtonTypeKit.primary:
+        return context.primaryColor;
+      case ButtonTypeKit.secondary:
+        return context.surfaceColor;
+      case ButtonTypeKit.tertiary:
         return Colors.transparent;
+      case ButtonTypeKit.fourth:
+        return context.primaryColor.withOpacity(0.4);
     }
   }
 
-  double _generateSize(SizeButton size) {
+  double _generateSize(SizeButtonKit size) {
     switch (size) {
-      case SizeButton.big:
+      case SizeButtonKit.big:
         return 60;
-      case SizeButton.small:
+      case SizeButtonKit.small:
         return 40;
     }
   }
