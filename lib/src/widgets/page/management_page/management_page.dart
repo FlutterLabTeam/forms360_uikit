@@ -138,16 +138,18 @@ class MediumScreenWidget extends StatelessWidget {
                     child: TopMenu(selectedMenuItem: selectedMenuItem),
                   ),
                   Expanded(
-                    child: ListView(
+                    child: Padding(
                       padding: const EdgeInsets.only(
                         left: 100.0,
                         right: 100.0,
                         bottom: 40,
                       ),
-                      children: [
-                        SizedBox(height: 30),
-                        endContent,
-                      ],
+                      child: Column(
+                        children: [
+                          SizedBox(height: 30),
+                          endContent,
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -221,16 +223,18 @@ class BigScreenWidget extends StatelessWidget {
                     child: TopMenu(selectedMenuItem: selectedMenuItem),
                   ),
                   Expanded(
-                    child: ListView(
+                    child: Padding(
                       padding: const EdgeInsets.only(
                         left: 100.0,
                         right: 100.0,
                         bottom: 40,
                       ),
-                      children: [
-                        SizedBox(height: 30),
-                        endContent,
-                      ],
+                      child: Column(
+                        children: [
+                          SizedBox(height: 30),
+                          endContent,
+                        ],
+                      ),
                     ),
                   ),
                 ],
