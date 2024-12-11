@@ -144,12 +144,7 @@ class MediumScreenWidget extends StatelessWidget {
                         right: 100.0,
                         bottom: 40,
                       ),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 30),
-                          endContent,
-                        ],
-                      ),
+                      child: endContent,
                     ),
                   ),
                 ],
@@ -229,12 +224,7 @@ class BigScreenWidget extends StatelessWidget {
                         right: 100.0,
                         bottom: 40,
                       ),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 30),
-                          endContent,
-                        ],
-                      ),
+                      child: endContent,
                     ),
                   ),
                 ],
