@@ -133,6 +133,7 @@ class MediumScreenWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 100.0,
+                      vertical: 20,
                     ),
                     child: TopMenu(selectedMenuItem: selectedMenuItem),
                   ),
@@ -212,6 +213,7 @@ class BigScreenWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 100.0,
+                      vertical: 20,
                     ),
                     child: TopMenu(selectedMenuItem: selectedMenuItem),
                   ),
