@@ -133,7 +133,7 @@ class MediumScreenWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 100.0,
-                      vertical: 40,
+                      vertical: 20,
                     ),
                     child: TopMenu(selectedMenuItem: selectedMenuItem),
                   ),
@@ -144,12 +144,7 @@ class MediumScreenWidget extends StatelessWidget {
                         right: 100.0,
                         bottom: 40,
                       ),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 30),
-                          endContent,
-                        ],
-                      ),
+                      child: endContent,
                     ),
                   ),
                 ],
@@ -218,7 +213,7 @@ class BigScreenWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 100.0,
-                      vertical: 40,
+                      vertical: 20,
                     ),
                     child: TopMenu(selectedMenuItem: selectedMenuItem),
                   ),
@@ -229,12 +224,7 @@ class BigScreenWidget extends StatelessWidget {
                         right: 100.0,
                         bottom: 40,
                       ),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 30),
-                          endContent,
-                        ],
-                      ),
+                      child: endContent,
                     ),
                   ),
                 ],
