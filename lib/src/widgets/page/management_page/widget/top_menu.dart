@@ -7,11 +7,17 @@ class TopMenu extends StatefulWidget {
   const TopMenu({
     super.key,
     this.isHorizontal = true,
+    required this.onProfileTap,
+    required this.profileLetter,
     required this.selectedMenuItem,
+    required this.onMenuItemSelected,
   });
 
   final bool isHorizontal;
+  final String profileLetter;
+  final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
+  final Function(MenuItemTypeKit) onMenuItemSelected;
 
   @override
   State<TopMenu> createState() => _TopMenuState();
@@ -55,6 +61,8 @@ class _TopMenuState extends State<TopMenu> {
                           child: IconButton(
                             onPressed: () => setState(() {
                               isTapped = !isTapped;
+                              widget
+                                  .onMenuItemSelected(widget.selectedMenuItem);
                             }),
                             icon: Icon(Icons.menu),
                           ),
@@ -68,7 +76,10 @@ class _TopMenuState extends State<TopMenu> {
                                 color: Theme.of(context).primaryColor,
                               ),
                         ),
-                        AvatarCircularInitial(name: 'A', size: 24),
+                        GestureDetector(
+                            child: AvatarCircularInitial(
+                                name: widget.profileLetter, size: 24),
+                            onTap: widget.onProfileTap),
                       ],
                     ),
                   ),
