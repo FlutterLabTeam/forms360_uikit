@@ -61,8 +61,6 @@ class _TopMenuState extends State<TopMenu> {
                           child: IconButton(
                             onPressed: () => setState(() {
                               isTapped = !isTapped;
-                              widget
-                                  .onMenuItemSelected(widget.selectedMenuItem);
                             }),
                             icon: Icon(Icons.menu),
                           ),
@@ -103,36 +101,43 @@ class _TopMenuState extends State<TopMenu> {
         MenuIcon(
           type: MenuItemTypeKit.DASHBOARD,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(width: 12),
         MenuIcon(
           type: MenuItemTypeKit.USERS,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(width: 12),
         MenuIcon(
           type: MenuItemTypeKit.AUDIT,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(width: 12),
         MenuIcon(
           type: MenuItemTypeKit.PERMISSIONS,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(width: 12),
         MenuIcon(
           type: MenuItemTypeKit.ANNOUNCEMENT,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(width: 12),
         MenuIcon(
           type: MenuItemTypeKit.INDUSTRY,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(width: 12),
         MenuIcon(
           type: MenuItemTypeKit.LIBRARY,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.LIBRARY,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         Spacer(),
         AvatarCircularInitial(name: 'A', size: 24),
@@ -143,36 +148,43 @@ class _TopMenuState extends State<TopMenu> {
         MenuIcon(
           type: MenuItemTypeKit.DASHBOARD,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(height: 52),
         MenuIcon(
           type: MenuItemTypeKit.USERS,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(height: 52),
         MenuIcon(
           type: MenuItemTypeKit.AUDIT,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(height: 52),
         MenuIcon(
           type: MenuItemTypeKit.PERMISSIONS,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(height: 52),
         MenuIcon(
           type: MenuItemTypeKit.ANNOUNCEMENT,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(height: 52),
         MenuIcon(
           type: MenuItemTypeKit.INDUSTRY,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(height: 52),
         MenuIcon(
           type: MenuItemTypeKit.LIBRARY,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.LIBRARY,
+          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
         SizedBox(height: 52),
       ];

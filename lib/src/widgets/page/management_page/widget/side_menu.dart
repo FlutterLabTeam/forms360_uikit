@@ -75,13 +75,10 @@ class _SideMenuState extends State<SideMenu> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        GestureDetector(
-          child:
-              MenuIcon(type: item, isSelected: widget.selectedMenuItem == item),
-          onTap: () {
-            widget.onMenuItemSelected(item);
-          },
-        ),
+        MenuIcon(
+            type: item,
+            isSelected: widget.selectedMenuItem == item,
+            onMenuItemSelected: widget.onMenuItemSelected),
         SizedBox(height: 42),
       ],
     );
