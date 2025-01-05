@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 
-class AnimatedBarGraphListView extends ConsumerStatefulWidget {
+class AnimatedBarGraphListView extends StatefulWidget {
   final Color? textColor;
   final Color? barColor;
   final Color? barTextColor;
@@ -27,8 +26,7 @@ class AnimatedBarGraphListView extends ConsumerStatefulWidget {
       _AnimatedBarGraphListViewState();
 }
 
-class _AnimatedBarGraphListViewState
-    extends ConsumerState<AnimatedBarGraphListView> {
+class _AnimatedBarGraphListViewState extends State<AnimatedBarGraphListView> {
   final TextEditingController _searchController = TextEditingController();
   Map<String, double> _filteredData = {};
   String searchQuery = '';
