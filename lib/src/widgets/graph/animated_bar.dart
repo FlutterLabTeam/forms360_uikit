@@ -24,7 +24,8 @@ class AnimatedBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        double maxWidth = constraints.maxWidth; // Adjust this value as needed
+        double maxWidth =
+            constraints.maxWidth * 0.8; // Adjust this value as needed
 
         return Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,14 +45,11 @@ class AnimatedBar extends StatelessWidget {
             SizedBox(width: 8.0),
             Expanded(
               child: TweenAnimationBuilder<double>(
-                tween: Tween<double>(
-                    begin: 0,
-                    end: itemValue < max ? itemValue - 20 : itemValue),
+                tween: Tween<double>(begin: 0, end: itemValue),
                 duration: Duration(seconds: 1),
                 builder: (context, value, child) {
                   double barWidth =
                       itemValue != 0 ? maxWidth * (value / max) : 0;
-
                   return Stack(
                     children: [
                       Container(
