@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:forms360_uikit/src/model/animated_bar_data.dart';
 
 class AnimatedBar extends StatelessWidget {
-  final AnimatedBarData data;
+  final String itemName;
+  final double itemValue;
   final double max;
   final Color? textColor;
   final Color? barColor;
@@ -10,14 +10,15 @@ class AnimatedBar extends StatelessWidget {
   final Color? barBackgroundColor;
 
   const AnimatedBar({
-    Key? key,
-    required this.data,
+    super.key,
+    required this.itemName,
+    required this.itemValue,
     required this.max,
     this.textColor,
     this.barColor,
     this.barTextColor,
     this.barBackgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class AnimatedBar extends StatelessWidget {
             Container(
               width: constraints.maxWidth * 0.2,
               child: Text(
-                data.itemName,
+                itemName,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -43,11 +44,11 @@ class AnimatedBar extends StatelessWidget {
             SizedBox(width: 8.0),
             Expanded(
               child: TweenAnimationBuilder<double>(
-                tween: Tween<double>(begin: 0, end: data.value),
+                tween: Tween<double>(begin: 0, end: itemValue),
                 duration: Duration(seconds: 1),
                 builder: (context, value, child) {
                   double barWidth =
-                      data.value != 0 ? maxWidth * (value / max) : 0;
+                      itemValue != 0 ? maxWidth * (value / max) : 0;
                   return Stack(
                     children: [
                       Container(

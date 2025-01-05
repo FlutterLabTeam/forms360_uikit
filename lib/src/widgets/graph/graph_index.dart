@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:forms360_uikit/src/model/animated_bar_data.dart';
 import 'package:forms360_uikit/src/widgets/graph/animated_bar.dart';
 import 'package:forms360_uikit/src/widgets/graph/animated_circle_percentage.dart';
 import 'package:forms360_uikit/src/widgets/graph/animated_total_count_widget.dart';
@@ -19,7 +18,8 @@ class Graph {
       );
 
   Widget animatedBar({
-    required AnimatedBarData data,
+    required String itemName,
+    required double itemValue,
     required double max,
     Color? textColor,
     Color? barColor,
@@ -27,7 +27,8 @@ class Graph {
     Color? barBackgroundColor,
   }) =>
       AnimatedBar(
-        data: data,
+        itemName: itemName,
+        itemValue: itemValue,
         max: max,
         textColor: textColor,
         barColor: barColor,
