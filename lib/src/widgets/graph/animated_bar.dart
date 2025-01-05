@@ -44,14 +44,14 @@ class AnimatedBar extends StatelessWidget {
             SizedBox(width: 8.0),
             Expanded(
               child: TweenAnimationBuilder<double>(
-                tween: Tween<double>(begin: 0, end: itemValue),
+                tween: Tween<double>(
+                    begin: 0,
+                    end: itemValue < max ? itemValue - 20 : itemValue),
                 duration: Duration(seconds: 1),
                 builder: (context, value, child) {
                   double barWidth =
                       itemValue != 0 ? maxWidth * (value / max) : 0;
-                  if (value < max) {
-                    barWidth = barWidth - 20;
-                  }
+
                   return Stack(
                     children: [
                       Container(
