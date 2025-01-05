@@ -49,6 +49,9 @@ class AnimatedBar extends StatelessWidget {
                 builder: (context, value, child) {
                   double barWidth =
                       itemValue != 0 ? maxWidth * (value / max) : 0;
+                  if (value < max) {
+                    barWidth = barWidth - 20;
+                  }
                   return Stack(
                     children: [
                       Container(
