@@ -38,8 +38,8 @@ class Graph {
   Widget animatedTotalCountWidget({
     required int count,
     required String label,
-    required double fontSize,
-    required Duration duration,
+    double fontSize = 92.0,
+    Duration duration = const Duration(seconds: 2),
     Color? color,
   }) =>
       AnimatedTotalCountWidget(

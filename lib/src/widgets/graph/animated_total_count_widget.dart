@@ -49,7 +49,7 @@ class AnimatedTotalCountWidget extends StatelessWidget {
                   label,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: (fontSize - 2) / 9,
+                    fontSize: (fontSize! - 2) / 9,
                     color: color ?? context.primaryColor,
                   ),
                 ),
