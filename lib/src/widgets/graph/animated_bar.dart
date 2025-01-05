@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:forms360platform/modules/dashboard/ui/widget/graphs/animated_bar_data.dart';
+import 'package:forms360_uikit/src/model/animated_bar_data.dart';
 
 class AnimatedBar extends StatelessWidget {
   final AnimatedBarData data;

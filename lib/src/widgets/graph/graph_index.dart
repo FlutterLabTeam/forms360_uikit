@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/src/model/animated_bar_data.dart';
+import 'package:forms360_uikit/src/widgets/graph/animated_bar.dart';
+import 'package:forms360_uikit/src/widgets/graph/animated_circle_percentage.dart';
+import 'package:forms360_uikit/src/widgets/graph/animated_total_count_widget.dart';
 
 class Graph {
   Widget animatedCirclePercentage({
@@ -8,20 +11,11 @@ class Graph {
     required Color? color,
     required double strokeWidth,
   }) =>
-      animatedCirclePercentage(
+      AnimatedCirclePercentage(
         percentage: percentage,
         size: size,
         color: color,
         strokeWidth: strokeWidth,
-      );
-
-  Widget animatedBarData({
-    required String itemName,
-    double value = 0,
-  }) =>
-      animatedBarData(
-        itemName: itemName,
-        value: value,
       );
 
   Widget animatedBar({
@@ -32,12 +26,27 @@ class Graph {
     Color? barTextColor,
     Color? barBackgroundColor,
   }) =>
-      animatedBar(
+      AnimatedBar(
         data: data,
         max: max,
         textColor: textColor,
         barColor: barColor,
         barTextColor: barTextColor,
         barBackgroundColor: barBackgroundColor,
+      );
+
+  Widget animatedTotalCountWidget({
+    required int count,
+    required String label,
+    required double fontSize,
+    required Duration duration,
+    Color? color,
+  }) =>
+      AnimatedTotalCountWidget(
+        count: count,
+        label: label,
+        color: color,
+        fontSize: fontSize,
+        duration: duration,
       );
 }
