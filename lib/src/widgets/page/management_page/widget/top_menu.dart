@@ -49,6 +49,7 @@ class _TopMenuState extends State<TopMenu> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
+                    margin: EdgeInsets.only(right: 16),
                     width: MediaQuery.of(context).size.width - 48,
                     decoration: BoxDecoration(
                       color: Colors.white,
