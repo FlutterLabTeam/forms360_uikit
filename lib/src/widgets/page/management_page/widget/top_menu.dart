@@ -43,14 +43,13 @@ class _TopMenuState extends State<TopMenu> {
           : Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 8,
-                horizontal: 16.0,
+                horizontal: 24.0,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(right: 40),
-                    width: MediaQuery.of(context).size.width - 48,
+                    width: MediaQuery.of(context).size.width - 40,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(25),
