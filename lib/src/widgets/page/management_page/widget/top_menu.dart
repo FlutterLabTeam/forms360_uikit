@@ -77,10 +77,13 @@ class _TopMenuState extends State<TopMenu> {
                                 color: Theme.of(context).primaryColor,
                               ),
                         ),
-                        GestureDetector(
-                            child: AvatarCircularInitial(
-                                name: widget.profileLetter, size: 24),
-                            onTap: widget.onProfileTap),
+                        Container(
+                          margin: EdgeInsets.only(right: 16),
+                          child: GestureDetector(
+                              child: AvatarCircularInitial(
+                                  name: widget.profileLetter, size: 24),
+                              onTap: widget.onProfileTap),
+                        )
                       ],
                     ),
                   ),
