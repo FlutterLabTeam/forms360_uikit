@@ -40,7 +40,6 @@ class UiPage {
   Widget dashboardPage({
     double spacing = 36,
     required Widget endContent,
-    required Widget startContent,
     required String profileLetter,
     required GestureTapCallback onProfileTap,
     required MenuItemTypeKit selectedMenuItem,
@@ -49,7 +48,6 @@ class UiPage {
       DashboardPage(
         spacing: spacing,
         endContent: endContent,
-        startContent: startContent,
         onProfileTap: onProfileTap,
         profileLetter: profileLetter,
         selectedMenuItem: selectedMenuItem,
