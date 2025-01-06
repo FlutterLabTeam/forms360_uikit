@@ -10,7 +10,6 @@ class DashboardPage extends StatelessWidget {
     super.key,
     required this.spacing,
     required this.endContent,
-    required this.startContent,
     required this.onProfileTap,
     required this.profileLetter,
     required this.selectedMenuItem,
@@ -19,7 +18,6 @@ class DashboardPage extends StatelessWidget {
 
   final double spacing;
   final Widget endContent;
-  final Widget startContent;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
@@ -35,7 +33,6 @@ class DashboardPage extends StatelessWidget {
           return BigScreenWidget(
             spacing: spacing,
             endContent: endContent,
-            startContent: startContent,
             onProfileTap: onProfileTap,
             profileLetter: profileLetter,
             selectedMenuItem: selectedMenuItem,
@@ -99,7 +96,6 @@ class BigScreenWidget extends StatelessWidget {
     super.key,
     required this.spacing,
     required this.endContent,
-    required this.startContent,
     required this.onProfileTap,
     required this.profileLetter,
     required this.selectedMenuItem,
@@ -108,7 +104,6 @@ class BigScreenWidget extends StatelessWidget {
 
   final double spacing;
   final Widget endContent;
-  final Widget startContent;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
