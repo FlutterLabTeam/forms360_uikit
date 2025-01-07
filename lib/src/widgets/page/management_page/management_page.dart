@@ -12,7 +12,10 @@ class ManagementPage extends StatelessWidget {
     required this.assetPath,
     required this.endContent,
     required this.startContent,
+    required this.onProfileTap,
+    required this.profileLetter,
     required this.selectedMenuItem,
+    required this.onMenuItemSelected,
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
   });
@@ -21,9 +24,12 @@ class ManagementPage extends StatelessWidget {
   final String assetPath;
   final Widget endContent;
   final Widget startContent;
+  final String profileLetter;
+  final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
+  final Function(MenuItemTypeKit) onMenuItemSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,10 @@ class ManagementPage extends StatelessWidget {
             assetPath: assetPath,
             endContent: endContent,
             startContent: startContent,
+            onProfileTap: onProfileTap,
+            profileLetter: profileLetter,
             selectedMenuItem: selectedMenuItem,
+            onMenuItemSelected: onMenuItemSelected,
             rowMainAxisAlignment: rowMainAxisAlignment,
             rowCrossAxisAlignment: rowCrossAxisAlignment,
           );
@@ -44,14 +53,20 @@ class ManagementPage extends StatelessWidget {
           return MediumScreenWidget(
             spacing: spacing,
             endContent: endContent,
+            onProfileTap: onProfileTap,
+            profileLetter: profileLetter,
             selectedMenuItem: selectedMenuItem,
+            onMenuItemSelected: onMenuItemSelected,
             rowMainAxisAlignment: rowMainAxisAlignment,
             rowCrossAxisAlignment: rowCrossAxisAlignment,
           );
         } else {
           return SmallScreenWidget(
             endContent: endContent,
+            onProfileTap: onProfileTap,
+            profileLetter: profileLetter,
             selectedMenuItem: selectedMenuItem,
+            onMenuItemSelected: onMenuItemSelected,
           );
         }
       },
@@ -63,11 +78,17 @@ class SmallScreenWidget extends StatelessWidget {
   const SmallScreenWidget({
     super.key,
     required this.endContent,
+    required this.onProfileTap,
+    required this.profileLetter,
     required this.selectedMenuItem,
+    required this.onMenuItemSelected,
   });
 
   final Widget endContent;
+  final String profileLetter;
+  final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
+  final Function(MenuItemTypeKit) onMenuItemSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +102,10 @@ class SmallScreenWidget extends StatelessWidget {
           ),
           TopMenu(
             isHorizontal: false,
+            onProfileTap: onProfileTap,
+            profileLetter: profileLetter,
             selectedMenuItem: selectedMenuItem,
+            onMenuItemSelected: onMenuItemSelected,
           ),
         ],
       ),
@@ -92,18 +116,24 @@ class SmallScreenWidget extends StatelessWidget {
 class MediumScreenWidget extends StatelessWidget {
   const MediumScreenWidget({
     super.key,
+    required this.spacing,
+    required this.endContent,
+    required this.onProfileTap,
+    required this.profileLetter,
+    required this.selectedMenuItem,
+    required this.onMenuItemSelected,
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
-    required this.spacing,
-    required this.selectedMenuItem,
-    required this.endContent,
   });
 
+  final double spacing;
+  final Widget endContent;
+  final String profileLetter;
+  final GestureTapCallback onProfileTap;
+  final MenuItemTypeKit selectedMenuItem;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
-  final double spacing;
-  final MenuItemTypeKit selectedMenuItem;
-  final Widget endContent;
+  final Function(MenuItemTypeKit) onMenuItemSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +165,12 @@ class MediumScreenWidget extends StatelessWidget {
                       horizontal: 100.0,
                       vertical: 20,
                     ),
-                    child: TopMenu(selectedMenuItem: selectedMenuItem),
+                    child: TopMenu(
+                      onProfileTap: onProfileTap,
+                      profileLetter: profileLetter,
+                      selectedMenuItem: selectedMenuItem,
+                      onMenuItemSelected: onMenuItemSelected,
+                    ),
                   ),
                   Expanded(
                     child: Padding(
@@ -163,7 +198,10 @@ class BigScreenWidget extends StatelessWidget {
     required this.spacing,
     required this.endContent,
     required this.startContent,
+    required this.onProfileTap,
+    required this.profileLetter,
     required this.selectedMenuItem,
+    required this.onMenuItemSelected,
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
     this.assetPath = 'assets/images/clients/users_background.png',
@@ -173,9 +211,12 @@ class BigScreenWidget extends StatelessWidget {
   final String assetPath;
   final Widget endContent;
   final Widget startContent;
+  final String profileLetter;
+  final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
+  final Function(MenuItemTypeKit) onMenuItemSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +256,12 @@ class BigScreenWidget extends StatelessWidget {
                       horizontal: 100.0,
                       vertical: 20,
                     ),
-                    child: TopMenu(selectedMenuItem: selectedMenuItem),
+                    child: TopMenu(
+                      onProfileTap: onProfileTap,
+                      profileLetter: profileLetter,
+                      selectedMenuItem: selectedMenuItem,
+                      onMenuItemSelected: onMenuItemSelected,
+                    ),
                   ),
                   Expanded(
                     child: Padding(
