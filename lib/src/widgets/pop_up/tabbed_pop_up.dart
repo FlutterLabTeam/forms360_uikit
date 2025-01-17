@@ -26,7 +26,7 @@ Future<dynamic> tabbedPopUp(
                   child: Stack(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.9,
+                        //height: MediaQuery.of(context).size.height * 0.9,
                         constraints: BoxConstraints(
                           maxWidth: generateSize(popUpSize),
                         ),
