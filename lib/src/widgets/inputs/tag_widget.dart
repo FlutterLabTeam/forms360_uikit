@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
-import 'package:forms360_uikit/src/model/tag_model.dart';
 
 class TagWidget<T> extends StatelessWidget {
   final List<TagModel<T>> tagList;
@@ -11,6 +10,7 @@ class TagWidget<T> extends StatelessWidget {
   final double? itemWidth;
   final String? selectedTag;
   final bool showAddButton;
+  final String allText;
 
   const TagWidget({
     super.key,
@@ -22,23 +22,21 @@ class TagWidget<T> extends StatelessWidget {
     this.itemWidth,
     this.selectedTag,
     this.showAddButton = true,
+    this.allText = 'All',
   });
   @override
   Widget build(BuildContext context) {
-    if (showAddButton) {
-      List<TagModel<T>> tags = [
-        TagModel(nameRol: 'All', item: null),
-        ...tagList
-      ];
-      return _buildTagList(context, tags);
-    }
+    List<TagModel<T>> tags = [
+      TagModel(nameRol: allText, item: null),
+      ...tagList
+    ];
 
-    return _buildTagList(context, tagList);
+    return _buildTagList(context, tags);
   }
 
   _isSelected(String nameRol) =>
       selectedTag == nameRol ||
-      (nameRol == 'All' && (selectedTag == null || selectedTag == ''));
+      (nameRol == allText && (selectedTag == null || selectedTag == ''));
 
   _customButton(TagModel<T> item) => SizedBox(
         height: itemHeight,
@@ -54,8 +52,8 @@ class TagWidget<T> extends StatelessWidget {
       runSpacing: 10,
       spacing: 10,
       children: List.generate(
-        tags.length,
-        (index) => index == tags.length - 1 && showAddButton
+        tags.length + (showAddButton ? 1 : 0),
+        (index) => index == tags.length && showAddButton
             ? _buildAddButton(context)
             : _customButton(tags[index]),
       ),

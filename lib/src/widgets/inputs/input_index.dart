@@ -138,6 +138,7 @@ class Inputs {
     required Function(TagModel<T>) onTap,
     required Function(BuildContext) onTapAdd,
     String? selectedTag,
+    String? allText,
     double? itemHeight,
     double? itemWidth,
     bool showAddButton = false,
@@ -151,5 +152,6 @@ class Inputs {
         itemWidth: itemWidth,
         showAddButton: showAddButton,
         selectedTag: selectedTag,
+        allText: allText ?? 'All',
       );
 }
