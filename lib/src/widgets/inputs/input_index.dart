@@ -25,6 +25,8 @@ class Inputs {
     Icon? suffixIcon,
     final Function(String?)? onFieldSubmitted,
     void Function()? onIconPressed,
+    EdgeInsets? contentPadding,
+    TextStyle? textStyle,
   }) =>
       PrimaryInput(
         isBig: isBig,
@@ -41,6 +43,8 @@ class Inputs {
         suffixIcon: suffixIcon,
         onIconPressed: onIconPressed,
         onFieldSubmitted: onFieldSubmitted,
+        contentPadding: contentPadding,
+        textStyle: textStyle,
       );
 
   Widget dropdownWritableInput({
