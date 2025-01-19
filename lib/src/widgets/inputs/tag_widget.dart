@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:forms360_uikit/src/model/tag_model.dart';
 
 class TagWidget<T> extends StatelessWidget {
   final List<TagModel<T>> tagList;
@@ -130,13 +131,4 @@ class TagButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(4),
     );
   }
-}
-
-class TagModel<T> {
-  final String nameRol;
-  final T? item;
-  TagModel({
-    required this.nameRol,
-    required this.item,
-  });
 }

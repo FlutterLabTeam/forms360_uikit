@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
+import 'package:forms360_uikit/src/model/tag_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
 import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
