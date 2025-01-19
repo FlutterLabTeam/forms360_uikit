@@ -5,23 +5,20 @@ import 'package:forms360_uikit/src/model/input_types.dart';
 class PrimaryInput extends StatefulWidget {
   const PrimaryInput({
     super.key,
-    this.fontSize,
     this.onChanged,
     this.maxLength,
     this.validator,
-    this.textStyle,
-    this.suffixIcon,
     this.controller,
-    this.onIconPressed,
-    this.contentPadding,
-    this.onFieldSubmitted,
-    this.isSuffixIconEnabled = false,
+    this.suffixIcon,
     required this.isBig,
     required this.label,
     required this.enabled,
     required this.hintText,
     required this.isPassword,
     required this.inputColor,
+    this.isSuffixIconEnabled = false,
+    this.onIconPressed,
+    this.onFieldSubmitted,
   });
 
   final bool isBig;
@@ -30,17 +27,14 @@ class PrimaryInput extends StatefulWidget {
   final int? maxLength;
   final String hintText;
   final bool isPassword;
-  final double? fontSize;
   final Icon? suffixIcon;
-  final TextStyle? textStyle;
   final bool isSuffixIconEnabled;
-  final EdgeInsets? contentPadding;
-  final void Function()? onIconPressed;
   final PrimaryInputColorKit inputColor;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
-  final Function(String?)? onFieldSubmitted;
   final String? Function(String?)? validator;
+  final void Function()? onIconPressed;
+  final Function(String?)? onFieldSubmitted;
 
   @override
   _PrimaryInputState createState() => _PrimaryInputState();
@@ -74,12 +68,12 @@ class _PrimaryInputState extends State<PrimaryInput> {
         counterText: "",
         hintText: widget.hintText,
         labelText: widget.label,
-        labelStyle: widget.textStyle ??
-            AppearanceKitTextTheme.build().input.copyWith(
-                color: _generateColorInput(), fontSize: widget.fontSize),
-        hintStyle: widget.textStyle ??
-            AppearanceKitTextTheme.build().input.copyWith(
-                color: _generateColorInput(), fontSize: widget.fontSize),
+        labelStyle: AppearanceKitTextTheme.build()
+            .input
+            .copyWith(color: _generateColorInput(), fontSize: 20),
+        hintStyle: AppearanceKitTextTheme.build()
+            .input
+            .copyWith(color: _generateColorInput(), fontSize: 20),
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
@@ -89,7 +83,8 @@ class _PrimaryInputState extends State<PrimaryInput> {
                     : Color(0xff99B3C6),
           ),
         ),
-        contentPadding: widget.contentPadding,
+        contentPadding:
+            EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: _generateColorInput()),
         ),
@@ -117,7 +112,6 @@ class _PrimaryInputState extends State<PrimaryInput> {
                   )
                 : null,
       ),
-      cursorHeight: 16,
       validator: widget.validator,
       cursorColor: _generateColorInput(),
       textInputAction: TextInputAction.done,
@@ -127,9 +121,9 @@ class _PrimaryInputState extends State<PrimaryInput> {
           widget.onFieldSubmitted!(value);
         }
       },
-      style: widget.textStyle ??
-          AppearanceKitTextTheme.build().input.copyWith(
-              color: _generateColorInput(), fontSize: widget.fontSize),
+      style: AppearanceKitTextTheme.build()
+          .input
+          .copyWith(color: _generateColorInput(), fontSize: 20),
     );
   }
 
