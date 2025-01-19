@@ -6,6 +6,7 @@ import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/tag_widget.dart';
 
 class Inputs {
   Widget primary({
@@ -114,5 +115,26 @@ class Inputs {
         isClearButtonVisible: isClearButtonVisible,
         onTap: onTap,
         width: width,
+      );
+
+  Widget tagInput<T>({
+    String addText = 'Add',
+    required List<TagModel<T>> tagList,
+    required Function(TagModel<T>) onTap,
+    required Function(BuildContext) onTapAdd,
+    String? selectedTag,
+    double? itemHeight,
+    double? itemWidth,
+    bool showAddButton = false,
+  }) =>
+      TagWidget<T>(
+        onTap: onTap,
+        tagList: tagList,
+        onTapAdd: onTapAdd,
+        addText: addText,
+        itemHeight: itemHeight,
+        itemWidth: itemWidth,
+        showAddButton: showAddButton,
+        selectedTag: selectedTag,
       );
 }
