@@ -5,7 +5,6 @@ import 'package:forms360_uikit/src/model/input_types.dart';
 class PrimaryInput extends StatefulWidget {
   const PrimaryInput({
     super.key,
-    this.fontSize,
     this.onChanged,
     this.maxLength,
     this.validator,
@@ -30,7 +29,6 @@ class PrimaryInput extends StatefulWidget {
   final int? maxLength;
   final String hintText;
   final bool isPassword;
-  final double? fontSize;
   final Icon? suffixIcon;
   final TextStyle? textStyle;
   final bool isSuffixIconEnabled;
