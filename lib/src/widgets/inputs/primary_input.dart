@@ -5,10 +5,17 @@ import 'package:forms360_uikit/src/model/input_types.dart';
 class PrimaryInput extends StatefulWidget {
   const PrimaryInput({
     super.key,
+    this.fontSize,
     this.onChanged,
     this.maxLength,
     this.validator,
+    this.textStyle,
+    this.suffixIcon,
     this.controller,
+    this.onIconPressed,
+    this.contentPadding,
+    this.onFieldSubmitted,
+    this.isSuffixIconEnabled = false,
     required this.isBig,
     required this.label,
     required this.enabled,
@@ -23,9 +30,16 @@ class PrimaryInput extends StatefulWidget {
   final int? maxLength;
   final String hintText;
   final bool isPassword;
+  final double? fontSize;
+  final Icon? suffixIcon;
+  final TextStyle? textStyle;
+  final bool isSuffixIconEnabled;
+  final EdgeInsets? contentPadding;
+  final void Function()? onIconPressed;
   final PrimaryInputColorKit inputColor;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
+  final Function(String?)? onFieldSubmitted;
   final String? Function(String?)? validator;
 
   @override
@@ -60,12 +74,14 @@ class _PrimaryInputState extends State<PrimaryInput> {
         counterText: "",
         hintText: widget.hintText,
         labelText: widget.label,
-        labelStyle: AppearanceKitTextTheme.build()
-            .input
-            .copyWith(color: _generateColorInput()),
-        hintStyle: AppearanceKitTextTheme.build()
-            .input
-            .copyWith(color: _generateColorInput()),
+        labelStyle: widget.textStyle ??
+            AppearanceKitTextTheme.build()
+                .input
+                .copyWith(color: _generateColorInput()),
+        hintStyle: widget.textStyle ??
+            AppearanceKitTextTheme.build()
+                .input
+                .copyWith(color: _generateColorInput()),
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
@@ -75,6 +91,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
                     : Color(0xff99B3C6),
           ),
         ),
+        contentPadding: widget.contentPadding,
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: _generateColorInput()),
         ),
@@ -91,16 +108,31 @@ class _PrimaryInputState extends State<PrimaryInput> {
                     color: _generateColorInput()),
                 onPressed: _togglePasswordVisibility,
               )
-            : null,
+            : widget.isSuffixIconEnabled
+                ? GestureDetector(
+                    child: Icon(
+                      widget.suffixIcon!.icon,
+                      size: 32,
+                      color: widget.suffixIcon!.color,
+                    ),
+                    onTap: widget.onIconPressed,
+                  )
+                : null,
       ),
       cursorHeight: 16,
       validator: widget.validator,
       cursorColor: _generateColorInput(),
       textInputAction: TextInputAction.done,
       obscureText: widget.isPassword && _obscureText,
-      style: AppearanceKitTextTheme.build()
-          .input
-          .copyWith(color: _generateColorInput()),
+      onFieldSubmitted: (value) {
+        if (widget.onFieldSubmitted != null) {
+          widget.onFieldSubmitted!(value);
+        }
+      },
+      style: widget.textStyle ??
+          AppearanceKitTextTheme.build()
+              .input
+              .copyWith(color: _generateColorInput()),
     );
   }
 
