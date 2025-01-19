@@ -5,6 +5,8 @@ import 'package:forms360_uikit/src/widgets/index_widget.dart';
 export 'package:forms360_uikit/src/model/input_types.dart';
 export 'package:forms360_uikit/src/model/button_type.dart';
 export 'package:forms360_uikit/src/model/pop_up_model.dart';
+export 'package:forms360_uikit/src/model/tag_model.dart';
+
 export 'package:forms360_uikit/src/model/permission_type.dart';
 export 'package:forms360_uikit/src/model/font_family_type.dart';
 export 'package:forms360_uikit/src/model/menu_item_type_type.dart';
@@ -20,9 +22,6 @@ export 'package:forms360_uikit/src/theme/universal_theme_factory/universal_theme
 export 'package:forms360_uikit/src/extension/context_extension.dart';
 export 'package:forms360_uikit/src/extension/permission_extension.dart';
 export 'package:forms360_uikit/src/extension/font_family_extension.dart';
-
-
-
 
 //abstract class
 class FormsKit {
