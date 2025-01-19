@@ -54,8 +54,8 @@ class TagWidget<T> extends StatelessWidget {
       runSpacing: 10,
       spacing: 10,
       children: List.generate(
-        tags.length + 1,
-        (index) => index == tags.length && showAddButton
+        tags.length,
+        (index) => index == tags.length - 1 && showAddButton
             ? _buildAddButton(context)
             : _customButton(tags[index]),
       ),
