@@ -1,22 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
+import 'package:forms360_uikit/src/model/tag_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
 import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/tag_widget.dart';
 
 class Inputs {
   Widget primary({
+    required String label,
+    required String hintText,
     int? maxLength,
+    Icon? suffixIcon,
+    double? fontSize,
     bool isBig = false,
     bool enabled = true,
-    required String label,
+    TextStyle? textStyle,
     bool isPassword = false,
-    required String hintText,
+    EdgeInsets? contentPadding,
+    void Function()? onIconPressed,
+    bool isSuffixIconEnabled = false,
     void Function(String)? onChanged,
     TextEditingController? controller,
+    final Function(String?)? onFieldSubmitted,
     final String? Function(String?)? validator,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
   }) =>
@@ -24,13 +33,20 @@ class Inputs {
         isBig: isBig,
         label: label,
         enabled: enabled,
+        fontSize: fontSize,
         hintText: hintText,
+        textStyle: textStyle,
         maxLength: maxLength,
         validator: validator,
         onChanged: onChanged,
         isPassword: isPassword,
         inputColor: inputColor,
         controller: controller,
+        suffixIcon: suffixIcon,
+        onIconPressed: onIconPressed,
+        contentPadding: contentPadding,
+        onFieldSubmitted: onFieldSubmitted,
+        isSuffixIconEnabled: isSuffixIconEnabled,
       );
 
   Widget dropdownWritableInput({
@@ -114,5 +130,28 @@ class Inputs {
         isClearButtonVisible: isClearButtonVisible,
         onTap: onTap,
         width: width,
+      );
+
+  Widget tagInput<T>({
+    String addText = 'Add',
+    required List<TagModel<T>> tagList,
+    required Function(TagModel<T>) onTap,
+    required Function(BuildContext) onTapAdd,
+    String? selectedTag,
+    String? allText,
+    double? itemHeight,
+    double? itemWidth,
+    bool showAddButton = false,
+  }) =>
+      TagWidget<T>(
+        onTap: onTap,
+        tagList: tagList,
+        onTapAdd: onTapAdd,
+        addText: addText,
+        itemHeight: itemHeight,
+        itemWidth: itemWidth,
+        showAddButton: showAddButton,
+        selectedTag: selectedTag,
+        allText: allText ?? 'All',
       );
 }

@@ -9,12 +9,16 @@ class PrimaryInput extends StatefulWidget {
     this.maxLength,
     this.validator,
     this.controller,
+    this.suffixIcon,
     required this.isBig,
     required this.label,
     required this.enabled,
     required this.hintText,
     required this.isPassword,
     required this.inputColor,
+    this.isSuffixIconEnabled = false,
+    this.onIconPressed,
+    this.onFieldSubmitted,
   });
 
   final bool isBig;
@@ -23,10 +27,14 @@ class PrimaryInput extends StatefulWidget {
   final int? maxLength;
   final String hintText;
   final bool isPassword;
+  final Icon? suffixIcon;
+  final bool isSuffixIconEnabled;
   final PrimaryInputColorKit inputColor;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final void Function()? onIconPressed;
+  final Function(String?)? onFieldSubmitted;
 
   @override
   _PrimaryInputState createState() => _PrimaryInputState();
@@ -62,10 +70,10 @@ class _PrimaryInputState extends State<PrimaryInput> {
         labelText: widget.label,
         labelStyle: AppearanceKitTextTheme.build()
             .input
-            .copyWith(color: _generateColorInput()),
+            .copyWith(color: _generateColorInput(), fontSize: 20),
         hintStyle: AppearanceKitTextTheme.build()
             .input
-            .copyWith(color: _generateColorInput()),
+            .copyWith(color: _generateColorInput(), fontSize: 20),
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
@@ -75,6 +83,8 @@ class _PrimaryInputState extends State<PrimaryInput> {
                     : Color(0xff99B3C6),
           ),
         ),
+        contentPadding:
+            EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: _generateColorInput()),
         ),
@@ -91,16 +101,29 @@ class _PrimaryInputState extends State<PrimaryInput> {
                     color: _generateColorInput()),
                 onPressed: _togglePasswordVisibility,
               )
-            : null,
+            : widget.isSuffixIconEnabled
+                ? GestureDetector(
+                    child: Icon(
+                      widget.suffixIcon!.icon,
+                      size: 32,
+                      color: widget.suffixIcon!.color,
+                    ),
+                    onTap: widget.onIconPressed,
+                  )
+                : null,
       ),
-      cursorHeight: 16,
       validator: widget.validator,
       cursorColor: _generateColorInput(),
       textInputAction: TextInputAction.done,
       obscureText: widget.isPassword && _obscureText,
+      onFieldSubmitted: (value) {
+        if (widget.onFieldSubmitted != null) {
+          widget.onFieldSubmitted!(value);
+        }
+      },
       style: AppearanceKitTextTheme.build()
           .input
-          .copyWith(color: _generateColorInput()),
+          .copyWith(color: _generateColorInput(), fontSize: 20),
     );
   }
 
