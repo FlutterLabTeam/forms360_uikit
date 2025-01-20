@@ -27,7 +27,7 @@ Future<dynamic> tabbedPopUp(
                   child: Stack(
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.9,
+                        height: height ?? MediaQuery.of(context).size.height * 0.9,
                         constraints: BoxConstraints(
                           maxWidth: generateSize(popUpSize),
                         ),
@@ -47,6 +47,7 @@ Future<dynamic> tabbedPopUp(
                                 footers: footers,
                                 pageController: pageController,
                                 children: children,
+                                height: height,
                               ),
                               width: double.infinity,
                             ),
@@ -112,6 +113,7 @@ class TabbedWidgetState extends State<TabbedWidget> {
   @override
   Widget build(BuildContext context) {
     return PopUpBodyTemplate(
+        height: widget.height,
         title: buildNavigatorUi(context),
         body: Column(
           children: [
