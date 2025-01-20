@@ -18,6 +18,7 @@ class ManagementPage extends StatelessWidget {
     required this.onMenuItemSelected,
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
+    required this.enableGoHome,
   });
 
   final double spacing;
@@ -30,6 +31,7 @@ class ManagementPage extends StatelessWidget {
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
+  final bool enableGoHome;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,7 @@ class ManagementPage extends StatelessWidget {
             onMenuItemSelected: onMenuItemSelected,
             rowMainAxisAlignment: rowMainAxisAlignment,
             rowCrossAxisAlignment: rowCrossAxisAlignment,
+            enableGoHome: enableGoHome,
           );
         } else if (constraints.maxWidth >= Breakpoint.tablet &&
             constraints.maxWidth < Breakpoint.xdesktop) {
@@ -205,6 +208,7 @@ class BigScreenWidget extends StatelessWidget {
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
     this.assetPath = 'assets/images/clients/users_background.png',
+    required this.enableGoHome,
   });
 
   final double spacing;
@@ -217,6 +221,7 @@ class BigScreenWidget extends StatelessWidget {
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
+  final bool enableGoHome;
 
   @override
   Widget build(BuildContext context) {
@@ -236,6 +241,7 @@ class BigScreenWidget extends StatelessWidget {
             child: LeftDecoration(
               assetPath: assetPath,
               startContent: startContent,
+              enableGoHome: enableGoHome,
             ),
           ),
           SizedBox(width: spacing),
@@ -288,10 +294,12 @@ class LeftDecoration extends StatelessWidget {
     super.key,
     required this.startContent,
     required this.assetPath,
+    required this.enableGoHome,
   });
 
   final Widget startContent;
   final String assetPath;
+  final bool enableGoHome;
 
   @override
   Widget build(BuildContext context) {
@@ -310,7 +318,9 @@ class LeftDecoration extends StatelessWidget {
           top: 40,
           left: 30,
           child: IconButton(
-            onPressed: () => context.pop(),
+            onPressed: () => enableGoHome
+                ? context.go('/')
+                : context.pop(),
             icon: Icon(Icons.chevron_left, color: Colors.white, size: 30),
           ),
         ),
