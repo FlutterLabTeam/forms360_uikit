@@ -79,7 +79,7 @@ class MenuIcon extends StatelessWidget {
     return Container(
       width: 76,
       child: GestureDetector(
-        onTap: () => onMenuItemSelected(type),
+        onTap: () => isSelected ? null : onMenuItemSelected(type),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
