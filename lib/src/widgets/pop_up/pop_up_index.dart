@@ -18,12 +18,15 @@ class PopUpIndex {
     required List<Widget> children,
     required PopUpSize popUpSize,
     required List<Widget> footers,
+    double? height,
   }) =>
       tabbedPopUp(context,
           pageController: pageController,
           children: children,
           footers: footers,
-          popUpSize: popUpSize);
+          popUpSize: popUpSize,
+          height: height
+      );
   Future<void> successPopUp(
     BuildContext context, {
     required String message,
