@@ -23,6 +23,7 @@ class UiPage {
     String assetPath = 'assets/images/clients/users_background.png',
     MainAxisAlignment rowMainAxisAlignment = MainAxisAlignment.start,
     CrossAxisAlignment rowCrossAxisAlignment = CrossAxisAlignment.start,
+    bool enableGoHome = false,
   }) =>
       ManagementPage(
         spacing: spacing,
@@ -35,6 +36,7 @@ class UiPage {
         onMenuItemSelected: onMenuItemSelected,
         rowMainAxisAlignment: rowMainAxisAlignment,
         rowCrossAxisAlignment: rowCrossAxisAlignment,
+        enableGoHome: enableGoHome,
       );
 
   Widget dashboardPage({

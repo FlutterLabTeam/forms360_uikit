@@ -33,9 +33,7 @@ class Inputs {
         isBig: isBig,
         label: label,
         enabled: enabled,
-        fontSize: fontSize,
         hintText: hintText,
-        textStyle: textStyle,
         maxLength: maxLength,
         validator: validator,
         onChanged: onChanged,
@@ -44,7 +42,6 @@ class Inputs {
         controller: controller,
         suffixIcon: suffixIcon,
         onIconPressed: onIconPressed,
-        contentPadding: contentPadding,
         onFieldSubmitted: onFieldSubmitted,
         isSuffixIconEnabled: isSuffixIconEnabled,
       );
