@@ -18,6 +18,7 @@ extension ContextExtension on BuildContext {
     required List<Widget> children,
     required List<Widget> footers,
     PopUpSize popUpSize = PopUpSize.LONG,
+    double? height,
   }) =>
       PopUpIndex().tabbed(
         this,
@@ -25,6 +26,7 @@ extension ContextExtension on BuildContext {
         children: children,
         popUpSize: popUpSize,
         footers: footers,
+        height: height,
       );
 
   Future<void> openSuccessPopUp({
