@@ -51,6 +51,7 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
         DropDownSearchFormField(
           enabled: widget.enabled,
           textFieldConfiguration: TextFieldConfiguration(
+            enabled: widget.enabled,
             style: AppearanceKitTextTheme.build().input.copyWith(
                   color: _generateColor(),
                   fontWeight: FontWeight.w400,
@@ -76,7 +77,7 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             ),
             controller: widget.dropdownSearchFieldController,
           ),
-          suggestionsCallback: (pattern) => getSuggestions(pattern),
+          suggestionsCallback: !widget.enabled ? null : (pattern) => getSuggestions(pattern),
           itemBuilder: (context, String suggestion) {
             return ListTile(title: Text(suggestion));
           },
@@ -112,7 +113,7 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             }
           },
           onSaved: (value) => widget.selectedValues.add(value!),
-          displayAllSuggestionWhenTap: true,
+          displayAllSuggestionWhenTap: widget.enabled,
         ),
         if (widget.selectedValues.isNotEmpty)
           Wrap(
