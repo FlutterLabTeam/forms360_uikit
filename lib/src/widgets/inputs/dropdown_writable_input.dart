@@ -14,6 +14,7 @@ class DropdownWritableInput extends StatefulWidget {
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
     this.type = DropdownWritableInputType.SINGLE,
+    this.enabled = true,
   });
 
   final String label;
@@ -25,6 +26,7 @@ class DropdownWritableInput extends StatefulWidget {
   final void Function(String) onSuggestionSelected;
   final Function(List<String>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
+  final bool enabled;
 
   @override
   State<DropdownWritableInput> createState() => _DropdownWritableInputState();
@@ -47,6 +49,7 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DropDownSearchFormField(
+          enabled: widget.enabled,
           textFieldConfiguration: TextFieldConfiguration(
             style: AppearanceKitTextTheme.build().input.copyWith(
                   color: _generateColor(),
