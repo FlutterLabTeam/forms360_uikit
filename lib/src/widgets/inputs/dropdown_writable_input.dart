@@ -77,7 +77,7 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             ),
             controller: widget.dropdownSearchFieldController,
           ),
-          suggestionsCallback: !widget.enabled ? null : (pattern) => getSuggestions(pattern),
+          suggestionsCallback: (pattern) => getSuggestions(pattern),
           itemBuilder: (context, String suggestion) {
             return ListTile(title: Text(suggestion));
           },
