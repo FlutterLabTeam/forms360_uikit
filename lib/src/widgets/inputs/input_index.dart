@@ -71,6 +71,7 @@ class Inputs {
         onSuggestionSelected: onSuggestionSelected,
         onSelectedValuesChanged: onSelectedValuesChanged,
         dropdownSearchFieldController: dropdownSearchFieldController,
+        enabled: enabled,
       );
 
   Widget otpInput({
@@ -87,10 +88,12 @@ class Inputs {
   Widget checkBox({
     required bool state,
     required Function(bool) onTap,
+    bool enabled = true,
   }) =>
       CheckBox(
         onTap: onTap,
         state: state,
+        enabled: enabled,
       );
 
   Widget searchInput({
