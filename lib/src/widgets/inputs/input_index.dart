@@ -28,6 +28,7 @@ class Inputs {
     final Function(String?)? onFieldSubmitted,
     final String? Function(String?)? validator,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
+    String? initialValue,
   }) =>
       PrimaryInput(
         isBig: isBig,
@@ -44,6 +45,7 @@ class Inputs {
         onIconPressed: onIconPressed,
         onFieldSubmitted: onFieldSubmitted,
         isSuffixIconEnabled: isSuffixIconEnabled,
+        initialValue: initialValue,
       );
 
   Widget dropdownWritableInput({

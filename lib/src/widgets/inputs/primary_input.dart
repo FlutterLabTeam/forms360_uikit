@@ -19,6 +19,7 @@ class PrimaryInput extends StatefulWidget {
     this.isSuffixIconEnabled = false,
     this.onIconPressed,
     this.onFieldSubmitted,
+    this.initialValue
   });
 
   final bool isBig;
@@ -35,6 +36,7 @@ class PrimaryInput extends StatefulWidget {
   final String? Function(String?)? validator;
   final void Function()? onIconPressed;
   final Function(String?)? onFieldSubmitted;
+  final String? initialValue;
 
   @override
   _PrimaryInputState createState() => _PrimaryInputState();
@@ -58,6 +60,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: widget.initialValue,
       key: widget.key,
       enabled: widget.enabled,
       onChanged: widget.onChanged,
