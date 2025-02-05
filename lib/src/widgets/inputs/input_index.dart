@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
 import 'package:forms360_uikit/src/model/tag_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
@@ -29,6 +30,7 @@ class Inputs {
     final String? Function(String?)? validator,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
     String? initialValue,
+    List<TextInputFormatter>? inputFormatters,
   }) =>
       PrimaryInput(
         isBig: isBig,
@@ -46,6 +48,7 @@ class Inputs {
         onFieldSubmitted: onFieldSubmitted,
         isSuffixIconEnabled: isSuffixIconEnabled,
         initialValue: initialValue,
+        inputFormatters: inputFormatters,
       );
 
   Widget dropdownWritableInput({
