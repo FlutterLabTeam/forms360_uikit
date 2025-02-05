@@ -15,6 +15,7 @@ class DropdownWritableInput extends StatefulWidget {
     required this.dropdownSearchFieldController,
     this.type = DropdownWritableInputType.SINGLE,
     this.enabled = true,
+    this.initialValue,
   });
 
   final String label;
@@ -27,6 +28,7 @@ class DropdownWritableInput extends StatefulWidget {
   final Function(List<String>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
   final bool enabled;
+  final String? initialValue;
 
   @override
   State<DropdownWritableInput> createState() => _DropdownWritableInputState();
@@ -41,6 +43,14 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
 
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
     return matches;
+  }
+
+  @override
+  void initState() {
+    if(widget.initialValue != null) {
+      widget.dropdownSearchFieldController.text = widget.initialValue!;
+    }
+    super.initState();
   }
 
   @override
