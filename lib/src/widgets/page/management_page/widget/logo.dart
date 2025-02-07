@@ -9,10 +9,15 @@ class LogoForms extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      color == LogoColor.PRIMARY
-          ? 'assets/brand/logo.png'
-          : 'assets/brand/logo_white.png',
-    );
+    return Image.asset(_getPath(color));
+  }
+
+  String _getPath(LogoColor lColor) {
+    switch (lColor) {
+      case LogoColor.WHITE:
+        return 'assets/brand/raios360_white.png';
+      default:
+        return 'assets/brand/logo.png';
+    }
   }
 }

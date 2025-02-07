@@ -27,7 +27,7 @@ class _DateButtonState extends State<DateButton> {
       width: widget.width,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-        color: const Color(0xFFF5F7FA),
+        color: Color(0xFFF5F7FA),
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
           color: const Color(0xFFF5F7FA),
