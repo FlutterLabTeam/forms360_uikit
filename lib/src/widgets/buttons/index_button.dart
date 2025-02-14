@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:forms360_uikit/src/widgets/buttons/custom_button/dotted_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/date_button/date_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/text_button/text_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/custom_button/custom_button.dart';
@@ -48,5 +49,28 @@ class UiButton {
         dateController: dateController,
         selectedDate: selectedDate,
         width: width,
+      );
+
+  Widget dottedButton({
+    required String label,
+    required Function() onTap,
+    double? width,
+    double? height,
+    double? labelSize,
+    Color? backgroundColor,
+    Color? labelColor,
+    EdgeInsetsGeometry? padding,
+    IconData? icon,
+  }) =>
+      DottedButton(
+        label: label,
+        onTap: onTap,
+        width: width,
+        height: height,
+        labelSize: labelSize,
+        backgroundColor: backgroundColor,
+        labelColor: labelColor,
+        padding: padding,
+        icon: icon,
       );
 }

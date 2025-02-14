@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
 import 'package:forms360_uikit/src/model/tag_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
+import 'package:forms360_uikit/src/widgets/inputs/custom_form.dart';
 import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
@@ -160,5 +161,22 @@ class Inputs {
         showAddButton: showAddButton,
         selectedTag: selectedTag,
         allText: allText ?? 'All',
+      );
+
+  Widget customForm({
+    required String? title,
+    required String? description,
+    required String? buttonText,
+    required List<Widget> children,
+    required Function() onValidationSuccess,
+    required Function() onValidationFailed,
+  }) =>
+      CustomForm(
+        buttonText: buttonText,
+        description: description,
+        title: title,
+        onValidationFailed: onValidationFailed,
+        onValidationSuccess: onValidationSuccess,
+        children: children,
       );
 }

@@ -10,13 +10,19 @@ class CustomButton extends StatefulWidget {
   final ButtonTypeKit buttonType;
   final SizeButtonKit sizeButton;
   final ButtonStateKit buttonState;
+  final double? customSize;
+  final EdgeInsets? customPadding;
+  final double? fontSize;
 
   const CustomButton({
     required this.title,
     required this.onPressed,
     required this.sizeButton,
     required this.buttonType,
-    required this.buttonState,
+    this.buttonState = ButtonStateKit.enabled,
+    this.customSize,
+    this.customPadding,
+    this.fontSize,
   });
 
   @override
@@ -47,11 +53,14 @@ class CustomButtonState extends State<CustomButton> {
               }
             : null,
         child: SizedBox(
-          height: _generateSize(widget.sizeButton),
+          height: widget.customSize ?? _generateSize(widget.sizeButton),
           child: isLoading
               ? Center(child: ButtonLoading())
               : Center(
-                  child: Text(widget.title, style: _textButtonColor(context)),
+                  child: Container(
+                    margin: widget.customPadding ?? const EdgeInsets.all(8),
+                    child: Text(widget.title, style: _textButtonColor(context)),
+                  ),
                 ),
         ),
       ),
@@ -61,7 +70,8 @@ class CustomButtonState extends State<CustomButton> {
   BorderSide _borderColor(BuildContext context) {
     Color col = Theme.of(context).colorScheme.primary;
     if (widget.buttonType == ButtonTypeKit.tertiary) col = context.surfaceColor;
-    if (widget.buttonType == ButtonTypeKit.primary || widget.buttonType  == ButtonTypeKit.fourth) return BorderSide.none;
+    if (widget.buttonType == ButtonTypeKit.primary ||
+        widget.buttonType == ButtonTypeKit.fourth) return BorderSide.none;
     if (widget.buttonState == ButtonStateKit.disabled) {
       col = context.onSurfaceColor;
     }
@@ -79,7 +89,10 @@ class CustomButtonState extends State<CustomButton> {
       textColor = context.onSurfaceColor;
     }
 
-    return AppearanceKitTextTheme.build().button.copyWith(color: textColor);
+    return AppearanceKitTextTheme.build().button.copyWith(
+          color: textColor,
+          fontSize: widget.fontSize ?? 25,
+        );
   }
 
   Color _buttonColor(BuildContext context) {
