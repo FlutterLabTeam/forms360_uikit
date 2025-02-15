@@ -137,6 +137,7 @@ class TabbedWidgetState extends State<TabbedWidget> {
   Container buildNavigatorUi(BuildContext context) {
     return Container(
       height: 50,
+      margin: EdgeInsets.only(top: 20, left: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
