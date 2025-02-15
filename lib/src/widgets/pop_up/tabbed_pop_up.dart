@@ -27,7 +27,8 @@ Future<dynamic> tabbedPopUp(
                   child: Stack(
                     children: [
                       Container(
-                        height: height ?? MediaQuery.of(context).size.height * 0.9,
+                        height:
+                            height ?? MediaQuery.of(context).size.height * 0.9,
                         constraints: BoxConstraints(
                           maxWidth: generateSize(popUpSize),
                         ),
@@ -36,11 +37,11 @@ Future<dynamic> tabbedPopUp(
                           borderRadius: BorderRadius.circular(26),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(26.0),
+                          padding: const EdgeInsets.all(0.0),
                           child: SingleChildScrollView(
                             child: Container(
                               constraints: BoxConstraints(
-                                maxHeight:  height ??
+                                maxHeight: height ??
                                     MediaQuery.of(context).size.height * 0.8,
                               ),
                               child: TabbedWidget(
@@ -71,13 +72,13 @@ class TabbedWidget extends StatefulWidget {
   final List<Widget> footers;
   final double? height;
   final PageController pageController;
-  const TabbedWidget(
-      {super.key,
-      required this.children,
-      required this.footers,
-      required this.pageController,
-      this.height,
-      });
+  const TabbedWidget({
+    super.key,
+    required this.children,
+    required this.footers,
+    required this.pageController,
+    this.height,
+  });
 
   @override
   TabbedWidgetState createState() => TabbedWidgetState();
@@ -182,8 +183,8 @@ class PopUpBodyTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints:
-          BoxConstraints(maxHeight:  height ??  MediaQuery.of(context).size.height * 0.9),
+      constraints: BoxConstraints(
+          maxHeight: height ?? MediaQuery.of(context).size.height * 0.9),
       child: Column(
         children: [
           Container(
