@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:forms360_uikit/src/model/custom_form_model.dart';
 import 'package:forms360_uikit/src/widgets/buttons/custom_button/custom_button.dart';
 
 class CustomForm extends StatefulWidget {
@@ -88,36 +89,6 @@ class _CustomFormState extends State<CustomForm> {
   }
 }
 
-buildFormFields({
-  label,
-  hintText,
-  controller,
-  onChanged,
-  validator,
-  isSuffixIconEnabled = false,
-  suffixeIcon,
-  suffixIconOnPressed,
-  width,
-}) {
-  return Container(
-    width: width,
-    child: FormsKit.widget.inputs.primary(
-      label: label,
-      hintText: hintText,
-      isSuffixIconEnabled: isSuffixIconEnabled,
-      suffixIcon: suffixeIcon,
-      onIconPressed: suffixIconOnPressed,
-      controller: controller,
-      inputColor: PrimaryInputColorKit.BLUE,
-      contentPadding:
-          EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
-      onChanged: onChanged,
-      validator: validator,
-      fontSize: 20,
-    ),
-  );
-}
-
 buildRowTextFields(CustomFormFieldModel field1, CustomFormFieldModel field2) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,56 +96,32 @@ buildRowTextFields(CustomFormFieldModel field1, CustomFormFieldModel field2) {
     mainAxisSize: MainAxisSize.max,
     children: [
       Expanded(
-        child: buildFormFields(
+        child: FormsKit.widget.inputs.popUpTextInput(
           label: field1.label,
           hintText: field1.hintText,
           controller: field1.controller,
           onChanged: field1.onChanged,
           validator: field1.validator,
           isSuffixIconEnabled: field1.isSuffixIconEnabled,
-          suffixeIcon: field1.suffixeIcon,
+          suffixeIcon: field1.suffixIcon,
           suffixIconOnPressed: field1.suffixIconOnPressed,
           width: field1.width,
         ),
       ),
       SizedBox(width: 3),
       Expanded(
-        child: buildFormFields(
+        child: FormsKit.widget.inputs.popUpTextInput(
           label: field2.label,
           hintText: field2.hintText,
           controller: field2.controller,
           onChanged: field2.onChanged,
           validator: field2.validator,
           isSuffixIconEnabled: field2.isSuffixIconEnabled,
-          suffixeIcon: field2.suffixeIcon,
+          suffixeIcon: field2.suffixIcon,
           suffixIconOnPressed: field2.suffixIconOnPressed,
           width: field2.width,
         ),
       ),
     ],
   );
-}
-
-class CustomFormFieldModel {
-  final String label;
-  final String hintText;
-  final TextEditingController controller;
-  final Function onChanged;
-  final Function validator;
-  final bool isSuffixIconEnabled;
-  final Widget? suffixeIcon;
-  final Function? suffixIconOnPressed;
-  final double? width;
-
-  CustomFormFieldModel({
-    required this.label,
-    required this.hintText,
-    required this.controller,
-    required this.onChanged,
-    required this.validator,
-    this.width,
-    this.suffixeIcon,
-    this.suffixIconOnPressed,
-    this.isSuffixIconEnabled = false,
-  });
 }
