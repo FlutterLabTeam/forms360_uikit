@@ -4,6 +4,8 @@ import 'package:forms360_uikit/src/widgets/page/management_page/dashboard_page.d
 import 'package:forms360_uikit/src/widgets/page/management_page/management_page.dart';
 import 'package:forms360_uikit/src/widgets/page/standard_page/standard_page.dart';
 
+import 'management_page/widget/end_content_widget.dart';
+
 class UiPage {
   Widget backgroundPage({
     required Widget child,
@@ -54,5 +56,18 @@ class UiPage {
         profileLetter: profileLetter,
         selectedMenuItem: selectedMenuItem,
         onMenuItemSelected: onMenuItemSelected,
+      );
+
+  Widget endContentWidget({
+    required Widget content,
+    required Function(String)? onSearch,
+    String searchLabel = 'Search',
+    Widget? titleWidget,
+  }) =>
+      EndContentWidget(
+        content: content,
+        onSearch: onSearch,
+        searchLabel: searchLabel,
+        titleWidget: titleWidget,
       );
 }

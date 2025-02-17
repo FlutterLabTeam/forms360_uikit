@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:forms360_uikit/src/model/custom_form_model.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
 import 'package:forms360_uikit/src/model/tag_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
+import 'package:forms360_uikit/src/widgets/inputs/custom_form.dart';
 import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/pop_up_row_text_inputs.dart';
+import 'package:forms360_uikit/src/widgets/inputs/pop_up_text_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
@@ -160,5 +164,54 @@ class Inputs {
         showAddButton: showAddButton,
         selectedTag: selectedTag,
         allText: allText ?? 'All',
+      );
+
+  Widget customForm({
+    required String? title,
+    required String? description,
+    required String? buttonText,
+    required List<Widget> children,
+    required Function() onValidationSuccess,
+    required Function() onValidationFailed,
+  }) =>
+      CustomForm(
+        buttonText: buttonText,
+        description: description,
+        title: title,
+        onValidationFailed: onValidationFailed,
+        onValidationSuccess: onValidationSuccess,
+        children: children,
+      );
+
+  Widget popUpTextInput({
+    required String label,
+    required String hintText,
+    required TextEditingController? controller,
+    required Function(String)? onChanged,
+    required String? Function(String?)? validator,
+    bool isSuffixIconEnabled = false,
+    Icon? suffixeIcon,
+    Function()? suffixIconOnPressed,
+    double? width,
+  }) =>
+      PopUpTextInput(
+        label: label,
+        hintText: hintText,
+        controller: controller,
+        onChanged: onChanged,
+        validator: validator,
+        isSuffixIconEnabled: isSuffixIconEnabled,
+        suffixeIcon: suffixeIcon,
+        suffixIconOnPressed: suffixIconOnPressed,
+        width: width,
+      );
+
+  Widget popUpRowTextFields(
+    CustomFormFieldModel field1,
+    CustomFormFieldModel field2,
+  ) =>
+      PopUpRowTextInputs(
+        field1: field1,
+        field2: field2,
       );
 }
