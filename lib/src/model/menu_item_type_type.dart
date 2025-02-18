@@ -6,4 +6,5 @@ enum MenuItemTypeKit {
   DASHBOARD,
   PERMISSIONS,
   ANNOUNCEMENT,
+  TAG,
 }
