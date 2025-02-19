@@ -18,6 +18,8 @@ extension MenuIconTypeExtension on MenuItemTypeKit {
         return Image.asset('assets/icons/menu/industry_selected.png');
       case MenuItemTypeKit.LIBRARY:
         return Image.asset('assets/icons/menu/library_selected.png');
+      case MenuItemTypeKit.TAG:
+        return Image.asset('assets/icons/menu/library_selected.png');
     }
   }
 
@@ -36,6 +38,8 @@ extension MenuIconTypeExtension on MenuItemTypeKit {
       case MenuItemTypeKit.INDUSTRY:
         return Image.asset('assets/icons/menu/industry_unselected.png');
       case MenuItemTypeKit.LIBRARY:
+        return Image.asset('assets/icons/menu/library_unselected.png');
+      case MenuItemTypeKit.TAG:
         return Image.asset('assets/icons/menu/library_unselected.png');
     }
   }
@@ -57,6 +61,8 @@ extension MenuIconTypeStringExtension on MenuItemTypeKit {
       case MenuItemTypeKit.INDUSTRY:
         return 'Industry';
       case MenuItemTypeKit.LIBRARY:
+        return 'Library';
+      case MenuItemTypeKit.TAG:
         return 'Library';
     }
   }
