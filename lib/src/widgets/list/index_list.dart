@@ -6,7 +6,7 @@ class UiList {
     String? label,
     IconData? icon,
     required List<T> list,
-    required Function(T) itemBuilder,
+    required Function(T, int) itemBuilder,
   }) =>
       ListGenerator<T>(
         list: list,

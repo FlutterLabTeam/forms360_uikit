@@ -5,7 +5,7 @@ class ListGenerator<T> extends StatelessWidget {
   final List<T> list;
   final String? label;
   final IconData? icon;
-  final Function(T) itemBuilder;
+  final Function(T, int) itemBuilder;
 
   const ListGenerator({
     super.key,
@@ -20,7 +20,7 @@ class ListGenerator<T> extends StatelessWidget {
     return list.isNotEmpty
         ? ListView.builder(
             itemCount: list.length,
-            itemBuilder: (_, int index) => itemBuilder(list[index]),
+            itemBuilder: (_, int index) => itemBuilder(list[index], index),
           )
         : Container(
             width: double.infinity,
