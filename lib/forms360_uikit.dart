@@ -24,6 +24,10 @@ export 'package:forms360_uikit/src/extension/context_extension.dart';
 export 'package:forms360_uikit/src/extension/permission_extension.dart';
 export 'package:forms360_uikit/src/extension/font_family_extension.dart';
 
+//widget
+export 'package:forms360_uikit/src/widgets/menu/menu_icon.dart';
+
+
 //abstract class
 class FormsKit {
   static Theme theme = Theme();
