@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/extension/menu_item_type_extension.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/avatar_circular_initial.dart';
@@ -81,7 +82,7 @@ class _TopMenuState extends State<TopMenu> {
                           child: GestureDetector(
                               child: AvatarCircularInitial(
                                   name: widget.profileLetter, size: 24),
-                              onTap: widget.onProfileTap),
+                              onTap: widget.onProfileTap).cursorGesture,
                         )
                       ],
                     ),
@@ -112,7 +113,7 @@ class _TopMenuState extends State<TopMenu> {
         ),
       ),
       onTap: widget.onProfileTap,
-    );
+    ).cursorGesture;
   }
 
   List<Widget> get _listComponents => [
