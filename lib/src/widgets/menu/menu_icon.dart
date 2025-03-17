@@ -7,19 +7,19 @@ class MenuIcon extends StatelessWidget {
     super.key,
     required this.type,
     this.isSelected = false,
-    required this.onMenuItemSelected,
+    this.onMenuItemSelected,
   });
 
   final MenuItemTypeKit type;
   final bool isSelected;
-  final Function(MenuItemTypeKit) onMenuItemSelected;
+  final Function(MenuItemTypeKit)? onMenuItemSelected;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 76,
       child: GestureDetector(
-        onTap: () => isSelected ? null : onMenuItemSelected(type),
+        onTap: () => isSelected && onMenuItemSelected == null ? null : onMenuItemSelected!(type),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
