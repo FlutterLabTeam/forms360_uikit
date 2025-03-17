@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:forms360_uikit/src/widgets/buttons/container_button/container_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/custom_button/dotted_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/date_button/date_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/text_button/text_button.dart';
@@ -35,6 +36,9 @@ class UiButton {
     required Function() onTap,
   }) =>
       TextButton(onTap: onTap, text: text, style: style);
+
+  Widget containerButton({required Widget child}) =>
+      ContainerButton(child: child);
 
   Widget dateButton({
     final double width = 200,
