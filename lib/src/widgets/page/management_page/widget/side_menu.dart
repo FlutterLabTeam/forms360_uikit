@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/extension/menu_item_type_extension.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/avatar_circular_initial.dart';
+import 'package:forms360_uikit/src/widgets/page/management_page/widget/menu_icon.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({
@@ -12,6 +13,7 @@ class SideMenu extends StatefulWidget {
     required this.selectedMenuItem,
     required this.onMenuItemSelected,
   });
+
   final bool isHorizontal;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
@@ -76,9 +78,10 @@ class _SideMenuState extends State<SideMenu> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         MenuIcon(
-            type: item,
-            isSelected: widget.selectedMenuItem == item,
-            onMenuItemSelected: widget.onMenuItemSelected),
+          type: item,
+          isSelected: widget.selectedMenuItem == item,
+          onMenuItemSelected: widget.onMenuItemSelected,
+        ),
         SizedBox(height: 42),
       ],
     );
