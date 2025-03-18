@@ -5,6 +5,9 @@ class GridViewGenerator<T> extends StatelessWidget {
   final List<T> list;
   final String? label;
   final IconData? icon;
+  final int? crossAxisCount;
+  final double? mainAxisSpacing;
+  final double? crossAxisSpacing;
   final Function(T, int) itemBuilder;
 
   const GridViewGenerator({
@@ -12,16 +15,19 @@ class GridViewGenerator<T> extends StatelessWidget {
     this.icon,
     this.label,
     required this.list,
+    this.crossAxisCount,
+    this.mainAxisSpacing,
+    this.crossAxisSpacing,
     required this.itemBuilder,
   });
 
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.count(
-      crossAxisCount: 3,
-      mainAxisSpacing: 16,
-      crossAxisSpacing: 30,
       itemCount: list.length,
+      crossAxisCount: crossAxisCount ?? 3,
+      mainAxisSpacing: mainAxisSpacing ?? 16,
+      crossAxisSpacing: crossAxisSpacing ?? 30,
       itemBuilder: (_, int index) => itemBuilder(list[index], index),
     );
   }
