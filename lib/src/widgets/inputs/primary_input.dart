@@ -11,6 +11,7 @@ class PrimaryInput extends StatefulWidget {
     this.validator,
     this.controller,
     this.suffixIcon,
+    this.keyboardType,
     required this.isBig,
     required this.label,
     required this.enabled,
@@ -32,6 +33,7 @@ class PrimaryInput extends StatefulWidget {
   final bool isPassword;
   final Icon? suffixIcon;
   final bool isSuffixIconEnabled;
+  final TextInputType? keyboardType;
   final PrimaryInputColorKit inputColor;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
@@ -63,14 +65,15 @@ class _PrimaryInputState extends State<PrimaryInput> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: widget.initialValue,
       key: widget.key,
       enabled: widget.enabled,
       onChanged: widget.onChanged,
       maxLength: widget.maxLength,
       controller: widget.controller,
-      inputFormatters: widget.inputFormatters,
       maxLines: !widget.isBig ? 1 : 5,
+      initialValue: widget.initialValue,
+      keyboardType: widget.keyboardType,
+      inputFormatters: widget.inputFormatters,
       decoration: InputDecoration(
         counterText: "",
         hintText: widget.hintText,
