@@ -74,6 +74,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
       initialValue: widget.initialValue,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
+      autofillHints: widget.keyboardType == TextInputType.emailAddress ? [AutofillHints.email] : null,
       decoration: InputDecoration(
         counterText: "",
         hintText: widget.hintText,
