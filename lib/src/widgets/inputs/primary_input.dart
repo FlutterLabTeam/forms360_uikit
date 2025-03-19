@@ -48,12 +48,21 @@ class PrimaryInput extends StatefulWidget {
 }
 
 class _PrimaryInputState extends State<PrimaryInput> {
+  Iterable<String>? autofillHints;
   bool _obscureText = true;
 
   @override
   void initState() {
     super.initState();
     _obscureText = widget.isPassword;
+
+    if (widget.keyboardType == TextInputType.emailAddress) {
+      autofillHints = [AutofillHints.username];
+    }
+
+    if (widget.isPassword) {
+      autofillHints = [AutofillHints.password];
+    }
   }
 
   void _togglePasswordVisibility() {
@@ -74,7 +83,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
       initialValue: widget.initialValue,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
-      autofillHints: widget.keyboardType == TextInputType.emailAddress ? [AutofillHints.username] : null,
+      autofillHints: autofillHints,
       decoration: InputDecoration(
         counterText: "",
         hintText: widget.hintText,
