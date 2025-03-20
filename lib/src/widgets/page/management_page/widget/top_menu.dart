@@ -36,71 +36,73 @@ class _TopMenuState extends State<TopMenu> {
       ),
       child: widget.isHorizontal
           ? Row(
-              children: _listComponents
-                ..add(Spacer())
-                ..add(_buildProfileIcon()),
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            )
+        children: menuItemList.map((type) {
+          return _buildTappableMenuItem(type);
+        }).toList()
+          ..add(Spacer())
+          ..add(_buildProfileIcon()),
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      )
           : Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 24.0,
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 24.0,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width - 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: IconButton(
+                      onPressed: () => setState(() {
+                        isTapped = !isTapped;
+                      }),
+                      icon: Icon(Icons.menu),
+                    ),
+                  ),
+                  Text(
+                    widget.selectedMenuItem.toMenuTitle,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineMedium
+                        ?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
                   Container(
-                    width: MediaQuery.of(context).size.width - 40,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: IconButton(
-                            onPressed: () => setState(() {
-                              isTapped = !isTapped;
-                            }),
-                            icon: Icon(Icons.menu),
-                          ),
-                        ),
-                        Text(
-                          widget.selectedMenuItem.toMenuTitle,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(
-                                color: Theme.of(context).primaryColor,
-                              ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(right: 16),
-                          child: GestureDetector(
-                              child: AvatarCircularInitial(
-                                  name: widget.profileLetter, size: 24),
-                              onTap: widget.onProfileTap).cursorGesture,
-                        )
-                      ],
-                    ),
-                  ),
-                  Visibility(
-                    visible: isTapped,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.white,
-                      ),
-                      child: Column(children: _columnComponents),
-                    ),
-                  ),
+                    margin: EdgeInsets.only(right: 16),
+                    child: GestureDetector(
+                        child: AvatarCircularInitial(
+                            name: widget.profileLetter, size: 24),
+                        onTap: widget.onProfileTap).cursorGesture,
+                  )
                 ],
               ),
             ),
+            Visibility(
+              visible: isTapped,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.white,
+                ),
+                child: Column(children: _columnComponents),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -117,81 +119,51 @@ class _TopMenuState extends State<TopMenu> {
     ).cursorGesture;
   }
 
-  List<Widget> get _listComponents => [
-        MenuIcon(
-          type: MenuItemTypeKit.DASHBOARD,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(width: 12),
-        MenuIcon(
-          type: MenuItemTypeKit.USERS,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(width: 12),
-        MenuIcon(
-          type: MenuItemTypeKit.AUDIT,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(width: 12),
-        MenuIcon(
-          type: MenuItemTypeKit.PERMISSIONS,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(width: 12),
-        MenuIcon(
-          type: MenuItemTypeKit.ANNOUNCEMENT,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(width: 12),
-        MenuIcon(
-          type: MenuItemTypeKit.INDUSTRY,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-      ];
+  Widget _buildTappableMenuItem(MenuItemTypeKit item) {
+    return MenuIcon(
+      type: item,
+      isSelected: widget.selectedMenuItem == item,
+      onMenuItemSelected: widget.onMenuItemSelected,
+    );
+  }
 
   List<Widget> get _columnComponents => [
-        SizedBox(height: 52),
-        MenuIcon(
-          type: MenuItemTypeKit.DASHBOARD,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 52),
-        MenuIcon(
-          type: MenuItemTypeKit.USERS,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 52),
-        MenuIcon(
-          type: MenuItemTypeKit.AUDIT,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 52),
-        MenuIcon(
-          type: MenuItemTypeKit.PERMISSIONS,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 52),
-        MenuIcon(
-          type: MenuItemTypeKit.ANNOUNCEMENT,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 52),
-        MenuIcon(
-          type: MenuItemTypeKit.INDUSTRY,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 52),
-      ];
+    SizedBox(height: 52),
+    MenuIcon(
+      type: MenuItemTypeKit.DASHBOARD,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 52),
+    MenuIcon(
+      type: MenuItemTypeKit.USERS,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 52),
+    MenuIcon(
+      type: MenuItemTypeKit.AUDIT,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 52),
+    MenuIcon(
+      type: MenuItemTypeKit.PERMISSIONS,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 52),
+    MenuIcon(
+      type: MenuItemTypeKit.ANNOUNCEMENT,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 52),
+    MenuIcon(
+      type: MenuItemTypeKit.INDUSTRY,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 52),
+  ];
 }

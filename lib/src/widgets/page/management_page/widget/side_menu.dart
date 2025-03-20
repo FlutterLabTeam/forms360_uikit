@@ -44,12 +44,8 @@ class _SideMenuState extends State<SideMenu> {
             children: menuItemsList.map((type) {
               return _buildTappableMenuItem(type);
             }).toList()
-              ..add(
-                SizedBox(height: 42),
-              )
-              ..add(
-                _buildProfileIcon(),
-              ),
+              ..add(SizedBox(height: 42))
+              ..add(_buildProfileIcon()),
           ),
         ),
       ),

@@ -15,5 +15,4 @@ final List<MenuItemTypeKit> menuItemList = [
   MenuItemTypeKit.AUDIT,
   MenuItemTypeKit.PERMISSIONS,
   MenuItemTypeKit.ANNOUNCEMENT,
-  MenuItemTypeKit.INDUSTRY,
 ];
