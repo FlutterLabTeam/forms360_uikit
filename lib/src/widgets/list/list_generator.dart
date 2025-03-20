@@ -20,7 +20,7 @@ class ListGenerator<T> extends StatelessWidget {
     return list.isNotEmpty
         ? ScrollbarTheme(
             data: ScrollbarThemeData(
-              thumbColor: MaterialStateProperty.all(context.primaryColor.withOpacity(0.7)),
+              thumbColor: MaterialStateProperty.all(context.primaryColor.withOpacity(0.5)),
             ),
             child: Scrollbar(
               thickness: 6.0,
