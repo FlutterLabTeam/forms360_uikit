@@ -19,9 +19,14 @@ export 'package:forms360_uikit/src/theme/colors/colors.dart';
 export 'package:forms360_uikit/src/theme/universal_theme_factory/universal_theme.dart';
 
 //extension
+export 'package:forms360_uikit/src/extension/widget_extension.dart';
 export 'package:forms360_uikit/src/extension/context_extension.dart';
 export 'package:forms360_uikit/src/extension/permission_extension.dart';
 export 'package:forms360_uikit/src/extension/font_family_extension.dart';
+
+//widget
+export 'package:forms360_uikit/src/widgets/menu/menu_icon.dart';
+
 
 //abstract class
 class FormsKit {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
-import 'package:forms360_uikit/src/extension/menu_item_type_extension.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/avatar_circular_initial.dart';
 
 class SideMenu extends StatefulWidget {
@@ -12,6 +11,7 @@ class SideMenu extends StatefulWidget {
     required this.selectedMenuItem,
     required this.onMenuItemSelected,
   });
+
   final bool isHorizontal;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
@@ -23,7 +23,7 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu> {
-  final List<MenuItemTypeKit> menuItemsList = MenuItemTypeKit.values;
+  final List<MenuItemTypeKit> menuItemsList = menuItemList;
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +41,11 @@ class _SideMenuState extends State<SideMenu> {
           margin: EdgeInsets.symmetric(vertical: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: menuItemsList.map((type) {
-              return _buildTappableMenuItem(type);
-            }).toList()
-              ..add(
-                SizedBox(height: 42),
-              )
-              ..add(
-                _buildProfileIcon(),
-              ),
+            children: menuItemsList
+                .map((type) => _buildTappableMenuItem(type))
+                .toList()
+              ..add(SizedBox(height: 42))
+              ..add(_buildProfileIcon()),
           ),
         ),
       ),
@@ -58,29 +54,32 @@ class _SideMenuState extends State<SideMenu> {
 
   GestureDetector _buildProfileIcon() {
     return GestureDetector(
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.all(16.0),
         child: AvatarCircularInitial(
           backgroundColor: AvatarBackgroundColor.HARD_GREEN,
           name: widget.profileLetter,
           size: 24,
         ),
-      ),
+      ).cursorGesture,
       onTap: widget.onProfileTap,
     );
   }
 
   Widget _buildTappableMenuItem(MenuItemTypeKit item) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        MenuIcon(
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MenuIcon(
             type: item,
             isSelected: widget.selectedMenuItem == item,
-            onMenuItemSelected: widget.onMenuItemSelected),
-        SizedBox(height: 42),
-      ],
+            onMenuItemSelected: widget.onMenuItemSelected,
+          ),
+          SizedBox(height: 42),
+        ],
+      ),
     );
   }
 }

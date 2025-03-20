@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
-import 'package:forms360_uikit/src/widgets/buttons/custom_button/dotted_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/date_button/date_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/text_button/text_button.dart';
+import 'package:forms360_uikit/src/widgets/buttons/custom_button/dotted_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/custom_button/custom_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/select_button/select_button.dart';
 
 class UiButton {
   Widget button({
+    TextStyle? style,
     required String title,
     required Function() onPressed,
     SizeButtonKit sizeButton = SizeButtonKit.big,
@@ -16,6 +17,7 @@ class UiButton {
   }) =>
       CustomButton(
         title: title,
+        style: style,
         onPressed: onPressed,
         buttonType: buttonType,
         sizeButton: sizeButton,

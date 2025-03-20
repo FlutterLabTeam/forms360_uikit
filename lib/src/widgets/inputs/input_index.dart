@@ -23,9 +23,11 @@ class Inputs {
     double? fontSize,
     bool isBig = false,
     bool enabled = true,
+    String? initialValue,
     TextStyle? textStyle,
     bool isPassword = false,
     EdgeInsets? contentPadding,
+    TextInputType? keyboardType,
     void Function()? onIconPressed,
     bool isSuffixIconEnabled = false,
     void Function(String)? onChanged,
@@ -33,7 +35,6 @@ class Inputs {
     final Function(String?)? onFieldSubmitted,
     final String? Function(String?)? validator,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
-    String? initialValue,
     List<TextInputFormatter>? inputFormatters,
   }) =>
       PrimaryInput(
@@ -48,11 +49,12 @@ class Inputs {
         inputColor: inputColor,
         controller: controller,
         suffixIcon: suffixIcon,
+        keyboardType: keyboardType,
+        initialValue: initialValue,
         onIconPressed: onIconPressed,
+        inputFormatters: inputFormatters,
         onFieldSubmitted: onFieldSubmitted,
         isSuffixIconEnabled: isSuffixIconEnabled,
-        initialValue: initialValue,
-        inputFormatters: inputFormatters,
       );
 
   Widget dropdownWritableInput({

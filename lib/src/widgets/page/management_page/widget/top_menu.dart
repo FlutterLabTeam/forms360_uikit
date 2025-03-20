@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/extension/menu_item_type_extension.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/avatar_circular_initial.dart';
+import 'package:forms360_uikit/src/widgets/menu/menu_icon.dart';
 
 class TopMenu extends StatefulWidget {
   const TopMenu({
@@ -34,17 +36,16 @@ class _TopMenuState extends State<TopMenu> {
       ),
       child: widget.isHorizontal
           ? Row(
-              children: _listComponents
+              children: menuItemList
+                  .map((type) => _buildTappableMenuItem(type))
+                  .toList()
                 ..add(Spacer())
                 ..add(_buildProfileIcon()),
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             )
           : Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 24.0,
-              ),
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -79,9 +80,10 @@ class _TopMenuState extends State<TopMenu> {
                         Container(
                           margin: EdgeInsets.only(right: 16),
                           child: GestureDetector(
-                              child: AvatarCircularInitial(
-                                  name: widget.profileLetter, size: 24),
-                              onTap: widget.onProfileTap),
+                                  child: AvatarCircularInitial(
+                                      name: widget.profileLetter, size: 24),
+                                  onTap: widget.onProfileTap)
+                              .cursorGesture,
                         )
                       ],
                     ),
@@ -104,7 +106,8 @@ class _TopMenuState extends State<TopMenu> {
 
   _buildProfileIcon() {
     return GestureDetector(
-      child: Padding(
+      child: Container(
+        color: Colors.transparent,
         padding: const EdgeInsets.all(16.0),
         child: AvatarCircularInitial(
           name: widget.profileLetter,
@@ -112,46 +115,16 @@ class _TopMenuState extends State<TopMenu> {
         ),
       ),
       onTap: widget.onProfileTap,
-    );
+    ).cursorGesture;
   }
 
-  List<Widget> get _listComponents => [
-        MenuIcon(
-          type: MenuItemTypeKit.DASHBOARD,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(width: 12),
-        MenuIcon(
-          type: MenuItemTypeKit.USERS,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(width: 12),
-        MenuIcon(
-          type: MenuItemTypeKit.AUDIT,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(width: 12),
-        MenuIcon(
-          type: MenuItemTypeKit.PERMISSIONS,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(width: 12),
-        MenuIcon(
-          type: MenuItemTypeKit.ANNOUNCEMENT,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(width: 12),
-        MenuIcon(
-          type: MenuItemTypeKit.INDUSTRY,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-      ];
+  Widget _buildTappableMenuItem(MenuItemTypeKit item) {
+    return MenuIcon(
+      type: item,
+      isSelected: widget.selectedMenuItem == item,
+      onMenuItemSelected: widget.onMenuItemSelected,
+    );
+  }
 
   List<Widget> get _columnComponents => [
         SizedBox(height: 52),

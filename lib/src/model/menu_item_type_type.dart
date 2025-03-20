@@ -6,4 +6,13 @@ enum MenuItemTypeKit {
   DASHBOARD,
   PERMISSIONS,
   ANNOUNCEMENT,
+  TAG,
 }
+
+final List<MenuItemTypeKit> menuItemList = [
+  MenuItemTypeKit.DASHBOARD,
+  MenuItemTypeKit.USERS,
+  MenuItemTypeKit.AUDIT,
+  MenuItemTypeKit.PERMISSIONS,
+  MenuItemTypeKit.ANNOUNCEMENT,
+];

@@ -6,23 +6,25 @@ import 'package:forms360_uikit/src/widgets/buttons/custom_button/widget/buttons.
 
 class CustomButton extends StatefulWidget {
   final String title;
+  final TextStyle? style;
+  final double? fontSize;
+  final double? customSize;
   final Function() onPressed;
   final ButtonTypeKit buttonType;
   final SizeButtonKit sizeButton;
-  final ButtonStateKit buttonState;
-  final double? customSize;
   final EdgeInsets? customPadding;
-  final double? fontSize;
+  final ButtonStateKit buttonState;
 
   const CustomButton({
+    this.style,
+    this.fontSize,
+    this.customSize,
+    this.customPadding,
     required this.title,
     required this.onPressed,
     required this.sizeButton,
     required this.buttonType,
     this.buttonState = ButtonStateKit.enabled,
-    this.customSize,
-    this.customPadding,
-    this.fontSize,
   });
 
   @override
@@ -59,7 +61,7 @@ class CustomButtonState extends State<CustomButton> {
               : Center(
                   child: Container(
                     margin: widget.customPadding ?? const EdgeInsets.all(8),
-                    child: Text(widget.title, style: _textButtonColor(context)),
+                    child: Text(widget.title, style: widget.style ?? _textButtonColor(context)),
                   ),
                 ),
         ),

@@ -5,16 +5,18 @@ class DateButton extends StatefulWidget {
   DateButton({
     super.key,
     this.width = 200,
-    required this.onTap,
-    required this.dateController,
-    required this.label,
     this.selectedDate,
+    required this.onTap,
+    required this.label,
+    required this.dateController,
   });
+
   final double width;
+  final String label;
+  final DateTime? selectedDate;
   final Function(DateTime?) onTap;
   final TextEditingController dateController;
-  final DateTime? selectedDate;
-  final String label;
+
   @override
   State<DateButton> createState() => _DateButtonState();
 }
@@ -22,23 +24,21 @@ class DateButton extends StatefulWidget {
 class _DateButtonState extends State<DateButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      width: widget.width,
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      decoration: BoxDecoration(
-        color: Color(0xFFF5F7FA),
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(
-          color: const Color(0xFFF5F7FA),
+    return GestureDetector(
+      onTap: () => _selectDate(context),
+      child: Container(
+        height: 60,
+        width: widget.width,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        decoration: BoxDecoration(
+          color: Color(0xFFF5F7FA),
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: const Color(0xFFF5F7FA)),
         ),
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          GestureDetector(
-            onTap: () => _selectDate(context),
-            child: Row(
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -80,25 +80,25 @@ class _DateButtonState extends State<DateButton> {
                   ),
               ],
             ),
-          ),
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 200),
-            top: widget.dateController.text.isNotEmpty ? -12 : 20,
-            left: widget.dateController.text.isNotEmpty ? 12 : 30,
-            child: AnimatedDefaultTextStyle(
+            AnimatedPositioned(
               duration: const Duration(milliseconds: 200),
-              style: TextStyle(
-                fontSize: widget.dateController.text.isNotEmpty ? 12 : 16,
-                color: widget.dateController.text.isNotEmpty
-                    ? Theme.of(context).colorScheme.primary
-                    : Colors.grey,
+              top: widget.dateController.text.isNotEmpty ? -12 : 20,
+              left: widget.dateController.text.isNotEmpty ? 12 : 30,
+              child: AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 200),
+                style: TextStyle(
+                  fontSize: widget.dateController.text.isNotEmpty ? 12 : 16,
+                  color: widget.dateController.text.isNotEmpty
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.grey,
+                ),
+                child: Text(widget.label),
               ),
-              child: Text(widget.label),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    );
+    ).cursorGesture;
   }
 
   Future<void> _selectDate(BuildContext context) async {
