@@ -106,7 +106,8 @@ class _TopMenuState extends State<TopMenu> {
 
   _buildProfileIcon() {
     return GestureDetector(
-      child: Padding(
+      child: Container(
+        color: Colors.transparent,
         padding: const EdgeInsets.all(16.0),
         child: AvatarCircularInitial(
           name: widget.profileLetter,
@@ -118,13 +119,10 @@ class _TopMenuState extends State<TopMenu> {
   }
 
   Widget _buildTappableMenuItem(MenuItemTypeKit item) {
-    return Container(
-      color: Colors.red,
-      child: MenuIcon(
-        type: item,
-        isSelected: widget.selectedMenuItem == item,
-        onMenuItemSelected: widget.onMenuItemSelected,
-      ),
+    return MenuIcon(
+      type: item,
+      isSelected: widget.selectedMenuItem == item,
+      onMenuItemSelected: widget.onMenuItemSelected,
     );
   }
 

@@ -54,7 +54,8 @@ class _SideMenuState extends State<SideMenu> {
 
   GestureDetector _buildProfileIcon() {
     return GestureDetector(
-      child: Padding(
+      child: Container(
+        color: Colors.transparent,
         padding: const EdgeInsets.all(16.0),
         child: AvatarCircularInitial(
           backgroundColor: AvatarBackgroundColor.HARD_GREEN,
@@ -67,20 +68,17 @@ class _SideMenuState extends State<SideMenu> {
   }
 
   Widget _buildTappableMenuItem(MenuItemTypeKit item) {
-    return Container(
-      color: Colors.red,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          MenuIcon(
-            type: item,
-            isSelected: widget.selectedMenuItem == item,
-            onMenuItemSelected: widget.onMenuItemSelected,
-          ),
-          SizedBox(height: 42),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        MenuIcon(
+          type: item,
+          isSelected: widget.selectedMenuItem == item,
+          onMenuItemSelected: widget.onMenuItemSelected,
+        ),
+        SizedBox(height: 42),
+      ],
     );
   }
 }
