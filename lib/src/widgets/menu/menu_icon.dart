@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/extension/menu_item_type_extension.dart';
 
@@ -16,10 +17,14 @@ class MenuIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 76,
-      child: GestureDetector(
-        onTap: () => isSelected && onMenuItemSelected == null ? null : onMenuItemSelected!(type),
+    return GestureDetector(
+      onTap: () =>
+      isSelected && onMenuItemSelected == null
+          ? null
+          : onMenuItemSelected!(type),
+      child: Container(
+        color: Colors.transparent,
+        width: 76,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
