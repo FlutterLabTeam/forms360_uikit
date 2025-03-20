@@ -41,9 +41,9 @@ class _SideMenuState extends State<SideMenu> {
           margin: EdgeInsets.symmetric(vertical: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: menuItemsList.map((type) {
-              return _buildTappableMenuItem(type);
-            }).toList()
+            children: menuItemsList
+                .map((type) => _buildTappableMenuItem(type))
+                .toList()
               ..add(SizedBox(height: 42))
               ..add(_buildProfileIcon()),
           ),
@@ -67,17 +67,20 @@ class _SideMenuState extends State<SideMenu> {
   }
 
   Widget _buildTappableMenuItem(MenuItemTypeKit item) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        MenuIcon(
-          type: item,
-          isSelected: widget.selectedMenuItem == item,
-          onMenuItemSelected: widget.onMenuItemSelected,
-        ),
-        SizedBox(height: 42),
-      ],
+    return Container(
+      color: Colors.red,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MenuIcon(
+            type: item,
+            isSelected: widget.selectedMenuItem == item,
+            onMenuItemSelected: widget.onMenuItemSelected,
+          ),
+          SizedBox(height: 42),
+        ],
+      ),
     );
   }
 }
