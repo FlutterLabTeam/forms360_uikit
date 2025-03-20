@@ -8,6 +8,7 @@ import 'package:forms360_uikit/src/widgets/buttons/select_button/select_button.d
 
 class UiButton {
   Widget button({
+    TextStyle? style,
     required String title,
     required Function() onPressed,
     SizeButtonKit sizeButton = SizeButtonKit.big,
@@ -16,6 +17,7 @@ class UiButton {
   }) =>
       CustomButton(
         title: title,
+        style: style,
         onPressed: onPressed,
         buttonType: buttonType,
         sizeButton: sizeButton,
