@@ -18,9 +18,22 @@ class ListGenerator<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return list.isNotEmpty
-        ? ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (_, int index) => itemBuilder(list[index], index),
+        ? ScrollbarTheme(
+            data: ScrollbarThemeData(
+              thumbColor: MaterialStateProperty.all(context.primaryColor),
+            ),
+            child: Scrollbar(
+              thickness: 6.0,
+              interactive: true,
+              thumbVisibility: true,
+              trackVisibility: true,
+              radius: Radius.circular(10),
+              scrollbarOrientation: ScrollbarOrientation.right,
+              child: ListView.builder(
+                itemCount: list.length,
+                itemBuilder: (_, int index) => itemBuilder(list[index], index),
+              ),
+            ),
           )
         : Container(
             width: double.infinity,
