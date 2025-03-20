@@ -1,19 +1,19 @@
 enum MenuItemTypeKit {
-  DASHBOARD,
   USERS,
-  AUDIT,
-  PERMISSIONS,
-  ANNOUNCEMENT,
-  INDUSTRY,
-
-  /*LIBRARY,
-  TAG,*/
-}
-/* USERS,
   AUDIT,
   LIBRARY,
   INDUSTRY,
   DASHBOARD,
   PERMISSIONS,
   ANNOUNCEMENT,
-  TAG,*/
+  TAG,
+}
+
+final List<MenuItemTypeKit> menuItemList = [
+  MenuItemTypeKit.DASHBOARD,
+  MenuItemTypeKit.USERS,
+  MenuItemTypeKit.AUDIT,
+  MenuItemTypeKit.PERMISSIONS,
+  MenuItemTypeKit.ANNOUNCEMENT,
+  MenuItemTypeKit.INDUSTRY,
+];

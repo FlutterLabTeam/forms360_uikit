@@ -23,7 +23,7 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu> {
-  final List<MenuItemTypeKit> menuItemsList = MenuItemTypeKit.values;
+  final List<MenuItemTypeKit> menuItemsList = menuItemList;
 
   @override
   Widget build(BuildContext context) {
