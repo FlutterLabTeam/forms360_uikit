@@ -70,6 +70,8 @@ class Inputs {
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
     DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
     String? initialValue,
+    double? fontSize,
+    EdgeInsets? contentPadding,
   }) =>
       DropdownWritableInput(
         type: type,
@@ -83,6 +85,8 @@ class Inputs {
         dropdownSearchFieldController: dropdownSearchFieldController,
         enabled: enabled,
         initialValue: initialValue,
+        contentPadding: contentPadding,
+        fontSize: fontSize,
       );
 
   Widget otpInput({
