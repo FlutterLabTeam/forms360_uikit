@@ -64,7 +64,8 @@ class _SideMenuState extends State<SideMenu> {
   }
 
   Widget _buildTappableMenuItem(MenuItemTypeKit item) {
-    return Container(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

@@ -121,10 +121,13 @@ class _TopMenuState extends State<TopMenu> {
   }
 
   Widget _buildTappableMenuItem(MenuItemTypeKit item) {
-    return MenuIcon(
-      type: item,
-      isSelected: widget.selectedMenuItem == item,
-      onMenuItemSelected: widget.onMenuItemSelected,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: MenuIcon(
+        type: item,
+        isSelected: widget.selectedMenuItem == item,
+        onMenuItemSelected: widget.onMenuItemSelected,
+      ),
     );
   }
 
