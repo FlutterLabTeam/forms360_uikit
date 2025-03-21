@@ -16,6 +16,8 @@ class DropdownWritableInput extends StatefulWidget {
     this.type = DropdownWritableInputType.SINGLE,
     this.enabled = true,
     this.initialValue,
+    this.contentPadding,
+    this.fontSize = 16,
   });
 
   final String label;
@@ -29,6 +31,8 @@ class DropdownWritableInput extends StatefulWidget {
   final TextEditingController dropdownSearchFieldController;
   final bool enabled;
   final String? initialValue;
+  final EdgeInsetsGeometry? contentPadding;
+  final double? fontSize;
 
   @override
   State<DropdownWritableInput> createState() => _DropdownWritableInputState();
@@ -47,7 +51,7 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
 
   @override
   void initState() {
-    if(widget.initialValue != null) {
+    if (widget.initialValue != null) {
       widget.dropdownSearchFieldController.text = widget.initialValue!;
     }
     super.initState();
@@ -64,10 +68,12 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             enabled: widget.enabled,
             style: AppearanceKitTextTheme.build().input.copyWith(
                   color: _generateColor(),
+                  fontSize: widget.fontSize,
                   fontWeight: FontWeight.w400,
                 ),
             cursorColor: _generateColor(),
             decoration: InputDecoration(
+              contentPadding: widget.contentPadding ?? null,
               hintText: widget.hintText,
               labelText: widget.label,
               border: OutlineInputBorder(
@@ -78,12 +84,14 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
                   borderSide: BorderSide(color: _generateColor())),
               disabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: _generateColor())),
-              hintStyle: AppearanceKitTextTheme.build()
-                  .input
-                  .copyWith(color: _generateColor()),
-              labelStyle: AppearanceKitTextTheme.build()
-                  .input
-                  .copyWith(color: _generateColor()),
+              hintStyle: AppearanceKitTextTheme.build().input.copyWith(
+                    color: _generateColor(),
+                    fontSize: widget.fontSize,
+                  ),
+              labelStyle: AppearanceKitTextTheme.build().input.copyWith(
+                    color: _generateColor(),
+                    fontSize: widget.fontSize,
+                  ),
             ),
             controller: widget.dropdownSearchFieldController,
           ),
@@ -134,7 +142,10 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
                 return Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Chip(
-                    label: Text(widget.selectedValues[index]),
+                    label: Text(widget.selectedValues[index],
+                        style: TextStyle(
+                          fontSize: widget.fontSize,
+                        )),
                     onDeleted: () {
                       widget.selectedValues
                           .remove(widget.selectedValues[index]);
