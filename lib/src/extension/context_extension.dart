@@ -61,11 +61,11 @@ extension ContextExtension on BuildContext {
 
   TextStyle get inputText => AppearanceKitTextTheme.build().input.copyWith(color: onPrimaryColor);
 
-  TextStyle get primaryText => AppearanceKitTextTheme.build().primary.copyWith(color: onPrimaryColor);
+  TextStyle get primaryText => AppearanceKitTextTheme.build().primary.copyWith(color: primaryColor);
 
   TextStyle get descriptionText => AppearanceKitTextTheme.build().description.copyWith(color: onPrimaryColor);
 
-  TextStyle get secondaryText => AppearanceKitTextTheme.build().secondary.copyWith(color: onPrimaryColor);
+  TextStyle get secondaryText => AppearanceKitTextTheme.build().secondary.copyWith(color: primaryColor);
 
   TextStyle get smallDescriptionText => AppearanceKitTextTheme.build().smallDescription.copyWith(color: onPrimaryColor);
 }
