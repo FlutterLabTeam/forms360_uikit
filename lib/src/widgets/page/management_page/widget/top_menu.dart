@@ -110,11 +110,8 @@ class _TopMenuState extends State<TopMenu> {
     return GestureDetector(
       child: Container(
         color: Colors.transparent,
-        padding: const EdgeInsets.all(10.0),
-        child: AvatarCircularInitial(
-          name: widget.profileLetter,
-          size: 24,
-        ),
+        padding: const EdgeInsets.all(5),
+        child: AvatarCircularInitial(name: widget.profileLetter, size: 24),
       ),
       onTap: widget.onProfileTap,
     ).cursorGestureWithHover;
