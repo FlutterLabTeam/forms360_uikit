@@ -67,7 +67,6 @@ class _SideMenuState extends State<SideMenu> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Column(
-        spacing: 30,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -76,6 +75,7 @@ class _SideMenuState extends State<SideMenu> {
             isSelected: widget.selectedMenuItem == item,
             onMenuItemSelected: widget.onMenuItemSelected,
           ),
+          SizedBox(height: 30),
         ],
       ),
     );
