@@ -248,6 +248,7 @@ class _MapWidgetState extends State<MapWidget> {
     if (tappedMarker != null) {
       setState(() {
         markerPosition = null;
+        markers[markerId] = tappedMarker.copyWith(positionParam: newPosition);
       });
     }
   }
