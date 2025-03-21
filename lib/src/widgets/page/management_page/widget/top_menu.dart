@@ -117,7 +117,7 @@ class _TopMenuState extends State<TopMenu> {
         ),
       ),
       onTap: widget.onProfileTap,
-    ).cursorGesture;
+    ).cursorGestureWithHover;
   }
 
   Widget _buildTappableMenuItem(MenuItemTypeKit item) {
