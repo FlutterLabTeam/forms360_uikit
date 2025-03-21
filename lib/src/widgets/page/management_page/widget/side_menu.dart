@@ -36,7 +36,7 @@ class _SideMenuState extends State<SideMenu> {
       ),
       child: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 16),
+          margin: EdgeInsets.symmetric(vertical: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: menuItemsList
@@ -67,6 +67,7 @@ class _SideMenuState extends State<SideMenu> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Column(
+        spacing: 30,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -75,7 +76,6 @@ class _SideMenuState extends State<SideMenu> {
             isSelected: widget.selectedMenuItem == item,
             onMenuItemSelected: widget.onMenuItemSelected,
           ),
-          SizedBox(height: 42),
         ],
       ),
     );

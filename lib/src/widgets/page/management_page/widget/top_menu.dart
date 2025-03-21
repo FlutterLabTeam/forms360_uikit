@@ -110,7 +110,7 @@ class _TopMenuState extends State<TopMenu> {
     return GestureDetector(
       child: Container(
         color: Colors.transparent,
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(15.0),
         child: AvatarCircularInitial(
           name: widget.profileLetter,
           size: 24,
