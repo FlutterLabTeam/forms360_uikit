@@ -32,9 +32,7 @@ class _SideMenuState extends State<SideMenu> {
       padding: EdgeInsets.symmetric(horizontal: 6, vertical: 12),
       decoration: BoxDecoration(
         color: context.surfaceColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(20),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: SingleChildScrollView(
         child: Container(
@@ -44,8 +42,7 @@ class _SideMenuState extends State<SideMenu> {
             children: menuItemsList
                 .map((type) => _buildTappableMenuItem(type))
                 .toList()
-              ..add(SizedBox(height: 42))
-              ..add(_buildProfileIcon()),
+              ..add(SizedBox(height: 42))..add(_buildProfileIcon()),
           ),
         ),
       ),
@@ -61,7 +58,7 @@ class _SideMenuState extends State<SideMenu> {
           name: widget.profileLetter,
           size: 24,
         ),
-      ).cursorGesture,
+      ).cursorGestureWithHover,
       onTap: widget.onProfileTap,
     );
   }

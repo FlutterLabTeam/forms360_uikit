@@ -43,7 +43,7 @@ class MenuIcon extends StatelessWidget {
             ),
           ],
         ),
-      ).cursorGesture,
+      ).cursorGestureWithHover,
     );
   }
 }
