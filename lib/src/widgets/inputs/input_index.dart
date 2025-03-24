@@ -199,6 +199,7 @@ class Inputs {
     Icon? suffixeIcon,
     Function()? suffixIconOnPressed,
     double? width,
+    bool isEnabled = true,
   }) =>
       PopUpTextInput(
         label: label,
@@ -210,6 +211,7 @@ class Inputs {
         suffixeIcon: suffixeIcon,
         suffixIconOnPressed: suffixIconOnPressed,
         width: width,
+        isEnabled: isEnabled,
       );
 
   Widget popUpRowTextFields(
