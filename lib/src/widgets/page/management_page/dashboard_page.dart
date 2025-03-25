@@ -113,7 +113,7 @@ class BigScreenWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveTwoColumnLayout(
       startFlex: 1,
-      endFlex: 3,
+      endFlex: 2,
       startContent: SideMenu(
           onProfileTap: onProfileTap,
           profileLetter: profileLetter,
