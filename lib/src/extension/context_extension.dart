@@ -57,7 +57,7 @@ extension ContextExtension on BuildContext {
 //colors them access by context
   TextStyle get titleText => AppearanceKitTextTheme.build().title.copyWith(color: onPrimaryColor);
 
-  TextStyle get buttonText => AppearanceKitTextTheme.build().button.copyWith(color: onPrimaryColor);
+  TextStyle get buttonText => AppearanceKitTextTheme.build().button.copyWith(color: primaryColor);
 
   TextStyle get inputText => AppearanceKitTextTheme.build().input.copyWith(color: primaryColor);
 
