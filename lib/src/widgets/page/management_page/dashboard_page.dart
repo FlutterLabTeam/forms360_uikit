@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/side_menu.dart';
-import 'package:forms360_uikit/src/widgets/page/standard_page/widget/responsive_two_column_layout.dart';
 import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/top_menu.dart';
@@ -111,9 +110,7 @@ class BigScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveTwoColumnLayout(
-      startFlex: 1,
-      endFlex: 2,
+    return DashboardResponsiveTwoColumnLayout(
       startContent: SideMenu(
           onProfileTap: onProfileTap,
           profileLetter: profileLetter,
@@ -122,5 +119,48 @@ class BigScreenWidget extends StatelessWidget {
       endContent: endContent,
       spacing: spacing,
     );
+  }
+}
+
+class DashboardResponsiveTwoColumnLayout extends StatelessWidget {
+  const DashboardResponsiveTwoColumnLayout({
+    super.key,
+    required this.startContent,
+    required this.endContent,
+    this.breakpoint = Breakpoint.tablet,
+    required this.spacing,
+    this.rowMainAxisAlignment = MainAxisAlignment.start,
+    this.rowCrossAxisAlignment = CrossAxisAlignment.start,
+    this.columnMainAxisAlignment = MainAxisAlignment.start,
+    this.columnCrossAxisAlignment = CrossAxisAlignment.stretch,
+  });
+  final Widget startContent;
+  final Widget endContent;
+  final double breakpoint;
+  final double spacing;
+  final MainAxisAlignment rowMainAxisAlignment;
+  final CrossAxisAlignment rowCrossAxisAlignment;
+  final MainAxisAlignment columnMainAxisAlignment;
+  final CrossAxisAlignment columnCrossAxisAlignment;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (context, constraints) {
+      if (constraints.maxWidth >= breakpoint) {
+        return Row(
+          mainAxisAlignment: rowMainAxisAlignment,
+          crossAxisAlignment: rowCrossAxisAlignment,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            startContent,
+            SizedBox(width: spacing),
+            Expanded(child: endContent),
+            SizedBox(width: spacing),
+          ],
+        );
+      } else {
+        return endContent;
+      }
+    });
   }
 }

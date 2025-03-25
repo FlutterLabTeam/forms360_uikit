@@ -28,23 +28,30 @@ class _SideMenuState extends State<SideMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: double.infinity,
       margin: EdgeInsets.fromLTRB(62, 30, 12, 30),
       padding: EdgeInsets.symmetric(horizontal: 6, vertical: 12),
       decoration: BoxDecoration(
         color: context.surfaceColor,
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
-      child: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.symmetric(vertical: 15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: menuItemsList
-                .map((type) => _buildTappableMenuItem(type))
-                .toList()
-              ..add(SizedBox(height: 42))..add(_buildProfileIcon()),
+      child: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 15),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: menuItemsList
+                      .map((type) => _buildTappableMenuItem(type))
+                      .toList()
+                    ..add(
+                      SizedBox(height: 42),
+                    )),
+            ),
           ),
-        ),
+          Align(alignment: Alignment.bottomCenter, child: _buildProfileIcon())
+        ],
       ),
     );
   }
