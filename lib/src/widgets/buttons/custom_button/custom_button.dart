@@ -54,15 +54,16 @@ class CustomButtonState extends State<CustomButton> {
                 }
               }
             : null,
-        child: SizedBox(
+        child: Container(
+          alignment: Alignment.center,
+          padding: widget.customPadding ?? const EdgeInsets.all(8),
           height: widget.customSize ?? _generateSize(widget.sizeButton),
           child: isLoading
-              ? Center(child: ButtonLoading())
-              : Center(
-                  child: Container(
-                    margin: widget.customPadding ?? const EdgeInsets.all(8),
-                    child: Text(widget.title, style: widget.style ?? _textButtonColor(context)),
-                  ),
+              ? ButtonLoading()
+              : Text(
+                  widget.title,
+                  style: widget.style ?? _textButtonColor(context),
+                  textAlign: TextAlign.center,
                 ),
         ),
       ),
@@ -70,13 +71,16 @@ class CustomButtonState extends State<CustomButton> {
   }
 
   BorderSide _borderColor(BuildContext context) {
+    final type = widget.buttonType;
+    final state = widget.buttonState;
+
     Color col = Theme.of(context).colorScheme.primary;
-    if (widget.buttonType == ButtonTypeKit.tertiary) col = context.surfaceColor;
-    if (widget.buttonType == ButtonTypeKit.primary ||
-        widget.buttonType == ButtonTypeKit.fourth) return BorderSide.none;
-    if (widget.buttonState == ButtonStateKit.disabled) {
-      col = context.onSurfaceColor;
+
+    if (type == ButtonTypeKit.tertiary) col = context.surfaceColor;
+    if (type == ButtonTypeKit.primary || type == ButtonTypeKit.fourth) {
+      return BorderSide.none;
     }
+    if (state == ButtonStateKit.disabled) col = context.onSurfaceColor;
 
     return BorderSide(width: 2, color: col);
   }
