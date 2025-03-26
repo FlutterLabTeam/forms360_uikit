@@ -52,23 +52,21 @@ class _MapWidgetState extends State<MapWidget> {
   @override
   void initState() {
     super.initState();
-    if (widget.initialLocation != null) {
-      final MarkerId markerId = MarkerId('marker_id_$_markerIdCounter');
-      _markerIdCounter++;
-      final Marker marker = Marker(
-        markerId: markerId,
-        position: LatLng(widget.initialLocation!.latitude,
-            widget.initialLocation!.longitude),
-        onTap: () => _onMarkerTapped(markerId),
-        onDragEnd: (LatLng position) => _onMarkerDragEnd(markerId, position),
-        onDrag: (LatLng position) => _onMarkerDrag(markerId, position),
-        draggable: true,
-      );
-      markers[markerId] = marker;
-      center = LatLng(
-          widget.initialLocation!.latitude, widget.initialLocation!.longitude);
+    final MarkerId markerId = MarkerId('marker_id_$_markerIdCounter');
+    _markerIdCounter++;
+    final Marker marker = Marker(
+      markerId: markerId,
+      position: LatLng(widget.initialLocation.latitude,
+          widget.initialLocation.longitude),
+      onTap: () => _onMarkerTapped(markerId),
+      onDragEnd: (LatLng position) => _onMarkerDragEnd(markerId, position),
+      onDrag: (LatLng position) => _onMarkerDrag(markerId, position),
+      draggable: true,
+    );
+    markers[markerId] = marker;
+    center = LatLng(
+        widget.initialLocation.latitude, widget.initialLocation.longitude);
     }
-  }
 
   @override
   Widget build(BuildContext context) {

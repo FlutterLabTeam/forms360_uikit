@@ -60,8 +60,6 @@ _getBgColorFromEnum(AvatarBackgroundColor color) {
       return Color(0xFFB8C3E8);
     case AvatarBackgroundColor.PRIMARY:
       return Color(0xFF1E5C8B);
-    default:
-      return Color(0xFFCBEEF3);
   }
 }
 
@@ -72,8 +70,6 @@ _getFrontColorFromEnum(AvatarFrontColor color) {
     case AvatarFrontColor.HARD_BLUE:
       return Color(0xFF1E5C8B);
     case AvatarFrontColor.WHITE:
-      return Colors.white;
-    default:
       return Colors.white;
   }
 }
