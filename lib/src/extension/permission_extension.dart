@@ -33,7 +33,7 @@ extension PermissionOptionsExtension on PermissionOptionsType {
       case PermissionOptionsType.READ:
         return "Read";
       case PermissionOptionsType.DELETE:
-        return "Deleted";
+        return "Delete";
     }
   }
 }
