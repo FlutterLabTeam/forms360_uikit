@@ -11,6 +11,7 @@ class PopUpTextInput extends StatelessWidget {
   final Icon? suffixeIcon;
   final Function()? suffixIconOnPressed;
   final double? width;
+  final bool isEnabled;
 
   const PopUpTextInput({
     super.key,
@@ -23,6 +24,7 @@ class PopUpTextInput extends StatelessWidget {
     this.suffixeIcon,
     this.suffixIconOnPressed,
     this.width,
+    this.isEnabled = true,
   });
 
   @override
@@ -42,6 +44,7 @@ class PopUpTextInput extends StatelessWidget {
         onChanged: onChanged,
         validator: validator,
         fontSize: 20,
+        enabled: isEnabled,
       ),
     );
   }

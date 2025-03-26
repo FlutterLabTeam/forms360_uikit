@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/model/custom_form_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/pop_up_text_input.dart';
 
@@ -8,10 +7,10 @@ class PopUpRowTextInputs extends StatelessWidget {
   final CustomFormFieldModel field2;
 
   const PopUpRowTextInputs({
-    Key? key,
+    super.key,
     required this.field1,
     required this.field2,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +30,7 @@ class PopUpRowTextInputs extends StatelessWidget {
             suffixeIcon: field1.suffixIcon,
             suffixIconOnPressed: field1.suffixIconOnPressed,
             width: field1.width,
+            isEnabled: field1.isEnabled,
           ),
         ),
         SizedBox(width: 3),
@@ -45,6 +45,7 @@ class PopUpRowTextInputs extends StatelessWidget {
             suffixeIcon: field2.suffixIcon,
             suffixIconOnPressed: field2.suffixIconOnPressed,
             width: field2.width,
+            isEnabled: field2.isEnabled,
           ),
         ),
       ],
