@@ -79,7 +79,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
       onChanged: widget.onChanged,
       maxLength: widget.maxLength,
       controller: widget.controller,
-      maxLines: !widget.isBig ? 1 : 5,
+      maxLines: !widget.isBig ? 1 : 6,
       initialValue: widget.initialValue,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
