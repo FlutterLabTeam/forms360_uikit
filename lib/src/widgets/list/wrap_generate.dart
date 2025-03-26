@@ -5,19 +5,19 @@ class WrapGenerator<T> extends StatelessWidget {
   final List<T> list;
   final String? label;
   final IconData? icon;
+  final double? spacing;
+  final double? runSpacing;
   final int? crossAxisCount;
-  final double? mainAxisSpacing;
-  final double? crossAxisSpacing;
   final Function(T, int) itemBuilder;
 
   const WrapGenerator({
     super.key,
     this.icon,
     this.label,
+    this.spacing,
+    this.runSpacing,
     required this.list,
     this.crossAxisCount,
-    this.mainAxisSpacing,
-    this.crossAxisSpacing,
     required this.itemBuilder,
   });
 
@@ -39,8 +39,8 @@ class WrapGenerator<T> extends StatelessWidget {
                 scrollbarOrientation: ScrollbarOrientation.right,
                 child: Wrap(
                   alignment: WrapAlignment.start,
-                  spacing: 10,
-                  runSpacing: 10,
+                  spacing: spacing ?? 10,
+                  runSpacing: runSpacing ?? 10,
                   children: List.generate(
                     list.length,
                     (index) => itemBuilder(list[index], index),
