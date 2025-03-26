@@ -10,6 +10,7 @@ class CustomFormFieldModel {
   final Icon? suffixIcon;
   final Function()? suffixIconOnPressed;
   final double? width;
+  final bool isEnabled;
 
   CustomFormFieldModel({
     required this.label,
@@ -21,5 +22,6 @@ class CustomFormFieldModel {
     this.suffixIcon,
     this.suffixIconOnPressed,
     this.isSuffixIconEnabled = false,
+    this.isEnabled = true,
   });
 }
