@@ -35,23 +35,25 @@ class UiList {
         mainAxisSpacing: mainAxisSpacing,
         crossAxisSpacing: crossAxisSpacing,
       );
+
+  WrapGenerator wrapGenerator<T>({
+    String? label,
+    IconData? icon,
+    double? spacing,
+    double? runSpacing,
+    int? crossAxisCount,
+    required List<T> list,
+    required Function(T, int) itemBuilder,
+  }) =>
+      WrapGenerator<T>(
+        list: list,
+        icon: icon,
+        label: label,
+        spacing: spacing,
+        runSpacing: runSpacing,
+        itemBuilder: itemBuilder,
+        crossAxisCount: crossAxisCount,
+      );
 }
 
-WrapGenerator wrapGenerator<T>({
-  String? label,
-  IconData? icon,
-  double? spacing,
-  double? runSpacing,
-  int? crossAxisCount,
-  required List<T> list,
-  required Function(T, int) itemBuilder,
-}) =>
-    WrapGenerator<T>(
-      list: list,
-      icon: icon,
-      label: label,
-      spacing: spacing,
-      runSpacing: runSpacing,
-      itemBuilder: itemBuilder,
-      crossAxisCount: crossAxisCount,
-    );
+
