@@ -75,17 +75,21 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
                 ),
             cursorColor: _generateColor(),
             decoration: InputDecoration(
-              contentPadding: widget.contentPadding ?? null,
-              hintText: widget.hintText,
               labelText: widget.label,
+              hintText: widget.hintText,
+              contentPadding: widget.contentPadding,
               border: OutlineInputBorder(
-                  borderSide: BorderSide(color: _generateColor())),
+                borderSide: BorderSide(color: _generateColor()),
+              ),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _generateColor())),
+                borderSide: BorderSide(color: _generateColor()),
+              ),
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _generateColor())),
+                borderSide: BorderSide(color: _generateColor()),
+              ),
               disabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _generateColor())),
+                borderSide: BorderSide(color: _generateColor()),
+              ),
               hintStyle: AppearanceKitTextTheme.build().input.copyWith(
                     color: _generateColor(),
                     fontSize: widget.fontSize,
