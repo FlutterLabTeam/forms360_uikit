@@ -44,12 +44,12 @@ class ManagementPage extends StatelessWidget {
             endContent: endContent,
             startContent: startContent,
             onProfileTap: onProfileTap,
+            enableGoHome: enableGoHome,
             profileLetter: profileLetter,
             selectedMenuItem: selectedMenuItem,
             onMenuItemSelected: onMenuItemSelected,
             rowMainAxisAlignment: rowMainAxisAlignment,
             rowCrossAxisAlignment: rowCrossAxisAlignment,
-            enableGoHome: enableGoHome,
           );
         } else if (constraints.maxWidth >= Breakpoint.tablet &&
             constraints.maxWidth < Breakpoint.xdesktop) {

@@ -5,7 +5,12 @@ import 'package:drop_down_search_field/drop_down_search_field.dart';
 class DropdownWritableInput extends StatefulWidget {
   DropdownWritableInput({
     super.key,
+    this.validator,
+    this.initialValue,
+    this.fontSize = 16,
     required this.items,
+    this.enabled = true,
+    this.contentPadding,
     required this.label,
     required this.hintText,
     required this.inputColor,
@@ -14,25 +19,22 @@ class DropdownWritableInput extends StatefulWidget {
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
     this.type = DropdownWritableInputType.SINGLE,
-    this.enabled = true,
-    this.initialValue,
-    this.contentPadding,
-    this.fontSize = 16,
   });
 
   final String label;
+  final bool enabled;
   final String hintText;
+  final double? fontSize;
   final List<String> items;
+  final String? initialValue;
   final List<String> selectedValues;
   final DropdownWritableInputType type;
   final PrimaryInputColorKit inputColor;
+  final EdgeInsetsGeometry? contentPadding;
+  final String? Function(String?)? validator;
   final void Function(String) onSuggestionSelected;
   final Function(List<String>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
-  final bool enabled;
-  final String? initialValue;
-  final EdgeInsetsGeometry? contentPadding;
-  final double? fontSize;
 
   @override
   State<DropdownWritableInput> createState() => _DropdownWritableInputState();
@@ -122,14 +124,15 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             }
           },
           suggestionsBoxController: suggestionBoxController,
-          validator: (value) {
-            if (value!.isEmpty &&
-                widget.type == DropdownWritableInputType.SINGLE) {
-              return 'Please select a value';
-            } else {
-              return null;
-            }
-          },
+          validator: widget.validator ??
+              (value) {
+                if (value!.isEmpty &&
+                    widget.type == DropdownWritableInputType.SINGLE) {
+                  return 'Please select a value';
+                } else {
+                  return null;
+                }
+              },
           onSaved: (value) => widget.selectedValues.add(value!),
           displayAllSuggestionWhenTap: widget.enabled,
         ),
