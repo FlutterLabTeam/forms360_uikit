@@ -80,6 +80,7 @@ class Inputs {
         label: label,
         items: items,
         hintText: hintText,
+        validator: validator,
         inputColor: inputColor,
         selectedValues: selectedValues,
         onSuggestionSelected: onSuggestionSelected,
