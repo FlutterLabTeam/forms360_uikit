@@ -29,7 +29,7 @@ class _SideMenuState extends State<SideMenu> {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.serviceWeb!) menuList = menuItemListService;
+    if(widget.serviceWeb != null && widget.serviceWeb!) menuList = menuItemListService;
     return Container(
       height: double.infinity,
       margin: EdgeInsets.fromLTRB(62, 30, 12, 30),

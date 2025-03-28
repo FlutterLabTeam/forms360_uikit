@@ -34,7 +34,7 @@ class _TopMenuState extends State<TopMenu> {
   @override
   Widget build(BuildContext context) {
 
-    if(widget.serviceWeb!) menuList = menuItemListService;
+    if(widget.serviceWeb != null && widget.serviceWeb!) menuList = menuItemListService;
 
     return Container(
       decoration: BoxDecoration(
