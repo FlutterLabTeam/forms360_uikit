@@ -16,3 +16,5 @@ final List<MenuItemTypeKit> menuItemList = [
   MenuItemTypeKit.PERMISSIONS,
   MenuItemTypeKit.ANNOUNCEMENT,
 ];
+
+final List<MenuItemTypeKit> menuItemListService = [];

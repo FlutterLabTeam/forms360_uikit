@@ -8,6 +8,7 @@ import 'package:forms360_uikit/src/widgets/menu/menu_icon.dart';
 class TopMenu extends StatefulWidget {
   const TopMenu({
     super.key,
+    this.serviceWeb = false,
     this.isHorizontal = true,
     required this.onProfileTap,
     required this.profileLetter,
@@ -15,6 +16,7 @@ class TopMenu extends StatefulWidget {
     required this.onMenuItemSelected,
   });
 
+  final bool? serviceWeb;
   final bool isHorizontal;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
@@ -27,16 +29,20 @@ class TopMenu extends StatefulWidget {
 
 class _TopMenuState extends State<TopMenu> {
   bool isTapped = false;
+  List<MenuItemTypeKit> menuList =  menuItemList;
 
   @override
   Widget build(BuildContext context) {
+
+    if(widget.serviceWeb!) menuList = menuItemListService;
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(25)),
       ),
       child: widget.isHorizontal
           ? Row(
-              children: menuItemList
+              children: menuList
                   .map((type) => _buildTappableMenuItem(type))
                   .toList()
                 ..add(Spacer())

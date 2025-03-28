@@ -5,6 +5,7 @@ import 'package:forms360_uikit/src/widgets/page/management_page/widget/avatar_ci
 class SideMenu extends StatefulWidget {
   const SideMenu({
     super.key,
+    this.serviceWeb = false,
     this.isHorizontal = false,
     required this.onProfileTap,
     required this.profileLetter,
@@ -12,6 +13,7 @@ class SideMenu extends StatefulWidget {
     required this.onMenuItemSelected,
   });
 
+  final bool? serviceWeb;
   final bool isHorizontal;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
@@ -23,10 +25,11 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu> {
-  final List<MenuItemTypeKit> menuItemsList = menuItemList;
+  List<MenuItemTypeKit> menuList =  menuItemList;
 
   @override
   Widget build(BuildContext context) {
+    if(widget.serviceWeb!) menuList = menuItemListService;
     return Container(
       height: double.infinity,
       margin: EdgeInsets.fromLTRB(62, 30, 12, 30),
@@ -42,7 +45,7 @@ class _SideMenuState extends State<SideMenu> {
               margin: EdgeInsets.symmetric(vertical: 15),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: menuItemsList
+                  children: menuList
                       .map((type) => _buildTappableMenuItem(type))
                       .toList()
                     ..add(

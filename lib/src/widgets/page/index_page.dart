@@ -15,6 +15,7 @@ class UiPage {
       BackgroundPage(child: child, image: image, labelPage: labelPage);
 
   Widget managementPage({
+    bool? serviceWeb,
     double spacing = 36,
     required Widget endContent,
     required Widget startContent,
@@ -31,18 +32,20 @@ class UiPage {
         spacing: spacing,
         assetPath: assetPath,
         endContent: endContent,
-        startContent: startContent,
+        serviceWeb: serviceWeb,
+        enableGoHome: enableGoHome,
         onProfileTap: onProfileTap,
+        startContent: startContent,
         profileLetter: profileLetter,
         selectedMenuItem: selectedMenuItem,
         onMenuItemSelected: onMenuItemSelected,
         rowMainAxisAlignment: rowMainAxisAlignment,
         rowCrossAxisAlignment: rowCrossAxisAlignment,
-        enableGoHome: enableGoHome,
       );
 
   Widget dashboardPage({
     double spacing = 36,
+    bool? serviceWeb,
     required Widget endContent,
     required String profileLetter,
     required GestureTapCallback onProfileTap,
@@ -51,6 +54,7 @@ class UiPage {
   }) =>
       DashboardPage(
         spacing: spacing,
+        serviceWeb: serviceWeb,
         endContent: endContent,
         onProfileTap: onProfileTap,
         profileLetter: profileLetter,

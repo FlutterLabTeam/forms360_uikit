@@ -7,6 +7,7 @@ import 'package:forms360_uikit/src/widgets/page/management_page/widget/top_menu.
 class DashboardPage extends StatelessWidget {
   const DashboardPage({
     super.key,
+    this.serviceWeb,
     required this.spacing,
     required this.endContent,
     required this.onProfileTap,
@@ -16,6 +17,7 @@ class DashboardPage extends StatelessWidget {
   });
 
   final double spacing;
+  final bool? serviceWeb;
   final Widget endContent;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
@@ -31,6 +33,7 @@ class DashboardPage extends StatelessWidget {
                 constraints.maxWidth < Breakpoint.xdesktop)) {
           return BigScreenWidget(
             spacing: spacing,
+            serviceWeb: serviceWeb,
             endContent: endContent,
             onProfileTap: onProfileTap,
             profileLetter: profileLetter,
@@ -93,6 +96,7 @@ class SmallScreenWidget extends StatelessWidget {
 class BigScreenWidget extends StatelessWidget {
   const BigScreenWidget({
     super.key,
+    this.serviceWeb,
     required this.spacing,
     required this.endContent,
     required this.onProfileTap,
@@ -102,6 +106,7 @@ class BigScreenWidget extends StatelessWidget {
   });
 
   final double spacing;
+  final bool? serviceWeb;
   final Widget endContent;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
@@ -112,10 +117,12 @@ class BigScreenWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DashboardResponsiveTwoColumnLayout(
       startContent: SideMenu(
-          onProfileTap: onProfileTap,
-          profileLetter: profileLetter,
-          selectedMenuItem: selectedMenuItem,
-          onMenuItemSelected: onMenuItemSelected),
+        serviceWeb: serviceWeb,
+        onProfileTap: onProfileTap,
+        profileLetter: profileLetter,
+        selectedMenuItem: selectedMenuItem,
+        onMenuItemSelected: onMenuItemSelected,
+      ),
       endContent: endContent,
       spacing: spacing,
     );
@@ -134,6 +141,7 @@ class DashboardResponsiveTwoColumnLayout extends StatelessWidget {
     this.columnMainAxisAlignment = MainAxisAlignment.start,
     this.columnCrossAxisAlignment = CrossAxisAlignment.stretch,
   });
+
   final Widget startContent;
   final Widget endContent;
   final double breakpoint;

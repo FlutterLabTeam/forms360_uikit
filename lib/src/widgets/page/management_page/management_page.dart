@@ -8,6 +8,7 @@ import 'package:forms360_uikit/src/widgets/page/management_page/widget/top_menu.
 class ManagementPage extends StatelessWidget {
   const ManagementPage({
     super.key,
+    this.serviceWeb,
     required this.spacing,
     required this.assetPath,
     required this.endContent,
@@ -22,6 +23,7 @@ class ManagementPage extends StatelessWidget {
   });
 
   final double spacing;
+  final bool? serviceWeb;
   final String assetPath;
   final Widget endContent;
   final Widget startContent;
@@ -42,6 +44,7 @@ class ManagementPage extends StatelessWidget {
             spacing: spacing,
             assetPath: assetPath,
             endContent: endContent,
+            serviceWeb: serviceWeb,
             startContent: startContent,
             onProfileTap: onProfileTap,
             enableGoHome: enableGoHome,
@@ -56,6 +59,7 @@ class ManagementPage extends StatelessWidget {
           return MediumScreenWidget(
             spacing: spacing,
             endContent: endContent,
+            serviceWeb: serviceWeb,
             onProfileTap: onProfileTap,
             profileLetter: profileLetter,
             selectedMenuItem: selectedMenuItem,
@@ -66,6 +70,7 @@ class ManagementPage extends StatelessWidget {
         } else {
           return SmallScreenWidget(
             endContent: endContent,
+            serviceWeb: serviceWeb,
             onProfileTap: onProfileTap,
             profileLetter: profileLetter,
             selectedMenuItem: selectedMenuItem,
@@ -80,6 +85,7 @@ class ManagementPage extends StatelessWidget {
 class SmallScreenWidget extends StatelessWidget {
   const SmallScreenWidget({
     super.key,
+    this.serviceWeb,
     required this.endContent,
     required this.onProfileTap,
     required this.profileLetter,
@@ -87,6 +93,7 @@ class SmallScreenWidget extends StatelessWidget {
     required this.onMenuItemSelected,
   });
 
+  final bool? serviceWeb;
   final Widget endContent;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
@@ -105,6 +112,7 @@ class SmallScreenWidget extends StatelessWidget {
           ),
           TopMenu(
             isHorizontal: false,
+            serviceWeb: serviceWeb,
             onProfileTap: onProfileTap,
             profileLetter: profileLetter,
             selectedMenuItem: selectedMenuItem,
@@ -119,6 +127,7 @@ class SmallScreenWidget extends StatelessWidget {
 class MediumScreenWidget extends StatelessWidget {
   const MediumScreenWidget({
     super.key,
+    this.serviceWeb,
     required this.spacing,
     required this.endContent,
     required this.onProfileTap,
@@ -130,6 +139,7 @@ class MediumScreenWidget extends StatelessWidget {
   });
 
   final double spacing;
+  final bool? serviceWeb;
   final Widget endContent;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
@@ -169,6 +179,7 @@ class MediumScreenWidget extends StatelessWidget {
                       vertical: 20,
                     ),
                     child: TopMenu(
+                      serviceWeb: serviceWeb,
                       onProfileTap: onProfileTap,
                       profileLetter: profileLetter,
                       selectedMenuItem: selectedMenuItem,
@@ -198,6 +209,7 @@ class MediumScreenWidget extends StatelessWidget {
 class BigScreenWidget extends StatelessWidget {
   const BigScreenWidget({
     super.key,
+    this.serviceWeb,
     required this.spacing,
     required this.endContent,
     required this.startContent,
@@ -212,6 +224,7 @@ class BigScreenWidget extends StatelessWidget {
   });
 
   final double spacing;
+  final bool? serviceWeb;
   final String assetPath;
   final Widget endContent;
   final Widget startContent;
@@ -263,6 +276,7 @@ class BigScreenWidget extends StatelessWidget {
                       vertical: 20,
                     ),
                     child: TopMenu(
+                      serviceWeb: serviceWeb,
                       onProfileTap: onProfileTap,
                       profileLetter: profileLetter,
                       selectedMenuItem: selectedMenuItem,
