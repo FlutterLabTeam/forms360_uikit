@@ -6,6 +6,7 @@ class WrapGenerator<T> extends StatelessWidget {
   final String? label;
   final IconData? icon;
   final double? spacing;
+  final double topMargin;
   final double? runSpacing;
   final int? crossAxisCount;
   final Function(T, int) itemBuilder;
@@ -17,6 +18,7 @@ class WrapGenerator<T> extends StatelessWidget {
     this.spacing,
     this.runSpacing,
     required this.list,
+    this.topMargin = 10,
     this.crossAxisCount,
     required this.itemBuilder,
   });
@@ -31,23 +33,25 @@ class WrapGenerator<T> extends StatelessWidget {
               ),
             ),
             child: Scrollbar(
-                thickness: 6.0,
-                interactive: true,
-                thumbVisibility: true,
-                trackVisibility: true,
-                radius: Radius.circular(10),
-                scrollbarOrientation: ScrollbarOrientation.right,
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  spacing: spacing ?? 10,
-                  runSpacing: runSpacing ?? 10,
-                  children: List.generate(
-                    list.length,
-                    (index) => itemBuilder(list[index], index),
-                  ),
-                )),
+              thickness: 6.0,
+              interactive: true,
+              thumbVisibility: true,
+              trackVisibility: true,
+              radius: Radius.circular(10),
+              scrollbarOrientation: ScrollbarOrientation.right,
+              child: Wrap(
+                alignment: WrapAlignment.start,
+                spacing: spacing ?? 10,
+                runSpacing: runSpacing ?? 10,
+                children: List.generate(
+                  list.length,
+                  (index) => itemBuilder(list[index], index),
+                ),
+              ),
+            ),
           )
         : Container(
+            margin: EdgeInsets.only(top: topMargin),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
