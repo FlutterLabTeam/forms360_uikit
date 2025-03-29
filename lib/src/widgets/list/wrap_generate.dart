@@ -51,7 +51,7 @@ class WrapGenerator<T> extends StatelessWidget {
             ),
           )
         : Container(
-            margin: EdgeInsets.only(top: topMargin),
+            margin: EdgeInsets.only(top: topMargin!),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
