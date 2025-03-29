@@ -6,7 +6,7 @@ class WrapGenerator<T> extends StatelessWidget {
   final String? label;
   final IconData? icon;
   final double? spacing;
-  final double topMargin;
+  final double? topMargin;
   final double? runSpacing;
   final int? crossAxisCount;
   final Function(T, int) itemBuilder;
