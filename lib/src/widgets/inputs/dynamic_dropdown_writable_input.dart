@@ -18,7 +18,6 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
     this.selectedValues = const [],
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
-    required this.getSuggetions,
     required this.getStringValue,
     this.type = DropdownWritableInputType.SINGLE,
   });
@@ -37,7 +36,6 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
   final void Function(T) onSuggestionSelected;
   final Function(List<T>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
-  final Function(T) getSuggetions;
   final String Function(T) getStringValue;
 
   @override

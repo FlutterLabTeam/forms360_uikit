@@ -110,12 +110,11 @@ class Inputs {
     T? initialValue,
     double? fontSize,
     EdgeInsets? contentPadding,
-    required Function(T) getSuggetions,
     required String Function(T) getStringValue,
   }) =>
       DynamicDropdownWritableInput<T>(
-        getSuggetions: getSuggetions,
         getStringValue: getStringValue,
+        type: type,
         label: label,
         items: items,
         hintText: hintText,
