@@ -19,6 +19,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
     required this.getSuggetions,
+    required this.getStringValue,
     this.type = DropdownWritableInputType.SINGLE,
   });
 
@@ -37,23 +38,25 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
   final Function(List<T>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
   final Function(T) getSuggetions;
+  final String Function(T) getStringValue;
 
   @override
   State<DynamicDropdownWritableInput> createState() =>
-      _DynamicDropdownWritableInputState();
+      _DynamicDropdownWritableInputState<T>();
 }
 
-class _DynamicDropdownWritableInputState
+class _DynamicDropdownWritableInputState<T>
     extends State<DynamicDropdownWritableInput> {
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
 
-  // List<String> getSuggestions(String query) {
-  //   List<String> matches = <String>[];
-  //   matches.addAll(widget.items);
+  List<T> getSuggestions(String query) {
+    List<T> matches = <T>[];
+    matches.addAll(widget.items as Iterable<T>);
 
-  //   matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
-  //   return matches;
-  // }
+    matches.retainWhere((s) =>
+        widget.getStringValue(s).toLowerCase().contains(query.toLowerCase()));
+    return matches;
+  }
 
   @override
   void initState() {
@@ -105,15 +108,15 @@ class _DynamicDropdownWritableInputState
             ),
             controller: widget.dropdownSearchFieldController,
           ),
-          suggestionsCallback: (pattern) => widget.getSuggetions(pattern),
-          itemBuilder: (context, String suggestion) {
-            return ListTile(title: Text(suggestion));
+          suggestionsCallback: (pattern) => getSuggestions(pattern),
+          itemBuilder: (context, T suggestion) {
+            return ListTile(title: Text(widget.getStringValue(suggestion)));
           },
           itemSeparatorBuilder: (context, index) => Divider(),
           transitionBuilder: (context, suggestionsBox, controller) {
             return suggestionsBox;
           },
-          onSuggestionSelected: (String suggestion) {
+          onSuggestionSelected: (T suggestion) {
             if (widget.type == DropdownWritableInputType.MULTI) {
               if (widget.selectedValues.contains(suggestion)) {
                 widget.selectedValues.remove(suggestion);
@@ -127,7 +130,8 @@ class _DynamicDropdownWritableInputState
               }
               widget.onSuggestionSelected(suggestion);
             } else {
-              widget.dropdownSearchFieldController.text = suggestion;
+              widget.dropdownSearchFieldController.text =
+                  widget.getStringValue(suggestion);
               widget.onSuggestionSelected(suggestion);
             }
           },
