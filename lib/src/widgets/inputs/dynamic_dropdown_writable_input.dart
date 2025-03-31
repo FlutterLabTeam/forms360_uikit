@@ -19,6 +19,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
     required this.getStringValue,
+    required this.onSuggestionCallback,
     this.type = DropdownWritableInputType.SINGLE,
   });
 
@@ -33,10 +34,16 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
   final PrimaryInputColorKit inputColor;
   final EdgeInsetsGeometry? contentPadding;
   final String? Function(T?)? validator;
-  final void Function(T) onSuggestionSelected;
+  final Function(T) onSuggestionSelected;
   final Function(List<T>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
   final String Function(T) getStringValue;
+  final Function(String) onSuggestionCallback;
+
+  /// Converts an item of type T into a String using the provided getStringValue function.
+  String convertToString<T>(item) {
+    return getStringValue(item);
+  }
 
   @override
   State<DynamicDropdownWritableInput> createState() =>
@@ -46,15 +53,6 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
 class _DynamicDropdownWritableInputState<T>
     extends State<DynamicDropdownWritableInput> {
   SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
-
-  List<T> getSuggestions(String query) {
-    List<T> matches = <T>[];
-    matches.addAll(widget.items as Iterable<T>);
-
-    matches.retainWhere((s) =>
-        widget.getStringValue(s).toLowerCase().contains(query.toLowerCase()));
-    return matches;
-  }
 
   @override
   void initState() {
@@ -69,7 +67,7 @@ class _DynamicDropdownWritableInputState<T>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DropDownSearchFormField(
+        DropDownSearchFormField<T>(
           enabled: widget.enabled,
           textFieldConfiguration: TextFieldConfiguration(
             enabled: widget.enabled,
@@ -106,9 +104,10 @@ class _DynamicDropdownWritableInputState<T>
             ),
             controller: widget.dropdownSearchFieldController,
           ),
-          suggestionsCallback: (pattern) => getSuggestions(pattern),
+          suggestionsCallback: (pattern) =>
+              widget.onSuggestionCallback(pattern),
           itemBuilder: (context, T suggestion) {
-            return ListTile(title: Text(widget.getStringValue(suggestion)));
+            return ListTile(title: Text(widget.convertToString(suggestion)));
           },
           itemSeparatorBuilder: (context, index) => Divider(),
           transitionBuilder: (context, suggestionsBox, controller) {
@@ -129,7 +128,7 @@ class _DynamicDropdownWritableInputState<T>
               widget.onSuggestionSelected(suggestion);
             } else {
               widget.dropdownSearchFieldController.text =
-                  widget.getStringValue(suggestion);
+                  widget.convertToString(suggestion);
               widget.onSuggestionSelected(suggestion);
             }
           },

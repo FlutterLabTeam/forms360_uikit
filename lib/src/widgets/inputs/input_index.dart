@@ -111,6 +111,7 @@ class Inputs {
     double? fontSize,
     EdgeInsets? contentPadding,
     required String Function(T) getStringValue,
+    required Function(String) onSuggestionCallback,
   }) =>
       DynamicDropdownWritableInput<T>(
         getStringValue: getStringValue,
@@ -128,6 +129,7 @@ class Inputs {
         initialValue: initialValue,
         contentPadding: contentPadding,
         fontSize: fontSize,
+        onSuggestionCallback: onSuggestionCallback,
       );
 
   Widget otpInput({
