@@ -6,6 +6,7 @@ import 'package:forms360_uikit/src/model/tag_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
 import 'package:forms360_uikit/src/widgets/inputs/custom_form.dart';
 import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/dynamic_dropdown_writable_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/pop_up_row_text_inputs.dart';
 import 'package:forms360_uikit/src/widgets/inputs/pop_up_text_input.dart';
@@ -90,6 +91,45 @@ class Inputs {
         initialValue: initialValue,
         contentPadding: contentPadding,
         fontSize: fontSize,
+      );
+
+  Widget dynamicDropDown<T>({
+    bool enabled = true,
+    required String label,
+    bool isPassword = false,
+    required String hintText,
+    required List<T> items,
+    void Function(T)? onChanged,
+    List<T> selectedValues = const [],
+    final String? Function(T?)? validator,
+    required Function(T) onSuggestionSelected,
+    Function(List<T>)? onSelectedValuesChanged,
+    required TextEditingController dropdownSearchFieldController,
+    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
+    DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
+    T? initialValue,
+    double? fontSize,
+    EdgeInsets? contentPadding,
+    required String Function(T) getStringValue,
+    required Function(String) onSuggestionCallback,
+  }) =>
+      DynamicDropdownWritableInput<T>(
+        getStringValue: getStringValue,
+        type: type,
+        label: label,
+        items: items,
+        hintText: hintText,
+        validator: validator,
+        inputColor: inputColor,
+        selectedValues: selectedValues,
+        onSuggestionSelected: onSuggestionSelected,
+        onSelectedValuesChanged: onSelectedValuesChanged,
+        dropdownSearchFieldController: dropdownSearchFieldController,
+        enabled: enabled,
+        initialValue: initialValue,
+        contentPadding: contentPadding,
+        fontSize: fontSize,
+        onSuggestionCallback: onSuggestionCallback,
       );
 
   Widget otpInput({
