@@ -14,6 +14,7 @@ class DropdownWritableInput extends StatefulWidget {
     required this.label,
     required this.hintText,
     required this.inputColor,
+    this.addNewItemTitle = "",
     this.onSelectedValuesChanged,
     this.selectedValues = const [],
     required this.onSuggestionSelected,
@@ -27,6 +28,7 @@ class DropdownWritableInput extends StatefulWidget {
   final double? fontSize;
   final List<String> items;
   final String? initialValue;
+  final String addNewItemTitle;
   final List<String> selectedValues;
   final DropdownWritableInputType type;
   final PrimaryInputColorKit inputColor;
@@ -48,6 +50,10 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
     matches.addAll(widget.items);
 
     matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+
+    if (widget.addNewItemTitle.isNotEmpty) {
+      matches.add(widget.addNewItemTitle);
+    }
     return matches;
   }
 
@@ -103,6 +109,13 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
           ),
           suggestionsCallback: (pattern) => getSuggestions(pattern),
           itemBuilder: (context, String suggestion) {
+            if (widget.addNewItemTitle.isNotEmpty &&  suggestion == widget.addNewItemTitle) {
+              return ListTile(
+                title: Text(suggestion),
+                titleAlignment: ListTileTitleAlignment.center,
+              );
+            }
+
             return ListTile(title: Text(suggestion));
           },
           itemSeparatorBuilder: (context, index) => Divider(),
