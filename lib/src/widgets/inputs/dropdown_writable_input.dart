@@ -109,9 +109,13 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
           ),
           suggestionsCallback: (pattern) => getSuggestions(pattern),
           itemBuilder: (context, String suggestion) {
-            if (widget.addNewItemTitle.isNotEmpty &&  suggestion == widget.addNewItemTitle) {
+            if (widget.addNewItemTitle.isNotEmpty &&
+                suggestion == widget.addNewItemTitle) {
               return ListTile(
-                title: Text(suggestion),
+                title: Text(
+                  suggestion,
+                  textAlign: TextAlign.center,
+                ),
                 titleAlignment: ListTileTitleAlignment.center,
               );
             }
