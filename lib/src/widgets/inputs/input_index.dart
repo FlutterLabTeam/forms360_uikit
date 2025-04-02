@@ -59,10 +59,14 @@ class Inputs {
       );
 
   Widget dropdownWritableInput({
+    double? fontSize,
     bool enabled = true,
+    String? initialValue,
     required String label,
+    String? addNewItemTitle,
     bool isPassword = false,
     required String hintText,
+    EdgeInsets? contentPadding,
     required List<String> items,
     void Function(String)? onChanged,
     List<String> selectedValues = const [],
@@ -72,9 +76,6 @@ class Inputs {
     required TextEditingController dropdownSearchFieldController,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
     DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
-    String? initialValue,
-    double? fontSize,
-    EdgeInsets? contentPadding,
   }) =>
       DropdownWritableInput(
         type: type,
@@ -84,6 +85,7 @@ class Inputs {
         validator: validator,
         inputColor: inputColor,
         selectedValues: selectedValues,
+        addNewItemTitle: addNewItemTitle,
         onSuggestionSelected: onSuggestionSelected,
         onSelectedValuesChanged: onSelectedValuesChanged,
         dropdownSearchFieldController: dropdownSearchFieldController,
