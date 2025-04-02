@@ -142,8 +142,12 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             } else {
               if (widget.addNewItemTitle != suggestion) {
                 widget.dropdownSearchFieldController.text = suggestion;
-              }
                 widget.onSuggestionSelected(suggestion);
+              }
+              if (widget.addNewItemTitle != suggestion) {
+                widget.dropdownSearchFieldController.text = "";
+                widget.onSuggestionSelected(suggestion);
+              }
             }
           },
           suggestionsBoxController: suggestionBoxController,
