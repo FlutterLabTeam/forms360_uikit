@@ -140,8 +140,10 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
               }
               widget.onSuggestionSelected(suggestion);
             } else {
-              widget.dropdownSearchFieldController.text = suggestion;
-              widget.onSuggestionSelected(suggestion);
+              if (widget.addNewItemTitle != suggestion) {
+                widget.dropdownSearchFieldController.text = suggestion;
+                widget.onSuggestionSelected(suggestion);
+              }
             }
           },
           suggestionsBoxController: suggestionBoxController,
@@ -166,13 +168,14 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
                 return Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Chip(
-                    label: Text(widget.selectedValues[index],
-                        style: TextStyle(
-                          fontSize: widget.fontSize,
-                        )),
+                    label: Text(
+                      widget.selectedValues[index],
+                      style: TextStyle(fontSize: widget.fontSize),
+                    ),
                     onDeleted: () {
-                      widget.selectedValues
-                          .remove(widget.selectedValues[index]);
+                      widget.selectedValues.remove(
+                        widget.selectedValues[index],
+                      );
                       setState(() {});
                       if (widget.onSelectedValuesChanged != null) {
                         widget.onSelectedValuesChanged!(widget.selectedValues);
