@@ -45,14 +45,4 @@ class PopUpIndex {
         message: message,
       );
 
-  Widget deletePopUp({
-    required String title,
-    required Function() onTap,
-    required String description,
-  }) =>
-      DeleteCustomPopUp(
-        onTap: onTap,
-        title: title,
-        description: description,
-      );
 }
