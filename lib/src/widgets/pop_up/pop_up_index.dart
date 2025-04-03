@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/src/model/pop_up_model.dart';
+import 'package:forms360_uikit/src/widgets/pop_up/delete_custom_pop_up.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/general_pop_up.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/success_pop_up.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/tabbed_pop_up.dart';
@@ -10,31 +11,48 @@ class PopUpIndex {
     required Widget child,
     required PopUpSize popUpSize,
   }) =>
-      generalPopUp(context, child: child, popUpSize: popUpSize);
+      generalPopUp(
+        context,
+        child: child,
+        popUpSize: popUpSize,
+      );
 
   Future<void> tabbed(
     BuildContext context, {
-    required final PageController pageController,
-    required List<Widget> children,
+    double? height,
     required PopUpSize popUpSize,
     required List<Widget> footers,
-    double? height,
+    required List<Widget> children,
+    required final PageController pageController,
   }) =>
-      tabbedPopUp(context,
-          pageController: pageController,
-          children: children,
-          footers: footers,
-          popUpSize: popUpSize,
-          height: height
+      tabbedPopUp(
+        context,
+        height: height,
+        footers: footers,
+        children: children,
+        popUpSize: popUpSize,
+        pageController: pageController,
       );
+
   Future<void> successPopUp(
     BuildContext context, {
-    required String message,
     required String okText,
+    required String message,
   }) =>
       successPopup(
         context,
-        message: message,
         okText: okText,
+        message: message,
+      );
+
+  Widget deletePopUp({
+    required String title,
+    required Function() onTap,
+    required String description,
+  }) =>
+      DeleteCustomPopUp(
+        onTap: onTap,
+        title: title,
+        description: description,
       );
 }
