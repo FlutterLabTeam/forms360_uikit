@@ -17,8 +17,6 @@ import 'package:forms360_uikit/src/widgets/inputs/tag_widget.dart';
 
 class Inputs {
   Widget primary({
-    required String label,
-    required String hintText,
     int? maxLength,
     Icon? suffixIcon,
     double? fontSize,
@@ -26,7 +24,9 @@ class Inputs {
     bool enabled = true,
     String? initialValue,
     TextStyle? textStyle,
+    required String label,
     bool isPassword = false,
+    required String hintText,
     EdgeInsets? contentPadding,
     TextInputType? keyboardType,
     void Function()? onIconPressed,
@@ -53,6 +53,7 @@ class Inputs {
         keyboardType: keyboardType,
         initialValue: initialValue,
         onIconPressed: onIconPressed,
+        contentPadding: contentPadding,
         inputFormatters: inputFormatters,
         onFieldSubmitted: onFieldSubmitted,
         isSuffixIconEnabled: isSuffixIconEnabled,

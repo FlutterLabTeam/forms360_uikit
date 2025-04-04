@@ -13,6 +13,7 @@ class PrimaryInput extends StatefulWidget {
     this.suffixIcon,
     this.keyboardType,
     required this.isBig,
+    this.contentPadding,
     required this.label,
     required this.enabled,
     required this.hintText,
@@ -33,12 +34,13 @@ class PrimaryInput extends StatefulWidget {
   final bool isPassword;
   final Icon? suffixIcon;
   final bool isSuffixIconEnabled;
+  final EdgeInsets? contentPadding;
   final TextInputType? keyboardType;
+  final void Function()? onIconPressed;
   final PrimaryInputColorKit inputColor;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
-  final void Function()? onIconPressed;
   final Function(String?)? onFieldSubmitted;
   final String? initialValue;
   final List<TextInputFormatter>? inputFormatters;
@@ -103,8 +105,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
                     : Color(0xff99B3C6),
           ),
         ),
-        contentPadding:
-            EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
+        contentPadding: widget.contentPadding ?? EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: _generateColorInput()),
         ),
