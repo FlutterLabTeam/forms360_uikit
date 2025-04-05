@@ -9,9 +9,9 @@ import 'package:forms360_uikit/src/widgets/buttons/select_button/select_button.d
 class UiButton {
   Widget button({
     TextStyle? style,
+    Function()? longPress,
     required String title,
     required Function() onPressed,
-    required Function()? longPress,
     SizeButtonKit sizeButton = SizeButtonKit.big,
     ButtonTypeKit buttonType = ButtonTypeKit.primary,
     ButtonStateKit buttonState = ButtonStateKit.enabled,
