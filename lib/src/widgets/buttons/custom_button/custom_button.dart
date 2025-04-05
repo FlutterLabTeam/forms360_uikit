@@ -10,6 +10,7 @@ class CustomButton extends StatefulWidget {
   final double? fontSize;
   final double? customSize;
   final Function() onPressed;
+  final Function()? longPress;
   final ButtonTypeKit buttonType;
   final SizeButtonKit sizeButton;
   final EdgeInsets? customPadding;
@@ -18,6 +19,7 @@ class CustomButton extends StatefulWidget {
   const CustomButton({
     this.style,
     this.fontSize,
+    this.longPress,
     this.customSize,
     this.customPadding,
     required this.title,
@@ -43,6 +45,7 @@ class CustomButtonState extends State<CustomButton> {
         borderRadius: BorderRadius.circular(8),
       ),
       child: InkWell(
+        onLongPress: widget.longPress,
         borderRadius: BorderRadius.circular(8),
         onTap: widget.buttonState != ButtonStateKit.disabled
             ? () async {

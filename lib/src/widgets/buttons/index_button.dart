@@ -11,6 +11,7 @@ class UiButton {
     TextStyle? style,
     required String title,
     required Function() onPressed,
+    required Function()? longPress,
     SizeButtonKit sizeButton = SizeButtonKit.big,
     ButtonTypeKit buttonType = ButtonTypeKit.primary,
     ButtonStateKit buttonState = ButtonStateKit.enabled,
@@ -18,6 +19,7 @@ class UiButton {
       CustomButton(
         title: title,
         style: style,
+        longPress: longPress,
         onPressed: onPressed,
         buttonType: buttonType,
         sizeButton: sizeButton,
