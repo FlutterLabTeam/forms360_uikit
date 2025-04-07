@@ -68,4 +68,9 @@ extension ContextExtension on BuildContext {
   TextStyle get secondaryText => AppearanceKitTextTheme.build().secondary.copyWith(color: primaryColor);
 
   TextStyle get smallDescriptionText => AppearanceKitTextTheme.build().smallDescription.copyWith(color: onPrimaryColor);
+
+
+  //implementing size
+  double sizeWidth([double? size]) => size != null ? MediaQuery.of(this).size.width * size : MediaQuery.of(this).size.width;
+  double sizeHeight([double? size]) => size != null ? MediaQuery.of(this).size.height * size : MediaQuery.of(this).size.height;
 }
