@@ -19,10 +19,10 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0'
+          flutter-version: '3.29.0'
           channel: 'stable'
           cache: true
-          cache-key: flutter-3.19.0
+          cache-key: flutter-3.29.0
           cache-path: ${{ github.workspace }}/.flutter-sdk
 
       - name: Setup Dart SDK
