@@ -1,0 +1,35 @@
+name: Deploy Widgetbook to Firebase
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'widgetbook/**'
+      - 'lib/**'
+      - '.github/workflows/deploy-widgetbook.yml'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.0'
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Widgetbook
+        run: flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=true --target=widgetbook/widgetbook.dart
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Deploy to Firebase
+        run: firebase deploy --only hosting:widgetbook-f360 --token "${{ secrets.FIREBASE_TOKEN }}" 
