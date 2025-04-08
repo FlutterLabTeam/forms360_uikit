@@ -21,6 +21,14 @@ jobs:
         with:
           flutter-version: '3.19.0'
           channel: 'stable'
+          cache: true
+          cache-key: flutter-3.19.0
+          cache-path: ${{ github.workspace }}/.flutter-sdk
+
+      - name: Setup Dart SDK
+        run: |
+          echo "FLUTTER_ROOT=${{ github.workspace }}/.flutter-sdk" >> $GITHUB_ENV
+          echo "${{ github.workspace }}/.flutter-sdk/bin" >> $GITHUB_PATH
 
       - name: Install dependencies
         run: flutter pub get
