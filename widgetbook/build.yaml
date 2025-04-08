@@ -1,0 +1,70 @@
+targets:
+  $default:
+    builders:
+      widgetbook_generator:
+        options:
+          categories:
+            - name: "Buttons"
+              widgets:
+                - name: "Custom Button"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => const CustomButton(text: 'Custom Button', onPressed: () {})"
+                    - name: "Disabled"
+                      builder: "(context) => const CustomButton(text: 'Disabled Button', onPressed: null)"
+                - name: "Text Button"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => const TextButton(onPressed: () {}, child: Text('Text Button'))"
+            - name: "Inputs"
+              widgets:
+                - name: "Primary Input"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => const PrimaryInput(label: 'Primary Input')"
+            - name: "Containers"
+              widgets:
+                - name: "Expandable Container"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => const ExpandableContainer(title: 'Expandable Container', child: Text('Content'))"
+            - name: "Graph"
+              widgets:
+                - name: "Animated Circle Percentage"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => const AnimatedCirclePercentage(percentage: 75)"
+            - name: "List"
+              widgets:
+                - name: "Grid View Generator"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => GridViewGenerator(itemCount: 10, itemBuilder: (context, index) => Container(color: Colors.blue, child: Center(child: Text('Item ' + index.toString()))))"
+            - name: "Map"
+              widgets:
+                - name: "Map Widget"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => const MapWidget()"
+            - name: "Menu"
+              widgets:
+                - name: "Menu Icon"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => const MenuIcon()"
+            - name: "Page"
+              widgets:
+                - name: "Management Page"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => const ManagementPage()"
+                - name: "Standard Page"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => const StandardPage()"
+            - name: "Pop Up"
+              widgets:
+                - name: "General Pop Up"
+                  useCases:
+                    - name: "Default"
+                      builder: "(context) => const GeneralPopUp(title: 'General Pop Up', content: Text('Content'))"

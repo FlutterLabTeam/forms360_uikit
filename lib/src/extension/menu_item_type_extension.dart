@@ -3,45 +3,45 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 
 extension MenuIconTypeExtension on MenuItemTypeKit {
-  Image get iconSelected {
+  Icon get iconSelected {
     switch (this) {
       case MenuItemTypeKit.DASHBOARD:
-        return Image.asset('assets/icons/menu/dashboard_selected.png');
+        return Icon(Icons.dashboard, color: Colors.blue);
       case MenuItemTypeKit.USERS:
-        return Image.asset('assets/icons/menu/clients_selected.png');
+        return Icon(Icons.people, color: Colors.blue);
       case MenuItemTypeKit.AUDIT:
-        return Image.asset('assets/icons/menu/audit_selected.png');
+        return Icon(Icons.history, color: Colors.blue);
       case MenuItemTypeKit.PERMISSIONS:
-        return Image.asset('assets/icons/menu/permissions_selected.png');
+        return Icon(Icons.security, color: Colors.blue);
       case MenuItemTypeKit.ANNOUNCEMENT:
-        return Image.asset('assets/icons/menu/announcement_selected.png');
+        return Icon(Icons.notifications, color: Colors.blue);
       case MenuItemTypeKit.INDUSTRY:
-        return Image.asset('assets/icons/menu/industry_selected.png');
+        return Icon(Icons.business, color: Colors.blue);
       case MenuItemTypeKit.LIBRARY:
-        return Image.asset('assets/icons/menu/library_selected.png');
+        return Icon(Icons.library_books, color: Colors.blue);
       case MenuItemTypeKit.TAG:
-        return Image.asset('assets/icons/menu/library_selected.png');
+        return Icon(Icons.library_books, color: Colors.blue);
     }
   }
 
-  Image get iconUnselected {
+  Icon get iconUnselected {
     switch (this) {
       case MenuItemTypeKit.DASHBOARD:
-        return Image.asset('assets/icons/menu/dashboard_unselected.png');
+        return Icon(Icons.dashboard, color: Colors.grey);
       case MenuItemTypeKit.USERS:
-        return Image.asset('assets/icons/menu/clients_unselected.png');
+        return Icon(Icons.people, color: Colors.grey);
       case MenuItemTypeKit.AUDIT:
-        return Image.asset('assets/icons/menu/audit_unselected.png');
+        return Icon(Icons.history, color: Colors.grey);
       case MenuItemTypeKit.PERMISSIONS:
-        return Image.asset('assets/icons/menu/permissions_unselected.png');
+        return Icon(Icons.security, color: Colors.grey);
       case MenuItemTypeKit.ANNOUNCEMENT:
-        return Image.asset('assets/icons/menu/announcement_unselected.png');
+        return Icon(Icons.notifications, color: Colors.grey);
       case MenuItemTypeKit.INDUSTRY:
-        return Image.asset('assets/icons/menu/industry_unselected.png');
+        return Icon(Icons.business, color: Colors.grey);
       case MenuItemTypeKit.LIBRARY:
-        return Image.asset('assets/icons/menu/library_unselected.png');
+        return Icon(Icons.library_books, color: Colors.grey);
       case MenuItemTypeKit.TAG:
-        return Image.asset('assets/icons/menu/library_unselected.png');
+        return Icon(Icons.library_books, color: Colors.grey);
     }
   }
 }
@@ -68,4 +68,3 @@ extension MenuIconTypeStringExtension on MenuItemTypeKit {
     }
   }
 }
-
