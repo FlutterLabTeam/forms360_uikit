@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:forms360_uikit/src/widgets/buttons/circular_button/circular_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/date_button/date_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/text_button/text_button.dart';
 import 'package:forms360_uikit/src/widgets/buttons/custom_button/dotted_button.dart';
@@ -32,6 +33,11 @@ class UiButton {
     required Function() onTap,
   }) =>
       SelectButton(onTap: onTap, label: label, isSelect: isSelect);
+
+  Widget circularButton({
+    required IconData icon,
+    required Function() onTap,
+  }) => CircularButton(onTap: onTap, icon: icon);
 
   Widget textButton({
     required String text,
