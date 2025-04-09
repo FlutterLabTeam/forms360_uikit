@@ -48,6 +48,11 @@ extension WidgetExtension on Widget {
           cursor: SystemMouseCursors.click,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
+            decoration: BoxDecoration(
+              color: isHovered
+                  ? context.primaryColor.withOpacity(0.07)
+                  : Colors.transparent,
+            ),
             child: this,
           ),
         );
