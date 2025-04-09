@@ -71,16 +71,17 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DropDownSearchFormField(
+
           enabled: widget.enabled,
           textFieldConfiguration: TextFieldConfiguration(
             enabled: widget.enabled,
-            style: AppearanceKitTextTheme.build().input.copyWith(
-                  color: _generateColor(),
-                  fontSize: widget.fontSize,
-                  fontWeight: FontWeight.w400,
-                ),
+            style: AppearanceKitTextTheme.build()
+                .input
+                .copyWith(color: _generateColorInput(), fontSize: 20),
             cursorColor: _generateColor(),
+
             decoration: InputDecoration(
+
               labelText: widget.label,
               hintText: widget.hintText,
               contentPadding: widget.contentPadding??EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
@@ -191,6 +192,12 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
           ),
       ],
     );
+  }
+
+
+  Color _generateColorInput() {
+    if (widget.inputColor == PrimaryInputColorKit.BLACK) return Colors.black;
+    return Theme.of(context).colorScheme.primary;
   }
 
   Color _generateColor() {
