@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 
 class CircularButton extends StatelessWidget {
+  final Color? color;
   final IconData icon;
   final Function() onTap;
   final double? elevation;
 
   const CircularButton({
     super.key,
+    this.color,
     this.elevation,
-    required this.onTap,
     required this.icon,
+    required this.onTap,
   });
 
   @override
@@ -18,7 +20,7 @@ class CircularButton extends StatelessWidget {
     return Material(
       elevation: elevation ?? 7,
       shape: const CircleBorder(),
-      color: context.primaryColor,
+      color: color ?? context.primaryColor,
       child: InkWell(
         customBorder: const CircleBorder(),
         onTap: onTap,
