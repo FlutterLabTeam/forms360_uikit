@@ -35,9 +35,10 @@ class UiButton {
       SelectButton(onTap: onTap, label: label, isSelect: isSelect);
 
   Widget circularButton({
+    double? elevation,
     required IconData icon,
     required Function() onTap,
-  }) => CircularButton(onTap: onTap, icon: icon);
+  }) => CircularButton(onTap: onTap, icon: icon, elevation: elevation);
 
   Widget textButton({
     required String text,
