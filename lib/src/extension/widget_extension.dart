@@ -35,4 +35,23 @@ extension WidgetExtension on Widget {
       },
     );
   }
+
+  Widget get cursorHover {
+    bool isHovered = false;
+
+    return StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return MouseRegion(
+          onEnter: (_) => setState(() => isHovered = true),
+          onExit: (_) => setState(() => isHovered = false),
+          onHover: (_) => setState(() => isHovered = true),
+          cursor: SystemMouseCursors.click,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            child: this,
+          ),
+        );
+      },
+    );
+  }
 }
