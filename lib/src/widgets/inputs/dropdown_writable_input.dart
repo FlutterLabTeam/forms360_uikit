@@ -97,14 +97,12 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
               disabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: _generateColor()),
               ),
-              hintStyle: AppearanceKitTextTheme.build().input.copyWith(
-                    color: _generateColor(),
-                    fontSize: widget.fontSize,
-                  ),
-              labelStyle: AppearanceKitTextTheme.build().input.copyWith(
-                    color: _generateColor(),
-                    fontSize: widget.fontSize,
-                  ),
+              labelStyle: AppearanceKitTextTheme.build()
+                  .input
+                  .copyWith(color: _generateColorInput(), fontSize: 20),
+              hintStyle: AppearanceKitTextTheme.build()
+                  .input
+                  .copyWith(color: _generateColorInput(), fontSize: 20),
             ),
             controller: widget.dropdownSearchFieldController,
           ),
