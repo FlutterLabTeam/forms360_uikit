@@ -8,7 +8,7 @@ class CircularButton extends StatelessWidget {
 
   const CircularButton({
     super.key,
-    this.elevation = 7,
+    this.elevation,
     required this.onTap,
     required this.icon,
   });
@@ -16,7 +16,7 @@ class CircularButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: elevation!,
+      elevation: elevation ?? 7,
       shape: const CircleBorder(),
       color: context.primaryColor,
       child: InkWell(
