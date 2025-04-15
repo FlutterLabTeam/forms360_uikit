@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:drop_down_search_field/drop_down_search_field.dart';
-import 'package:forms360_uikit/src/theme/colors/color_palette.dart';
 
 class DropdownWritableInput extends StatefulWidget {
   DropdownWritableInput({
