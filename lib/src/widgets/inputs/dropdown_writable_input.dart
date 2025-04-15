@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:drop_down_search_field/drop_down_search_field.dart';
+import 'package:forms360_uikit/src/theme/colors/color_palette.dart';
 
 class DropdownWritableInput extends StatefulWidget {
   DropdownWritableInput({
@@ -13,14 +14,14 @@ class DropdownWritableInput extends StatefulWidget {
     this.contentPadding,
     required this.label,
     required this.hintText,
-    required this.inputColor,
+    PrimaryInputColorKit? inputColor,
     this.addNewItemTitle = "",
     this.onSelectedValuesChanged,
     this.selectedValues = const [],
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
     this.type = DropdownWritableInputType.SINGLE,
-  });
+  }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final String label;
   final bool enabled;
@@ -75,13 +76,9 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
           enabled: widget.enabled,
           textFieldConfiguration: TextFieldConfiguration(
             enabled: widget.enabled,
-            style: AppearanceKitTextTheme.build()
-                .input
-                .copyWith(color: _generateColorInput(), fontSize: 20),
             cursorColor: _generateColor(),
-
+            style: AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput(), fontSize: 20),
             decoration: InputDecoration(
-
               labelText: widget.label,
               hintText: widget.hintText,
               contentPadding: widget.contentPadding??EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),

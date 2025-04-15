@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:forms360_uikit/src/theme/colors/color_palette.dart';
 
 /// This is a uniform theme
 /// But you can use it to create multiple themes for iOS, Android, Web, Desktop...
@@ -22,6 +23,8 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
           onSurface: colors.onSurface,
           onPrimary: colors.onPrimary,
           secondary: colors.secondary,
+          primaryContainer: colors.primaryLight,
+          surfaceContainer: colors.surfaceContainer,
         ),
         elevatedButtonTheme: elevatedButtonTheme(
           colors: colors,
@@ -43,6 +46,14 @@ class UniversalThemeFactory extends AppearanceKitThemeDataFactory {
           backgroundColor: colors.surface,
           foregroundColor: colors.onSurface,
           elevation: 0,
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: ColorPalette.primaryLight,
+          foregroundColor: Colors.white,
+          elevation: 6,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
         ),
       ),
     );

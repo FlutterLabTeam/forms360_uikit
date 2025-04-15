@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:forms360_uikit/src/theme/colors/color_palette.dart';
 
 class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
   final Color error;
   final Color primary;
+  final Color primaryLight;
   final Color surface;
   final Color onPrimary;
   final Color secondary;
@@ -19,6 +21,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
     required this.grey3,
     required this.error,
     required this.primary,
+    required this.primaryLight,
     required this.surface,
     required this.onPrimary,
     required this.onSurface,
@@ -27,35 +30,38 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
   });
 
   factory AppearanceKitColors.light() => const AppearanceKitColors(
-        grey1: Color(0xFFA3B2BC),
-        grey2: Color(0xFF7D8488),
-        grey3: Color(0xFF263238),
-        error: Color(0xFFCF6679),
-        primary: Color(0xFF1e5c8b),
-        surface: Color(0xffffffff),
-        onPrimary: Color(0xFF132248),
-        onSurface: Color(0xFFcbeef3),
-        secondary: Color(0xFF4cae50),
-        surfaceContainer: Color(0xFFDEEAF4),
+        grey1: ColorPalette.grey1,
+        grey2: ColorPalette.grey2,
+        grey3: ColorPalette.grey3,
+        error: ColorPalette.error,
+        primary: ColorPalette.primary,
+        primaryLight: ColorPalette.primaryLight,
+        surface: ColorPalette.surface,
+        onPrimary: ColorPalette.onPrimary,
+        onSurface: ColorPalette.onSurface,
+        secondary: ColorPalette.secondary, 
+        surfaceContainer: ColorPalette.surfaceContainer,
       );
 
   factory AppearanceKitColors.dark() => const AppearanceKitColors(
-        error: Color(0xFFCF6679),
-        surface: Color(0xFF161616),
-        primary: Color(0xFF1E88E5),
-        onPrimary: Color(0xFF1e5c8b),
-        secondary: Color(0xFFFFFFFF),
-        surfaceContainer: Color(0xFF0A0A0A),
-        onSurface: Color(0xFFFFFFFF),
-        grey1: Color(0xFF263238),
-        grey2: Color(0xFF7D8488),
-        grey3: Color(0xFFBEC1C3),
+        error: ColorPalette.error,
+        surface: ColorPalette.surfaceDark,
+        primary: ColorPalette.primaryLight,
+        primaryLight: ColorPalette.primaryLight,
+        onPrimary: ColorPalette.onPrimary,
+        secondary: ColorPalette.secondaryLight,
+        surfaceContainer: ColorPalette.surfaceContainerDark,
+        onSurface: ColorPalette.onSurfaceDark,
+        grey1: ColorPalette.grey3,
+        grey2: ColorPalette.grey2,
+        grey3: ColorPalette.grey1,
       );
 
   @override
   ThemeExtension<AppearanceKitColors> copyWith({
     Color? error,
     Color? primary,
+    Color? primaryLight,
     Color? surface,
     Color? onPrimary,
     Color? onSurface,
@@ -64,20 +70,20 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
     Color? grey1,
     Color? grey2,
     Color? grey3,
-  }) {
-    return AppearanceKitColors(
-      error: error ?? this.error,
-      primary: primary ?? this.primary,
-      surface: surface ?? this.surface,
-      secondary: secondary ?? this.secondary,
-      onPrimary: onPrimary ?? this.onPrimary,
-      onSurface: onSurface ?? this.onSurface,
-      surfaceContainer: surfaceContainer ?? this.surfaceContainer,
-      grey1: grey1 ?? this.grey1,
-      grey2: grey2 ?? this.grey2,
-      grey3: grey3 ?? this.grey3,
-    );
-  }
+  }) =>
+      AppearanceKitColors(
+        error: error ?? this.error,
+        primary: primary ?? this.primary,
+        primaryLight: primaryLight ?? this.primaryLight,
+        surface: surface ?? this.surface,
+        secondary: secondary ?? this.secondary,
+        onPrimary: onPrimary ?? this.onPrimary,
+        onSurface: onSurface ?? this.onSurface,
+        surfaceContainer: surfaceContainer ?? this.surfaceContainer,
+        grey1: grey1 ?? this.grey1,
+        grey2: grey2 ?? this.grey2,
+        grey3: grey3 ?? this.grey3,
+      );
 
   @override
   ThemeExtension<AppearanceKitColors> lerp(
@@ -89,6 +95,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
     return AppearanceKitColors(
       error: Color.lerp(error, other.error, t)!,
       primary: Color.lerp(primary, other.primary, t)!,
+      primaryLight: Color.lerp(primaryLight, other.primaryLight, t)!,
       surface: Color.lerp(surface, other.surface, t)!,
       onPrimary: Color.lerp(onPrimary, other.onPrimary, t)!,
       secondary: Color.lerp(secondary, other.secondary, t)!,

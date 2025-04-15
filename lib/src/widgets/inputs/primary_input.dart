@@ -11,20 +11,20 @@ class PrimaryInput extends StatefulWidget {
     this.validator,
     this.controller,
     this.suffixIcon,
+    this.initialValue,
     this.keyboardType,
+    this.onIconPressed,
     required this.isBig,
     this.contentPadding,
     required this.label,
+    this.inputFormatters,
     required this.enabled,
+    this.onFieldSubmitted,
     required this.hintText,
     required this.isPassword,
-    required this.inputColor,
     this.isSuffixIconEnabled = false,
-    this.onIconPressed,
-    this.onFieldSubmitted,
-    this.initialValue,
-    this.inputFormatters,
-  });
+    PrimaryInputColorKit? inputColor,
+  }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final bool isBig;
   final bool enabled;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:drop_down_search_field/drop_down_search_field.dart';
+import 'package:forms360_uikit/src/theme/colors/color_palette.dart';
 
 class DynamicDropdownWritableInput<T> extends StatefulWidget {
   DynamicDropdownWritableInput({
@@ -13,7 +14,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
     this.contentPadding,
     required this.label,
     required this.hintText,
-    required this.inputColor,
+    PrimaryInputColorKit? inputColor,
     this.onSelectedValuesChanged,
     this.selectedValues = const [],
     required this.onSuggestionSelected,
@@ -21,7 +22,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
     required this.getStringValue,
     required this.onSuggestionCallback,
     this.type = DropdownWritableInputType.SINGLE,
-  });
+  }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final String label;
   final bool enabled;

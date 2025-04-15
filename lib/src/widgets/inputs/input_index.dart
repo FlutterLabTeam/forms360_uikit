@@ -1,19 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:forms360_uikit/src/model/custom_form_model.dart';
-import 'package:forms360_uikit/src/model/input_types.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/src/model/tag_model.dart';
+import 'package:forms360_uikit/src/model/input_types.dart';
+import 'package:forms360_uikit/src/model/custom_form_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
-import 'package:forms360_uikit/src/widgets/inputs/custom_form.dart';
-import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
-import 'package:forms360_uikit/src/widgets/inputs/dynamic_dropdown_writable_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
-import 'package:forms360_uikit/src/widgets/inputs/pop_up_row_text_inputs.dart';
-import 'package:forms360_uikit/src/widgets/inputs/pop_up_text_input.dart';
-import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
-import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
-import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/tag_widget.dart';
+import 'package:forms360_uikit/src/widgets/inputs/custom_form.dart';
+import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/pop_up_text_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/pop_up_row_text_inputs.dart';
+import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/dynamic_dropdown_writable_input.dart';
 
 class Inputs {
   Widget primary({
@@ -35,7 +35,7 @@ class Inputs {
     TextEditingController? controller,
     final Function(String?)? onFieldSubmitted,
     final String? Function(String?)? validator,
-    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
+    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
     List<TextInputFormatter>? inputFormatters,
   }) =>
       PrimaryInput(
@@ -75,7 +75,7 @@ class Inputs {
     required Function(String) onSuggestionSelected,
     Function(List<String>)? onSelectedValuesChanged,
     required TextEditingController dropdownSearchFieldController,
-    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
+    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
     DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
   }) =>
       DropdownWritableInput(
@@ -108,7 +108,7 @@ class Inputs {
     required Function(T) onSuggestionSelected,
     Function(List<T>)? onSelectedValuesChanged,
     required TextEditingController dropdownSearchFieldController,
-    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLACK,
+    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
     DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
     T? initialValue,
     double? fontSize,

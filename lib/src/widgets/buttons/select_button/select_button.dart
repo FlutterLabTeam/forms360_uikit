@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/src/extension/context_extension.dart';
+import 'package:forms360_uikit/src/theme/colors/color_palette.dart';
 
 class SelectButton extends StatelessWidget {
   final bool isSelect;
@@ -36,12 +37,12 @@ class SelectButton extends StatelessWidget {
   }
 
   _backgroundColor(BuildContext context) {
-    if (isSelect) return context.primaryColor;
+    if (isSelect) return ColorPalette.primaryLight;
     return context.surfaceContainerColor;
   }
 
   _textColor(BuildContext context) {
     if (isSelect) return context.surfaceContainerColor;
-    return context.primaryColor;
+    return ColorPalette.primaryLight;
   }
 }
