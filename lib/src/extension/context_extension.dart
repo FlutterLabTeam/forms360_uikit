@@ -6,11 +6,13 @@ extension ContextExtension on BuildContext {
   Future<void> openPopUp(
     Widget child, {
     PopUpSize popUpSize = PopUpSize.LONG,
+    bool barrierDismissible = true,
   }) =>
       PopUpIndex().general(
         this,
         child: child,
         popUpSize: popUpSize,
+        barrierDismissible: barrierDismissible,
       );
 
   Future<void> openTabbedPopUp({
@@ -19,6 +21,7 @@ extension ContextExtension on BuildContext {
     required List<Widget> footers,
     PopUpSize popUpSize = PopUpSize.LONG,
     double? height,
+    bool barrierDismissible = true,
   }) =>
       PopUpIndex().tabbed(
         this,
@@ -27,16 +30,19 @@ extension ContextExtension on BuildContext {
         popUpSize: popUpSize,
         footers: footers,
         height: height,
+        barrierDismissible: barrierDismissible,
       );
 
   Future<void> openSuccessPopUp({
     required String message,
     required String okText,
+    bool barrierDismissible = true,
   }) =>
       PopUpIndex().successPopUp(
         this,
         message: message,
         okText: okText,
+        barrierDismissible: barrierDismissible,
       );
 
   //colors them access by context
@@ -48,10 +54,15 @@ extension ContextExtension on BuildContext {
   Color get primaryColor => Theme.of(this).colorScheme.primary; //blue
   Color get surfaceColor => Theme.of(this).colorScheme.surface; //white
   Color get secondaryColor => Theme.of(this).colorScheme.secondary; // green
-  Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary;///dark blue
-  Color get onSurfaceColor => Theme.of(this).colorScheme.onSurface; //blue sea water
-  Color get primaryLightColor => Theme.of(this).colorScheme.primaryContainer; //light blue
-  Color get surfaceContainerColor => Theme.of(this).colorScheme.surfaceContainer; //light blue
+  Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary;
+
+  ///dark blue
+  Color get onSurfaceColor =>
+      Theme.of(this).colorScheme.onSurface; //blue sea water
+  Color get primaryLightColor =>
+      Theme.of(this).colorScheme.primaryContainer; //light blue
+  Color get surfaceContainerColor =>
+      Theme.of(this).colorScheme.surfaceContainer; //light blue
 
   //text styles access by context
   TextStyle get titleText => FormsKit.theme.text.title;
@@ -65,6 +76,10 @@ extension ContextExtension on BuildContext {
   TextStyle get largeText => FormsKit.theme.text.large;
 
   //implementing size
-  double sizeWidth([double? size]) => size != null ? MediaQuery.of(this).size.width * size : MediaQuery.of(this).size.width;
-  double sizeHeight([double? size]) => size != null ? MediaQuery.of(this).size.height * size : MediaQuery.of(this).size.height;
+  double sizeWidth([double? size]) => size != null
+      ? MediaQuery.of(this).size.width * size
+      : MediaQuery.of(this).size.width;
+  double sizeHeight([double? size]) => size != null
+      ? MediaQuery.of(this).size.height * size
+      : MediaQuery.of(this).size.height;
 }
