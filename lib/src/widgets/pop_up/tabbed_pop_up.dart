@@ -22,6 +22,7 @@ Future<dynamic> tabbedPopUp(
             child: Stack(
               children: [
                 FrostedGlassBox(
+                  barrierDismissible: barrierDismissible,
                   theWidth: MediaQuery.of(context).size.width,
                   theHeight: MediaQuery.of(context).size.height,
                 ),

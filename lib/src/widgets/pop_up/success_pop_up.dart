@@ -45,14 +45,17 @@ Future<dynamic> successPopup(
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    IconButton(
-                                        icon: Icon(
-                                          Icons.close,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                        ),
-                                        onPressed: () => context.pop(context))
+                                    barrierDismissible
+                                        ? IconButton(
+                                            icon: Icon(
+                                              Icons.close,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                            ),
+                                            onPressed: () =>
+                                                context.pop(context))
+                                        : Container()
                                   ],
                                 ),
                                 Padding(
