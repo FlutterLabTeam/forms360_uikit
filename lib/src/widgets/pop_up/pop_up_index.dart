@@ -9,11 +9,13 @@ class PopUpIndex {
     BuildContext context, {
     required Widget child,
     required PopUpSize popUpSize,
+    bool barrierDismissible = true,
   }) =>
       generalPopUp(
         context,
         child: child,
         popUpSize: popUpSize,
+        barrierDismissible: barrierDismissible,
       );
 
   Future<void> tabbed(
@@ -23,6 +25,7 @@ class PopUpIndex {
     required List<Widget> footers,
     required List<Widget> children,
     required final PageController pageController,
+    bool barrierDismissible = true,
   }) =>
       tabbedPopUp(
         context,
@@ -31,17 +34,17 @@ class PopUpIndex {
         children: children,
         popUpSize: popUpSize,
         pageController: pageController,
+        barrierDismissible: barrierDismissible,
       );
 
   Future<void> successPopUp(
     BuildContext context, {
     required String okText,
     required String message,
+    bool barrierDismissible = true,
   }) =>
-      successPopup(
-        context,
-        okText: okText,
-        message: message,
-      );
-
+      successPopup(context,
+          okText: okText,
+          message: message,
+          barrierDismissible: barrierDismissible);
 }

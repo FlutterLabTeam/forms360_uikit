@@ -7,9 +7,11 @@ Future<dynamic> generalPopUp(
   BuildContext context, {
   required Widget child,
   required PopUpSize popUpSize,
+  bool barrierDismissible = true,
 }) async {
   return await showDialog(
     context: context,
+    barrierDismissible: barrierDismissible,
     builder: (BuildContext context) {
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {

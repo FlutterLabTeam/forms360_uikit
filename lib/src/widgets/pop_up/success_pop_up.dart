@@ -7,9 +7,11 @@ Future<dynamic> successPopup(
   BuildContext context, {
   required String message,
   required String okText,
+  bool barrierDismissible = true,
 }) async {
   return await showDialog(
     context: context,
+    barrierDismissible: barrierDismissible,
     builder: (BuildContext context) {
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
