@@ -44,10 +44,10 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
           letterSpacing: TextConstants.letterSpacingWide,
         ),
         input: TextStyle(
+          height: 0,
           fontWeight: FontWeight.w300,
           color: ColorPalette.onSurface,
           fontSize: TextConstants.fontSizeM,
-          height: 0 /* TextConstants.lineHeightNormal */,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
           letterSpacing: TextConstants.letterSpacingNormal,
         ),

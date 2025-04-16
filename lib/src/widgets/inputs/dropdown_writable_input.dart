@@ -13,10 +13,11 @@ class DropdownWritableInput extends StatefulWidget {
     this.contentPadding,
     required this.label,
     required this.hintText,
-    PrimaryInputColorKit? inputColor,
+    this.buildSuggestionItem,
     this.addNewItemTitle = "",
     this.onSelectedValuesChanged,
     this.selectedValues = const [],
+    PrimaryInputColorKit? inputColor,
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
     this.type = DropdownWritableInputType.SINGLE,
@@ -37,6 +38,7 @@ class DropdownWritableInput extends StatefulWidget {
   final void Function(String) onSuggestionSelected;
   final Function(List<String>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
+  final Widget Function(BuildContext, String)? buildSuggestionItem;
 
   @override
   State<DropdownWritableInput> createState() => _DropdownWritableInputState();
@@ -71,7 +73,6 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DropDownSearchFormField(
-
           enabled: widget.enabled,
           textFieldConfiguration: TextFieldConfiguration(
             enabled: widget.enabled,
@@ -103,9 +104,8 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             controller: widget.dropdownSearchFieldController,
           ),
           suggestionsCallback: (pattern) => getSuggestions(pattern),
-          itemBuilder: (context, String suggestion) {
-            if (widget.addNewItemTitle.isNotEmpty &&
-                suggestion == widget.addNewItemTitle) {
+          itemBuilder: widget.buildSuggestionItem ?? (context, String suggestion) {
+            if (widget.addNewItemTitle.isNotEmpty && suggestion == widget.addNewItemTitle) {
               return ListTile(
                 title: Text(
                   suggestion,
