@@ -9,9 +9,11 @@ Future<dynamic> tabbedPopUp(
   required PopUpSize popUpSize,
   required List<Widget> footers,
   double? height,
+  bool barrierDismissible = true,
 }) async {
   return await showDialog(
     context: context,
+    barrierDismissible: barrierDismissible,
     builder: (BuildContext context) {
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
@@ -20,6 +22,7 @@ Future<dynamic> tabbedPopUp(
             child: Stack(
               children: [
                 FrostedGlassBox(
+                  barrierDismissible: barrierDismissible,
                   theWidth: MediaQuery.of(context).size.width,
                   theHeight: MediaQuery.of(context).size.height,
                 ),

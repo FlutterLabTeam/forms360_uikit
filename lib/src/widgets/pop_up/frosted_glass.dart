@@ -16,15 +16,17 @@ class FrostedGlassBox extends StatelessWidget {
     Key? key,
     required this.theWidth,
     required this.theHeight,
+    this.barrierDismissible = true,
   }) : super(key: key);
 
   final theWidth;
   final theHeight;
+  final barrierDismissible;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pop(context),
+      onTap: () => barrierDismissible ? context.pop(context) : null,
       child: ClipRRect(
         child: Container(
           width: theWidth,

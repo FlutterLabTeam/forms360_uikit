@@ -7,9 +7,11 @@ Future<dynamic> generalPopUp(
   BuildContext context, {
   required Widget child,
   required PopUpSize popUpSize,
+  bool barrierDismissible = true,
 }) async {
   return await showDialog(
     context: context,
+    barrierDismissible: barrierDismissible,
     builder: (BuildContext context) {
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
@@ -18,6 +20,7 @@ Future<dynamic> generalPopUp(
             child: Stack(
               children: [
                 FrostedGlassBox(
+                  barrierDismissible: barrierDismissible,
                   theWidth: MediaQuery.of(context).size.width,
                   theHeight: MediaQuery.of(context).size.height,
                 ),
@@ -42,14 +45,17 @@ Future<dynamic> generalPopUp(
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    IconButton(
-                                        icon: Icon(
-                                          Icons.close,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                        ),
-                                        onPressed: () => context.pop(context))
+                                    barrierDismissible
+                                        ? IconButton(
+                                            icon: Icon(
+                                              Icons.close,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                            ),
+                                            onPressed: () =>
+                                                context.pop(context))
+                                        : Container()
                                   ],
                                 ),
                                 Padding(
