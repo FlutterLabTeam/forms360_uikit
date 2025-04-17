@@ -28,8 +28,8 @@ class WrapGenerator<T> extends StatelessWidget {
     return list.isNotEmpty
         ? ScrollbarTheme(
             data: ScrollbarThemeData(
-              thumbColor: MaterialStateProperty.all(
-                context.primaryColor.withOpacity(0.5),
+              thumbColor: WidgetStateProperty.all(
+                context.primaryColor.withValues(alpha: 128),
               ),
             ),
             child: Scrollbar(
@@ -39,13 +39,15 @@ class WrapGenerator<T> extends StatelessWidget {
               trackVisibility: true,
               radius: Radius.circular(10),
               scrollbarOrientation: ScrollbarOrientation.right,
-              child: Wrap(
-                alignment: WrapAlignment.start,
-                spacing: spacing ?? 10,
-                runSpacing: runSpacing ?? 10,
-                children: List.generate(
-                  list.length,
-                  (index) => itemBuilder(list[index], index),
+              child: SingleChildScrollView(
+                child: Wrap(
+                  alignment: WrapAlignment.start,
+                  spacing: spacing ?? 10,
+                  runSpacing: runSpacing ?? 10,
+                  children: List.generate(
+                    list.length,
+                    (index) => itemBuilder(list[index], index),
+                  ),
                 ),
               ),
             ),
