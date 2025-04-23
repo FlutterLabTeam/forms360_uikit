@@ -176,23 +176,25 @@ class Inputs {
       );
   Widget dateInput({
     required String label,
-    required String hintText,
-    required TextEditingController controller,
-    required bool isClearButtonVisible,
     required double width,
     required int? maxLength,
+    required String hintText,
+    void Function()? onTapOutside,
+    required bool isClearButtonVisible,
     required GestureTapCallback? onTap,
+    required TextEditingController controller,
     required String? Function(String?)? validator,
   }) =>
       DateInput(
         label: label,
-        hintText: hintText,
-        validator: validator,
-        maxLength: maxLength,
-        controller: controller,
-        isClearButtonVisible: isClearButtonVisible,
         onTap: onTap,
         width: width,
+        hintText: hintText,
+        maxLength: maxLength,
+        validator: validator,
+        controller: controller,
+        onTapOutside: onTapOutside,
+        isClearButtonVisible: isClearButtonVisible,
       );
 
   Widget tagInput<T>({

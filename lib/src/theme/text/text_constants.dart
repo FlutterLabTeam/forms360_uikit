@@ -20,6 +20,7 @@ class TextConstants {
   static const double lineHeightTight = 1.2;
   static const double lineHeightNormal = 1.5;
   static const double lineHeightLoose = 1.8;
+  static const double lineHeightNone = 0;
   
   // Espaciado de letras
   static const double letterSpacingXTight = -2.5;

@@ -14,11 +14,13 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
   final Color grey1;
   final Color grey2;
   final Color grey3;
+  final Color greyBlue;
 
   const AppearanceKitColors({
     required this.grey1,
     required this.grey2,
     required this.grey3,
+    required this.greyBlue,
     required this.error,
     required this.primary,
     required this.primaryLight,
@@ -33,6 +35,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
         grey1: ColorPalette.grey1,
         grey2: ColorPalette.grey2,
         grey3: ColorPalette.grey3,
+        greyBlue: ColorPalette.greyBlue,
         error: ColorPalette.error,
         primary: ColorPalette.primary,
         primaryLight: ColorPalette.primaryLight,
@@ -55,6 +58,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
         grey1: ColorPalette.grey3,
         grey2: ColorPalette.grey2,
         grey3: ColorPalette.grey1,
+        greyBlue: ColorPalette.greyBlue,
       );
 
   @override
@@ -70,6 +74,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
     Color? grey1,
     Color? grey2,
     Color? grey3,
+    Color? greyBlue,
   }) =>
       AppearanceKitColors(
         error: error ?? this.error,
@@ -83,6 +88,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
         grey1: grey1 ?? this.grey1,
         grey2: grey2 ?? this.grey2,
         grey3: grey3 ?? this.grey3,
+        greyBlue: greyBlue ?? this.greyBlue,
       );
 
   @override
@@ -105,6 +111,7 @@ class AppearanceKitColors extends ThemeExtension<AppearanceKitColors> {
       grey1: Color.lerp(grey1, other.grey1, t)!,
       grey2: Color.lerp(grey2, other.grey2, t)!,
       grey3: Color.lerp(grey3, other.grey3, t)!,
+      greyBlue: Color.lerp(greyBlue, other.greyBlue, t)!,
     );
   }
 }

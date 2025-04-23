@@ -13,6 +13,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
   final TextStyle smallDescription;
   final TextStyle link;
   final TextStyle large;
+  final TextStyle extraLarge;
 
   const AppearanceKitTextTheme({
     required this.input,
@@ -24,6 +25,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     required this.smallDescription,
     required this.link,
     required this.large,
+    required this.extraLarge,
   });
 
   factory AppearanceKitTextTheme.build() => AppearanceKitTextTheme(
@@ -100,6 +102,14 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
           letterSpacing: TextConstants.letterSpacingNormal,
         ),
+        extraLarge: TextStyle(
+          fontWeight: FontWeight.w400,
+          color: ColorPalette.primary,
+          fontSize: TextConstants.fontSizeXL,
+          height: TextConstants.lineHeightNormal,
+          fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingNormal,
+        ),
       );
 
   @override
@@ -113,6 +123,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     TextStyle? smallDescription,
     TextStyle? link,
     TextStyle? large,
+    TextStyle? extraLarge,
   }) =>
       AppearanceKitTextTheme(
         input: input ?? this.input,
@@ -124,6 +135,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
         smallDescription: smallDescription ?? this.smallDescription,
         link: link ?? this.link,
         large: large ?? this.large,
+        extraLarge: extraLarge ?? this.extraLarge,
       );
 
   @override
@@ -144,6 +156,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
           TextStyle.lerp(smallDescription, other.smallDescription, t)!,
       link: TextStyle.lerp(link, other.link, t)!,
       large: TextStyle.lerp(large, other.large, t)!,
+      extraLarge: TextStyle.lerp(extraLarge, other.extraLarge, t)!,
     );
   }
 }

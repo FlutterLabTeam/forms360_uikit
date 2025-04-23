@@ -33,6 +33,7 @@ class ColorPalette {
   static const Color grey1 = Color(0xFFA3B2BC);
   static const Color grey2 = Color(0xFF7D8488);
   static const Color grey3 = Color(0xFF263238);
+  static const Color greyBlue = Color(0xFFBBCBE3);
   
   // Opacidades predefinidas
   static const double opacityLight = 0.12;

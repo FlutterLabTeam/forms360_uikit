@@ -49,6 +49,7 @@ extension ContextExtension on BuildContext {
   Color get grey1 => AppearanceKitColors.light().grey1;
   Color get grey2 => AppearanceKitColors.light().grey2;
   Color get grey3 => AppearanceKitColors.light().grey3;
+  Color get greyBlue => AppearanceKitColors.light().greyBlue;
 
   Color get errorColor => Theme.of(this).colorScheme.error; //red
   Color get primaryColor => Theme.of(this).colorScheme.primary; //blue
@@ -57,12 +58,9 @@ extension ContextExtension on BuildContext {
   Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary;
 
   ///dark blue
-  Color get onSurfaceColor =>
-      Theme.of(this).colorScheme.onSurface; //blue sea water
-  Color get primaryLightColor =>
-      Theme.of(this).colorScheme.primaryContainer; //light blue
-  Color get surfaceContainerColor =>
-      Theme.of(this).colorScheme.surfaceContainer; //light blue
+  Color get onSurfaceColor => Theme.of(this).colorScheme.onSurface; //blue sea water
+  Color get primaryLightColor => Theme.of(this).colorScheme.primaryContainer; //light blue
+  Color get surfaceContainerColor => Theme.of(this).colorScheme.surfaceContainer; //light blue
 
   //text styles access by context
   TextStyle get titleText => FormsKit.theme.text.title;
@@ -74,6 +72,7 @@ extension ContextExtension on BuildContext {
   TextStyle get smallDescriptionText => FormsKit.theme.text.smallDescription;
   TextStyle get linkText => FormsKit.theme.text.link;
   TextStyle get largeText => FormsKit.theme.text.large;
+  TextStyle get extraLargeText => FormsKit.theme.text.extraLarge;
 
   //implementing size
   double sizeWidth([double? size]) => size != null
