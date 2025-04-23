@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/delete_custom_pop_up.dart';
+import 'package:forms360_uikit/src/widgets/pop_up/question_pop_up.dart';
 
 class WidgetIndexPopUp {
   Widget deletePopUp({
@@ -11,5 +12,22 @@ class WidgetIndexPopUp {
         onTap: onTap,
         title: title,
         description: description,
+      );
+
+  Widget questionPopUp({
+    required String title,
+    required Function() onYesTap,
+    required Function() onNoTap,
+    required String description,
+    required String yesText,
+    required String noText,
+  }) =>
+      QuestionPopUp(
+        onYesTap: onYesTap,
+        onNoTap: onNoTap,
+        title: title,
+        description: description,
+        yesText: yesText,
+        noText: noText,
       );
 }

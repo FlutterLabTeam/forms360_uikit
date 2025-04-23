@@ -17,14 +17,14 @@ class DeleteCustomPopUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(title, style: context.primaryText.copyWith(letterSpacing: -2)),
-        SizedBox(height: 30),
+        Text(title, style: context.largeText),
+        SizedBox(height: 20),
         Text(
           description,
           style: context.descriptionText,
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 50),
+        SizedBox(height: 40),
         FormsKit.widget.buttons.button(title: "Delete", onPressed: onTap),
       ],
     );

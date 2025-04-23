@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:forms360_uikit/src/theme/colors/color_palette.dart';
+import 'package:forms360_uikit/src/theme/text/text_constants.dart';
 
 class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
   final TextStyle input;
@@ -9,6 +11,9 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
   final TextStyle secondary;
   final TextStyle description;
   final TextStyle smallDescription;
+  final TextStyle link;
+  final TextStyle large;
+  final TextStyle extraLarge;
 
   const AppearanceKitTextTheme({
     required this.input,
@@ -18,47 +23,92 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     required this.secondary,
     required this.description,
     required this.smallDescription,
+    required this.link,
+    required this.large,
+    required this.extraLarge,
   });
 
   factory AppearanceKitTextTheme.build() => AppearanceKitTextTheme(
         smallDescription: TextStyle(
-          fontSize: 13,
           fontWeight: FontWeight.w300,
+          color: ColorPalette.onSurface,
+          fontSize: TextConstants.fontSizeS,
+          height: TextConstants.lineHeightNormal,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingNormal,
         ),
         button: TextStyle(
-          fontSize: 16,
-          color: Colors.white,
           fontWeight: FontWeight.w600,
+          color: ColorPalette.onSurface,
+          fontSize: TextConstants.fontSizeM,
+          height: TextConstants.lineHeightNormal,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingWide,
         ),
         input: TextStyle(
-          fontSize: 16,
-          color: Color(0xFF000000),
+          height: 0,
           fontWeight: FontWeight.w300,
+          color: ColorPalette.onSurface,
+          fontSize: TextConstants.fontSizeM,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingNormal,
         ),
         description: TextStyle(
-          fontSize: 16,
-          color: Color(0xFF000000),
           fontWeight: FontWeight.w300,
+          color: ColorPalette.onSurface,
+          fontSize: TextConstants.fontSizeM,
+          height: TextConstants.lineHeightLoose,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingNormal,
         ),
         primary: TextStyle(
-          fontSize: 40,
-          color: Color(0xFF000000),
           fontWeight: FontWeight.w500,
+          color: ColorPalette.onSurface,
+          fontSize: TextConstants.fontSizeXXL,
+          height: TextConstants.lineHeightTight,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingTight,
         ),
         title: TextStyle(
-          fontSize: 50,
-          fontWeight: FontWeight.bold,
+          wordSpacing: 0,
+          fontWeight: FontWeight.w500,
+          color: ColorPalette.onSurface,
+          fontSize: TextConstants.fontSizeTitle,
+          height: TextConstants.lineHeightTight,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingXTight,
         ),
         secondary: TextStyle(
-          fontSize: 20,
-          color: Color.fromARGB(255, 0, 52, 124),
+          fontWeight: FontWeight.w400,
+          color: ColorPalette.onSurface,
+          fontSize: TextConstants.fontSizeL,
+          height: TextConstants.lineHeightNormal,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingNormal,
+        ),
+        link: TextStyle(
+          fontWeight: FontWeight.w300,
+          fontSize: TextConstants.fontSizeS,
+          color: ColorPalette.primaryLight,
+          height: TextConstants.lineHeightNormal,
+          fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingNormal,
+        ),
+        large: TextStyle(
+          fontWeight: FontWeight.w500,
+          color: ColorPalette.onSurface,
+          fontSize: TextConstants.fontSizeXXXL,
+          height: TextConstants.lineHeightNormal,
+          fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingNormal,
+        ),
+        extraLarge: TextStyle(
+          fontWeight: FontWeight.w400,
+          color: ColorPalette.primary,
+          fontSize: TextConstants.fontSizeXL,
+          height: TextConstants.lineHeightNormal,
+          fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingNormal,
         ),
       );
 
@@ -71,6 +121,9 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     TextStyle? secondary,
     TextStyle? description,
     TextStyle? smallDescription,
+    TextStyle? link,
+    TextStyle? large,
+    TextStyle? extraLarge,
   }) =>
       AppearanceKitTextTheme(
         input: input ?? this.input,
@@ -80,6 +133,9 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
         secondary: secondary ?? this.secondary,
         description: description ?? this.description,
         smallDescription: smallDescription ?? this.smallDescription,
+        link: link ?? this.link,
+        large: large ?? this.large,
+        extraLarge: extraLarge ?? this.extraLarge,
       );
 
   @override
@@ -98,6 +154,9 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
       description: TextStyle.lerp(description, other.description, t)!,
       smallDescription:
           TextStyle.lerp(smallDescription, other.smallDescription, t)!,
+      link: TextStyle.lerp(link, other.link, t)!,
+      large: TextStyle.lerp(large, other.large, t)!,
+      extraLarge: TextStyle.lerp(extraLarge, other.extraLarge, t)!,
     );
   }
 }

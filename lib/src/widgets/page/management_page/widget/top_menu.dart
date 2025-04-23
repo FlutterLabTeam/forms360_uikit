@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/extension/menu_item_type_extension.dart';
-import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/avatar_circular_initial.dart';
-import 'package:forms360_uikit/src/widgets/menu/menu_icon.dart';
 
 class TopMenu extends StatefulWidget {
   const TopMenu({
@@ -37,9 +35,6 @@ class _TopMenuState extends State<TopMenu> {
     if(widget.serviceWeb != null && widget.serviceWeb!) menuList = menuItemListService;
 
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(25)),
-      ),
       child: widget.isHorizontal
           ? Row(
               children: menuList
@@ -50,7 +45,8 @@ class _TopMenuState extends State<TopMenu> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             )
-          : Padding(
+          : Container(
+              height: context.sizeHeight(0.9),
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,11 +95,20 @@ class _TopMenuState extends State<TopMenu> {
                   Visibility(
                     visible: isTapped,
                     child: Container(
+                      height: context.sizeHeight(0.7),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
                         color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 10,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(25),
                       ),
-                      child: Column(children: _columnComponents),
+                      child: SingleChildScrollView(
+                        child: Column(children: _columnComponents),
+                      ),
                     ),
                   ),
                 ],
@@ -135,42 +140,42 @@ class _TopMenuState extends State<TopMenu> {
   }
 
   List<Widget> get _columnComponents => [
-        SizedBox(height: 52),
+        SizedBox(height: 30),
         MenuIcon(
           type: MenuItemTypeKit.DASHBOARD,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
           onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
-        SizedBox(height: 52),
+        SizedBox(height: 30),
         MenuIcon(
           type: MenuItemTypeKit.USERS,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
           onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
-        SizedBox(height: 52),
+        SizedBox(height: 30),
         MenuIcon(
           type: MenuItemTypeKit.AUDIT,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
           onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
-        SizedBox(height: 52),
+        SizedBox(height: 30),
         MenuIcon(
           type: MenuItemTypeKit.PERMISSIONS,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
           onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
-        SizedBox(height: 52),
+        SizedBox(height: 30),
         MenuIcon(
           type: MenuItemTypeKit.ANNOUNCEMENT,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
           onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
-        SizedBox(height: 52),
+        SizedBox(height: 30),
         MenuIcon(
           type: MenuItemTypeKit.INDUSTRY,
           isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
           onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
         ),
-        SizedBox(height: 52),
+        SizedBox(height: 30),
       ];
 }

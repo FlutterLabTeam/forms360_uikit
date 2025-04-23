@@ -77,22 +77,22 @@ class CustomButtonState extends State<CustomButton> {
     final type = widget.buttonType;
     final state = widget.buttonState;
 
-    Color col = Theme.of(context).colorScheme.primary;
+    Color col = context.primaryLightColor;
 
-    if (type == ButtonTypeKit.tertiary) col = context.surfaceColor;
+    if (type == ButtonTypeKit.tertiary) col = context.primaryLightColor;
     if (type == ButtonTypeKit.primary || type == ButtonTypeKit.fourth) {
       return BorderSide.none;
     }
     if (state == ButtonStateKit.disabled) col = context.onSurfaceColor;
 
-    return BorderSide(width: 2, color: col);
+    return BorderSide(width: 1.5, color: col);
   }
 
   TextStyle _textButtonColor(BuildContext context) {
     Color textColor = context.surfaceColor;
 
     if (widget.buttonType == ButtonTypeKit.secondary) {
-      textColor = Theme.of(context).colorScheme.primary;
+      textColor = context.primaryLightColor;
     }
     if (widget.buttonState == ButtonStateKit.disabled) {
       textColor = context.onSurfaceColor;
@@ -107,13 +107,13 @@ class CustomButtonState extends State<CustomButton> {
   Color _buttonColor(BuildContext context) {
     switch (widget.buttonType) {
       case ButtonTypeKit.primary:
-        return context.primaryColor;
+        return context.primaryLightColor;
       case ButtonTypeKit.secondary:
         return context.surfaceColor;
       case ButtonTypeKit.tertiary:
         return Colors.transparent;
       case ButtonTypeKit.fourth:
-        return context.primaryColor.withOpacity(0.4);
+        return context.primaryLightColor.withOpacity(0.4);
     }
   }
 

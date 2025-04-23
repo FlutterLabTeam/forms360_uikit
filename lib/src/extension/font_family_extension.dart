@@ -4,7 +4,7 @@ extension FormTextStyleExtension on FontFamilyType {
   String toName() {
     switch (this) {
       case FontFamilyType.BE_VIETNAM:
-        return "Be Vietnam";
+        return "BeVietnam";
     }
   }
 }

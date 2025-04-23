@@ -42,7 +42,7 @@ class OtpInput extends StatelessWidget {
       focusedBorderColor: Colors.blue,
       contentPadding: EdgeInsets.all(20),
       showCursor: false,
-      textStyle: context.titleText,
+      textStyle: context.titleText.copyWith(height: 1.7),
       onSubmit: onSubmit,
     );
   }

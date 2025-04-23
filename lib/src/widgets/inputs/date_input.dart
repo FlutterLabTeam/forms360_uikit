@@ -4,24 +4,26 @@ import 'package:forms360_uikit/src/extension/context_extension.dart';
 class DateInput extends StatelessWidget {
   const DateInput({
     super.key,
-    required this.isClearButtonVisible,
-    required this.validator,
+    required this.onTap,
     required this.width,
     required this.label,
     required this.hintText,
-    required this.controller,
+    required this.validator,
     required this.maxLength,
-    required this.onTap,
+    required this.controller,
+    required this.onTapOutside,
+    required this.isClearButtonVisible,
   });
 
   final String label;
+  final double width;
   final int? maxLength;
   final String hintText;
-  final String? Function(String?)? validator;
-  final TextEditingController controller;
-  final bool isClearButtonVisible;
   final GestureTapCallback? onTap;
-  final double width;
+  final bool isClearButtonVisible;
+  final void Function()? onTapOutside;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +109,7 @@ class DateInput extends StatelessWidget {
                 ),
                 onPressed: () {
                   controller.clear();
+                  onTapOutside?.call();
                 },
               ),
             ),

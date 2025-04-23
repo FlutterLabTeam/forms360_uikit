@@ -6,11 +6,13 @@ extension ContextExtension on BuildContext {
   Future<void> openPopUp(
     Widget child, {
     PopUpSize popUpSize = PopUpSize.LONG,
+    bool barrierDismissible = true,
   }) =>
       PopUpIndex().general(
         this,
         child: child,
         popUpSize: popUpSize,
+        barrierDismissible: barrierDismissible,
       );
 
   Future<void> openTabbedPopUp({
@@ -19,6 +21,7 @@ extension ContextExtension on BuildContext {
     required List<Widget> footers,
     PopUpSize popUpSize = PopUpSize.LONG,
     double? height,
+    bool barrierDismissible = true,
   }) =>
       PopUpIndex().tabbed(
         this,
@@ -27,50 +30,55 @@ extension ContextExtension on BuildContext {
         popUpSize: popUpSize,
         footers: footers,
         height: height,
+        barrierDismissible: barrierDismissible,
       );
 
   Future<void> openSuccessPopUp({
     required String message,
     required String okText,
+    bool barrierDismissible = true,
   }) =>
       PopUpIndex().successPopUp(
         this,
         message: message,
         okText: okText,
+        barrierDismissible: barrierDismissible,
       );
 
   //colors them access by context
-
-  Color get grey1 => AppearanceKitColors.light().grey1; //red
-  Color get grey2 => AppearanceKitColors.light().grey2; //red
-  Color get grey3 => AppearanceKitColors.light().grey3; //red
-
+  Color get grey1 => AppearanceKitColors.light().grey1;
+  Color get grey2 => AppearanceKitColors.light().grey2;
+  Color get grey3 => AppearanceKitColors.light().grey3;
+  Color get greyBlue => AppearanceKitColors.light().greyBlue;
 
   Color get errorColor => Theme.of(this).colorScheme.error; //red
   Color get primaryColor => Theme.of(this).colorScheme.primary; //blue
   Color get surfaceColor => Theme.of(this).colorScheme.surface; //white
   Color get secondaryColor => Theme.of(this).colorScheme.secondary; // green
-  Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary;///dark blue
+  Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary;
+
+  ///dark blue
   Color get onSurfaceColor => Theme.of(this).colorScheme.onSurface; //blue sea water
+  Color get primaryLightColor => Theme.of(this).colorScheme.primaryContainer; //light blue
   Color get surfaceContainerColor => Theme.of(this).colorScheme.surfaceContainer; //light blue
 
-//colors them access by context
-  TextStyle get titleText => AppearanceKitTextTheme.build().title.copyWith(color: onPrimaryColor);
-
-  TextStyle get buttonText => AppearanceKitTextTheme.build().button.copyWith(color: primaryColor);
-
-  TextStyle get inputText => AppearanceKitTextTheme.build().input.copyWith(color: primaryColor);
-
-  TextStyle get primaryText => AppearanceKitTextTheme.build().primary.copyWith(color: primaryColor);
-
-  TextStyle get descriptionText => AppearanceKitTextTheme.build().description.copyWith(color: onPrimaryColor);
-
-  TextStyle get secondaryText => AppearanceKitTextTheme.build().secondary.copyWith(color: primaryColor);
-
-  TextStyle get smallDescriptionText => AppearanceKitTextTheme.build().smallDescription.copyWith(color: onPrimaryColor);
-
+  //text styles access by context
+  TextStyle get titleText => FormsKit.theme.text.title;
+  TextStyle get buttonText => FormsKit.theme.text.button;
+  TextStyle get inputText => FormsKit.theme.text.input;
+  TextStyle get primaryText => FormsKit.theme.text.primary;
+  TextStyle get descriptionText => FormsKit.theme.text.description;
+  TextStyle get secondaryText => FormsKit.theme.text.secondary;
+  TextStyle get smallDescriptionText => FormsKit.theme.text.smallDescription;
+  TextStyle get linkText => FormsKit.theme.text.link;
+  TextStyle get largeText => FormsKit.theme.text.large;
+  TextStyle get extraLargeText => FormsKit.theme.text.extraLarge;
 
   //implementing size
-  double sizeWidth([double? size]) => size != null ? MediaQuery.of(this).size.width * size : MediaQuery.of(this).size.width;
-  double sizeHeight([double? size]) => size != null ? MediaQuery.of(this).size.height * size : MediaQuery.of(this).size.height;
+  double sizeWidth([double? size]) => size != null
+      ? MediaQuery.of(this).size.width * size
+      : MediaQuery.of(this).size.width;
+  double sizeHeight([double? size]) => size != null
+      ? MediaQuery.of(this).size.height * size
+      : MediaQuery.of(this).size.height;
 }

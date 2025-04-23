@@ -13,7 +13,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
     this.contentPadding,
     required this.label,
     required this.hintText,
-    required this.inputColor,
+    PrimaryInputColorKit? inputColor,
     this.onSelectedValuesChanged,
     this.selectedValues = const [],
     required this.onSuggestionSelected,
@@ -21,7 +21,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
     required this.getStringValue,
     required this.onSuggestionCallback,
     this.type = DropdownWritableInputType.SINGLE,
-  });
+  }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final String label;
   final bool enabled;

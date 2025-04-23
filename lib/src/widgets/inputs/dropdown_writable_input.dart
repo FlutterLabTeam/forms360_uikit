@@ -13,14 +13,15 @@ class DropdownWritableInput extends StatefulWidget {
     this.contentPadding,
     required this.label,
     required this.hintText,
-    required this.inputColor,
+    this.buildSuggestionItem,
     this.addNewItemTitle = "",
     this.onSelectedValuesChanged,
     this.selectedValues = const [],
+    PrimaryInputColorKit? inputColor,
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
     this.type = DropdownWritableInputType.SINGLE,
-  });
+  }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final String label;
   final bool enabled;
@@ -37,6 +38,7 @@ class DropdownWritableInput extends StatefulWidget {
   final void Function(String) onSuggestionSelected;
   final Function(List<String>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
+  final Widget Function(BuildContext, String)? buildSuggestionItem;
 
   @override
   State<DropdownWritableInput> createState() => _DropdownWritableInputState();
@@ -74,12 +76,8 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
           enabled: widget.enabled,
           textFieldConfiguration: TextFieldConfiguration(
             enabled: widget.enabled,
-            style: AppearanceKitTextTheme.build().input.copyWith(
-                  color: _generateColor(),
-                  fontSize: widget.fontSize,
-                  fontWeight: FontWeight.w400,
-                ),
             cursorColor: _generateColor(),
+            style: AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput(), fontSize: 20),
             decoration: InputDecoration(
               labelText: widget.label,
               hintText: widget.hintText,
@@ -96,21 +94,18 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
               disabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: _generateColor()),
               ),
-              hintStyle: AppearanceKitTextTheme.build().input.copyWith(
-                    color: _generateColor(),
-                    fontSize: widget.fontSize,
-                  ),
-              labelStyle: AppearanceKitTextTheme.build().input.copyWith(
-                    color: _generateColor(),
-                    fontSize: widget.fontSize,
-                  ),
+              labelStyle: AppearanceKitTextTheme.build()
+                  .input
+                  .copyWith(color: _generateColorInput(), fontSize: 20),
+              hintStyle: AppearanceKitTextTheme.build()
+                  .input
+                  .copyWith(color: _generateColorInput(), fontSize: 20),
             ),
             controller: widget.dropdownSearchFieldController,
           ),
           suggestionsCallback: (pattern) => getSuggestions(pattern),
-          itemBuilder: (context, String suggestion) {
-            if (widget.addNewItemTitle.isNotEmpty &&
-                suggestion == widget.addNewItemTitle) {
+          itemBuilder: widget.buildSuggestionItem ?? (context, String suggestion) {
+            if (widget.addNewItemTitle.isNotEmpty && suggestion == widget.addNewItemTitle) {
               return ListTile(
                 title: Text(
                   suggestion,
@@ -191,6 +186,12 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
           ),
       ],
     );
+  }
+
+
+  Color _generateColorInput() {
+    if (widget.inputColor == PrimaryInputColorKit.BLACK) return Colors.black;
+    return Theme.of(context).colorScheme.primary;
   }
 
   Color _generateColor() {

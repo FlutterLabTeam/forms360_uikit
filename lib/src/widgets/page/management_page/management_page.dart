@@ -105,6 +105,7 @@ class SmallScreenWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Stack(
+        fit: StackFit.expand,
         children: [
           Padding(
             child: endContent,
@@ -120,7 +121,7 @@ class SmallScreenWidget extends StatelessWidget {
           ),
         ],
       ),
-    );
+      );
   }
 }
 
