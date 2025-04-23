@@ -2,3 +2,10 @@
 /.dart_tool
 .flutter-plugins-*
 *.lock
+
+.firebase/
+.firebaserc
+.flutter-plugins
+.idea/libraries/KotlinJavaRuntime.xml
+.idea/runConfigurations/
+.metadata
