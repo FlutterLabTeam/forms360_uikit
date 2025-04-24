@@ -63,12 +63,12 @@ class _TopMenuState extends State<TopMenu> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: IconButton(
+                          child: Container(width: 24,)/* IconButton(
                             onPressed: () => setState(() {
                               isTapped = !isTapped;
                             }),
                             icon: Icon(Icons.menu),
-                          ),
+                          ) */,
                         ),
                         Text(
                           widget.selectedMenuItem.toMenuTitle,

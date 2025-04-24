@@ -175,6 +175,7 @@ class Inputs {
         controller: controller,
       );
   Widget dateInput({
+    double? fontSize,
     required String label,
     required double width,
     required int? maxLength,
@@ -189,6 +190,7 @@ class Inputs {
         label: label,
         onTap: onTap,
         width: width,
+        fontSize: fontSize,
         hintText: hintText,
         maxLength: maxLength,
         validator: validator,

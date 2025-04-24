@@ -4,6 +4,7 @@ import 'package:forms360_uikit/src/extension/context_extension.dart';
 class DateInput extends StatelessWidget {
   const DateInput({
     super.key,
+    this.fontSize,
     required this.onTap,
     required this.width,
     required this.label,
@@ -19,6 +20,7 @@ class DateInput extends StatelessWidget {
   final double width;
   final int? maxLength;
   final String hintText;
+  final double? fontSize;
   final GestureTapCallback? onTap;
   final bool isClearButtonVisible;
   final void Function()? onTapOutside;
@@ -59,12 +61,12 @@ class DateInput extends StatelessWidget {
                       labelText: label,
                       hintText: hintText,
                       labelStyle: context.primaryText.copyWith(
-                        fontSize: 20,
+                        fontSize: fontSize ?? 20,
                         fontWeight: FontWeight.w400,
                         color: Color(0xFFC0CDE1),
                       ),
                       hintStyle: context.primaryText.copyWith(
-                        fontSize: 20,
+                        fontSize: fontSize ?? 20,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFFC0CDE1),
                       ),
@@ -89,7 +91,7 @@ class DateInput extends StatelessWidget {
                     ),
                     cursorHeight: 16,
                     style: context.primaryText.copyWith(
-                      fontSize: 20,
+                      fontSize: fontSize ?? 20,
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).colorScheme.primary,
                     ),
