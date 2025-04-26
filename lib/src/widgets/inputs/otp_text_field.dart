@@ -260,6 +260,12 @@ class _OtpTextFieldState extends State<OtpTextField> {
   void addFocusNodeToEachTextField({required int index}) {
     if (_focusNodes[index] == null) {
       _focusNodes[index] = FocusNode();
+      _focusNodes[index]?.addListener(() {
+        if (_focusNodes[index]?.hasFocus == true) {
+          _textControllers[index]?.clear();
+          _verificationCode[index] = null;
+        }
+      });
     }
   }
 
