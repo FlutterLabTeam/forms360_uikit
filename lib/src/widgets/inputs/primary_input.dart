@@ -24,7 +24,7 @@ class PrimaryInput extends StatefulWidget {
     required this.isPassword,
     this.isSuffixIconEnabled = false,
     PrimaryInputColorKit? inputColor,
-  }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
+  }) : inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final bool isBig;
   final bool enabled;
@@ -99,13 +99,16 @@ class _PrimaryInputState extends State<PrimaryInput> {
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
-                ? Colors.black
+                ? widget.inputColor == PrimaryInputColorKit.WHITE
+                    ? Colors.white
+                    : Colors.black
                 : widget.enabled
                     ? Theme.of(context).colorScheme.primary
                     : Color(0xff99B3C6),
           ),
         ),
-        contentPadding: widget.contentPadding ?? EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
+        contentPadding: widget.contentPadding ??
+            EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: _generateColorInput()),
         ),
