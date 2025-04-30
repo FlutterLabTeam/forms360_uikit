@@ -99,9 +99,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
-                ? widget.inputColor == PrimaryInputColorKit.WHITE
-                    ? Colors.white
-                    : Colors.black
+                ? Colors.black
                 : widget.enabled
                     ? Theme.of(context).colorScheme.primary
                     : Color(0xff99B3C6),

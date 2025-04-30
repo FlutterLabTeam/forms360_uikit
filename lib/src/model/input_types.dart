@@ -1,3 +1,3 @@
-enum PrimaryInputColorKit { BLACK, BLUE, WHITE }
+enum PrimaryInputColorKit { BLACK, BLUE }
 
 enum DropdownWritableInputType { MULTI, SINGLE }
