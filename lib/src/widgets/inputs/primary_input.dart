@@ -90,6 +90,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
       autofillHints: autofillHints,
       decoration: InputDecoration(
         fillColor: widget.fillColor,
+        filled: widget.fillColor != null,
         counterText: "",
         hintText: widget.hintText,
         labelText: widget.label,
