@@ -8,12 +8,11 @@ class EndContentWidget extends ConsumerStatefulWidget {
   final Widget content;
   final Widget? titleWidget;
   const EndContentWidget(
-      {Key? key,
+      {super.key,
       this.onSearch,
       this.searchLabel = 'Search',
       this.titleWidget,
-      required this.content})
-      : super(key: key);
+      required this.content});
 
   @override
   _EndContentWidgetState createState() => _EndContentWidgetState();
@@ -37,7 +36,7 @@ class _EndContentWidgetState extends ConsumerState<EndContentWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        buildSearch(),
+        if (widget.onSearch != null) buildSearch(),
         SizedBox(height: 20),
         ...buildContentTitle(),
         SizedBox(height: 20),
