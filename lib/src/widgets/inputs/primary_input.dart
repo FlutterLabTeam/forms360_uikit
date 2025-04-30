@@ -23,8 +23,9 @@ class PrimaryInput extends StatefulWidget {
     required this.hintText,
     required this.isPassword,
     this.isSuffixIconEnabled = false,
+    this.fillColor,
     PrimaryInputColorKit? inputColor,
-  }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
+  }) : inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final bool isBig;
   final bool enabled;
@@ -44,6 +45,7 @@ class PrimaryInput extends StatefulWidget {
   final Function(String?)? onFieldSubmitted;
   final String? initialValue;
   final List<TextInputFormatter>? inputFormatters;
+  final Color? fillColor;
 
   @override
   _PrimaryInputState createState() => _PrimaryInputState();
@@ -87,6 +89,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
       inputFormatters: widget.inputFormatters,
       autofillHints: autofillHints,
       decoration: InputDecoration(
+        fillColor: widget.fillColor,
         counterText: "",
         hintText: widget.hintText,
         labelText: widget.label,
@@ -105,7 +108,8 @@ class _PrimaryInputState extends State<PrimaryInput> {
                     : Color(0xff99B3C6),
           ),
         ),
-        contentPadding: widget.contentPadding ?? EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
+        contentPadding: widget.contentPadding ??
+            EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: _generateColorInput()),
         ),
