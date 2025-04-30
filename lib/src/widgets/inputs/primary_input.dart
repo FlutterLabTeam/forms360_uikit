@@ -151,6 +151,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
 
   Color _generateColorInput() {
     if (widget.inputColor == PrimaryInputColorKit.BLACK) return Colors.black;
+    if (widget.inputColor == PrimaryInputColorKit.WHITE) return Colors.white;
     return Theme.of(context).colorScheme.primary;
   }
 }
