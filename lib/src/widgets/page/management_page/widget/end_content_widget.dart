@@ -45,7 +45,8 @@ class _EndContentWidgetState extends ConsumerState<EndContentWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        buildSearch(),
+        if (widget.onSearch != null) buildSearch(),
+        SizedBox(height: 20),
         ...buildContentTitle(),
         Expanded(
           child: widget.isLoading

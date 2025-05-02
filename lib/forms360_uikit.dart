@@ -29,6 +29,9 @@ export 'package:forms360_uikit/src/widgets/menu/menu_icon.dart';
 
 export 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 
+//items
+export 'package:forms360_uikit/src/widgets/items/tag_item.dart';
+
 //abstract class
 class FormsKit {
   static Theme theme = Theme();
