@@ -3,8 +3,8 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 
 class TagItem extends StatelessWidget {
   final String name;
-  final VoidCallback? onTap;
-  final VoidCallback? handledDelete;
+  final Function()? onTap;
+  final Function()? handledDelete;
   final bool isSelected;
 
   const TagItem({

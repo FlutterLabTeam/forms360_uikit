@@ -4,8 +4,8 @@ class UiItem {
   TagItem tagItem({
     required String name,
     required bool isSelected,
-    required Function()? onTap,
-    required Function()? handledDelete,
+    Function()? onTap,
+    Function()? handledDelete,
   }) =>
       TagItem(
           name: name,
