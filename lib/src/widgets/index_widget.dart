@@ -1,3 +1,4 @@
+import 'package:forms360_uikit/src/widgets/items/items_index.dart';
 import 'package:forms360_uikit/src/widgets/map/index.dart';
 import 'package:forms360_uikit/src/widgets/page/index_page.dart';
 import 'package:forms360_uikit/src/widgets/list/index_list.dart';
@@ -14,4 +15,5 @@ class UiWidget {
   Inputs inputs = Inputs();
   UiButton buttons = UiButton();
   WidgetIndexPopUp popUp = WidgetIndexPopUp();
+  UiItem items = UiItem();
 }
