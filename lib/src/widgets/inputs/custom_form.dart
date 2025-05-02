@@ -49,10 +49,10 @@ class _CustomFormState extends State<CustomForm> {
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
                 if (widget.onValidationSuccess != null)
-                  widget.onValidationSuccess();
+                  await widget.onValidationSuccess();
               } else {
                 if (widget.onValidationFailed != null)
-                  widget.onValidationFailed();
+                  await widget.onValidationFailed();
               }
             },
             buttonType: ButtonTypeKit.primary,

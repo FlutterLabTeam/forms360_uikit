@@ -250,6 +250,7 @@ class Inputs {
     Function()? suffixIconOnPressed,
     double? width,
     bool isEnabled = true,
+    int? maxLength,
   }) =>
       PopUpTextInput(
         label: label,
@@ -262,6 +263,7 @@ class Inputs {
         suffixIconOnPressed: suffixIconOnPressed,
         width: width,
         isEnabled: isEnabled,
+        maxLength: maxLength,
       );
 
   Widget popUpRowTextFields(

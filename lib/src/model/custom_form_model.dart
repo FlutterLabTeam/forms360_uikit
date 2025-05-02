@@ -11,6 +11,7 @@ class CustomFormFieldModel {
   final Function()? suffixIconOnPressed;
   final double? width;
   final bool isEnabled;
+  final int? maxLength;
 
   CustomFormFieldModel({
     required this.label,
@@ -23,5 +24,6 @@ class CustomFormFieldModel {
     this.suffixIconOnPressed,
     this.isSuffixIconEnabled = false,
     this.isEnabled = true,
+    this.maxLength,
   });
 }

@@ -45,6 +45,18 @@ extension ContextExtension on BuildContext {
         barrierDismissible: barrierDismissible,
       );
 
+  Future<void> openErrorPopUp({
+    required String message,
+    required String okText,
+    bool barrierDismissible = true,
+  }) =>
+      PopUpIndex().errorPopUp(
+        this,
+        message: message,
+        okText: okText,
+        barrierDismissible: barrierDismissible,
+      );
+
   //colors them access by context
   Color get grey1 => AppearanceKitColors.light().grey1;
   Color get grey2 => AppearanceKitColors.light().grey2;
@@ -58,9 +70,12 @@ extension ContextExtension on BuildContext {
   Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary;
 
   ///dark blue
-  Color get onSurfaceColor => Theme.of(this).colorScheme.onSurface; //blue sea water
-  Color get primaryLightColor => Theme.of(this).colorScheme.primaryContainer; //light blue
-  Color get surfaceContainerColor => Theme.of(this).colorScheme.surfaceContainer; //light blue
+  Color get onSurfaceColor =>
+      Theme.of(this).colorScheme.onSurface; //blue sea water
+  Color get primaryLightColor =>
+      Theme.of(this).colorScheme.primaryContainer; //light blue
+  Color get surfaceContainerColor =>
+      Theme.of(this).colorScheme.surfaceContainer; //light blue
 
   //text styles access by context
   TextStyle get titleText => FormsKit.theme.text.title;
