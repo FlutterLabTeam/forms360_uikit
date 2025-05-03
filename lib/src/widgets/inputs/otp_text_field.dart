@@ -106,6 +106,7 @@ class _OtpTextFieldState extends State<OtpTextField> {
     );
   }
 
+
   @override
   void didUpdateWidget(covariant OtpTextField oldWidget) {
     super.didUpdateWidget(oldWidget);

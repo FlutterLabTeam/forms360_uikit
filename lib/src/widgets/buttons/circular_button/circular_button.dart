@@ -25,8 +25,8 @@ class CircularButton extends StatelessWidget {
         customBorder: const CircleBorder(),
         onTap: onTap,
         child: Padding(
-          padding: EdgeInsets.all(15),
-          child: Icon(icon, color: Colors.white),
+          padding: EdgeInsets.all(10),
+          child: Icon(icon, color: Colors.white, size: 20),
         ),
       ),
     );

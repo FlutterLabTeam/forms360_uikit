@@ -1,47 +1,79 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:forms360_uikit/src/extension/context_extension.dart';
+import 'package:forms360_uikit/src/widgets/inputs/custom_input_otp.dart';
 
-import 'otp_text_field.dart';
-
-class OtpInput extends StatelessWidget {
-  final void Function(String)? onSubmit;
-  final void Function(String)? onCodeChanged;
-  final List<TextEditingController?> controls;
+class OtpInput extends StatefulWidget {
+  final List<TextEditingController> controllers;
+  final Function(String)? onSubmit;
 
   const OtpInput({
-    super.key,
+    super.key, 
+    required this.controllers,
     this.onSubmit,
-    this.onCodeChanged,
-    required this.controls,
   });
 
   @override
+  State<OtpInput> createState() => _OtpInputState();
+}
+
+class _OtpInputState extends State<OtpInput> {
+  late List<FocusNode> focusNodes;
+
+  @override
+  void initState() {
+    super.initState();
+    focusNodes = List.generate(
+      widget.controllers.length,
+      (index) => FocusNode(),
+    );
+  }
+
+  @override
+  void dispose() {
+    for (var node in focusNodes) {
+      node.dispose();
+    }
+    super.dispose();
+  }
+
+  void _handleInput(String value, int index) {
+    if (value.isNotEmpty) {
+      bool allFilled = widget.controllers.every((controller) => controller.text.isNotEmpty);
+      
+      if (allFilled) {
+        for (var node in focusNodes) {
+          node.unfocus();
+        }
+        String fullValue = widget.controllers.map((c) => c.text).join();
+        widget.onSubmit?.call(fullValue);
+      } else {
+        for (int i = index + 1; i < widget.controllers.length; i++) {
+          if (widget.controllers[i].text.isEmpty) {
+            focusNodes[i].requestFocus();
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return OtpTextField(
-      handleControllers: (controllers) {
-        controls.clear();
-        controls.addAll(controllers);
-      },
-      filled: true,
-      fieldWidth: 80,
-      clearText: true,
-      autoFocus: true,
-      fieldHeight: 130,
-      showFieldAsBox: true,
-      borderColor: Colors.blue,
-      onCodeChanged: onCodeChanged,
-      fillColor: Color(0xFFE8EDF1),
-      numberOfFields: controls.length,
-      disabledBorderColor: Colors.grey,
-      enabledBorderColor: Color(0xFFE8EDF1),
-      borderRadius: BorderRadius.all(Radius.circular(60)),
-      inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly,],
-      focusedBorderColor: Colors.blue,
-      contentPadding: EdgeInsets.all(20),
-      showCursor: false,
-      textStyle: context.titleText.copyWith(height: 1.7),
-      onSubmit: onSubmit,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(
+        widget.controllers.length,
+        (index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 7),
+          child: CustomInputOtp(
+            controller: widget.controllers[index],
+            focusNode: focusNodes[index],
+            nextFocusNode: index < widget.controllers.length - 1 ? focusNodes[index + 1] : null,
+            allControllers: widget.controllers,
+            allFocusNodes: focusNodes,
+            onSubmit: (value) => _handleInput(value, index),
+          ),
+        ),
+      ),
     );
   }
 }
