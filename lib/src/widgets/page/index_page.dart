@@ -65,13 +65,21 @@ class UiPage {
   Widget endContentWidget({
     required Widget content,
     required Function(String)? onSearch,
+    required Function() retryCallBack,
     String searchLabel = 'Search',
     Widget? titleWidget,
+    String? errorMessage,
+    bool isLoading = false,
+    String? retryButtonText,
   }) =>
       EndContentWidget(
         content: content,
         onSearch: onSearch,
         searchLabel: searchLabel,
         titleWidget: titleWidget,
+        retryButtonText: retryButtonText,
+        isLoading: isLoading,
+        errorMessage: errorMessage,
+        retryCallback: retryCallBack,
       );
 }
