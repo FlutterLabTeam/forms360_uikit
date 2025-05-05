@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/src/model/pop_up_model.dart';
+import 'package:forms360_uikit/src/widgets/pop_up/error_pop_up.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/tabbed_pop_up.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/success_pop_up.dart';
 import 'package:forms360_uikit/src/widgets/pop_up/general_pop_up.dart';
@@ -44,6 +45,17 @@ class PopUpIndex {
     bool barrierDismissible = true,
   }) =>
       successPopup(context,
+          okText: okText,
+          message: message,
+          barrierDismissible: barrierDismissible);
+
+  Future<void> errorPopUp(
+    BuildContext context, {
+    required String okText,
+    required String message,
+    bool barrierDismissible = true,
+  }) =>
+      showErrorPopUp(context,
           okText: okText,
           message: message,
           barrierDismissible: barrierDismissible);

@@ -196,9 +196,8 @@ class WidgetbookApp extends StatelessWidget {
                   name: 'Default',
                   builder: (context) => Center(
                     child: _inputs.otpInput(
-                      controls:
+                      controllers:
                           List.generate(6, (index) => TextEditingController()),
-                      onCodeChanged: (code) {},
                       onSubmit: (code) {},
                     ),
                   ),
@@ -327,8 +326,7 @@ class WidgetbookApp extends StatelessWidget {
                   name: 'Default',
                   builder: (context) => Center(
                     child: CustomForm(
-                      onValidationFailed: null,
-                      onValidationSuccess: null,
+                      onValidationSuccess: () async {},
                       children: [
                         PopUpTextInput(
                           label: 'Field 1',

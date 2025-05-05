@@ -4,21 +4,21 @@ import 'package:forms360_uikit/src/model/custom_form_model.dart';
 import 'package:forms360_uikit/src/widgets/buttons/custom_button/custom_button.dart';
 
 class CustomForm extends StatefulWidget {
-  final List<Widget> children;
   final String? title;
-  final String? description;
   final String? buttonText;
-  final onValidationFailed;
-  final onValidationSuccess;
+  final String? description;
+  final List<Widget> children;
+  final Future<void> Function() onValidationSuccess;
+  final Future<void> Function()? onValidationFailed;
 
   const CustomForm({
     Key? key,
     this.title,
-    this.description,
     this.buttonText,
-    required this.onValidationFailed,
-    required this.onValidationSuccess,
+    this.description,
     required this.children,
+    this.onValidationFailed,
+    required this.onValidationSuccess,
   }) : super(key: key);
 
   @override
@@ -48,11 +48,9 @@ class _CustomFormState extends State<CustomForm> {
             title: widget.buttonText ?? 'Save',
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
-                if (widget.onValidationSuccess != null)
-                  widget.onValidationSuccess();
+                await widget.onValidationSuccess.call();
               } else {
-                if (widget.onValidationFailed != null)
-                  widget.onValidationFailed();
+                await widget.onValidationFailed?.call();
               }
             },
             buttonType: ButtonTypeKit.primary,

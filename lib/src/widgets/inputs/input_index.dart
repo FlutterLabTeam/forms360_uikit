@@ -139,13 +139,11 @@ class Inputs {
 
   Widget otpInput({
     Function(String)? onSubmit,
-    Function(String)? onCodeChanged,
-    required List<TextEditingController?> controls,
+    required List<TextEditingController> controllers,
   }) =>
       OtpInput(
         onSubmit: onSubmit,
-        controls: controls,
-        onCodeChanged: onCodeChanged,
+        controllers: controllers,
       );
 
   Widget checkBox({
@@ -224,19 +222,19 @@ class Inputs {
 
   Widget customForm({
     required String? title,
-    required String? description,
     required String? buttonText,
+    required String? description,
     required List<Widget> children,
-    required Function() onValidationSuccess,
-    required Function() onValidationFailed,
+    Future<void> Function()? onValidationFailed,
+    required Future<void> Function() onValidationSuccess,
   }) =>
       CustomForm(
+        title: title,
+        children: children,
         buttonText: buttonText,
         description: description,
-        title: title,
         onValidationFailed: onValidationFailed,
         onValidationSuccess: onValidationSuccess,
-        children: children,
       );
 
   Widget popUpTextInput({
@@ -250,6 +248,7 @@ class Inputs {
     Function()? suffixIconOnPressed,
     double? width,
     bool isEnabled = true,
+    int? maxLength,
   }) =>
       PopUpTextInput(
         label: label,
@@ -262,6 +261,7 @@ class Inputs {
         suffixIconOnPressed: suffixIconOnPressed,
         width: width,
         isEnabled: isEnabled,
+        maxLength: maxLength,
       );
 
   Widget popUpRowTextFields(
