@@ -27,6 +27,7 @@ class UiPage {
     MainAxisAlignment rowMainAxisAlignment = MainAxisAlignment.start,
     CrossAxisAlignment rowCrossAxisAlignment = CrossAxisAlignment.start,
     bool enableGoHome = false,
+    Function()? onPop,
   }) =>
       ManagementPage(
         spacing: spacing,
@@ -41,6 +42,7 @@ class UiPage {
         onMenuItemSelected: onMenuItemSelected,
         rowMainAxisAlignment: rowMainAxisAlignment,
         rowCrossAxisAlignment: rowCrossAxisAlignment,
+        onPop: onPop,
       );
 
   Widget dashboardPage({
