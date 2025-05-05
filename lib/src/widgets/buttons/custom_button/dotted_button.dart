@@ -10,6 +10,7 @@ class DottedButton extends StatefulWidget {
   final double? labelSize;
   final Color? backgroundColor;
   final Color? labelColor;
+  final Color? borderColor;
   final EdgeInsetsGeometry? padding;
   final IconData? icon;
 
@@ -24,6 +25,7 @@ class DottedButton extends StatefulWidget {
     this.labelColor,
     this.icon = Icons.add,
     this.padding,
+    this.borderColor,
   });
 
   @override
@@ -36,9 +38,11 @@ class _DottedButtonState extends State<DottedButton> {
     return GestureDetector(
       onTap: widget.onTap,
       child: CustomPaint(
-        painter: CustomBorder(widget.labelColor!, BorderType.DOTTED),
+        painter: CustomBorder(
+            widget.borderColor ?? context.grey1, BorderType.DOTTED),
         child: Container(
-          padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 16.0),
+          padding:
+              widget.padding ?? const EdgeInsets.symmetric(horizontal: 16.0),
           alignment: Alignment.center,
           width: widget.width ?? MediaQuery.of(context).size.width,
           height: widget.height,
@@ -48,12 +52,21 @@ class _DottedButtonState extends State<DottedButton> {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
+              widget.icon != null
+                  ? Icon(
+                      widget.icon,
+                      color: widget.labelColor,
+                      size: 18.0,
+                    )
+                  : const SizedBox(),
               Icon(
                 widget.icon,
                 color: widget.labelColor,
                 size: 18.0,
               ),
-              const SizedBox(width: 8.0),
+              widget.icon != null
+                  ? const SizedBox(width: 8.0)
+                  : const SizedBox(),
               Text(
                 widget.label,
                 style: context.primaryText.copyWith(

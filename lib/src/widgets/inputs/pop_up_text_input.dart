@@ -13,6 +13,7 @@ class PopUpTextInput extends StatelessWidget {
   final double? width;
   final bool isEnabled;
   final int? maxLength;
+  final double? height;
 
   const PopUpTextInput({
     super.key,
@@ -27,12 +28,14 @@ class PopUpTextInput extends StatelessWidget {
     this.width,
     this.isEnabled = true,
     this.maxLength,
+    this.height,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
+      height: height,
       child: FormsKit.widget.inputs.primary(
         label: label,
         hintText: hintText,

@@ -249,6 +249,7 @@ class Inputs {
     double? width,
     bool isEnabled = true,
     int? maxLength,
+    double? height,
   }) =>
       PopUpTextInput(
         label: label,
@@ -262,6 +263,7 @@ class Inputs {
         width: width,
         isEnabled: isEnabled,
         maxLength: maxLength,
+        height: height,
       );
 
   Widget popUpRowTextFields(

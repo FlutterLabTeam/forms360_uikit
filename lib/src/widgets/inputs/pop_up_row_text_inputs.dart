@@ -34,7 +34,7 @@ class PopUpRowTextInputs extends StatelessWidget {
             maxLength: field1.maxLength,
           ),
         ),
-        SizedBox(width: 3),
+        SizedBox(width: 11),
         Expanded(
           child: PopUpTextInput(
             label: field2.label,
