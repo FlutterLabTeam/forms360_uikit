@@ -20,6 +20,7 @@ class ManagementPage extends StatelessWidget {
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
     required this.enableGoHome,
+    this.onPop,
   });
 
   final double spacing;
@@ -34,6 +35,7 @@ class ManagementPage extends StatelessWidget {
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
   final bool enableGoHome;
+  final VoidCallback? onPop;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,7 @@ class ManagementPage extends StatelessWidget {
             onMenuItemSelected: onMenuItemSelected,
             rowMainAxisAlignment: rowMainAxisAlignment,
             rowCrossAxisAlignment: rowCrossAxisAlignment,
+            onPop: onPop,
           );
         } else if (constraints.maxWidth >= Breakpoint.tablet &&
             constraints.maxWidth < Breakpoint.xdesktop) {
@@ -121,7 +124,7 @@ class SmallScreenWidget extends StatelessWidget {
           ),
         ],
       ),
-      );
+    );
   }
 }
 
@@ -222,6 +225,7 @@ class BigScreenWidget extends StatelessWidget {
     required this.rowCrossAxisAlignment,
     this.assetPath = 'assets/images/clients/users_background.png',
     required this.enableGoHome,
+    this.onPop,
   });
 
   final double spacing;
@@ -236,6 +240,7 @@ class BigScreenWidget extends StatelessWidget {
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
   final bool enableGoHome;
+  final VoidCallback? onPop;
 
   @override
   Widget build(BuildContext context) {
@@ -256,6 +261,7 @@ class BigScreenWidget extends StatelessWidget {
               assetPath: assetPath,
               startContent: startContent,
               enableGoHome: enableGoHome,
+              onPop: onPop,
             ),
           ),
           SizedBox(width: spacing),
@@ -310,11 +316,13 @@ class LeftDecoration extends StatelessWidget {
     required this.startContent,
     required this.assetPath,
     required this.enableGoHome,
+    this.onPop,
   });
 
   final Widget startContent;
   final String assetPath;
   final bool enableGoHome;
+  final VoidCallback? onPop;
 
   @override
   Widget build(BuildContext context) {
@@ -333,9 +341,15 @@ class LeftDecoration extends StatelessWidget {
           top: 40,
           left: 30,
           child: IconButton(
-            onPressed: () => enableGoHome
-                ? context.go('/')
-                : context.pop(),
+            onPressed: () {
+              if (onPop != null) {
+                onPop!();
+              } else if (enableGoHome) {
+                context.go('/');
+              } else {
+                context.pop();
+              }
+            },
             icon: Icon(Icons.chevron_left, color: Colors.white, size: 30),
           ),
         ),

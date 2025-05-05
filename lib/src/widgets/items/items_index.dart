@@ -8,8 +8,9 @@ class UiItem {
     Function()? handledDelete,
   }) =>
       TagItem(
-          name: name,
-          isSelected: isSelected,
-          onTap: onTap,
-          handledDelete: handledDelete);
+        name: name,
+        isSelected: isSelected,
+        onTap: onTap,
+        handledDelete: handledDelete,
+      );
 }
