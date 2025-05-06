@@ -77,11 +77,15 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
           textFieldConfiguration: TextFieldConfiguration(
             enabled: widget.enabled,
             cursorColor: _generateColor(),
-            style: AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput(), fontSize: 20),
+            style: AppearanceKitTextTheme.build()
+                .input
+                .copyWith(color: _generateColorInput(), fontSize: 20),
             decoration: InputDecoration(
               labelText: widget.label,
               hintText: widget.hintText,
-              contentPadding: widget.contentPadding??EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
+              contentPadding: widget.contentPadding ??
+                  EdgeInsets.only(
+                      top: 18, bottom: 22, left: 19.21, right: 19.21),
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: _generateColor()),
               ),
@@ -104,19 +108,21 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             controller: widget.dropdownSearchFieldController,
           ),
           suggestionsCallback: (pattern) => getSuggestions(pattern),
-          itemBuilder: widget.buildSuggestionItem ?? (context, String suggestion) {
-            if (widget.addNewItemTitle.isNotEmpty && suggestion == widget.addNewItemTitle) {
-              return ListTile(
-                title: Text(
-                  suggestion,
-                  textAlign: TextAlign.center,
-                ),
-                titleAlignment: ListTileTitleAlignment.center,
-              );
-            }
+          itemBuilder: widget.buildSuggestionItem ??
+              (context, String suggestion) {
+                if (widget.addNewItemTitle.isNotEmpty &&
+                    suggestion == widget.addNewItemTitle) {
+                  return ListTile(
+                    title: Text(
+                      suggestion,
+                      textAlign: TextAlign.center,
+                    ),
+                    titleAlignment: ListTileTitleAlignment.center,
+                  );
+                }
 
-            return ListTile(title: Text(suggestion));
-          },
+                return ListTile(title: Text(suggestion));
+              },
           itemSeparatorBuilder: (context, index) => Divider(),
           transitionBuilder: (context, suggestionsBox, controller) {
             return suggestionsBox;
@@ -187,7 +193,6 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
       ],
     );
   }
-
 
   Color _generateColorInput() {
     if (widget.inputColor == PrimaryInputColorKit.BLACK) return Colors.black;

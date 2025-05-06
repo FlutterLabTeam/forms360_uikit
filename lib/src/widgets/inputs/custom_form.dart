@@ -67,8 +67,8 @@ class _CustomFormState extends State<CustomForm> {
       child: widget.description != null
           ? Text(
               widget.description!,
-              style:
-                  context.secondaryText.copyWith(color: context.primaryColor),
+              style: context.secondaryText
+                  .copyWith(color: context.primaryColor, fontSize: 14),
               textAlign: TextAlign.center,
             )
           : Container(),

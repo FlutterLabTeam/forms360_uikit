@@ -77,6 +77,7 @@ class UiButton {
     double? labelSize,
     Color? backgroundColor,
     Color? labelColor,
+    Color? borderColor,
     EdgeInsetsGeometry? padding,
     IconData? icon,
   }) =>
@@ -90,5 +91,6 @@ class UiButton {
         labelColor: labelColor,
         padding: padding,
         icon: icon,
+        borderColor: borderColor,
       );
 }
