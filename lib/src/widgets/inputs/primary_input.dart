@@ -9,6 +9,7 @@ class PrimaryInput extends StatefulWidget {
     this.onChanged,
     this.maxLength,
     this.validator,
+    this.textStyle,
     this.controller,
     this.suffixIcon,
     this.initialValue,
@@ -33,6 +34,8 @@ class PrimaryInput extends StatefulWidget {
   final String hintText;
   final bool isPassword;
   final Icon? suffixIcon;
+  final TextStyle? textStyle;
+  final String? initialValue;
   final bool isSuffixIconEnabled;
   final EdgeInsets? contentPadding;
   final TextInputType? keyboardType;
@@ -42,9 +45,7 @@ class PrimaryInput extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Function(String?)? onFieldSubmitted;
-  final String? initialValue;
   final List<TextInputFormatter>? inputFormatters;
-
   @override
   _PrimaryInputState createState() => _PrimaryInputState();
 }
@@ -90,12 +91,14 @@ class _PrimaryInputState extends State<PrimaryInput> {
         counterText: "",
         hintText: widget.hintText,
         labelText: widget.label,
-        labelStyle: AppearanceKitTextTheme.build()
-            .input
-            .copyWith(color: _generateColorInput(), fontSize: 20),
-        hintStyle: AppearanceKitTextTheme.build()
-            .input
-            .copyWith(color: _generateColorInput(), fontSize: 20),
+        labelStyle: widget.textStyle ??
+            AppearanceKitTextTheme.build()
+                .input
+                .copyWith(color: _generateColorInput(), fontSize: 20),
+        hintStyle: widget.textStyle ??
+            AppearanceKitTextTheme.build()
+                .input
+                .copyWith(color: _generateColorInput(), fontSize: 20),
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
@@ -143,9 +146,10 @@ class _PrimaryInputState extends State<PrimaryInput> {
           widget.onFieldSubmitted!(value);
         }
       },
-      style: AppearanceKitTextTheme.build()
-          .input
-          .copyWith(color: _generateColorInput(), fontSize: 20),
+      style: widget.textStyle ??
+          AppearanceKitTextTheme.build()
+              .input
+              .copyWith(color: _generateColorInput(), fontSize: 20),
     );
   }
 

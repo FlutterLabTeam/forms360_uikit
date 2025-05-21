@@ -3,6 +3,7 @@ import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 import 'package:forms360_uikit/src/widgets/page/standard_page/standard_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/dashboard_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/management_page.dart';
+import 'package:forms360_uikit/src/widgets/page/management_page/management_multi_page.dart';
 
 import 'management_page/widget/end_content_widget.dart';
 
@@ -43,6 +44,33 @@ class UiPage {
         rowMainAxisAlignment: rowMainAxisAlignment,
         rowCrossAxisAlignment: rowCrossAxisAlignment,
         onPop: onPop,
+      );
+
+  Widget managementMultiPage({
+    bool? serviceWeb,
+    Function()? onPop,
+    double spacing = 36,
+    bool enableGoHome = false,
+    required Widget startContent,
+    required String profileLetter,
+    required List<Widget> endContent,
+    required GestureTapCallback onProfileTap,
+    String assetPath = 'assets/images/clients/users_background.png',
+    MainAxisAlignment rowMainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment rowCrossAxisAlignment = CrossAxisAlignment.start,
+  }) =>
+      ManagementMultiPage(
+        onPop: onPop,
+        spacing: spacing,
+        assetPath: assetPath,
+        endContent: endContent,
+        serviceWeb: serviceWeb,
+        enableGoHome: enableGoHome,
+        onProfileTap: onProfileTap,
+        startContent: startContent,
+        profileLetter: profileLetter,
+        rowMainAxisAlignment: rowMainAxisAlignment,
+        rowCrossAxisAlignment: rowCrossAxisAlignment,
       );
 
   Widget dashboardPage({

@@ -15,6 +15,7 @@ final List<MenuItemTypeKit> menuItemList = [
   MenuItemTypeKit.AUDIT,
   MenuItemTypeKit.PERMISSIONS,
   MenuItemTypeKit.ANNOUNCEMENT,
+  MenuItemTypeKit.LIBRARY,
 ];
 
 final List<MenuItemTypeKit> menuItemListService = [];

@@ -43,6 +43,7 @@ class Inputs {
         label: label,
         enabled: enabled,
         hintText: hintText,
+        textStyle: textStyle,
         maxLength: maxLength,
         validator: validator,
         onChanged: onChanged,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:forms360_uikit/src/widgets/page/management_page/widget/side_menu.dart';
 import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/top_menu.dart';
+import 'package:forms360_uikit/src/widgets/page/management_page/widget/side_menu.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({
@@ -28,9 +28,7 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth >= Breakpoint.xdesktop ||
-            (constraints.maxWidth >= Breakpoint.tablet &&
-                constraints.maxWidth < Breakpoint.xdesktop)) {
+        if (constraints.maxWidth >= Breakpoint.xdesktop || (constraints.maxWidth >= Breakpoint.tablet && constraints.maxWidth < Breakpoint.xdesktop)) {
           return BigScreenWidget(
             spacing: spacing,
             serviceWeb: serviceWeb,
