@@ -17,7 +17,11 @@ class DeleteCustomPopUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(title, style: context.largeText),
+        Text(
+          title,
+          style: context.largeText,
+          textAlign: TextAlign.center,
+        ),
         SizedBox(height: 20),
         Text(
           description,
