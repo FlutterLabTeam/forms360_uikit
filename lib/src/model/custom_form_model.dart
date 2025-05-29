@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CustomFormFieldModel {
   final String label;
   final double? width;
+  final double? height;
   final bool isEnabled;
   final int? maxLength;
   final String hintText;
@@ -12,9 +13,12 @@ class CustomFormFieldModel {
   final Function()? suffixIconOnPressed;
   final TextEditingController controller;
   final String? Function(String?)? validator;
+  final Widget? prefixWidget;
 
   CustomFormFieldModel({
     this.width,
+    this.height,
+    this.prefixWidget,
     this.onChanged,
     this.maxLength,
     this.suffixIcon,
