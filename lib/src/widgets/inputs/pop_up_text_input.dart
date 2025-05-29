@@ -9,6 +9,7 @@ class PopUpTextInput extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool isSuffixIconEnabled;
   final Icon? suffixeIcon;
+  final Widget? prefixWidget;
   final Function()? suffixIconOnPressed;
   final double? width;
   final bool isEnabled;
@@ -29,6 +30,7 @@ class PopUpTextInput extends StatelessWidget {
     this.isEnabled = true,
     this.maxLength,
     this.height,
+    this.prefixWidget,
   });
 
   @override
@@ -37,6 +39,7 @@ class PopUpTextInput extends StatelessWidget {
       width: width,
       height: height,
       child: FormsKit.widget.inputs.primary(
+        prefixWidget: prefixWidget,
         label: label,
         hintText: hintText,
         isSuffixIconEnabled: isSuffixIconEnabled,

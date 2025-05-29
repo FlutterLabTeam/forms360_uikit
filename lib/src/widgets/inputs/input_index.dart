@@ -1,11 +1,14 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
 import 'package:forms360_uikit/src/model/tag_model.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
 import 'package:forms360_uikit/src/model/custom_form_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/phone_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/tag_widget.dart';
 import 'package:forms360_uikit/src/widgets/inputs/custom_form.dart';
 import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
@@ -19,6 +22,7 @@ class Inputs {
   Widget primary({
     int? maxLength,
     Icon? suffixIcon,
+    Widget? prefixWidget,
     double? fontSize,
     bool isBig = false,
     bool enabled = true,
@@ -52,6 +56,7 @@ class Inputs {
         controller: controller,
         suffixIcon: suffixIcon,
         keyboardType: keyboardType,
+        prefixWidget: prefixWidget,
         initialValue: initialValue,
         onIconPressed: onIconPressed,
         contentPadding: contentPadding,
@@ -251,6 +256,7 @@ class Inputs {
     bool isEnabled = true,
     int? maxLength,
     double? height,
+    Widget? prefixWidget,
   }) =>
       PopUpTextInput(
         label: label,
@@ -265,6 +271,7 @@ class Inputs {
         isEnabled: isEnabled,
         maxLength: maxLength,
         height: height,
+        prefixWidget: prefixWidget,
       );
 
   Widget popUpRowTextFields(
@@ -274,5 +281,38 @@ class Inputs {
       PopUpRowTextInputs(
         field1: field1,
         field2: field2,
+      );
+
+  Widget phoneInput({
+    required String label,
+    required String hintText,
+    required TextEditingController controller,
+    final String? Function(String?, CountryWithPhoneCode)? validator,
+    bool isSuffixIconEnabled = false,
+    Icon? suffixeIcon,
+    Function()? suffixIconOnPressed,
+    double? width,
+    double? height,
+    bool isEnabled = true,
+    int? maxLength,
+    required Function(String)? onChanged,
+    required Function(CountryCode) onCountryCodeChanged,
+    String? initialValue,
+  }) =>
+      PhoneInput(
+        label: label,
+        hintText: hintText,
+        controller: controller,
+        onChanged: onChanged,
+        validator: validator,
+        isSuffixIconEnabled: isSuffixIconEnabled,
+        suffixeIcon: suffixeIcon,
+        suffixIconOnPressed: suffixIconOnPressed,
+        width: width,
+        isEnabled: isEnabled,
+        maxLength: maxLength,
+        height: height,
+        initialValue: initialValue,
+        onCountryCodeChanged: onCountryCodeChanged,
       );
 }
