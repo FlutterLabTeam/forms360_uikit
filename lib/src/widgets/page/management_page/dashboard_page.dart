@@ -28,7 +28,9 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth >= Breakpoint.xdesktop || (constraints.maxWidth >= Breakpoint.tablet && constraints.maxWidth < Breakpoint.xdesktop)) {
+        if (constraints.maxWidth >= Breakpoint.xdesktop ||
+            (constraints.maxWidth >= Breakpoint.tablet &&
+                constraints.maxWidth < Breakpoint.xdesktop)) {
           return BigScreenWidget(
             spacing: spacing,
             serviceWeb: serviceWeb,
@@ -151,22 +153,24 @@ class DashboardResponsiveTwoColumnLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth >= breakpoint) {
-        return Row(
-          mainAxisAlignment: rowMainAxisAlignment,
-          crossAxisAlignment: rowCrossAxisAlignment,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            startContent,
-            SizedBox(width: spacing),
-            Expanded(child: endContent),
-            SizedBox(width: spacing),
-          ],
-        );
-      } else {
-        return endContent;
-      }
-    });
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth >= breakpoint) {
+          return Row(
+            mainAxisAlignment: rowMainAxisAlignment,
+            crossAxisAlignment: rowCrossAxisAlignment,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              startContent,
+              SizedBox(width: spacing),
+              Expanded(child: endContent),
+              SizedBox(width: spacing),
+            ],
+          );
+        } else {
+          return endContent;
+        }
+      },
+    );
   }
 }
