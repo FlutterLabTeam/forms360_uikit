@@ -51,7 +51,7 @@ class _PhoneInputState extends State<PhoneInput> {
 
   @override
   void initState() {
-    super.initState();
+/*    super.initState();
     init();
     countryCodes = CountryManager().countries;
     if (widget.initialValue != null && widget.initialValue!.isNotEmpty) {
@@ -66,7 +66,7 @@ class _PhoneInputState extends State<PhoneInput> {
             PlatformDispatcher.instance.locale.countryCode,
         orElse: () => CountryWithPhoneCode.gb(),
       );
-    }
+    }*/
   }
 
   @override
