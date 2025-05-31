@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:country_code_picker/country_code_picker.dart';
+import 'package:forms360_uikit/src/widgets/inputs/phone_input/flutter_libphonenumber_custom.dart';
 
 class PhoneInput extends StatefulWidget {
   final String label;

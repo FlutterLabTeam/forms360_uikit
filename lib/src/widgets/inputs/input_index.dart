@@ -8,7 +8,7 @@ import 'package:forms360_uikit/src/model/custom_form_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
 import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
-import 'package:forms360_uikit/src/widgets/inputs/phone_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/phone_input/phone_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/tag_widget.dart';
 import 'package:forms360_uikit/src/widgets/inputs/custom_form.dart';
 import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
