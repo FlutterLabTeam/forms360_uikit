@@ -30,10 +30,10 @@ Future<Map<String, dynamic>> parse(
 Future<void> init({
   final Map<String, CountryWithPhoneCode> overrides = const {},
 }) async {
-  /*return FlutterLibphonenumberPlatform.instance.init(overrides: overrides);*/
+  return FlutterLibphonenumberPlatform.instance.init(overrides: overrides);
 }
 
-/*String formatNumberSync(
+String formatNumberSync(
     final String number, {
       final CountryWithPhoneCode? country,
       final PhoneNumberType phoneNumberType = PhoneNumberType.mobile,
@@ -49,9 +49,9 @@ Future<void> init({
     removeCountryCodeFromResult: removeCountryCodeFromResult,
     inputContainsCountryCode: inputContainsCountryCode,
   );
-}*/
+}
 
-/*Future<FormatPhoneResult?> getFormattedParseResult(
+Future<FormatPhoneResult?> getFormattedParseResult(
     final String phoneNumber,
     final CountryWithPhoneCode country, {
       final PhoneNumberType phoneNumberType = PhoneNumberType.mobile,
@@ -63,4 +63,4 @@ Future<void> init({
     phoneNumberType: phoneNumberType,
     phoneNumberFormat: phoneNumberFormat,
   );
-}*/
+}

@@ -304,7 +304,7 @@ class Inputs {
         hintText: hintText,
         controller: controller,
         onChanged: onChanged,
-        /*validator: validator,*/
+        validator: validator,
         isSuffixIconEnabled: isSuffixIconEnabled,
         suffixeIcon: suffixeIcon,
         suffixIconOnPressed: suffixIconOnPressed,
