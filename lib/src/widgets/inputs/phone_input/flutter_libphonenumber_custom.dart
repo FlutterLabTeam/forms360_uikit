@@ -33,7 +33,7 @@ Future<void> init({
   return FlutterLibphonenumberPlatform.instance.init(overrides: overrides);
 }
 
-String formatNumberSync(
+/*String formatNumberSync(
     final String number, {
       final CountryWithPhoneCode? country,
       final PhoneNumberType phoneNumberType = PhoneNumberType.mobile,
@@ -49,9 +49,9 @@ String formatNumberSync(
     removeCountryCodeFromResult: removeCountryCodeFromResult,
     inputContainsCountryCode: inputContainsCountryCode,
   );
-}
+}*/
 
-Future<FormatPhoneResult?> getFormattedParseResult(
+/*Future<FormatPhoneResult?> getFormattedParseResult(
     final String phoneNumber,
     final CountryWithPhoneCode country, {
       final PhoneNumberType phoneNumberType = PhoneNumberType.mobile,
@@ -63,4 +63,4 @@ Future<FormatPhoneResult?> getFormattedParseResult(
     phoneNumberType: phoneNumberType,
     phoneNumberFormat: phoneNumberFormat,
   );
-}
+}*/
