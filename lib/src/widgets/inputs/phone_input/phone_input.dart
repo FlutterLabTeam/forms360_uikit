@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
-import 'package:country_code_picker/country_code_picker.dart';
-import 'package:forms360_uikit/src/widgets/inputs/phone_input/flutter_libphonenumber_custom.dart';
+import 'package:country_code_picker/country_code_picker.dart';/*
+import 'package:forms360_uikit/src/widgets/inputs/phone_input/flutter_libphonenumber_custom.dart';*/
 
 class PhoneInput extends StatefulWidget {
   final String label;
@@ -11,7 +11,7 @@ class PhoneInput extends StatefulWidget {
   final TextEditingController? controller;
   final Function(String)? onChanged;
   final Function(CountryCode)? onCountryCodeChanged;
-  final String? Function(String?, CountryWithPhoneCode)? validator;
+  /*final String? Function(String?, CountryWithPhoneCode)? validator;*/
   final bool isSuffixIconEnabled;
   final Icon? suffixeIcon;
   final Widget? prefixWidget;
@@ -29,7 +29,7 @@ class PhoneInput extends StatefulWidget {
     required this.onCountryCodeChanged,
     this.controller,
     this.onChanged,
-    this.validator,
+    /*this.validator,*/
     this.isSuffixIconEnabled = false,
     this.suffixeIcon,
     this.suffixIconOnPressed,
@@ -46,8 +46,8 @@ class PhoneInput extends StatefulWidget {
 }
 
 class _PhoneInputState extends State<PhoneInput> {
-  CountryWithPhoneCode? currentCountryCode;
-  List<CountryWithPhoneCode> countryCodes = [];
+/*  CountryWithPhoneCode? currentCountryCode;
+  List<CountryWithPhoneCode> countryCodes = [];*/
 
   @override
   void initState() {
@@ -75,7 +75,7 @@ class _PhoneInputState extends State<PhoneInput> {
       width: widget.width,
       height: widget.height,
       child: FormsKit.widget.inputs.primary(
-        prefixWidget: _buildCountryPicker(context),
+        /*prefixWidget: _buildCountryPicker(context),*/
         label: widget.label,
         hintText: widget.hintText,
         isSuffixIconEnabled: widget.isSuffixIconEnabled,
@@ -87,26 +87,26 @@ class _PhoneInputState extends State<PhoneInput> {
             EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
         onChanged: widget.onChanged,
         validator: (value) {
-          if (widget.validator != null && currentCountryCode != null) {
+         /* if (widget.validator != null && currentCountryCode != null) {
             return widget.validator!(value, currentCountryCode!);
           }
           return null;
-        },
+        */},
         fontSize: 20,
         enabled: widget.isEnabled,
         maxLength: widget.maxLength,
-        inputFormatters: currentCountryCode != null
+      /*  inputFormatters: currentCountryCode != null
             ? [
                 LibPhonenumberTextFormatter(
                   country: currentCountryCode!,
                 ),
               ]
-            : null,
+            : null,*/
       ),
     );
   }
 
-  CountryCodePicker _buildCountryPicker(BuildContext context) {
+  /*CountryCodePicker _buildCountryPicker(BuildContext context) {
     return CountryCodePicker(
       onChanged: (countryCode) {
         widget.onCountryCodeChanged?.call(countryCode);
@@ -144,5 +144,5 @@ class _PhoneInputState extends State<PhoneInput> {
         );
       },
     );
-  }
+  }*/
 }
