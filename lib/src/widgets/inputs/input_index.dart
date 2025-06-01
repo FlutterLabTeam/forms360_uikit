@@ -1,7 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
 import 'package:forms360_uikit/src/model/tag_model.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
 import 'package:forms360_uikit/src/model/custom_form_model.dart';
@@ -17,6 +16,7 @@ import 'package:forms360_uikit/src/widgets/inputs/pop_up_text_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/pop_up_row_text_inputs.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dynamic_dropdown_writable_input.dart';
+import 'package:phone_form_field/phone_form_field.dart';
 
 class Inputs {
   Widget primary({
@@ -287,7 +287,7 @@ class Inputs {
     required String label,
     required String hintText,
     required TextEditingController controller,
-    final String? Function(String?, CountryWithPhoneCode)? validator,
+    final String? Function(PhoneNumber?)? validator,
     bool isSuffixIconEnabled = false,
     Icon? suffixeIcon,
     Function()? suffixIconOnPressed,
@@ -296,7 +296,7 @@ class Inputs {
     bool isEnabled = true,
     int? maxLength,
     required Function(String)? onChanged,
-    required Function(CountryCode) onCountryCodeChanged,
+    required Function(PhoneNumber) onCountryCodeChanged,
     String? initialValue,
   }) =>
       PhoneInput(
