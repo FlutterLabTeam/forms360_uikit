@@ -33,6 +33,9 @@ export 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 //items
 export 'package:forms360_uikit/src/widgets/items/tag_item.dart';
 
+//phone_form_field
+export 'package:phone_form_field/phone_form_field.dart';
+
 //abstract class
 class FormsKit {
   static Theme theme = Theme();

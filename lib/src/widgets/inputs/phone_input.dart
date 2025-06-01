@@ -7,44 +7,38 @@ import 'package:forms360_uikit/src/model/input_types.dart';
 
 class PhoneInput extends StatefulWidget {
   final String label;
-  final double? width;
   final bool isEnabled;
   final int? maxLength;
-  final double? height;
   final String hintText;
   final Icon? suffixeIcon;
+  final TextStyle? textStyle;
   final Widget? prefixWidget;
-  final String? initialValue;
   final bool isSuffixIconEnabled;
-  final Function(String)? onChanged;
+  final PhoneNumber? initialValue;
+  final EdgeInsets? contentPadding;
+  final PhoneController? controller;
+  final PrimaryInputColorKit inputColor;
   final Function()? suffixIconOnPressed;
-  final TextEditingController? controller;
   final String? Function(PhoneNumber?)? validator;
   final Function(PhoneNumber)? onCountryCodeChanged;
-  final PrimaryInputColorKit inputColor;
-  final TextStyle? textStyle;
-  final EdgeInsets? contentPadding;
 
   const PhoneInput({
     super.key,
-    this.width,
-    this.height,
     this.maxLength,
-    this.onChanged,
+    this.textStyle,
     this.validator,
     this.controller,
     this.suffixeIcon,
     this.prefixWidget,
     this.initialValue,
+    this.contentPadding,
     required this.label,
     this.isEnabled = true,
     required this.hintText,
     this.suffixIconOnPressed,
+    PrimaryInputColorKit? inputColor,
     this.isSuffixIconEnabled = false,
     required this.onCountryCodeChanged,
-    this.textStyle,
-    this.contentPadding,
-    PrimaryInputColorKit? inputColor,
   }) : inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   @override
@@ -52,26 +46,6 @@ class PhoneInput extends StatefulWidget {
 }
 
 class _PhoneInputState extends State<PhoneInput> {
-  PhoneNumber? currentPhoneNumber;
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.initialValue != null && widget.initialValue!.isNotEmpty) {
-      currentPhoneNumber = PhoneNumber.parse(widget.initialValue!);
-    } else {
-      final countryCode =
-          PlatformDispatcher.instance.locale.countryCode ?? 'US';
-      currentPhoneNumber = PhoneNumber(
-        isoCode: IsoCode.values.firstWhere(
-          (code) => code.toString().split('.').last == countryCode,
-          orElse: () => IsoCode.US,
-        ),
-        nsn: '',
-      );
-    }
-  }
-
   Color _generateColorInput() {
     if (widget.inputColor == PrimaryInputColorKit.BLACK) return Colors.black;
     if (widget.inputColor == PrimaryInputColorKit.WHITE) return Colors.white;
@@ -81,30 +55,23 @@ class _PhoneInputState extends State<PhoneInput> {
   @override
   Widget build(BuildContext context) {
     return PhoneFormField(
-      initialValue: currentPhoneNumber != null
-          ? PhoneNumber(
-              isoCode: IsoCode.values.firstWhere(
-                (code) =>
-                    code.toString().split('.').last ==
-                    currentPhoneNumber!.isoCode.toString().split('.').last,
-                orElse: () => IsoCode.US,
-              ),
-              nsn: widget.controller?.text ?? '',
-            )
-          : null,
+      controller: widget.controller,
+      initialValue: widget.initialValue,
       decoration: InputDecoration(
         counterText: "",
         prefix: widget.prefixWidget,
         labelText: widget.label,
         hintText: widget.hintText,
         labelStyle: widget.textStyle ??
-            AppearanceKitTextTheme.build()
-                .input
-                .copyWith(color: _generateColorInput(), fontSize: 20),
+            AppearanceKitTextTheme.build().input.copyWith(
+                  color: _generateColorInput(),
+                  fontSize: 20,
+                ),
         hintStyle: widget.textStyle ??
-            AppearanceKitTextTheme.build()
-                .input
-                .copyWith(color: _generateColorInput(), fontSize: 20),
+            AppearanceKitTextTheme.build().input.copyWith(
+                  color: _generateColorInput(),
+                  fontSize: 20,
+                ),
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
@@ -115,32 +82,33 @@ class _PhoneInputState extends State<PhoneInput> {
           ),
         ),
         contentPadding: widget.contentPadding ??
-            EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
+            EdgeInsets.only(
+              top: 18,
+              bottom: 22,
+              left: 19.21,
+              right: 19.21,
+            ),
         disabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: _generateColorInput()),
+          borderSide: BorderSide(
+            color: _generateColorInput(),
+          ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: _generateColorInput()),
+          borderSide: BorderSide(
+            color: _generateColorInput(),
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: _generateColorInput()),
         ),
         suffixIcon: widget.isSuffixIconEnabled
             ? GestureDetector(
-                child: Icon(
-                  widget.suffixeIcon?.icon,
-                  size: 32,
-                  color: widget.suffixeIcon?.color,
-                ),
+                child: widget.suffixeIcon,
                 onTap: widget.suffixIconOnPressed,
               )
             : null,
       ),
-      onChanged: (PhoneNumber? phoneNumber) {
-        if (phoneNumber != null) {
-          widget.onCountryCodeChanged?.call(phoneNumber);
-        }
-      },
+      onChanged: widget.onCountryCodeChanged,
       validator: widget.validator,
       enabled: widget.isEnabled,
       style: widget.textStyle ??
