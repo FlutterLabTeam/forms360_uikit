@@ -77,15 +77,20 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
           textFieldConfiguration: TextFieldConfiguration(
             enabled: widget.enabled,
             cursorColor: _generateColor(),
-            style: AppearanceKitTextTheme.build()
-                .input
-                .copyWith(color: _generateColorInput(), fontSize: 20),
+            style: AppearanceKitTextTheme.build().input.copyWith(
+                  color: _generateColorInput(),
+                  fontSize: 20,
+                ),
             decoration: InputDecoration(
               labelText: widget.label,
               hintText: widget.hintText,
               contentPadding: widget.contentPadding ??
                   EdgeInsets.only(
-                      top: 18, bottom: 22, left: 19.21, right: 19.21),
+                    top: 18,
+                    bottom: 22,
+                    left: 19.21,
+                    right: 19.21,
+                  ),
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: _generateColor()),
               ),
