@@ -15,6 +15,7 @@ import 'package:forms360_uikit/src/widgets/inputs/pop_up_text_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/pop_up_row_text_inputs.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dynamic_dropdown_writable_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/custom_switch.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
 class Inputs {
@@ -307,5 +308,18 @@ class Inputs {
         isSuffixIconEnabled: isSuffixIconEnabled,
         suffixIconOnPressed: suffixIconOnPressed,
         onCountryCodeChanged: onCountryCodeChanged,
+      );
+
+  Widget customSwitch({
+    required bool value,
+    required String label,
+    bool disabled = false,
+    required Function(bool) onTap,
+  }) =>
+      CustomSwitch(
+        value: value,
+        label: label, 
+        disabled: disabled,
+        onTap: onTap,
       );
 }

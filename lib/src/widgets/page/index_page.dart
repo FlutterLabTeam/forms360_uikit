@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'management_page/widget/end_content_widget.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 import 'package:forms360_uikit/src/widgets/page/standard_page/standard_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/dashboard_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/management_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/management_multi_page.dart';
-
-import 'management_page/widget/end_content_widget.dart';
 
 class UiPage {
   Widget backgroundPage({
