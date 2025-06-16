@@ -101,6 +101,7 @@ class UiPage {
     String? errorMessage,
     bool isLoading = false,
     String? retryButtonText,
+    List<Widget>? settingsWidgets,
   }) =>
       EndContentWidget(
         content: content,
@@ -111,5 +112,6 @@ class UiPage {
         isLoading: isLoading,
         errorMessage: errorMessage,
         retryCallback: retryCallBack,
+        settingsWidgets: settingsWidgets,
       );
 }

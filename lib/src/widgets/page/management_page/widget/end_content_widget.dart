@@ -12,6 +12,7 @@ class EndContentWidget extends ConsumerStatefulWidget {
   final bool isLoading;
   final String? errorMessage;
   final Function retryCallback;
+  final List<Widget>? settingsWidgets;
 
   const EndContentWidget(
       {super.key,
@@ -21,6 +22,7 @@ class EndContentWidget extends ConsumerStatefulWidget {
       this.titleWidget,
       this.errorMessage,
       this.isLoading = false,
+      this.settingsWidgets,
       required this.content,
       required this.retryCallback});
 
@@ -45,7 +47,7 @@ class _EndContentWidgetState extends ConsumerState<EndContentWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.onSearch != null) buildSearch(),
+        _buildSearchAndSettings(),
         SizedBox(height: 20),
         ...buildContentTitle(),
         Expanded(
@@ -70,6 +72,29 @@ class _EndContentWidgetState extends ConsumerState<EndContentWidget> {
     );
   }
 
+  _buildSearchAndSettings() {
+    if (widget.onSearch == null &&
+        (widget.settingsWidgets == null || widget.settingsWidgets!.isEmpty)) {
+      return Container();
+    }
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        widget.onSearch != null ? buildSearch() : Container(),
+        widget.onSearch != null ? SizedBox(width: 10) : Container(),
+        if (widget.settingsWidgets != null &&
+            widget.settingsWidgets!.isNotEmpty)
+          Row(
+              children: widget.settingsWidgets!
+                  .map((widget) => Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: widget,
+                      ))
+                  .toList()),
+      ],
+    );
+  }
+
   buildContentTitle() {
     return widget.titleWidget != null
         ? [
@@ -81,10 +106,12 @@ class _EndContentWidgetState extends ConsumerState<EndContentWidget> {
   }
 
   Widget buildSearch() {
-    return FormsKit.widget.inputs.searchInput(
-      label: widget.searchLabel,
-      controller: searchController,
-      hintText: widget.searchLabel,
+    return Expanded(
+      child: FormsKit.widget.inputs.searchInput(
+        label: widget.searchLabel,
+        controller: searchController,
+        hintText: widget.searchLabel,
+      ),
     );
   }
 }
