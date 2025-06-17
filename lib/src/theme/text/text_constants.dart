@@ -9,6 +9,9 @@ class TextConstants {
   static const double fontSizeXXXL = 40.0;
   static const double fontSizeTitle = 50.0;
   
+  //mobile sizes
+  static const double fontSizeMobileTitle = 36.0;
+
   // Pesos de fuente
   static const int fontWeightLight = 300;
   static const int fontWeightRegular = 400;

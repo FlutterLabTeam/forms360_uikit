@@ -20,6 +20,7 @@ import 'package:phone_form_field/phone_form_field.dart';
 
 class Inputs {
   Widget primary({
+    String? label,
     int? maxLength,
     Icon? suffixIcon,
     Widget? prefixWidget,
@@ -28,7 +29,6 @@ class Inputs {
     bool enabled = true,
     String? initialValue,
     TextStyle? textStyle,
-    required String label,
     bool isPassword = false,
     required String hintText,
     EdgeInsets? contentPadding,
@@ -129,27 +129,31 @@ class Inputs {
         type: type,
         label: label,
         items: items,
+        enabled: enabled,
         hintText: hintText,
+        fontSize: fontSize,
         validator: validator,
         inputColor: inputColor,
+        initialValue: initialValue,
         selectedValues: selectedValues,
+        contentPadding: contentPadding,
         onSuggestionSelected: onSuggestionSelected,
+        onSuggestionCallback: onSuggestionCallback,
         onSelectedValuesChanged: onSelectedValuesChanged,
         dropdownSearchFieldController: dropdownSearchFieldController,
-        enabled: enabled,
-        initialValue: initialValue,
-        contentPadding: contentPadding,
-        fontSize: fontSize,
-        onSuggestionCallback: onSuggestionCallback,
       );
 
   Widget otpInput({
+    double? fontSizeWidth,
+    double? fontSizeHeight,
     Function(String)? onSubmit,
     required List<TextEditingController> controllers,
   }) =>
       OtpInput(
         onSubmit: onSubmit,
         controllers: controllers,
+        fontSizeWidth: fontSizeWidth,
+        fontSizeHeight: fontSizeHeight,
       );
 
   Widget checkBox({

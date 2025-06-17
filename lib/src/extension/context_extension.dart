@@ -70,18 +70,17 @@ extension ContextExtension on BuildContext {
   Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary;
 
   ///dark blue
-  Color get onSurfaceColor =>
-      Theme.of(this).colorScheme.onSurface; //blue sea water
-  Color get primaryLightColor =>
-      Theme.of(this).colorScheme.primaryContainer; //light blue
-  Color get surfaceContainerColor =>
-      Theme.of(this).colorScheme.surfaceContainer; //light blue
+  Color get onSurfaceColor => Theme.of(this).colorScheme.onSurface; //blue sea water
+  Color get primaryLightColor => Theme.of(this).colorScheme.primaryContainer; //light blue
+  Color get surfaceContainerColor => Theme.of(this).colorScheme.surfaceContainer; //light blue
 
   //text styles access by context
   TextStyle get titleText => FormsKit.theme.text.title;
   TextStyle get buttonText => FormsKit.theme.text.button;
   TextStyle get inputText => FormsKit.theme.text.input;
   TextStyle get primaryText => FormsKit.theme.text.primary;
+  TextStyle get mobileTitleText => FormsKit.theme.text.mobileTitleText;
+  TextStyle get mobileDescriptionText => FormsKit.theme.text.mobileDescriptionText;
   TextStyle get descriptionText => FormsKit.theme.text.description;
   TextStyle get secondaryText => FormsKit.theme.text.secondary;
   TextStyle get smallDescriptionText => FormsKit.theme.text.smallDescription;

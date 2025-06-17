@@ -8,6 +8,8 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
   final TextStyle title;
   final TextStyle button;
   final TextStyle primary;
+  final TextStyle mobileTitleText;
+  final TextStyle mobileDescriptionText;
   final TextStyle secondary;
   final TextStyle description;
   final TextStyle smallDescription;
@@ -20,6 +22,8 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     required this.title,
     required this.button,
     required this.primary,
+    required this.mobileTitleText,
+    required this.mobileDescriptionText,
     required this.secondary,
     required this.description,
     required this.smallDescription,
@@ -61,11 +65,27 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
           letterSpacing: TextConstants.letterSpacingNormal,
         ),
+        mobileDescriptionText: TextStyle(          
+          fontWeight: FontWeight.w300,
+          color: ColorPalette.onSurface,
+          fontSize: TextConstants.fontSizeM,
+          height: TextConstants.lineHeightNone,
+          fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingNormal,
+        ),
         primary: TextStyle(
           fontWeight: FontWeight.w500,
           color: ColorPalette.onSurface,
           fontSize: TextConstants.fontSizeXXL,
           height: TextConstants.lineHeightTight,
+          fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingTight,
+        ),
+        mobileTitleText: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: ColorPalette.onSurface,
+          height: TextConstants.lineHeightTight,
+          fontSize: TextConstants.fontSizeMobileTitle,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
           letterSpacing: TextConstants.letterSpacingTight,
         ),
@@ -118,6 +138,8 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     TextStyle? title,
     TextStyle? button,
     TextStyle? primary,
+    TextStyle? mobileTitleText,
+    TextStyle? mobileDescriptionText,
     TextStyle? secondary,
     TextStyle? description,
     TextStyle? smallDescription,
@@ -130,6 +152,8 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
         title: title ?? this.title,
         button: button ?? this.button,
         primary: primary ?? this.primary,
+        mobileTitleText: mobileTitleText ?? this.mobileTitleText,
+        mobileDescriptionText: mobileDescriptionText ?? this.mobileDescriptionText,
         secondary: secondary ?? this.secondary,
         description: description ?? this.description,
         smallDescription: smallDescription ?? this.smallDescription,
@@ -150,6 +174,8 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
       input: TextStyle.lerp(input, other.input, t)!,
       button: TextStyle.lerp(button, other.button, t)!,
       primary: TextStyle.lerp(primary, other.primary, t)!,
+      mobileTitleText: TextStyle.lerp(mobileTitleText, other.mobileTitleText, t)!,
+      mobileDescriptionText: TextStyle.lerp(mobileDescriptionText, other.mobileDescriptionText, t)!,
       secondary: TextStyle.lerp(secondary, other.secondary, t)!,
       description: TextStyle.lerp(description, other.description, t)!,
       smallDescription:

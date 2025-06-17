@@ -3,26 +3,32 @@ import 'package:flutter/services.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 
 class CustomInputOtp extends StatelessWidget {
-  final TextEditingController controller;
   final FocusNode? focusNode;
+  final double? fontSizeWidth;
+  final double? fontSizeHeight;
   final FocusNode? nextFocusNode;
-  final List<TextEditingController> allControllers;
-  final List<FocusNode> allFocusNodes;
   final Function(String)? onSubmit;
+  final List<FocusNode> allFocusNodes;
+  final TextEditingController controller;
+  final List<TextEditingController> allControllers;
+
   const CustomInputOtp({
-    super.key, 
-    required this.controller,
+    super.key,
+    this.onSubmit,
     this.focusNode,
     this.nextFocusNode,
+    this.fontSizeWidth,
+    this.fontSizeHeight,
+    required this.controller,
     required this.allControllers,
     required this.allFocusNodes,
-    this.onSubmit,
   });
 
   void _handleInput(String value) {
     if (value.isNotEmpty) {
-      bool allFilled = allControllers.every((controller) => controller.text.isNotEmpty);
-      
+      bool allFilled =
+          allControllers.every((controller) => controller.text.isNotEmpty);
+
       if (allFilled) {
         for (var node in allFocusNodes) {
           node.unfocus();
@@ -44,21 +50,23 @@ class CustomInputOtp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 80,
-      height: 130,
+      width: fontSizeWidth ?? 80,
+      height: fontSizeHeight ?? 130,
       child: TextField(
-        controller: controller,
-        focusNode: focusNode,
-        onTap: () {
-          controller.clear();
-        },
-        onChanged: _handleInput,
         maxLength: 1,
+        focusNode: focusNode,
+        controller: controller,
+        onChanged: _handleInput,
+        onTap: () => controller.clear(),
         keyboardType: TextInputType.number,
-        inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly,
-        ],
-        buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        buildCounter: (
+          context, {
+          maxLength,
+          required isFocused,
+          required currentLength,
+        }) =>
+            null,
         style: context.titleText,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
@@ -67,16 +75,11 @@ class CustomInputOtp extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(vertical: 30),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50),
-            borderSide: const BorderSide(
-              color: Color(0xFFE8EDF1),
-            ),
+            borderSide: const BorderSide(color: Color(0xFFE8EDF1)),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50),
-            borderSide: const BorderSide(
-              color: Colors.blue,
-              width: 2,
-            ),
+            borderSide: const BorderSide(color: Colors.blue, width: 2),
           ),
         ),
       ),

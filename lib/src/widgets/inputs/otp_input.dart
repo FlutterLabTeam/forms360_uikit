@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:forms360_uikit/src/widgets/inputs/custom_input_otp.dart';
 
 class OtpInput extends StatefulWidget {
-  final List<TextEditingController> controllers;
+  final double? fontSizeWidth;
+  final double? fontSizeHeight;
   final Function(String)? onSubmit;
+  final List<TextEditingController> controllers;
 
   const OtpInput({
     super.key, 
-    required this.controllers,
     this.onSubmit,
+    this.fontSizeHeight,
+    this.fontSizeWidth,
+    required this.controllers,
   });
 
   @override
@@ -65,12 +69,14 @@ class _OtpInputState extends State<OtpInput> {
         (index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 7),
           child: CustomInputOtp(
-            controller: widget.controllers[index],
-            focusNode: focusNodes[index],
-            nextFocusNode: index < widget.controllers.length - 1 ? focusNodes[index + 1] : null,
-            allControllers: widget.controllers,
             allFocusNodes: focusNodes,
+            focusNode: focusNodes[index],
+            allControllers: widget.controllers,
+            fontSizeWidth: widget.fontSizeWidth,
+            controller: widget.controllers[index],
+            fontSizeHeight: widget.fontSizeHeight,
             onSubmit: (value) => _handleInput(value, index),
+            nextFocusNode: index < widget.controllers.length - 1 ? focusNodes[index + 1] : null,
           ),
         ),
       ),

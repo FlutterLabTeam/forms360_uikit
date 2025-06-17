@@ -6,6 +6,7 @@ import 'package:forms360_uikit/src/model/input_types.dart';
 class PrimaryInput extends StatefulWidget {
   const PrimaryInput({
     super.key,
+    this.label,
     this.onChanged,
     this.maxLength,
     this.validator,
@@ -17,7 +18,6 @@ class PrimaryInput extends StatefulWidget {
     this.onIconPressed,
     required this.isBig,
     this.contentPadding,
-    required this.label,
     this.inputFormatters,
     required this.enabled,
     this.onFieldSubmitted,
@@ -30,7 +30,7 @@ class PrimaryInput extends StatefulWidget {
 
   final bool isBig;
   final bool enabled;
-  final String label;
+  final String? label;
   final int? maxLength;
   final String hintText;
   final bool isPassword;
@@ -94,10 +94,8 @@ class _PrimaryInputState extends State<PrimaryInput> {
         prefix: widget.prefixWidget,
         hintText: widget.hintText,
         labelText: widget.label,
-        labelStyle: widget.textStyle ??
-            AppearanceKitTextTheme.build()
-                .input
-                .copyWith(color: _generateColorInput(), fontSize: 20),
+        labelStyle: widget.textStyle ?? AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput(), fontSize: 20),
+        fillColor: widget.inputColor == PrimaryInputColorKit.TRANSPARENT ? Colors.transparent : null,
         hintStyle: widget.textStyle ??
             AppearanceKitTextTheme.build()
                 .input
@@ -125,8 +123,9 @@ class _PrimaryInputState extends State<PrimaryInput> {
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
-                    color: _generateColorInput()),
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                  color: _generateColorInput(),
+                ),
                 onPressed: _togglePasswordVisibility,
               )
             : widget.isSuffixIconEnabled
@@ -159,6 +158,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
   Color _generateColorInput() {
     if (widget.inputColor == PrimaryInputColorKit.BLACK) return Colors.black;
     if (widget.inputColor == PrimaryInputColorKit.WHITE) return Colors.white;
+    if (widget.inputColor == PrimaryInputColorKit.TRANSPARENT) return Colors.white;
     return Theme.of(context).colorScheme.primary;
   }
 }
