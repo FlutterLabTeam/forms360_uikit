@@ -6,6 +6,7 @@ class SearchInput extends StatelessWidget {
     super.key,
     this.maxLength,
     this.validator,
+    this.onChanged,
     this.controller,
     required this.label,
     required this.hintText,
@@ -14,14 +15,16 @@ class SearchInput extends StatelessWidget {
   final String label;
   final int? maxLength;
   final String hintText;
-  final String? Function(String?)? validator;
+  final Function(String)? onChanged;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       maxLength: maxLength,
       controller: controller,
+      onChanged: onChanged,
       decoration: InputDecoration(
         counterText: "",
         filled: true,
