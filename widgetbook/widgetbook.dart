@@ -157,6 +157,83 @@ class WidgetbookApp extends StatelessWidget {
               ],
             ),
             WidgetbookComponent(
+              name: 'PrimaryDateInput',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: (context) => Center(
+                    child: _inputs.primaryDateInput(
+                      label: 'Fecha',
+                      hintText: 'Selecciona una fecha',
+                      controller: TextEditingController(),
+                      onTap: () {},
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor selecciona una fecha';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Con Botón de Limpiar',
+                  builder: (context) => Center(
+                    child: _inputs.primaryDateInput(
+                      label: 'Fecha de nacimiento',
+                      hintText: 'DD/MM/YYYY',
+                      controller: TextEditingController(text: '2024-01-15'),
+                      isClearButtonVisible: true,
+                      onTap: () {},
+                      onTapOutside: () {},
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor selecciona una fecha';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Deshabilitado',
+                  builder: (context) => Center(
+                    child: _inputs.primaryDateInput(
+                      label: 'Fecha (Deshabilitado)',
+                      hintText: 'No se puede editar',
+                      controller: TextEditingController(text: '2024-01-15'),
+                      enabled: false,
+                      onTap: () {},
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor selecciona una fecha';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Color Personalizado',
+                  builder: (context) => Center(
+                    child: _inputs.primaryDateInput(
+                      label: 'Fecha con color personalizado',
+                      hintText: 'Selecciona una fecha',
+                      controller: TextEditingController(),
+                      inputColor: PrimaryInputColorKit.BLACK,
+                      onTap: () {},
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor selecciona una fecha';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
               name: 'CheckBox',
               useCases: [
                 WidgetbookUseCase(

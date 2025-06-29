@@ -13,6 +13,7 @@ import 'package:forms360_uikit/src/widgets/inputs/custom_form.dart';
 import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/custom_switch.dart';
+import 'package:forms360_uikit/src/widgets/inputs/primary_date_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/pop_up_text_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/pop_up_row_text_inputs.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
@@ -321,11 +322,48 @@ class Inputs {
     required String label,
     bool disabled = false,
     required Function(bool) onTap,
+    MainAxisAlignment? mainAxisAlignment,
   }) =>
       CustomSwitch(
+        onTap: onTap,
         value: value,
         label: label, 
         disabled: disabled,
+        mainAxisAlignment: mainAxisAlignment,
+      );
+
+  Widget primaryDateInput({
+    double? fontSize,
+    bool enabled = true,
+    String? label,
+    required String hintText,
+    int? maxLength,
+    TextStyle? textStyle,
+    String? initialValue,
+    EdgeInsets? contentPadding,
+    void Function()? onIconPressed,
+    bool isClearButtonVisible = false,
+    void Function()? onTapOutside,
+    required GestureTapCallback? onTap,
+    required TextEditingController controller,
+    required String? Function(String?)? validator,
+    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
+  }) =>
+      PrimaryDateInput(
+        label: label,
         onTap: onTap,
+        fontSize: fontSize,
+        enabled: enabled,
+        hintText: hintText,
+        maxLength: maxLength,
+        textStyle: textStyle,
+        validator: validator,
+        controller: controller,
+        initialValue: initialValue,
+        inputColor: inputColor,
+        onIconPressed: onIconPressed,
+        contentPadding: contentPadding,
+        onTapOutside: onTapOutside,
+        isClearButtonVisible: isClearButtonVisible,
       );
 }

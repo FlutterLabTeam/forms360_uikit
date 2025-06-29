@@ -6,6 +6,7 @@ class CustomSwitch extends StatelessWidget {
   final String label;
   final bool disabled;
   final Function(bool) onTap;
+  final MainAxisAlignment? mainAxisAlignment;
   
   const CustomSwitch({
     super.key,
@@ -13,12 +14,14 @@ class CustomSwitch extends StatelessWidget {
     required this.value,
     required this.label,
     this.disabled = false,
+    this.mainAxisAlignment,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
       children: [
         Text(
           label,

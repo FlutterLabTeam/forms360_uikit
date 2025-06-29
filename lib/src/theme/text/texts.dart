@@ -82,7 +82,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
           letterSpacing: TextConstants.letterSpacingTight,
         ),
         mobileTitleText: TextStyle(
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w900,
           color: ColorPalette.onSurface,
           height: TextConstants.lineHeightTight,
           fontSize: TextConstants.fontSizeMobileTitle,
