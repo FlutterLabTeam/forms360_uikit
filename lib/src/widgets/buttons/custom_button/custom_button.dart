@@ -62,7 +62,11 @@ class CustomButtonState extends State<CustomButton> {
           padding: widget.customPadding ?? const EdgeInsets.all(8),
           height: widget.customSize ?? _generateSize(widget.sizeButton),
           child: isLoading
-              ? ButtonLoading()
+              ? ButtonLoading(
+                  color: (widget.buttonType == ButtonTypeKit.primary)
+                      ? context.surfaceColor
+                      : context.primaryLightColor,
+                )
               : Text(
                   widget.title,
                   style: widget.style ?? _textButtonColor(context),
