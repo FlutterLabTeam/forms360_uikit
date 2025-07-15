@@ -26,6 +26,7 @@ enum ValidationType {
   IS_LESS_THAN_NOW,
   IS_GREATER_THAN_NOW,
   MATCHES_ITEM_FROM_LIST,
+  IS_STATIC,
 }
 
 enum ConditionType {
