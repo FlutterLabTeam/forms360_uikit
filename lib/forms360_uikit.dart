@@ -36,6 +36,11 @@ export 'package:forms360_uikit/src/widgets/items/tag_item.dart';
 //phone_form_field
 export 'package:phone_form_field/phone_form_field.dart';
 
+//model
+export 'package:forms360_uikit/src/model/generated_form_model.dart';
+export 'package:forms360_uikit/src/model/library_template_enum.dart';
+export 'package:forms360_uikit/src/model/child_form_generated_extension.dart';
+
 //abstract class
 class FormsKit {
   static Theme theme = Theme();
