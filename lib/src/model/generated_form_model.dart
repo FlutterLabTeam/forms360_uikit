@@ -1,0 +1,205 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:forms360_uikit/src/model/library_template_enum.dart';
+
+class GeneratedFormModel {
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DocumentReference? ref;
+  final DocumentReference? taskRef;
+  final DocumentReference? formRef;
+  final DocumentReference? companyRef;
+  final List<ChildFormGeneratedModel> children;
+
+  GeneratedFormModel({
+    this.taskRef,
+    this.formRef,
+    this.companyRef,
+    required this.ref,
+    required this.children,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  GeneratedFormModel copyWith({
+    DateTime? createdAt,
+    DocumentReference? ref,
+    DocumentReference? taskRef,
+    DocumentReference? formRef,
+    DocumentReference? companyRef,
+    List<ChildFormGeneratedModel>? children,
+    DateTime? updatedAt,
+  }) =>
+      GeneratedFormModel(
+        ref: ref ?? this.ref,
+        taskRef: taskRef ?? this.taskRef,
+        formRef: formRef ?? this.formRef,
+        children: children ?? this.children,
+        createdAt: createdAt ?? this.createdAt,
+        companyRef: companyRef ?? this.companyRef,
+        updatedAt: updatedAt ?? this.updatedAt,
+      );
+
+  factory GeneratedFormModel.fromJson(
+    Map<String, dynamic> json,
+    DocumentReference formRef,
+  ) =>
+      GeneratedFormModel(
+        ref: formRef,
+        formRef: json["form_ref"],
+        taskRef: json["task_ref"],
+        companyRef: json["company_ref"],
+        updatedAt: json["updated_at"] != null
+            ? json["updated_at"].toDate()
+            : DateTime.now(),
+        createdAt: json["created_at"] != null
+            ? json["created_at"].toDate()
+            : DateTime.now(),
+        children: List<ChildFormGeneratedModel>.from(
+          json["children"].map(
+            (x) => ChildFormGeneratedModel.fromJson(x),
+          ),
+        ),
+      );
+
+  factory GeneratedFormModel.init() => GeneratedFormModel(
+        ref: null,
+        children: [],
+        taskRef: null,
+        formRef: null,
+        companyRef: null,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "form_ref": formRef,
+        "task_ref": taskRef,
+        "created_at": createdAt,
+        "company_ref": companyRef,
+        "updated_at": DateTime.now(),
+        "children": List<dynamic>.from(children.map((x) => x.toJson())),
+      };
+}
+
+class ChildFormGeneratedModel {
+  final bool? boolValue;
+  final String fieldKey;
+  final String stringValue;
+  final DateTime? dateValue;
+  final double numericalValue;
+  final List<String> listValue;
+  final LibraryTemplateEnum type;
+  final Map<String, dynamic> mapValue;
+  final List<ChildFormGeneratedModel> childrenValue;
+
+  ChildFormGeneratedModel({
+    this.boolValue,
+    required this.type,
+    required this.fieldKey,
+    required this.mapValue,
+    required this.dateValue,
+    required this.listValue,
+    required this.stringValue,
+    required this.childrenValue,
+    required this.numericalValue,
+  });
+
+  ChildFormGeneratedModel copyWith({
+    bool? boolValue,
+    String? fieldKey,
+    DateTime? dateValue,
+    String? stringValue,
+    double? numericalValue,
+    List<String>? listValue,
+    LibraryTemplateEnum? type,
+    Map<String, dynamic>? mapValue,
+    List<ChildFormGeneratedModel>? childrenValue,
+  }) =>
+      ChildFormGeneratedModel(
+        type: type ?? this.type,
+        fieldKey: fieldKey ?? this.fieldKey,
+        mapValue: mapValue ?? this.mapValue,
+        boolValue: boolValue ?? this.boolValue,
+        dateValue: dateValue ?? this.dateValue,
+        listValue: listValue ?? this.listValue,
+        stringValue: stringValue ?? this.stringValue,
+        childrenValue: childrenValue ?? this.childrenValue,
+        numericalValue: numericalValue ?? this.numericalValue,
+      );
+
+  factory ChildFormGeneratedModel.fromJson(Map<String, dynamic> json) =>
+      ChildFormGeneratedModel(
+        type: generateTypeFromString(json["type"] ?? ""),
+        fieldKey: json["field_key"] ?? "",
+        mapValue: json["map_value"] ?? {},
+        boolValue: json["bool_value"],
+        stringValue: json["string_value"] ?? "",
+        numericalValue: json["numerical_value"] ?? 0,
+        listValue: List<String>.from(json["list_value"] ?? []),
+        dateValue: json["date_value"]?.toDate(),
+        childrenValue: List<ChildFormGeneratedModel>.from(json["children_value"]
+            .map((x) => ChildFormGeneratedModel.fromJson(x))),
+      );
+
+  factory ChildFormGeneratedModel.init() => ChildFormGeneratedModel(
+        fieldKey: "",
+        mapValue: {},
+        listValue: [],
+        dateValue: null,
+        stringValue: "",
+        boolValue: null,
+        childrenValue: [],
+        numericalValue: 0,
+        type: LibraryTemplateEnum.TEXT,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "type": type.name,
+        "map_value": mapValue,
+        "field_key": fieldKey,
+        "date_value": dateValue,
+        "bool_value": boolValue,
+        "string_value": stringValue,
+        "numerical_value": numericalValue,
+        "list_value": List<dynamic>.from(listValue.map((x) => x)),
+        "children_value":
+            List<dynamic>.from(childrenValue.map((x) => x.toJson())),
+      };
+}
+
+LibraryTemplateEnum generateTypeFromString(String type) {
+  switch (type) {
+    case "TEXT":
+      return LibraryTemplateEnum.TEXT;
+    case "NUMERIC":
+      return LibraryTemplateEnum.NUMERIC;
+    case "DATE":
+      return LibraryTemplateEnum.DATE;
+    case "BOOLEAN":
+      return LibraryTemplateEnum.BOOLEAN;
+    case "LIST":
+      return LibraryTemplateEnum.BARCODE;
+    case "MAP":
+      return LibraryTemplateEnum.CHECK_LIST;
+    case "PHOTO":
+      return LibraryTemplateEnum.PHOTO;
+    case "VIDEO":
+      return LibraryTemplateEnum.VIDEO;
+    case "SOUND":
+      return LibraryTemplateEnum.SOUND;
+    case "SELECTION_LIST":
+      return LibraryTemplateEnum.SELECTION_LIST;
+    case "GROUP":
+      return LibraryTemplateEnum.GROUP;
+    case "FORMULA_FIELD":
+      return LibraryTemplateEnum.FORMULA_FIELD;
+    case "MOBILE_DATA":
+      return LibraryTemplateEnum.MOBILE_DATA;
+    case "SMART_PHOTO":
+      return LibraryTemplateEnum.SMART_PHOTO;
+    case "SIGNATURE":
+      return LibraryTemplateEnum.SIGNATURE;
+    default:
+      return LibraryTemplateEnum.TEXT;
+  }
+}
