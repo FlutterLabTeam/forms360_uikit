@@ -1,13 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 
+enum PlatformType {
+  WEB,
+  MOBILE,
+}
+
 class DeleteCustomPopUp extends StatelessWidget {
   final String title;
   final Function() onTap;
   final String description;
+  final String? buttonText;
+  final PlatformType? platformType;
 
   const DeleteCustomPopUp({
     super.key,
+    this.buttonText,
+    this.platformType,
     required this.onTap,
     required this.title,
     required this.description,
@@ -19,7 +28,7 @@ class DeleteCustomPopUp extends StatelessWidget {
       children: [
         Text(
           title,
-          style: context.largeText,
+          style: platformType == PlatformType.WEB ? context.largeText : context.mobileTitleText,
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 20),
@@ -29,7 +38,7 @@ class DeleteCustomPopUp extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 40),
-        FormsKit.widget.buttons.button(title: "Delete", onPressed: onTap),
+        FormsKit.widget.buttons.button(title: buttonText ?? "Delete", onPressed: onTap),
       ],
     );
   }
