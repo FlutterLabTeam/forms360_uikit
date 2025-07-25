@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:forms360_uikit/src/model/delete_custom_enum.dart';
 
-enum PlatformType {
-  WEB,
-  MOBILE,
-}
+
 
 class DeleteCustomPopUp extends StatelessWidget {
   final String title;

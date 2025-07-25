@@ -6,6 +6,7 @@ export 'package:forms360_uikit/src/model/input_types.dart';
 export 'package:forms360_uikit/src/model/button_type.dart';
 export 'package:forms360_uikit/src/model/pop_up_model.dart';
 export 'package:forms360_uikit/src/model/tag_model.dart';
+export 'package:forms360_uikit/src/model/delete_custom_enum.dart';
 
 export 'package:forms360_uikit/src/model/permission_type.dart';
 export 'package:forms360_uikit/src/model/font_family_type.dart';
