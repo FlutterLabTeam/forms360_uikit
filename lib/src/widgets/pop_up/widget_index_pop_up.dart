@@ -8,7 +8,7 @@ class WidgetIndexPopUp {
     required String title,
     required Function() onTap,
     required String description,
-    PlatformType? platformType,
+    PlatformAlertType? platformType,
     String? buttonText,
   }) =>
       DeleteCustomPopUp(

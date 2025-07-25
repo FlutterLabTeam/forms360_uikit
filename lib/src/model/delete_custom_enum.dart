@@ -1,0 +1,4 @@
+enum PlatformAlertType {
+  WEB,
+  MOBILE,
+}

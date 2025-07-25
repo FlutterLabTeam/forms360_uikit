@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
-import 'package:forms360_uikit/src/model/delete_custom_enum.dart';
 
 
 
@@ -9,7 +8,7 @@ class DeleteCustomPopUp extends StatelessWidget {
   final Function() onTap;
   final String description;
   final String? buttonText;
-  final PlatformType? platformType;
+  final PlatformAlertType? platformType;
 
   const DeleteCustomPopUp({
     super.key,
@@ -26,7 +25,7 @@ class DeleteCustomPopUp extends StatelessWidget {
       children: [
         Text(
           title,
-          style: platformType == PlatformType.WEB ? context.largeText : context.mobileTitleText,
+          style: platformType == PlatformAlertType.WEB ? context.largeText : context.mobileTitleText,
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 20),
