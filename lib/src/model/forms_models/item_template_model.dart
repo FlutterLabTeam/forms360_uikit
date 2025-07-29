@@ -11,6 +11,7 @@ class ItemTemplateModel {
   final List<Condition> conditions;
   final List<Validation> validation;
   final SmartPhotoModel? smartPhoto;
+  final ChildFormGeneratedModel value;
   final List<String> matchesItemFromList;
   final List<ItemTemplateModel> children;
 
@@ -19,6 +20,7 @@ class ItemTemplateModel {
     this.smartPhoto,
     required this.key,
     required this.type,
+    required this.value,
     required this.label,
     required this.children,
     required this.checkList,
@@ -42,6 +44,7 @@ class ItemTemplateModel {
         type: LibraryTemplateEnum.TEXT,
         checkList: CheckListModel.init(),
         matchesItemFromList: [],
+        value: ChildFormGeneratedModel.init(),
       );
 
   ItemTemplateModel copyWith({
@@ -55,6 +58,7 @@ class ItemTemplateModel {
     List<Condition>? conditions,
     SmartPhotoModel? smartPhoto,
     List<Validation>? validation,
+    ChildFormGeneratedModel? value,
     List<ItemTemplateModel>? children,
     List<String>? matchesItemFromList,
     bool? isStatic,
@@ -63,6 +67,7 @@ class ItemTemplateModel {
         key: key ?? this.key,
         type: type ?? this.type,
         label: label ?? this.label,
+        value: value ?? this.value,
         formula: formula ?? this.formula,
         children: children ?? this.children,
         checkList: checkList ?? this.checkList,
@@ -78,6 +83,9 @@ class ItemTemplateModel {
       ItemTemplateModel(
         key: json["key"],
         label: json["label"],
+        value: json["value"] != null
+            ? ChildFormGeneratedModel.fromJson(json["value"])
+            : ChildFormGeneratedModel.init(),
         showLastInput: json["show_last_input"] ?? false,
         type: _generateLibraryTemplateEnum(json["type"]),
         checkList: json["check_list"] != null
@@ -108,6 +116,7 @@ class ItemTemplateModel {
         "key": key,
         "label": label,
         "type": type.name,
+        "value": value.toJson(),
         "formula": formula?.toJson(),
         "check_list": checkList.toJson(),
         "show_last_input": showLastInput,
@@ -219,8 +228,7 @@ class Condition {
   }
 
   bool validateCondition() {
-    if (type == ConditionType.IS_EMPTY ||
-        type == ConditionType.IS_NOT_EMPTY) {
+    if (type == ConditionType.IS_EMPTY || type == ConditionType.IS_NOT_EMPTY) {
       return true;
     }
     return false;
@@ -275,9 +283,9 @@ class FormulaModel {
       );
 
   factory FormulaModel.init() => FormulaModel(
-        operatorKey: null,
         firstFormulaKey: '',
         secondFormulaKey: '',
+        operatorKey: OperatorType.ADDITION,
       );
 
   factory FormulaModel.fromJson(Map<String, dynamic> json) => FormulaModel(
@@ -347,9 +355,11 @@ class CheckListModel {
 
   factory CheckListModel.fromJson(Map<String, dynamic> json) => CheckListModel(
         multiSelectors: json["multi_selectors"] ?? false,
-        checkListOptions: List<String>.from(
-          json["check_list_options"].map((x) => x),
-        ),
+        checkListOptions: json["check_list_options"] != null
+            ? List<String>.from(
+                json["check_list_options"].map((x) => x),
+              )
+            : [],
       );
 
   factory CheckListModel.init() => CheckListModel(
