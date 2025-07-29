@@ -20,23 +20,26 @@ class CustomSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: context.secondaryText.copyWith(
-            letterSpacing: 0,
-            color: context.primaryColor,
+        SizedBox(
+          width: context.sizeWidth(0.75),
+          child: Text(
+            label,
+            style: context.secondaryText.copyWith(
+              letterSpacing: 0,
+              color: context.primaryColor,
+            ),
           ),
         ),
         Switch(
           value: value,
           onChanged: disabled ? null : onTap,
-          activeTrackColor: disabled ? Colors.grey : context.secondaryColor,
-          inactiveTrackColor: disabled ? Colors.grey : context.surfaceContainerColor,
           thumbColor: WidgetStatePropertyAll(context.surfaceColor),
           trackOutlineColor: WidgetStatePropertyAll(context.surfaceColor),
+          activeTrackColor: disabled ? Colors.grey : context.secondaryColor,
+          inactiveTrackColor: disabled ? Colors.grey : context.surfaceContainerColor,
         ),
       ],
     );

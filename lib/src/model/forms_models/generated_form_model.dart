@@ -40,45 +40,41 @@ class GeneratedFormModel {
       );
 
   factory GeneratedFormModel.fromJson(
-    Map<String, dynamic> json,
-    DocumentReference formRef,
-  ) =>
+      Map<String, dynamic> json,
+      DocumentReference formRef,
+      ) =>
       GeneratedFormModel(
         ref: formRef,
         formRef: json["form_ref"],
         taskRef: json["task_ref"],
         companyRef: json["company_ref"],
-        updatedAt: json["updated_at"] != null
-            ? json["updated_at"].toDate()
-            : DateTime.now(),
-        createdAt: json["created_at"] != null
-            ? json["created_at"].toDate()
-            : DateTime.now(),
+        updatedAt: json["updated_at"] != null ? json["updated_at"].toDate() : DateTime.now(),
+        createdAt: json["created_at"] != null ? json["created_at"].toDate() : DateTime.now(),
         children: List<ChildFormGeneratedModel>.from(
           json["children"].map(
-            (x) => ChildFormGeneratedModel.fromJson(x),
+                (x) => ChildFormGeneratedModel.fromJson(x),
           ),
         ),
       );
 
   factory GeneratedFormModel.init() => GeneratedFormModel(
-        ref: null,
-        children: [],
-        taskRef: null,
-        formRef: null,
-        companyRef: null,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      );
+    ref: null,
+    children: [],
+    taskRef: null,
+    formRef: null,
+    companyRef: null,
+    createdAt: DateTime.now(),
+    updatedAt: DateTime.now(),
+  );
 
   Map<String, dynamic> toJson() => {
-        "form_ref": formRef,
-        "task_ref": taskRef,
-        "created_at": createdAt,
-        "company_ref": companyRef,
-        "updated_at": DateTime.now(),
-        "children": List<dynamic>.from(children.map((x) => x.toJson())),
-      };
+    "form_ref": formRef,
+    "task_ref": taskRef,
+    "created_at": createdAt,
+    "company_ref": companyRef,
+    "updated_at": DateTime.now(),
+    "children": List<dynamic>.from(children.map((x) => x.toJson())),
+  };
 }
 
 class ChildFormGeneratedModel {
@@ -87,6 +83,7 @@ class ChildFormGeneratedModel {
   final String stringValue;
   final DateTime? dateValue;
   final double numericalValue;
+  final String smartPhotoValue;
   final List<String> listValue;
   final LibraryTemplateEnum type;
   final Map<String, dynamic> mapValue;
@@ -102,6 +99,7 @@ class ChildFormGeneratedModel {
     required this.stringValue,
     required this.childrenValue,
     required this.numericalValue,
+    required this.smartPhotoValue,
   });
 
   ChildFormGeneratedModel copyWith({
@@ -110,6 +108,7 @@ class ChildFormGeneratedModel {
     DateTime? dateValue,
     String? stringValue,
     double? numericalValue,
+    String? smartPhotoValue,
     List<String>? listValue,
     LibraryTemplateEnum? type,
     Map<String, dynamic>? mapValue,
@@ -125,6 +124,7 @@ class ChildFormGeneratedModel {
         stringValue: stringValue ?? this.stringValue,
         childrenValue: childrenValue ?? this.childrenValue,
         numericalValue: numericalValue ?? this.numericalValue,
+        smartPhotoValue: smartPhotoValue ?? this.smartPhotoValue,
       );
 
   factory ChildFormGeneratedModel.fromJson(Map<String, dynamic> json) =>
@@ -132,39 +132,42 @@ class ChildFormGeneratedModel {
         type: generateTypeFromString(json["type"] ?? ""),
         fieldKey: json["field_key"] ?? "",
         mapValue: json["map_value"] ?? {},
-        boolValue: json["bool_value"],
+        boolValue: json["bool_value"] ?? null,
         stringValue: json["string_value"] ?? "",
         numericalValue: json["numerical_value"] ?? 0,
+        smartPhotoValue: json["smart_photo_value"] ?? "",
         listValue: List<String>.from(json["list_value"] ?? []),
-        dateValue: json["date_value"]?.toDate(),
+        dateValue:
+        json["date_value"] != null ? json["date_value"].toDate() : null,
         childrenValue: List<ChildFormGeneratedModel>.from(json["children_value"]
             .map((x) => ChildFormGeneratedModel.fromJson(x))),
       );
 
   factory ChildFormGeneratedModel.init() => ChildFormGeneratedModel(
-        fieldKey: "",
-        mapValue: {},
-        listValue: [],
-        dateValue: null,
-        stringValue: "",
-        boolValue: null,
-        childrenValue: [],
-        numericalValue: 0,
-        type: LibraryTemplateEnum.TEXT,
-      );
+    fieldKey: "",
+    mapValue: {},
+    listValue: [],
+    dateValue: null,
+    stringValue: "",
+    boolValue: null,
+    childrenValue: [],
+    numericalValue: 0,
+    smartPhotoValue: "",
+    type: LibraryTemplateEnum.TEXT,
+  );
 
   Map<String, dynamic> toJson() => {
-        "type": type.name,
-        "map_value": mapValue,
-        "field_key": fieldKey,
-        "date_value": dateValue,
-        "bool_value": boolValue,
-        "string_value": stringValue,
-        "numerical_value": numericalValue,
-        "list_value": List<dynamic>.from(listValue.map((x) => x)),
-        "children_value":
-            List<dynamic>.from(childrenValue.map((x) => x.toJson())),
-      };
+    "type": type.name,
+    "map_value": mapValue,
+    "field_key": fieldKey,
+    "date_value": dateValue,
+    "bool_value": boolValue,
+    "string_value": stringValue,
+    "numerical_value": numericalValue,
+    "smart_photo_value": smartPhotoValue,
+    "list_value": List<dynamic>.from(listValue.map((x) => x)),
+    "children_value": List<dynamic>.from(childrenValue.map((x) => x.toJson())),
+  };
 }
 
 LibraryTemplateEnum generateTypeFromString(String type) {
