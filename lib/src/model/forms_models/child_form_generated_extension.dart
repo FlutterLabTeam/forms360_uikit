@@ -1,7 +1,7 @@
 
 
-import 'package:forms360_uikit/src/model/generated_form_model.dart';
-import 'package:forms360_uikit/src/model/library_template_enum.dart';
+import 'package:forms360_uikit/src/model/forms_models/generated_form_model.dart';
+import 'package:forms360_uikit/src/model/forms_models/library_template_enum.dart';
 
 extension ChildFormGeneratedExtension on ChildFormGeneratedModel {
   bool get validateValueIsEmpty {

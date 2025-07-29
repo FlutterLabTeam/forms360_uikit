@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/logo.dart';
+import 'package:go_router/go_router.dart';
 
 class ManagementMultiPage extends StatelessWidget {
   const ManagementMultiPage({

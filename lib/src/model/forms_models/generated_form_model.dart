@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:forms360_uikit/src/model/library_template_enum.dart';
+import 'package:forms360_uikit/src/model/forms_models/library_template_enum.dart';
 
 class GeneratedFormModel {
   final DateTime createdAt;
