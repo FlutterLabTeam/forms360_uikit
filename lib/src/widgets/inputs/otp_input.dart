@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/widgets/inputs/custom_input_otp.dart';
 
 class OtpInput extends StatefulWidget {
   final double? fontSizeWidth;
   final double? fontSizeHeight;
   final Function(String)? onSubmit;
+  final PlatformAlertType? platform;
   final List<TextEditingController> controllers;
 
   const OtpInput({
-    super.key, 
+    super.key,
     this.onSubmit,
-    this.fontSizeHeight,
+    this.platform,
     this.fontSizeWidth,
+    this.fontSizeHeight,
     required this.controllers,
   });
 
@@ -41,8 +44,9 @@ class _OtpInputState extends State<OtpInput> {
 
   void _handleInput(String value, int index) {
     if (value.isNotEmpty) {
-      bool allFilled = widget.controllers.every((controller) => controller.text.isNotEmpty);
-      
+      bool allFilled =
+          widget.controllers.every((controller) => controller.text.isNotEmpty);
+
       if (allFilled) {
         for (var node in focusNodes) {
           node.unfocus();
@@ -69,6 +73,7 @@ class _OtpInputState extends State<OtpInput> {
         (index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 7),
           child: CustomInputOtp(
+            platform: widget.platform,
             allFocusNodes: focusNodes,
             focusNode: focusNodes[index],
             allControllers: widget.controllers,
@@ -76,7 +81,9 @@ class _OtpInputState extends State<OtpInput> {
             controller: widget.controllers[index],
             fontSizeHeight: widget.fontSizeHeight,
             onSubmit: (value) => _handleInput(value, index),
-            nextFocusNode: index < widget.controllers.length - 1 ? focusNodes[index + 1] : null,
+            nextFocusNode: index < widget.controllers.length - 1
+                ? focusNodes[index + 1]
+                : null,
           ),
         ),
       ),

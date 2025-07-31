@@ -1,10 +1,11 @@
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'dart:convert';
 
 class ItemTemplateModel {
   final String key;
   final String label;
+  final bool userInput;
   final bool showLastInput;
-  final bool activateMetadata;
   final FormulaModel? formula;
   final CheckListModel checkList;
   final LibraryTemplateEnum type;
@@ -14,6 +15,7 @@ class ItemTemplateModel {
   final ChildFormGeneratedModel value;
   final List<String> matchesItemFromList;
   final List<ItemTemplateModel> children;
+  final MultimediaMetadataModel multimediaMetadata;
 
   ItemTemplateModel({
     this.formula,
@@ -22,12 +24,13 @@ class ItemTemplateModel {
     required this.type,
     required this.value,
     required this.label,
+    this.userInput = false,
     required this.children,
     required this.checkList,
     required this.conditions,
     required this.validation,
     required this.showLastInput,
-    required this.activateMetadata,
+    required this.multimediaMetadata,
     required this.matchesItemFromList,
   });
 
@@ -38,21 +41,22 @@ class ItemTemplateModel {
         formula: null,
         conditions: [],
         validation: [],
+        userInput: false,
         smartPhoto: null,
         showLastInput: false,
-        activateMetadata: false,
+        matchesItemFromList: [],
         type: LibraryTemplateEnum.TEXT,
         checkList: CheckListModel.init(),
-        matchesItemFromList: [],
         value: ChildFormGeneratedModel.init(),
+        multimediaMetadata: MultimediaMetadataModel.init(),
       );
 
   ItemTemplateModel copyWith({
     String? key,
     String? label,
+    bool? userInput,
     bool? showLastInput,
     FormulaModel? formula,
-    bool? activateMetadata,
     LibraryTemplateEnum? type,
     CheckListModel? checkList,
     List<Condition>? conditions,
@@ -61,7 +65,7 @@ class ItemTemplateModel {
     ChildFormGeneratedModel? value,
     List<ItemTemplateModel>? children,
     List<String>? matchesItemFromList,
-    bool? isStatic,
+    MultimediaMetadataModel? multimediaMetadata,
   }) =>
       ItemTemplateModel(
         key: key ?? this.key,
@@ -70,12 +74,13 @@ class ItemTemplateModel {
         value: value ?? this.value,
         formula: formula ?? this.formula,
         children: children ?? this.children,
+        userInput: userInput ?? this.userInput,
         checkList: checkList ?? this.checkList,
         conditions: conditions ?? this.conditions,
         validation: validation ?? this.validation,
         smartPhoto: smartPhoto ?? this.smartPhoto,
         showLastInput: showLastInput ?? this.showLastInput,
-        activateMetadata: activateMetadata ?? this.activateMetadata,
+        multimediaMetadata: multimediaMetadata ?? this.multimediaMetadata,
         matchesItemFromList: matchesItemFromList ?? this.matchesItemFromList,
       );
 
@@ -83,6 +88,7 @@ class ItemTemplateModel {
       ItemTemplateModel(
         key: json["key"],
         label: json["label"],
+        userInput: json["user_input"] ?? false,
         value: json["value"] != null
             ? ChildFormGeneratedModel.fromJson(json["value"])
             : ChildFormGeneratedModel.init(),
@@ -106,7 +112,9 @@ class ItemTemplateModel {
         smartPhoto: json["smart_photo"] != null
             ? SmartPhotoModel.fromJson(json["smart_photo"])
             : null,
-        activateMetadata: json["activate_metadata"] ?? false,
+        multimediaMetadata: json["multimedia_metadata"] != null
+            ? MultimediaMetadataModel.fromJson(json["multimedia_metadata"])
+            : MultimediaMetadataModel.init(),
         matchesItemFromList: json["matches_item_from_list"] != null
             ? List<String>.from(json["matches_item_from_list"].map((x) => x))
             : [],
@@ -117,17 +125,72 @@ class ItemTemplateModel {
         "label": label,
         "type": type.name,
         "value": value.toJson(),
+        "user_input": userInput,
         "formula": formula?.toJson(),
         "check_list": checkList.toJson(),
         "show_last_input": showLastInput,
         "smart_photo": smartPhoto?.toJson(),
-        "activate_metadata": activateMetadata,
+        "multimedia_metadata": multimediaMetadata?.toJson(),
         "children": List<dynamic>.from(children.map((x) => x.toJson())),
         "validation": List<dynamic>.from(validation.map((x) => x.toJson())),
         "conditions": List<dynamic>.from(conditions.map((x) => x.toJson())),
         "matches_item_from_list":
             List<dynamic>.from(matchesItemFromList.map((x) => x)),
       };
+}
+
+class MultimediaMetadataModel {
+  final bool location;
+  final bool dateAndTime;
+  final bool activateMetadata;
+  final bool deviceInformation;
+
+  MultimediaMetadataModel({
+    required this.location,
+    required this.dateAndTime,
+    required this.activateMetadata,
+    required this.deviceInformation,
+  });
+
+  MultimediaMetadataModel copyWith({
+    bool? location,
+    bool? dateAndTime,
+    bool? activateMetadata,
+    bool? deviceInformation,
+  }) =>
+      MultimediaMetadataModel(
+        location: location ?? this.location,
+        dateAndTime: dateAndTime ?? this.dateAndTime,
+        activateMetadata: activateMetadata ?? this.activateMetadata,
+        deviceInformation: deviceInformation ?? this.deviceInformation,
+      );
+
+  factory MultimediaMetadataModel.fromJson(Map<String, dynamic> json) =>
+      MultimediaMetadataModel(
+        location: json["location"],
+        dateAndTime: json["date_and_time"],
+        activateMetadata: json["activate_metadata"],
+        deviceInformation: json["device_information"],
+      );
+
+  factory MultimediaMetadataModel.init() =>
+      MultimediaMetadataModel(
+        location: false,
+        dateAndTime: false,
+        activateMetadata: false,
+        deviceInformation: false,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "location": location,
+        "date_and_time": dateAndTime,
+        "activate_metadata": activateMetadata,
+        "device_information": deviceInformation,
+      };
+
+    factory MultimediaMetadataModel.fromRawJson(String str) => MultimediaMetadataModel.fromJson(json.decode(str));
+
+    String toRawJson() => json.encode(toJson());
 }
 
 class Validation {

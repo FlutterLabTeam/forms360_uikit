@@ -88,7 +88,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
       initialValue: widget.initialValue,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
-      autofillHints: autofillHints,
+      autofillHints: widget.keyboardType == TextInputType.emailAddress ? [AutofillHints.username] : widget.isPassword ? [AutofillHints.password] : null,
       decoration: InputDecoration(
         counterText: "",
         prefix: widget.prefixWidget,
@@ -142,7 +142,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
       validator: widget.validator,
       cursorColor: _generateColorInput(),
       textInputAction: TextInputAction.done,
-      obscureText: widget.isPassword && _obscureText,
+      obscureText: widget.isPassword ? _obscureText : false,
       onFieldSubmitted: (value) {
         if (widget.onFieldSubmitted != null) {
           widget.onFieldSubmitted!(value);

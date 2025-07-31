@@ -24,7 +24,6 @@ class CustomSwitch extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: context.sizeWidth(0.75),
           child: Text(
             label,
             style: context.secondaryText.copyWith(
@@ -33,6 +32,7 @@ class CustomSwitch extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(width: 10),
         Switch(
           value: value,
           onChanged: disabled ? null : onTap,

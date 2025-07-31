@@ -8,6 +8,7 @@ class GeneratedFormModel {
   final DocumentReference? taskRef;
   final DocumentReference? formRef;
   final DocumentReference? companyRef;
+  final Map<String, dynamic> deviceMetadata;
   final List<ChildFormGeneratedModel> children;
 
   GeneratedFormModel({
@@ -18,16 +19,18 @@ class GeneratedFormModel {
     required this.children,
     required this.createdAt,
     required this.updatedAt,
+    required this.deviceMetadata,
   });
 
   GeneratedFormModel copyWith({
     DateTime? createdAt,
+    DateTime? updatedAt,
     DocumentReference? ref,
     DocumentReference? taskRef,
     DocumentReference? formRef,
     DocumentReference? companyRef,
     List<ChildFormGeneratedModel>? children,
-    DateTime? updatedAt,
+    Map<String, dynamic>? deviceMetadata,
   }) =>
       GeneratedFormModel(
         ref: ref ?? this.ref,
@@ -35,8 +38,9 @@ class GeneratedFormModel {
         formRef: formRef ?? this.formRef,
         children: children ?? this.children,
         createdAt: createdAt ?? this.createdAt,
-        companyRef: companyRef ?? this.companyRef,
         updatedAt: updatedAt ?? this.updatedAt,
+        companyRef: companyRef ?? this.companyRef,
+        deviceMetadata: deviceMetadata ?? this.deviceMetadata,
       );
 
   factory GeneratedFormModel.fromJson(
@@ -48,6 +52,7 @@ class GeneratedFormModel {
         formRef: json["form_ref"],
         taskRef: json["task_ref"],
         companyRef: json["company_ref"],
+        deviceMetadata: json["device_metadata"] ?? {},
         updatedAt: json["updated_at"] != null ? json["updated_at"].toDate() : DateTime.now(),
         createdAt: json["created_at"] != null ? json["created_at"].toDate() : DateTime.now(),
         children: List<ChildFormGeneratedModel>.from(
@@ -63,6 +68,7 @@ class GeneratedFormModel {
     taskRef: null,
     formRef: null,
     companyRef: null,
+    deviceMetadata: {},
     createdAt: DateTime.now(),
     updatedAt: DateTime.now(),
   );
@@ -73,6 +79,7 @@ class GeneratedFormModel {
     "created_at": createdAt,
     "company_ref": companyRef,
     "updated_at": DateTime.now(),
+    "device_metadata": deviceMetadata,
     "children": List<dynamic>.from(children.map((x) => x.toJson())),
   };
 }

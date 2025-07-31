@@ -7,6 +7,7 @@ class CustomInputOtp extends StatelessWidget {
   final double? fontSizeWidth;
   final double? fontSizeHeight;
   final FocusNode? nextFocusNode;
+  final PlatformAlertType? platform;
   final Function(String)? onSubmit;
   final List<FocusNode> allFocusNodes;
   final TextEditingController controller;
@@ -20,14 +21,15 @@ class CustomInputOtp extends StatelessWidget {
     this.fontSizeWidth,
     this.fontSizeHeight,
     required this.controller,
-    required this.allControllers,
     required this.allFocusNodes,
+    required this.allControllers,
+    this.platform = PlatformAlertType.WEB,
   });
 
   void _handleInput(String value) {
     if (value.isNotEmpty) {
       bool allFilled =
-          allControllers.every((controller) => controller.text.isNotEmpty);
+          allControllers.every((controller) => controller.text.isNotEmpty,);
 
       if (allFilled) {
         for (var node in allFocusNodes) {
@@ -72,7 +74,9 @@ class CustomInputOtp extends StatelessWidget {
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color(0xFFE8EDF1),
-          contentPadding: const EdgeInsets.symmetric(vertical: 30),
+          contentPadding: platform == PlatformAlertType.WEB
+              ? const EdgeInsets.symmetric(vertical: 30)
+              : null,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50),
             borderSide: const BorderSide(color: Color(0xFFE8EDF1)),

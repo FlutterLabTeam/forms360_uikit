@@ -1,11 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:phone_form_field/phone_form_field.dart';
-import 'package:forms360_uikit/src/model/tag_model.dart';
-import 'package:forms360_uikit/src/model/input_types.dart';
+import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/model/custom_form_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
-import 'package:forms360_uikit/src/widgets/inputs/otp_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/tag_widget.dart';
 import 'package:forms360_uikit/src/widgets/inputs/phone_input.dart';
@@ -33,15 +30,15 @@ class Inputs {
     bool isPassword = false,
     required String hintText,
     EdgeInsets? contentPadding,
-    TextInputType? keyboardType,
     void Function()? onIconPressed,
     bool isSuffixIconEnabled = false,
     void Function(String)? onChanged,
     TextEditingController? controller,
     final Function(String?)? onFieldSubmitted,
     final String? Function(String?)? validator,
-    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
     List<TextInputFormatter>? inputFormatters,
+    TextInputType keyboardType = TextInputType.text,
+    PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
   }) =>
       PrimaryInput(
         isBig: isBig,
@@ -148,10 +145,12 @@ class Inputs {
     double? fontSizeWidth,
     double? fontSizeHeight,
     Function(String)? onSubmit,
+    PlatformAlertType? platform,
     required List<TextEditingController> controllers,
   }) =>
       OtpInput(
         onSubmit: onSubmit,
+        platform: platform,
         controllers: controllers,
         fontSizeWidth: fontSizeWidth,
         fontSizeHeight: fontSizeHeight,
