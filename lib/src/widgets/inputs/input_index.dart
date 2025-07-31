@@ -4,6 +4,7 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/model/custom_form_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
 import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/otp_input_mobile.dart';
 import 'package:forms360_uikit/src/widgets/inputs/tag_widget.dart';
 import 'package:forms360_uikit/src/widgets/inputs/phone_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/custom_form.dart';
@@ -148,13 +149,21 @@ class Inputs {
     PlatformAlertType? platform,
     required List<TextEditingController> controllers,
   }) =>
-      OtpInput(
-        onSubmit: onSubmit,
-        platform: platform,
-        controllers: controllers,
-        fontSizeWidth: fontSizeWidth,
-        fontSizeHeight: fontSizeHeight,
-      );
+      platform == PlatformAlertType.WEB
+          ? OtpInput(
+              onSubmit: onSubmit,
+              platform: platform,
+              controllers: controllers,
+              fontSizeWidth: fontSizeWidth,
+              fontSizeHeight: fontSizeHeight,
+            )
+          : OtpInputMobile(
+              onSubmit: onSubmit,
+              platform: platform,
+              controllers: controllers,
+              fontSizeWidth: fontSizeWidth,
+              fontSizeHeight: fontSizeHeight,
+            );
 
   Widget checkBox({
     required bool state,
@@ -290,13 +299,13 @@ class Inputs {
       );
 
   Widget phoneInput({
-    int? maxLength, 
+    int? maxLength,
     Icon? suffixeIcon,
     required String label,
     bool isEnabled = true,
     required String hintText,
     PhoneNumber? initialValue,
-    Function()? suffixIconOnPressed,  
+    Function()? suffixIconOnPressed,
     bool isSuffixIconEnabled = false,
     required PhoneController controller,
     final String? Function(PhoneNumber?)? validator,
@@ -326,7 +335,7 @@ class Inputs {
       CustomSwitch(
         onTap: onTap,
         value: value,
-        label: label, 
+        label: label,
         disabled: disabled,
         mainAxisAlignment: mainAxisAlignment,
       );
