@@ -130,7 +130,7 @@ class ItemTemplateModel {
         "check_list": checkList.toJson(),
         "show_last_input": showLastInput,
         "smart_photo": smartPhoto?.toJson(),
-        "multimedia_metadata": multimediaMetadata?.toJson(),
+        "multimedia_metadata": multimediaMetadata.toJson(),
         "children": List<dynamic>.from(children.map((x) => x.toJson())),
         "validation": List<dynamic>.from(validation.map((x) => x.toJson())),
         "conditions": List<dynamic>.from(conditions.map((x) => x.toJson())),
