@@ -5,9 +5,10 @@ import 'package:go_router/go_router.dart';
 
 Future<dynamic> showErrorPopUp(
   BuildContext context, {
-  required String message,
   required String okText,
+  required String message,
   bool barrierDismissible = true,
+  PlatformAlertType? platform = PlatformAlertType.MOBILE,
 }) async {
   return await showDialog(
     context: context,
@@ -68,12 +69,13 @@ Future<dynamic> showErrorPopUp(
                                       children: [
                                         Icon(
                                           Icons.error,
-                                          color: Colors.red,
-                                          size: 50,
+                                          color: context.errorColor,
+                                          size: platform == PlatformAlertType.MOBILE ? 50 : 100,
                                         ),
                                         SizedBox(height: 20),
                                         Text(
                                           message,
+                                          textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: context.primaryColor,
                                             fontSize: 20,

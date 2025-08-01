@@ -44,6 +44,7 @@ export 'package:forms360_uikit/src/model/forms_models/child_form_generated_exten
 export 'package:forms360_uikit/src/model/forms_models/form_template_model.dart';
 export 'package:forms360_uikit/src/model/forms_models/item_template_model.dart';
 export 'package:forms360_uikit/src/model/forms_models/form_template_enum.dart';
+export 'package:forms360_uikit/src/model/forms_models/task_model.dart';
 
 //abstract class
 class FormsKit {
