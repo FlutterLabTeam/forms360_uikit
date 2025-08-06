@@ -187,9 +187,9 @@ LibraryTemplateEnum generateTypeFromString(String type) {
       return LibraryTemplateEnum.DATE;
     case "BOOLEAN":
       return LibraryTemplateEnum.BOOLEAN;
-    case "LIST":
+    case "BARCODE":
       return LibraryTemplateEnum.BARCODE;
-    case "MAP":
+    case "CHECK_LIST":
       return LibraryTemplateEnum.CHECK_LIST;
     case "PHOTO":
       return LibraryTemplateEnum.PHOTO;
