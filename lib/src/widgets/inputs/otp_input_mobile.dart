@@ -32,6 +32,21 @@ class _OtpInputStateMobile extends State<OtpInputMobile> {
       widget.controllers.length,
       (index) => FocusNode(),
     );
+    
+    // Inicializar todos los controladores con "*" si están vacíos
+    for (var controller in widget.controllers) {
+      if (controller.text.isEmpty) {
+        controller.text = "*";
+        controller.selection = TextSelection.collapsed(offset: 1);
+      }
+    }
+    
+    // Agregar listeners a todos los controladores para actualizar UI
+    for (var controller in widget.controllers) {
+      controller.addListener(() {
+        setState(() {}); // Actualizar UI cuando cambie cualquier controlador
+      });
+    }
   }
 
   @override
@@ -43,24 +58,38 @@ class _OtpInputStateMobile extends State<OtpInputMobile> {
   }
 
   void _handleInput(String value, int index) {
-    if (value.isNotEmpty) {
+    if (value.isNotEmpty && value != "*") {
+      // Si se ingresó un número válido
       if (index < widget.controllers.length - 1) {
         focusNodes[index + 1].requestFocus();
       } else {
         bool allFilled = widget.controllers.every(
-          (controller) => controller.text.isNotEmpty,
+          (controller) => controller.text.isNotEmpty && controller.text != "*",
         );
         if (allFilled) {
           for (var node in focusNodes) {
             node.unfocus();
           }
-          String fullValue = widget.controllers.map((c) => c.text).join();
+          String fullValue = widget.controllers
+              .map((c) => c.text == "*" ? "" : c.text)
+              .join();
           widget.onSubmit?.call(fullValue);
         }
       }
-    } else {
-      if (index > 0) focusNodes[index - 1].requestFocus();
+    } else if (value.isEmpty || value == "*") {
+      // Si se eliminó el texto o quedó solo "*", navegar al anterior
+      if (index > 0) {
+        // Asegurar que el input anterior tenga "*" si está vacío
+        if (widget.controllers[index - 1].text.isEmpty) {
+          widget.controllers[index - 1].text = "*";
+          widget.controllers[index - 1].selection = TextSelection.collapsed(offset: 1);
+        }
+        focusNodes[index - 1].requestFocus();
+      }
     }
+    
+    // Actualizar UI después de cualquier cambio
+    setState(() {});
   }
 
   @override
