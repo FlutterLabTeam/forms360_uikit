@@ -141,7 +141,7 @@ class ChildFormGeneratedModel {
         mapValue: json["map_value"] ?? {},
         boolValue: json["bool_value"] ?? null,
         stringValue: json["string_value"] ?? "",
-        numericalValue: json["numerical_value"] ?? 0,
+        numericalValue: (json["numerical_value"] ?? 0).toDouble(),
         smartPhotoValue: json["smart_photo_value"] ?? "",
         listValue: List<String>.from(json["list_value"] ?? []),
         dateValue:
