@@ -6,10 +6,10 @@ class ItemTemplateModel {
   final String label;
   final bool userInput;
   final bool showLastInput;
-  final FormulaModel? formula;
   final CheckListModel checkList;
   final LibraryTemplateEnum type;
   final List<Condition> conditions;
+  final List<FormulaModel> formula;
   final List<Validation> validation;
   final SmartPhotoModel? smartPhoto;
   final ChildFormGeneratedModel value;
@@ -18,12 +18,12 @@ class ItemTemplateModel {
   final MultimediaMetadataModel multimediaMetadata;
 
   ItemTemplateModel({
-    this.formula,
     this.smartPhoto,
     required this.key,
     required this.type,
     required this.value,
     required this.label,
+    required this.formula,
     this.userInput = false,
     required this.children,
     required this.checkList,
@@ -37,8 +37,8 @@ class ItemTemplateModel {
   factory ItemTemplateModel.init() => ItemTemplateModel(
         key: '',
         label: '',
+        formula: [],
         children: [],
-        formula: null,
         conditions: [],
         validation: [],
         userInput: false,
@@ -56,9 +56,9 @@ class ItemTemplateModel {
     String? label,
     bool? userInput,
     bool? showLastInput,
-    FormulaModel? formula,
     LibraryTemplateEnum? type,
     CheckListModel? checkList,
+    List<FormulaModel>? formula,
     List<Condition>? conditions,
     SmartPhotoModel? smartPhoto,
     List<Validation>? validation,
@@ -97,9 +97,11 @@ class ItemTemplateModel {
         checkList: json["check_list"] != null
             ? CheckListModel.fromJson(json["check_list"])
             : CheckListModel.init(),
-        formula: json["formula"] != null
-            ? FormulaModel.fromJson(json["formula"])
-            : null,
+        formula: json["formula"] != null && json["formula"] is List
+            ? List<FormulaModel>.from(
+                json["formula"].map((x) => FormulaModel.fromJson(x)),
+              )
+            : [],
         conditions: List<Condition>.from(
           json["conditions"].map((x) => Condition.fromJson(x)),
         ),
@@ -126,11 +128,11 @@ class ItemTemplateModel {
         "type": type.name,
         "value": value.toJson(),
         "user_input": userInput,
-        "formula": formula?.toJson(),
         "check_list": checkList.toJson(),
         "show_last_input": showLastInput,
         "smart_photo": smartPhoto?.toJson(),
         "multimedia_metadata": multimediaMetadata.toJson(),
+        "formula": List<dynamic>.from(formula.map((x) => x.toJson())),
         "children": List<dynamic>.from(children.map((x) => x.toJson())),
         "validation": List<dynamic>.from(validation.map((x) => x.toJson())),
         "conditions": List<dynamic>.from(conditions.map((x) => x.toJson())),
@@ -173,8 +175,7 @@ class MultimediaMetadataModel {
         deviceInformation: json["device_information"],
       );
 
-  factory MultimediaMetadataModel.init() =>
-      MultimediaMetadataModel(
+  factory MultimediaMetadataModel.init() => MultimediaMetadataModel(
         location: false,
         dateAndTime: false,
         activateMetadata: false,
@@ -188,9 +189,10 @@ class MultimediaMetadataModel {
         "device_information": deviceInformation,
       };
 
-    factory MultimediaMetadataModel.fromRawJson(String str) => MultimediaMetadataModel.fromJson(json.decode(str));
+  factory MultimediaMetadataModel.fromRawJson(String str) =>
+      MultimediaMetadataModel.fromJson(json.decode(str));
 
-    String toRawJson() => json.encode(toJson());
+  String toRawJson() => json.encode(toJson());
 }
 
 class Validation {
@@ -324,47 +326,47 @@ class Condition {
 }
 
 class FormulaModel {
-  final OperatorType? operatorKey;
-  final String firstFormulaKey;
-  final String secondFormulaKey;
+  final num? numericValue;
+  final String? formulaKey;
+  final CalculatorItemsEnum? operatorKey;
 
   FormulaModel({
+    this.formulaKey,
     this.operatorKey,
-    required this.firstFormulaKey,
-    required this.secondFormulaKey,
+    this.numericValue,
   });
 
   FormulaModel copyWith({
-    OperatorType? operatorKey,
-    String? firstFormulaKey,
-    String? secondFormulaKey,
+    num? numericValue,
+    String? formulaKey,
+    CalculatorItemsEnum? operatorKey,
   }) =>
       FormulaModel(
+        formulaKey: formulaKey ?? this.formulaKey,
         operatorKey: operatorKey ?? this.operatorKey,
-        firstFormulaKey: firstFormulaKey ?? this.firstFormulaKey,
-        secondFormulaKey: secondFormulaKey ?? this.secondFormulaKey,
+        numericValue: numericValue ?? this.numericValue,
       );
 
   factory FormulaModel.init() => FormulaModel(
-        firstFormulaKey: '',
-        secondFormulaKey: '',
-        operatorKey: OperatorType.ADDITION,
+        formulaKey: null,
+        operatorKey: null,
+        numericValue: null,
       );
 
   factory FormulaModel.fromJson(Map<String, dynamic> json) => FormulaModel(
         operatorKey: json["operator_key"] != null
-            ? OperatorType.values.firstWhere(
+            ? CalculatorItemsEnum.values.firstWhere(
                 (e) => e.name == json["operator_key"],
               )
             : null,
-        firstFormulaKey: json["first_formula_key"],
-        secondFormulaKey: json["second_formula_key"],
+        formulaKey: json["formula_key"],
+        numericValue: json["numeric_value"]?.toDouble(),
       );
 
   Map<String, dynamic> toJson() => {
+        "formula_key": formulaKey,
+        "numeric_value": numericValue,
         "operator_key": operatorKey?.name,
-        "first_formula_key": firstFormulaKey,
-        "second_formula_key": secondFormulaKey,
       };
 }
 
