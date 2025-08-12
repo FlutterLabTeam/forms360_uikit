@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:forms360_uikit/src/theme/text/texts.dart';
 import 'package:forms360_uikit/src/model/input_types.dart';
@@ -21,6 +22,7 @@ class PrimaryInput extends StatefulWidget {
     this.inputFormatters,
     required this.enabled,
     this.onFieldSubmitted,
+    this.onFocusChanged,
     required this.hintText,
     required this.isPassword,
     this.isSuffixIconEnabled = false,
@@ -46,6 +48,7 @@ class PrimaryInput extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Function(String?)? onFieldSubmitted;
+  final void Function(String)? onFocusChanged;
   final List<TextInputFormatter>? inputFormatters;
   final Widget? prefixWidget;
   @override
@@ -55,11 +58,14 @@ class PrimaryInput extends StatefulWidget {
 class _PrimaryInputState extends State<PrimaryInput> {
   Iterable<String>? autofillHints;
   bool _obscureText = true;
+  late FocusNode _focusNode;
+  String _value = "";
 
   @override
   void initState() {
     super.initState();
     _obscureText = widget.isPassword;
+    _focusNode = FocusNode();
 
     if (widget.keyboardType == TextInputType.emailAddress) {
       autofillHints = [AutofillHints.username];
@@ -68,6 +74,20 @@ class _PrimaryInputState extends State<PrimaryInput> {
     if (widget.isPassword) {
       autofillHints = [AutofillHints.password];
     }
+
+    SchedulerBinding.instance.addPostFrameCallback(
+      (_) async {
+        _focusNode.addListener(() {
+          if (!_focusNode.hasFocus) widget.onFocusChanged?.call(_value);
+        });
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
   }
 
   void _togglePasswordVisibility() {
@@ -80,22 +100,35 @@ class _PrimaryInputState extends State<PrimaryInput> {
   Widget build(BuildContext context) {
     return TextFormField(
       key: widget.key,
+      focusNode: _focusNode,
       enabled: widget.enabled,
-      onChanged: widget.onChanged,
+      onChanged: (value) {
+        _value = value;
+        widget.onChanged?.call(value);
+      },
       maxLength: widget.maxLength,
       controller: widget.controller,
       maxLines: !widget.isBig ? 1 : 6,
       initialValue: widget.initialValue,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
-      autofillHints: widget.keyboardType == TextInputType.emailAddress ? [AutofillHints.username] : widget.isPassword ? [AutofillHints.password] : null,
+      autofillHints: widget.keyboardType == TextInputType.emailAddress
+          ? [AutofillHints.username]
+          : widget.isPassword
+              ? [AutofillHints.password]
+              : null,
       decoration: InputDecoration(
         counterText: "",
         prefix: widget.prefixWidget,
         hintText: widget.hintText,
         labelText: widget.label,
-        labelStyle: widget.textStyle ?? AppearanceKitTextTheme.build().input.copyWith(color: _generateColorInput(), fontSize: 20),
-        fillColor: widget.inputColor == PrimaryInputColorKit.TRANSPARENT ? Colors.transparent : null,
+        labelStyle: widget.textStyle ??
+            AppearanceKitTextTheme.build()
+                .input
+                .copyWith(color: _generateColorInput(), fontSize: 20),
+        fillColor: widget.inputColor == PrimaryInputColorKit.TRANSPARENT
+            ? Colors.transparent
+            : null,
         hintStyle: widget.textStyle ??
             AppearanceKitTextTheme.build()
                 .input
@@ -143,11 +176,6 @@ class _PrimaryInputState extends State<PrimaryInput> {
       cursorColor: _generateColorInput(),
       textInputAction: TextInputAction.done,
       obscureText: widget.isPassword ? _obscureText : false,
-      onFieldSubmitted: (value) {
-        if (widget.onFieldSubmitted != null) {
-          widget.onFieldSubmitted!(value);
-        }
-      },
       style: widget.textStyle ??
           AppearanceKitTextTheme.build()
               .input
@@ -158,7 +186,8 @@ class _PrimaryInputState extends State<PrimaryInput> {
   Color _generateColorInput() {
     if (widget.inputColor == PrimaryInputColorKit.BLACK) return Colors.black;
     if (widget.inputColor == PrimaryInputColorKit.WHITE) return Colors.white;
-    if (widget.inputColor == PrimaryInputColorKit.TRANSPARENT) return Colors.white;
+    if (widget.inputColor == PrimaryInputColorKit.TRANSPARENT)
+      return Colors.white;
     return Theme.of(context).colorScheme.primary;
   }
 }

@@ -4,15 +4,15 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/model/custom_form_model.dart';
 import 'package:forms360_uikit/src/widgets/inputs/check_box.dart';
 import 'package:forms360_uikit/src/widgets/inputs/date_input.dart';
-import 'package:forms360_uikit/src/widgets/inputs/otp_input_mobile.dart';
 import 'package:forms360_uikit/src/widgets/inputs/tag_widget.dart';
 import 'package:forms360_uikit/src/widgets/inputs/phone_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/custom_form.dart';
 import 'package:forms360_uikit/src/widgets/inputs/search_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/primary_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/custom_switch.dart';
-import 'package:forms360_uikit/src/widgets/inputs/primary_date_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/otp_input_mobile.dart';
 import 'package:forms360_uikit/src/widgets/inputs/pop_up_text_input.dart';
+import 'package:forms360_uikit/src/widgets/inputs/primary_date_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/pop_up_row_text_inputs.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dropdown_writable_input.dart';
 import 'package:forms360_uikit/src/widgets/inputs/dynamic_dropdown_writable_input.dart';
@@ -35,6 +35,7 @@ class Inputs {
     bool isSuffixIconEnabled = false,
     void Function(String)? onChanged,
     TextEditingController? controller,
+    void Function(String)? onFocusChanged,
     final Function(String?)? onFieldSubmitted,
     final String? Function(String?)? validator,
     List<TextInputFormatter>? inputFormatters,
@@ -60,6 +61,7 @@ class Inputs {
         onIconPressed: onIconPressed,
         contentPadding: contentPadding,
         inputFormatters: inputFormatters,
+        onFocusChanged: onFocusChanged,
         onFieldSubmitted: onFieldSubmitted,
         isSuffixIconEnabled: isSuffixIconEnabled,
       );
