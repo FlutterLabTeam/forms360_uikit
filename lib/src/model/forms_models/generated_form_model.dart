@@ -46,25 +46,41 @@ class GeneratedFormModel {
   factory GeneratedFormModel.fromJson(
     Map<String, dynamic> json,
     DocumentReference formRef,
-  ) =>
-      GeneratedFormModel(
-        ref: formRef,
-        formRef: json["form_ref"],
-        taskRef: json["task_ref"],
-        companyRef: json["company_ref"],
-        deviceMetadata: json["device_metadata"] ?? {},
-        updatedAt: json["updated_at"] != null
-            ? json["updated_at"].toDate()
-            : DateTime.now(),
-        createdAt: json["created_at"] != null
-            ? json["created_at"].toDate()
-            : DateTime.now(),
-        children: List<ChildFormGeneratedModel>.from(
-          json["children"].map(
-            (x) => ChildFormGeneratedModel.fromJson(x),
-          ),
+  ) {
+    return GeneratedFormModel(
+      ref: formRef,
+      formRef: json["form_ref"],
+      taskRef: json["task_ref"],
+      companyRef: json["company_ref"],
+      deviceMetadata: json["device_metadata"] ?? {},
+      updatedAt: json["updated_at"]?.toDate() ?? DateTime.now(),
+      createdAt: json["created_at"]?.toDate() ?? DateTime.now(),
+      children: List<ChildFormGeneratedModel>.from(
+        json["children"].map(
+          (x) => ChildFormGeneratedModel.fromJson(x),
         ),
-      );
+      ),
+    );
+  }
+
+  factory GeneratedFormModel.fromJsonHive(
+    Map<String, dynamic> json,
+  ) {
+    return GeneratedFormModel(
+      ref: json["ref"],
+      formRef: json["form_ref"],
+      taskRef: json["task_ref"],
+      companyRef: json["company_ref"],
+      deviceMetadata: json["device_metadata"] ?? {},
+      updatedAt: json["updated_at"] ?? DateTime.now(),
+      createdAt: json["created_at"] ?? DateTime.now(),
+      children: List<ChildFormGeneratedModel>.from(
+        json["children"].map(
+          (x) => ChildFormGeneratedModel.fromJson(x),
+        ),
+      ),
+    );
+  }
 
   factory GeneratedFormModel.init() => GeneratedFormModel(
         ref: null,
@@ -78,6 +94,17 @@ class GeneratedFormModel {
       );
 
   Map<String, dynamic> toJson() => {
+        "form_ref": formRef,
+        "task_ref": taskRef,
+        "created_at": createdAt,
+        "company_ref": companyRef,
+        "updated_at": DateTime.now(),
+        "device_metadata": deviceMetadata,
+        "children": List<dynamic>.from(children.map((x) => x.toJson())),
+      };
+
+  Map<String, dynamic> toJsonHive() => {
+        "ref": ref,
         "form_ref": formRef,
         "task_ref": taskRef,
         "created_at": createdAt,
