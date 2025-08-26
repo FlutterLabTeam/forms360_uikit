@@ -237,22 +237,6 @@ class LeftDecoration extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
-          top: 40,
-          left: 30,
-          child: IconButton(
-            onPressed: () {
-              if (onPop != null) {
-                onPop!();
-              } else if (enableGoHome) {
-                context.go('/');
-              } else {
-                context.pop();
-              }
-            },
-            icon: Icon(Icons.chevron_left, color: Colors.white, size: 30),
-          ),
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,

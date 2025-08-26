@@ -32,6 +32,7 @@ enum ValidationType {
 
 enum ConditionType {
   EQUALS,
+  NOT_CONTAINS,
   IS_TRUE,
   IS_FALSE,
   NOT_EQUALS,

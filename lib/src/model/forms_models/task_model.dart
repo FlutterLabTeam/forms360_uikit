@@ -61,14 +61,42 @@ class TaskModel {
       );
 
   Map<String, dynamic> toJson() {
-    var _data = {
+    var json = {
       "createdAt": createdAt,
       "companyRef": companyRef,
       "taskTemplate": taskTemplate,
       "recurringStatus": recurringStatus.map((e) => e.toJson()).toList(),
     };
-    _data.addAll(this.data);
-    return _data;
+    json.addAll(data);
+    return json;
+  }
+
+  Map<String, dynamic> toJsonHive() {
+    var json = {
+      "id": id,
+      "createdAt": createdAt,
+      "companyRef": companyRef,
+      "taskTemplate": taskTemplate,
+      "recurringStatus": recurringStatus.map((e) => e.toJson()).toList(),
+    };
+
+    json.addAll(data);
+
+    return json;
+  }
+
+  factory TaskModel.fromJsonHive(json) {
+    return TaskModel(
+      data: json,
+      id: json["id"],
+      title: json["title"] ?? "",
+      companyRef: json["companyRef"],
+      taskTemplate: json["taskTemplate"] ?? "",
+      taskRejected: json["taskRejected"] ?? false,
+      createdAt: json["createdAt"] ?? Timestamp.now(),
+      customFields: json["customFields"] != null ? List<TaskFieldModel>.from(json["customFields"].map((e) => TaskFieldModel.fromJson(e))) : [],
+      recurringStatus: json["recurringStatus"] != null ? List<RecurringStatusModel>.from(json["recurringStatus"].map((e) => RecurringStatusModel.fromJson(e))) : [],
+    );
   }
 
   factory TaskModel.fromJson(json, DocumentReference companyRef) => TaskModel(
@@ -84,12 +112,9 @@ class TaskModel {
                     .map((e) => RecurringStatusModel.fromJson(e)),
               )
             : [],
-        createdAt:
-            json["createdAt"] != null ? json["createdAt"] : Timestamp.now(),
+        createdAt: json["createdAt"] ?? Timestamp.now(),
         customFields: List<TaskFieldModel>.from(
-          json.keys.map(
-            (key) => TaskFieldModel(key: key, title: key),
-          ),
+          json.keys.map((key) => TaskFieldModel(key: key, title: key)),
         ),
       );
 
@@ -101,8 +126,7 @@ class TaskModel {
         title: json["title"] ?? "",
         taskTemplate: json["taskTemplate"] ?? "",
         taskRejected: json["taskRejected"] ?? false,
-        createdAt:
-            json["createdAt"] != null ? json["createdAt"] : Timestamp.now(),
+        createdAt: json["createdAt"] ?? Timestamp.now(),
         customFields: List<TaskFieldModel>.from(
           json.keys.map(
             (key) => TaskFieldModel(key: key, title: key),
@@ -113,10 +137,9 @@ class TaskModel {
   factory TaskModel.fromTemplateJson(Map<String, dynamic> json) => TaskModel(
         data: json,
         title: json["title"] ?? "",
-        taskRejected: json["taskRejected"] ?? false,
         taskTemplate: json["taskTemplate"] ?? "",
-        createdAt:
-            json["createdAt"] != null ? json["createdAt"] : Timestamp.now(),
+        taskRejected: json["taskRejected"] ?? false,
+        createdAt: json["createdAt"] ?? Timestamp.now(),
         customFields:
             List<TaskFieldModel>.from(json.keys.map((key) => TaskFieldModel(
                   key: key,
@@ -149,8 +172,8 @@ class RecurringStatusModel {
 
   factory RecurringStatusModel.fromJson(Map<String, dynamic> json) =>
       RecurringStatusModel(
-        createdAt: json["created_at"].toDate(),
         updateAt: json["update_at"].toDate(),
+        createdAt: json["created_at"].toDate(),
         data: TaskModel.fromJsonChild(json["data"]),
       );
 

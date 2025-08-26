@@ -123,6 +123,48 @@ class FormTemplateModel {
         ),
       );
 
+  factory FormTemplateModel.fromJsonHive(json) => FormTemplateModel(
+        ref: json["ref"],
+        title: json["title"] ?? '',
+        version: json["version"] ?? 0,
+        userRef: json["user_ref"] ?? null,
+        isActive: json["is_active"] ?? true,
+        isDeleted: json["is_deleted"] ?? false,
+        description: json["description"] ?? '',
+        companyRef: json["company_ref"] ?? null,
+        creatorRef: json["creator_ref"] ?? null,
+        userSelected: json["user_selected"] ?? null,
+        enabledMetadata: json["enabled_metadata"] ?? true,
+        requireApproval: json["require_approval"] ?? false,
+        status: _generateStatus(json["status"] ?? 'DRAFT'),
+        requiredSubmission: json["required_submission"] ?? false,
+        createdAt: json["created_at"] ?? DateTime.now(),
+        updatedAt: json["updated_at"] ?? DateTime.now(),
+        children: List<ItemTemplateModel>.from(
+          json["children"]?.map((x) => ItemTemplateModel.fromJson(x)) ?? [],
+        ),
+      );
+
+        Map<String, dynamic> toJsonHive() => {
+        "ref": ref,
+        "title": title,
+        "version": version,
+        "user_ref": userRef,
+        "status": status.name,
+        "is_active": isActive,
+        "is_deleted": isDeleted,
+        "created_at": createdAt,
+        "updated_at": updatedAt,
+        "company_ref": companyRef,
+        "creator_ref": creatorRef,
+        "description": description,
+        "user_selected": userSelected,
+        "enabled_metadata": enabledMetadata,
+        "require_approval": requireApproval,
+        "required_submission": requiredSubmission,
+        "children": List<dynamic>.from(children.map((x) => x.toJson())),
+      };
+
   Map<String, dynamic> toJson() => {
         "title": title,
         "version": version,
