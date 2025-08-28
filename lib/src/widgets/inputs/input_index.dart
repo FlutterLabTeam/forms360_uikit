@@ -19,6 +19,7 @@ import 'package:forms360_uikit/src/widgets/inputs/dynamic_dropdown_writable_inpu
 
 class Inputs {
   Widget primary({
+    Key? key,
     String? label,
     int? maxLength,
     Icon? suffixIcon,
@@ -43,6 +44,7 @@ class Inputs {
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
   }) =>
       PrimaryInput(
+        key: key,
         isBig: isBig,
         label: label,
         enabled: enabled,
