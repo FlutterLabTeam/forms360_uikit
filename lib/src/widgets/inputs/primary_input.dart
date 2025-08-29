@@ -106,6 +106,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
         _value = value;
         widget.onChanged?.call(value);
       },
+      onFieldSubmitted: widget.onFieldSubmitted,
       maxLength: widget.maxLength,
       controller: widget.controller,
       maxLines: !widget.isBig ? 1 : 6,
