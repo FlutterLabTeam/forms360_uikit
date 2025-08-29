@@ -46,14 +46,16 @@ extension ContextExtension on BuildContext {
       );
 
   Future<void> openErrorPopUp({
-    required String message,
     required String okText,
+    required String message,
+    PlatformAlertType? platform,
     bool barrierDismissible = true,
   }) =>
       PopUpIndex().errorPopUp(
         this,
-        message: message,
         okText: okText,
+        message: message,
+        platform: platform,
         barrierDismissible: barrierDismissible,
       );
 

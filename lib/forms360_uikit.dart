@@ -6,6 +6,7 @@ export 'package:forms360_uikit/src/model/input_types.dart';
 export 'package:forms360_uikit/src/model/button_type.dart';
 export 'package:forms360_uikit/src/model/pop_up_model.dart';
 export 'package:forms360_uikit/src/model/tag_model.dart';
+export 'package:forms360_uikit/src/model/delete_custom_enum.dart';
 
 export 'package:forms360_uikit/src/model/permission_type.dart';
 export 'package:forms360_uikit/src/model/font_family_type.dart';
@@ -24,6 +25,7 @@ export 'package:forms360_uikit/src/extension/context_extension.dart';
 export 'package:forms360_uikit/src/extension/permission_extension.dart';
 export 'package:forms360_uikit/src/extension/font_family_extension.dart';
 export 'package:forms360_uikit/src/extension/validation_extension.dart';
+export 'package:forms360_uikit/src/extension/calculator_items_ extension.dart';
 
 //widget
 export 'package:forms360_uikit/src/widgets/menu/menu_icon.dart';
@@ -37,9 +39,13 @@ export 'package:forms360_uikit/src/widgets/items/tag_item.dart';
 export 'package:phone_form_field/phone_form_field.dart';
 
 //model
-export 'package:forms360_uikit/src/model/generated_form_model.dart';
-export 'package:forms360_uikit/src/model/library_template_enum.dart';
-export 'package:forms360_uikit/src/model/child_form_generated_extension.dart';
+export 'package:forms360_uikit/src/model/forms_models/generated_form_model.dart';
+export 'package:forms360_uikit/src/model/forms_models/library_template_enum.dart';
+export 'package:forms360_uikit/src/model/forms_models/child_form_generated_extension.dart';
+export 'package:forms360_uikit/src/model/forms_models/form_template_model.dart';
+export 'package:forms360_uikit/src/model/forms_models/item_template_model.dart';
+export 'package:forms360_uikit/src/model/forms_models/form_template_enum.dart';
+export 'package:forms360_uikit/src/model/forms_models/task_model.dart';
 
 //abstract class
 class FormsKit {

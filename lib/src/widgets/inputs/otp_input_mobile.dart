@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
-import 'package:forms360_uikit/src/widgets/inputs/custom_input_otp.dart';
+import 'package:forms360_uikit/src/widgets/inputs/custom_input_otp_mobile.dart';
 
-class OtpInput extends StatefulWidget {
+class OtpInputMobile extends StatefulWidget {
   final double? fontSizeWidth;
   final double? fontSizeHeight;
   final Function(String)? onSubmit;
   final PlatformAlertType? platform;
   final List<TextEditingController> controllers;
 
-  const OtpInput({
+  const OtpInputMobile({
     super.key,
     this.onSubmit,
     this.platform,
@@ -19,10 +19,10 @@ class OtpInput extends StatefulWidget {
   });
 
   @override
-  State<OtpInput> createState() => _OtpInputState();
+  State<OtpInputMobile> createState() => _OtpInputStateMobile();
 }
 
-class _OtpInputState extends State<OtpInput> {
+class _OtpInputStateMobile extends State<OtpInputMobile> {
   late List<FocusNode> focusNodes;
 
   @override
@@ -100,7 +100,7 @@ class _OtpInputState extends State<OtpInput> {
         widget.controllers.length,
         (index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 7),
-          child: CustomInputOtp(
+          child: CustomInputOtpMobile(
             platform: widget.platform,
             allFocusNodes: focusNodes,
             focusNode: focusNodes[index],

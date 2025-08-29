@@ -15,6 +15,7 @@ class CustomButton extends StatefulWidget {
   final SizeButtonKit sizeButton;
   final EdgeInsets? customPadding;
   final ButtonStateKit buttonState;
+  final Color? backgroundColor;
 
   const CustomButton({
     this.style,
@@ -26,6 +27,7 @@ class CustomButton extends StatefulWidget {
     required this.onPressed,
     required this.sizeButton,
     required this.buttonType,
+    this.backgroundColor,
     this.buttonState = ButtonStateKit.enabled,
   });
 
@@ -39,7 +41,7 @@ class CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: _buttonColor(context),
+      color: widget.backgroundColor ?? _buttonColor(context),
       shape: RoundedRectangleBorder(
         side: _borderColor(context),
         borderRadius: BorderRadius.circular(8),

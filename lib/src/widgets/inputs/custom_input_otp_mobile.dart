@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 
-class CustomInputOtp extends StatefulWidget {
+class CustomInputOtpMobile extends StatefulWidget {
   final FocusNode? focusNode;
   final double? fontSizeWidth;
   final double? fontSizeHeight;
@@ -13,7 +13,7 @@ class CustomInputOtp extends StatefulWidget {
   final TextEditingController controller;
   final List<TextEditingController> allControllers;
 
-  const CustomInputOtp({
+  const CustomInputOtpMobile({
     super.key,
     this.onSubmit,
     this.focusNode,
@@ -27,10 +27,10 @@ class CustomInputOtp extends StatefulWidget {
   });
 
   @override
-  State<CustomInputOtp> createState() => _CustomInputOtpState();
+  State<CustomInputOtpMobile> createState() => _CustomInputOtpMobileState();
 }
 
-class _CustomInputOtpState extends State<CustomInputOtp> {
+class _CustomInputOtpMobileState extends State<CustomInputOtpMobile> {
   bool _isInitialized = false;
 
   @override
@@ -41,10 +41,10 @@ class _CustomInputOtpState extends State<CustomInputOtp> {
       widget.controller.text = "*";
       widget.controller.selection = TextSelection.collapsed(offset: 1);
     }
-
+    
     // Escuchar cambios en el controlador
     widget.controller.addListener(_onControllerChanged);
-
+    
     // Escuchar cuando se obtiene el foco
     widget.focusNode?.addListener(_onFocusChanged);
   }
@@ -71,13 +71,13 @@ class _CustomInputOtpState extends State<CustomInputOtp> {
     if (widget.controller.text.isEmpty && _isInitialized) {
       widget.controller.text = "*";
       widget.controller.selection = TextSelection.collapsed(offset: 1);
-
+      
       // Navegar al input anterior
       int currentIndex = widget.allControllers.indexOf(widget.controller);
       if (currentIndex > 0) {
         widget.allFocusNodes[currentIndex - 1].requestFocus();
       }
-
+      
       setState(() {}); // Actualizar UI
     } else {
       // Actualizar UI para cualquier cambio en el controlador
@@ -117,7 +117,7 @@ class _CustomInputOtpState extends State<CustomInputOtp> {
         widget.allFocusNodes[currentIndex - 1].requestFocus();
       }
     }
-
+    
     // Actualizar UI después de cualquier cambio
     setState(() {});
   }
@@ -125,7 +125,7 @@ class _CustomInputOtpState extends State<CustomInputOtp> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.fontSizeWidth ?? 70,
+      width: widget.fontSizeWidth ?? 80,
       height: widget.fontSizeHeight ?? 130,
       child: TextField(
         maxLength: 1,
@@ -133,14 +133,15 @@ class _CustomInputOtpState extends State<CustomInputOtp> {
         controller: widget.controller,
         onChanged: _handleInput,
         onTap: () {
+          // Posicionar cursor al final cuando se hace tap
           widget.controller.selection = TextSelection.collapsed(
             offset: widget.controller.text.length,
           );
-          setState(() {});
+          setState(() {}); // Actualizar UI
         },
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        cursorColor: Colors.transparent,
+        cursorColor: Colors.transparent, // Cursor transparente
         buildCounter: (
           context, {
           maxLength,
@@ -148,7 +149,7 @@ class _CustomInputOtpState extends State<CustomInputOtp> {
           required currentLength,
         }) =>
             null,
-        style: widget.controller.text == "*"
+        style: widget.controller.text == "*" 
             ? context.mobileTitleText.copyWith(color: Colors.transparent)
             : context.mobileTitleText,
         textAlign: TextAlign.center,
@@ -156,7 +157,7 @@ class _CustomInputOtpState extends State<CustomInputOtp> {
           filled: true,
           fillColor: const Color(0xFFE8EDF1),
           contentPadding: widget.platform == PlatformAlertType.WEB
-              ? const EdgeInsets.symmetric(vertical: 50)
+              ? const EdgeInsets.symmetric(vertical: 30)
               : null,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50),

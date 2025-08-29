@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/logo.dart';
+import 'package:go_router/go_router.dart';
 
 class ManagementMultiPage extends StatelessWidget {
   const ManagementMultiPage({
@@ -235,22 +235,6 @@ class LeftDecoration extends StatelessWidget {
               fit: BoxFit.cover,
               image: Image.asset(assetPath).image,
             ),
-          ),
-        ),
-        Positioned(
-          top: 40,
-          left: 30,
-          child: IconButton(
-            onPressed: () {
-              if (onPop != null) {
-                onPop!();
-              } else if (enableGoHome) {
-                context.go('/');
-              } else {
-                context.pop();
-              }
-            },
-            icon: Icon(Icons.chevron_left, color: Colors.white, size: 30),
           ),
         ),
         Row(

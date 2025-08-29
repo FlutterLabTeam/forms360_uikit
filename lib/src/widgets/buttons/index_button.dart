@@ -16,6 +16,7 @@ class UiButton {
     SizeButtonKit sizeButton = SizeButtonKit.big,
     ButtonTypeKit buttonType = ButtonTypeKit.primary,
     ButtonStateKit buttonState = ButtonStateKit.enabled,
+    Color? backgroundColor,
   }) =>
       CustomButton(
         title: title,
@@ -25,6 +26,7 @@ class UiButton {
         buttonType: buttonType,
         sizeButton: sizeButton,
         buttonState: buttonState,
+        backgroundColor: backgroundColor,
       );
 
   Widget selectButton({

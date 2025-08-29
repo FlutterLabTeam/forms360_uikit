@@ -27,10 +27,12 @@ enum ValidationType {
   IS_GREATER_THAN_NOW,
   MATCHES_ITEM_FROM_LIST,
   IS_STATIC,
+  IS_YES_DEFAULT
 }
 
 enum ConditionType {
   EQUALS,
+  NOT_CONTAINS,
   IS_TRUE,
   IS_FALSE,
   NOT_EQUALS,
@@ -44,12 +46,14 @@ enum ConditionType {
   LESS_THAN_OR_EQUALS,
 }
 
-enum OperatorType {
-  ADDITION,
-  DIVISION,
-  SUBTRACTION,
-  MULTIPLICATION,
-  PERCENTAGE,
-  AVERAGE,
-  COUNT,
+enum CalculatorItemsEnum {
+  ADD,
+  CLEAR,
+  DIVIDE,
+  SUBTRACT,
+  MULTIPLY,
+  BACKSPACE,
+  OPEN_PARENTHESIS,
+  TRANSPARENT,
+  CLOSE_PARENTHESIS,
 }
