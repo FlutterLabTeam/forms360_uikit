@@ -99,10 +99,10 @@ class TaskModel {
     );
   }
 
-  factory TaskModel.fromJson(json, DocumentReference companyRef) => TaskModel(
+  factory TaskModel.fromJson(json, DocumentReference taskRef) => TaskModel(
         data: json,
-        id: companyRef.id,
-        companyRef: companyRef,
+        id: taskRef.id,
+        companyRef: taskRef,
         title: json["title"] ?? "",
         taskTemplate: json["taskTemplate"] ?? "",
         taskRejected: json["taskRejected"] ?? false,
