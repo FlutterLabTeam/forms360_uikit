@@ -173,7 +173,6 @@ class ChildFormGeneratedModel {
       ChildFormGeneratedModel(
         boolValue: json["bool_value"],
         fieldKey: json["field_key"] ?? "",
-        mapValue: json["map_value"] ?? {},
         dateValue: json["date_value"]?.toDate(),
         stringValue: json["string_value"] ?? "",
         numericalValue: json["numerical_value"] ?? 0,
@@ -181,6 +180,7 @@ class ChildFormGeneratedModel {
         type: generateTypeFromString(json["type"] ?? ""),
         listValue: List<String>.from(json["list_value"] ?? []),
         mediaValue: List<String>.from(json["media_value"] ?? []),
+        mapValue: Map<String, dynamic>.from(json["map_value"] ?? {}),
         childrenValue: List<ChildFormGeneratedModel>.from(json["children_value"]
             .map((x) => ChildFormGeneratedModel.fromJson(x))),
       );
