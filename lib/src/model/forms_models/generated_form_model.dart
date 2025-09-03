@@ -173,14 +173,14 @@ class ChildFormGeneratedModel {
       ChildFormGeneratedModel(
         boolValue: json["bool_value"],
         fieldKey: json["field_key"] ?? "",
-        dateValue: json["date_value"]?.toDate(),
+        mapValue: json["map_value"] ?? {},
         stringValue: json["string_value"] ?? "",
+        dateValue: _generateDate(json["date_value"]),
         numericalValue: json["numerical_value"] ?? 0,
         smartPhotoValue: json["smart_photo_value"] ?? "",
         type: generateTypeFromString(json["type"] ?? ""),
         listValue: List<String>.from(json["list_value"] ?? []),
         mediaValue: List<String>.from(json["media_value"] ?? []),
-        mapValue: Map<String, dynamic>.from(json["map_value"] ?? {}),
         childrenValue: List<ChildFormGeneratedModel>.from(json["children_value"]
             .map((x) => ChildFormGeneratedModel.fromJson(x))),
       );
@@ -250,4 +250,10 @@ LibraryTemplateEnum generateTypeFromString(String type) {
     default:
       return LibraryTemplateEnum.TEXT;
   }
+}
+
+DateTime _generateDate(dynamic date) {
+  if (date == null) return DateTime.now();
+  if (date is DateTime) return date;
+  return date.toDate();
 }
