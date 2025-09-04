@@ -80,7 +80,11 @@ class TaskModel {
       "recurringStatus": recurringStatus.map((e) => e.toJson()).toList(),
     };
 
-    json.addAll(data);
+    // Filtrar elementos null de data antes de agregarlo
+    var filteredData = Map<String, dynamic>.fromEntries(
+      data.entries.where((entry) => entry.value != null)
+    );
+    json.addAll(filteredData);
 
     return json;
   }

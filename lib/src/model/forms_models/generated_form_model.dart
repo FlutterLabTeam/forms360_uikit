@@ -5,6 +5,7 @@ class GeneratedFormModel {
   final DateTime createdAt;
   final DateTime updatedAt;
   final DocumentReference? ref;
+  final String? hashFormGenerated;
   final DocumentReference? taskRef;
   final DocumentReference? formRef;
   final DocumentReference? companyRef;
@@ -20,17 +21,19 @@ class GeneratedFormModel {
     required this.createdAt,
     required this.updatedAt,
     required this.deviceMetadata,
+    required this.hashFormGenerated,
   });
 
   GeneratedFormModel copyWith({
     DateTime? createdAt,
     DateTime? updatedAt,
     DocumentReference? ref,
+    String? hashFormGenerated,
     DocumentReference? taskRef,
     DocumentReference? formRef,
     DocumentReference? companyRef,
-    List<ChildFormGeneratedModel>? children,
     Map<String, dynamic>? deviceMetadata,
+    List<ChildFormGeneratedModel>? children,
   }) =>
       GeneratedFormModel(
         ref: ref ?? this.ref,
@@ -41,6 +44,7 @@ class GeneratedFormModel {
         updatedAt: updatedAt ?? this.updatedAt,
         companyRef: companyRef ?? this.companyRef,
         deviceMetadata: deviceMetadata ?? this.deviceMetadata,
+        hashFormGenerated: hashFormGenerated ?? this.hashFormGenerated,
       );
 
   factory GeneratedFormModel.fromJson(
@@ -52,7 +56,8 @@ class GeneratedFormModel {
       formRef: json["form_ref"],
       taskRef: json["task_ref"],
       companyRef: json["company_ref"],
-      deviceMetadata: json["device_metadata"] ?? {},
+      hashFormGenerated: json["hash_form_generated"],
+      deviceMetadata: Map<String, dynamic>.from(json["device_metadata"] ?? {}),
       updatedAt: json["updated_at"]?.toDate() ?? DateTime.now(),
       createdAt: json["created_at"]?.toDate() ?? DateTime.now(),
       children: List<ChildFormGeneratedModel>.from(
@@ -71,9 +76,10 @@ class GeneratedFormModel {
       formRef: json["form_ref"],
       taskRef: json["task_ref"],
       companyRef: json["company_ref"],
-      deviceMetadata: json["device_metadata"] ?? {},
+      hashFormGenerated: json["hash_form_generated"],
       updatedAt: json["updated_at"] ?? DateTime.now(),
       createdAt: json["created_at"] ?? DateTime.now(),
+      deviceMetadata: Map<String, dynamic>.from(json["device_metadata"] ?? {}),
       children: List<ChildFormGeneratedModel>.from(
         json["children"].map(
           (x) => ChildFormGeneratedModel.fromJson(x),
@@ -89,6 +95,7 @@ class GeneratedFormModel {
         formRef: null,
         companyRef: null,
         deviceMetadata: {},
+        hashFormGenerated: "",
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       );
@@ -100,6 +107,7 @@ class GeneratedFormModel {
         "company_ref": companyRef,
         "updated_at": DateTime.now(),
         "device_metadata": deviceMetadata,
+        "hash_form_generated": hashFormGenerated,
         "children": List<dynamic>.from(children.map((x) => x.toJson())),
       };
 
@@ -111,6 +119,7 @@ class GeneratedFormModel {
         "company_ref": companyRef,
         "updated_at": DateTime.now(),
         "device_metadata": deviceMetadata,
+        "hash_form_generated": hashFormGenerated,
         "children": List<dynamic>.from(children.map((x) => x.toJson())),
       };
 }
@@ -173,7 +182,6 @@ class ChildFormGeneratedModel {
       ChildFormGeneratedModel(
         boolValue: json["bool_value"],
         fieldKey: json["field_key"] ?? "",
-        mapValue: json["map_value"] ?? {},
         stringValue: json["string_value"] ?? "",
         dateValue: _generateDate(json["date_value"]),
         numericalValue: json["numerical_value"] ?? 0,
@@ -181,6 +189,7 @@ class ChildFormGeneratedModel {
         type: generateTypeFromString(json["type"] ?? ""),
         listValue: List<String>.from(json["list_value"] ?? []),
         mediaValue: List<String>.from(json["media_value"] ?? []),
+        mapValue: Map<String, dynamic>.from(json["map_value"] ?? {}),
         childrenValue: List<ChildFormGeneratedModel>.from(json["children_value"]
             .map((x) => ChildFormGeneratedModel.fromJson(x))),
       );

@@ -366,18 +366,18 @@ class Inputs {
       PrimaryDateInput(
         label: label,
         onTap: onTap,
-        fontSize: fontSize,
         enabled: enabled,
         hintText: hintText,
+        fontSize: fontSize,
         maxLength: maxLength,
         textStyle: textStyle,
         validator: validator,
         controller: controller,
-        initialValue: initialValue,
         inputColor: inputColor,
+        initialValue: initialValue,
+        onTapOutside: onTapOutside,
         onIconPressed: onIconPressed,
         contentPadding: contentPadding,
-        onTapOutside: onTapOutside,
         isClearButtonVisible: isClearButtonVisible,
       );
 }
