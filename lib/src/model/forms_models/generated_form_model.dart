@@ -261,8 +261,8 @@ LibraryTemplateEnum generateTypeFromString(String type) {
   }
 }
 
-DateTime _generateDate(dynamic date) {
-  if (date == null) return DateTime.now();
+DateTime? _generateDate(dynamic date) {
+  if (date == null) return null;
   if (date is DateTime) return date;
   return date.toDate();
 }
