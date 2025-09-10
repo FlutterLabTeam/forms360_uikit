@@ -108,6 +108,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
         _value = value;
         widget.onChanged?.call(value);
       },
+      onFieldSubmitted: widget.onFieldSubmitted,
       maxLength: widget.maxLength,
       controller: widget.controller,
       maxLines: !widget.isBig ? 1 : 6,
@@ -127,14 +128,14 @@ class _PrimaryInputState extends State<PrimaryInput> {
         labelStyle: widget.textStyle ??
             AppearanceKitTextTheme.build()
                 .input
-                .copyWith(color: _generateColorInput(), fontSize: 20),
+                .copyWith(color: _getEnabledColor(), fontSize: 20),
         fillColor: widget.inputColor == PrimaryInputColorKit.TRANSPARENT
             ? Colors.transparent
             : null,
         hintStyle: widget.textStyle ??
             AppearanceKitTextTheme.build()
                 .input
-                .copyWith(color: _generateColorInput(), fontSize: 20),
+                .copyWith(color: _getEnabledColor(), fontSize: 20),
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
@@ -147,19 +148,19 @@ class _PrimaryInputState extends State<PrimaryInput> {
         contentPadding: widget.contentPadding ??
             EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
         disabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: _generateColorInput()),
+          borderSide: BorderSide(color: _getEnabledColor()),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: _generateColorInput()),
+          borderSide: BorderSide(color: _getEnabledColor()),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: _generateColorInput()),
+          borderSide: BorderSide(color: _getEnabledColor()),
         ),
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(
                   _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: _generateColorInput(),
+                  color: _getEnabledColor(),
                 ),
                 onPressed: _togglePasswordVisibility,
               )
@@ -175,15 +176,18 @@ class _PrimaryInputState extends State<PrimaryInput> {
                 : null,
       ),
       validator: widget.validator,
-      cursorColor: _generateColorInput(),
+      cursorColor: _getEnabledColor(),
       textInputAction: TextInputAction.done,
       obscureText: widget.isPassword ? _obscureText : false,
       style: widget.textStyle ??
           AppearanceKitTextTheme.build()
               .input
-              .copyWith(color: _generateColorInput(), fontSize: 20),
+              .copyWith(color: _getEnabledColor(), fontSize: 20),
     );
   }
+
+  Color _getEnabledColor() =>
+      widget.enabled ? _generateColorInput() : Colors.grey;
 
   Color _generateColorInput() {
     if (widget.inputColor == PrimaryInputColorKit.BLACK) return Colors.black;
