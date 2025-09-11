@@ -112,7 +112,7 @@ class _DateButtonState extends State<DateButton> {
             data: Theme.of(context).copyWith(
               colorScheme: ColorScheme.light(
                 primary: context.onSurfaceColor,
-                onPrimary: context.primaryColor,
+                onPrimary: context.surfaceColor,
                 onSurface: context.primaryColor,
               ),
               textButtonTheme: TextButtonThemeData(
