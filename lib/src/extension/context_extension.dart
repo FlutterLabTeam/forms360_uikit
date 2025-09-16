@@ -86,6 +86,7 @@ extension ContextExtension on BuildContext {
   TextStyle get descriptionText => FormsKit.theme.text.description;
   TextStyle get secondaryText => FormsKit.theme.text.secondary;
   TextStyle get smallDescriptionText => FormsKit.theme.text.smallDescription;
+  TextStyle get xSmallDescriptionText => FormsKit.theme.text.xSmallDescription;
   TextStyle get linkText => FormsKit.theme.text.link;
   TextStyle get largeText => FormsKit.theme.text.large;
   TextStyle get extraLargeText => FormsKit.theme.text.extraLarge;

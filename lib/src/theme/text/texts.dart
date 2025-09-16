@@ -13,6 +13,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
   final TextStyle secondary;
   final TextStyle description;
   final TextStyle smallDescription;
+  final TextStyle xSmallDescription;
   final TextStyle link;
   final TextStyle large;
   final TextStyle extraLarge;
@@ -27,16 +28,25 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     required this.secondary,
     required this.description,
     required this.smallDescription,
+    required this.xSmallDescription,
     required this.link,
     required this.large,
     required this.extraLarge,
   });
 
   factory AppearanceKitTextTheme.build() => AppearanceKitTextTheme(
-        smallDescription: TextStyle(
+        xSmallDescription: TextStyle(
           fontWeight: FontWeight.w300,
           color: ColorPalette.onSurface,
           fontSize: TextConstants.fontSizeS,
+          height: TextConstants.lineHeightNormal,
+          fontFamily: FontFamilyType.BE_VIETNAM.toName(),
+          letterSpacing: TextConstants.letterSpacingNormal,
+        ),
+        smallDescription: TextStyle(
+          fontWeight: FontWeight.w300,
+          color: ColorPalette.onSurface,
+          fontSize: TextConstants.fontSizeXS,
           height: TextConstants.lineHeightNormal,
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
           letterSpacing: TextConstants.letterSpacingNormal,
@@ -65,7 +75,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
           fontFamily: FontFamilyType.BE_VIETNAM.toName(),
           letterSpacing: TextConstants.letterSpacingNormal,
         ),
-        mobileDescriptionText: TextStyle(          
+        mobileDescriptionText: TextStyle(
           fontWeight: FontWeight.w300,
           color: ColorPalette.onSurface,
           fontSize: TextConstants.fontSizeM,
@@ -143,6 +153,7 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
     TextStyle? secondary,
     TextStyle? description,
     TextStyle? smallDescription,
+    TextStyle? xSmallDescription,
     TextStyle? link,
     TextStyle? large,
     TextStyle? extraLarge,
@@ -153,10 +164,12 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
         button: button ?? this.button,
         primary: primary ?? this.primary,
         mobileTitleText: mobileTitleText ?? this.mobileTitleText,
-        mobileDescriptionText: mobileDescriptionText ?? this.mobileDescriptionText,
+        mobileDescriptionText:
+            mobileDescriptionText ?? this.mobileDescriptionText,
         secondary: secondary ?? this.secondary,
         description: description ?? this.description,
         smallDescription: smallDescription ?? this.smallDescription,
+        xSmallDescription: xSmallDescription ?? this.xSmallDescription,
         link: link ?? this.link,
         large: large ?? this.large,
         extraLarge: extraLarge ?? this.extraLarge,
@@ -174,12 +187,14 @@ class AppearanceKitTextTheme extends ThemeExtension<AppearanceKitTextTheme> {
       input: TextStyle.lerp(input, other.input, t)!,
       button: TextStyle.lerp(button, other.button, t)!,
       primary: TextStyle.lerp(primary, other.primary, t)!,
-      mobileTitleText: TextStyle.lerp(mobileTitleText, other.mobileTitleText, t)!,
-      mobileDescriptionText: TextStyle.lerp(mobileDescriptionText, other.mobileDescriptionText, t)!,
+      mobileTitleText:
+          TextStyle.lerp(mobileTitleText, other.mobileTitleText, t)!,
+      mobileDescriptionText: TextStyle.lerp(
+          mobileDescriptionText, other.mobileDescriptionText, t)!,
       secondary: TextStyle.lerp(secondary, other.secondary, t)!,
       description: TextStyle.lerp(description, other.description, t)!,
-      smallDescription:
-          TextStyle.lerp(smallDescription, other.smallDescription, t)!,
+      smallDescription: TextStyle.lerp(smallDescription, other.smallDescription, t)!,
+      xSmallDescription: TextStyle.lerp(xSmallDescription, other.xSmallDescription, t)!,
       link: TextStyle.lerp(link, other.link, t)!,
       large: TextStyle.lerp(large, other.large, t)!,
       extraLarge: TextStyle.lerp(extraLarge, other.extraLarge, t)!,
