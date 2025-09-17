@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:forms360_uikit/src/model/forms_models/library_template_enum.dart';
 
 class GeneratedFormModel {
+  final bool hasVPN;
+  final bool hasJailbreak;
   final DateTime createdAt;
   final DateTime updatedAt;
   final DocumentReference? ref;
@@ -19,14 +21,18 @@ class GeneratedFormModel {
     this.companyRef,
     this.createdByRef,
     required this.ref,
+    required this.hasVPN,
     required this.children,
     required this.createdAt,
     required this.updatedAt,
+    required this.hasJailbreak,
     required this.deviceMetadata,
     required this.hashFormGenerated,
   });
 
   GeneratedFormModel copyWith({
+    bool? hasVPN,
+    bool? hasJailbreak,
     DateTime? createdAt,
     DateTime? updatedAt,
     DocumentReference? ref,
@@ -40,12 +46,14 @@ class GeneratedFormModel {
   }) =>
       GeneratedFormModel(
         ref: ref ?? this.ref,
+        hasVPN: hasVPN ?? this.hasVPN,
         taskRef: taskRef ?? this.taskRef,
         formRef: formRef ?? this.formRef,
         children: children ?? this.children,
         createdAt: createdAt ?? this.createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
         companyRef: companyRef ?? this.companyRef,
+        hasJailbreak: hasJailbreak ?? this.hasJailbreak,
         createdByRef: createdByRef ?? this.createdByRef,
         deviceMetadata: deviceMetadata ?? this.deviceMetadata,
         hashFormGenerated: hashFormGenerated ?? this.hashFormGenerated,
@@ -57,14 +65,16 @@ class GeneratedFormModel {
   ) {
     return GeneratedFormModel(
       ref: formRef,
+      hasVPN: json["hasVPN"],
       formRef: json["form_ref"],
       taskRef: json["task_ref"],
       companyRef: json["company_ref"],
       createdByRef: json["created_by_ref"],
+      hasJailbreak: json["has_jailbreak"] ?? false,
       hashFormGenerated: json["hash_form_generated"],
-      deviceMetadata: Map<String, dynamic>.from(json["device_metadata"] ?? {}),
       updatedAt: json["updated_at"]?.toDate() ?? DateTime.now(),
       createdAt: json["created_at"]?.toDate() ?? DateTime.now(),
+      deviceMetadata: Map<String, dynamic>.from(json["device_metadata"] ?? {}),
       children: List<ChildFormGeneratedModel>.from(
         json["children"].map(
           (x) => ChildFormGeneratedModel.fromJson(x),
@@ -78,9 +88,11 @@ class GeneratedFormModel {
   ) {
     return GeneratedFormModel(
       ref: json["ref"],
+      hasVPN: json["hasVPN"],
       formRef: json["form_ref"],
       taskRef: json["task_ref"],
       companyRef: json["company_ref"],
+      hasJailbreak: json["has_jailbreak"],
       createdByRef: json["created_by_ref"],
       hashFormGenerated: json["hash_form_generated"],
       updatedAt: json["updated_at"] ?? DateTime.now(),
@@ -98,21 +110,25 @@ class GeneratedFormModel {
         ref: null,
         children: [],
         taskRef: null,
+        hasVPN: false,
         formRef: null,
         companyRef: null,
         createdByRef: null,
         deviceMetadata: {},
+        hasJailbreak: false,
         hashFormGenerated: "",
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       );
 
   Map<String, dynamic> toJson() => {
+        "hasVPN": hasVPN,
         "form_ref": formRef,
         "task_ref": taskRef,
         "created_at": createdAt,
         "company_ref": companyRef,
         "updated_at": DateTime.now(),
+        "has_jailbreak": hasJailbreak,
         "created_by_ref": createdByRef,
         "device_metadata": deviceMetadata,
         "hash_form_generated": hashFormGenerated,
@@ -121,11 +137,13 @@ class GeneratedFormModel {
 
   Map<String, dynamic> toJsonHive() => {
         "ref": ref,
+        "hasVPN": hasVPN,
         "form_ref": formRef,
         "task_ref": taskRef,
         "created_at": createdAt,
         "company_ref": companyRef,
         "updated_at": DateTime.now(),
+        "has_jailbreak": hasJailbreak,
         "created_by_ref": createdByRef,
         "device_metadata": deviceMetadata,
         "hash_form_generated": hashFormGenerated,

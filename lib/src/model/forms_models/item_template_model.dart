@@ -530,6 +530,8 @@ ValidationType _generateValidation(String value) {
       return ValidationType.MATCHES_ITEM_FROM_LIST;
     case 'IS_STATIC':
       return ValidationType.IS_STATIC;
+    case 'IS_YES_DEFAULT':
+      return ValidationType.IS_YES_DEFAULT;
     default:
       return ValidationType.REQUIRED;
   }
