@@ -78,7 +78,7 @@ class SmallScreenWidget extends StatelessWidget {
         children: [
           Padding(
             child: endContent,
-            padding: const EdgeInsets.only(top: 100.0, right: 24, left: 24),
+            padding: const EdgeInsets.only(top: 100.0, right: 24,),
           ),
           TopMenu(
             isHorizontal: false,
@@ -162,7 +162,6 @@ class DashboardResponsiveTwoColumnLayout extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               startContent,
-              SizedBox(width: spacing),
               Expanded(child: endContent),
               SizedBox(width: spacing),
             ],

@@ -65,10 +65,10 @@ class GeneratedFormModel {
   ) {
     return GeneratedFormModel(
       ref: formRef,
-      hasVPN: json["hasVPN"],
       formRef: json["form_ref"],
       taskRef: json["task_ref"],
       companyRef: json["company_ref"],
+      hasVPN: json["hasVPN"] ?? false,
       createdByRef: json["created_by_ref"],
       hasJailbreak: json["has_jailbreak"] ?? false,
       hashFormGenerated: json["hash_form_generated"],

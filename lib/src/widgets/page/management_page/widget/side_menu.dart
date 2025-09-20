@@ -25,15 +25,19 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu> {
-  List<MenuItemTypeKit> menuList =  menuItemList;
+  List<MenuItemTypeKit> menuList = menuItemList;
 
   @override
   Widget build(BuildContext context) {
-    if(widget.serviceWeb != null && widget.serviceWeb!) menuList = menuItemListService;
+    if (widget.serviceWeb != null && widget.serviceWeb!)
+      menuList = menuItemListService;
     return Container(
       height: double.infinity,
-      margin: EdgeInsets.fromLTRB(62, 30, 12, 30),
-      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 12),
+      margin: EdgeInsets.symmetric(
+        horizontal: context.sizeWidth(0.01),
+        vertical: context.sizeHeight(0.02),
+      ),
+      padding: EdgeInsets.symmetric(vertical: context.sizeHeight(0.01)),
       decoration: BoxDecoration(
         color: context.surfaceColor,
         borderRadius: BorderRadius.all(Radius.circular(20)),

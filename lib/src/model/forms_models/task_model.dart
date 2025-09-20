@@ -106,8 +106,8 @@ class TaskModel {
   factory TaskModel.fromJson(json, DocumentReference taskRef) => TaskModel(
         data: json,
         id: taskRef.id,
-        companyRef: taskRef,
         title: json["title"] ?? "",
+        companyRef: json["companyRef"],
         taskTemplate: json["taskTemplate"] ?? "",
         taskRejected: json["taskRejected"] ?? false,
         recurringStatus: json["recurringStatus"] != null
