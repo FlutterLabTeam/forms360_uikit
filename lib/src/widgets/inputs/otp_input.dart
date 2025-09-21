@@ -17,7 +17,6 @@ class OtpInput extends StatefulWidget {
     this.fontSizeHeight,
     required this.controllers,
   });
-
   @override
   State<OtpInput> createState() => _OtpInputState();
 }
