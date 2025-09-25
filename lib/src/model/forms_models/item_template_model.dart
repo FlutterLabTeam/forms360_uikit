@@ -1,6 +1,8 @@
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'dart:convert';
 
+enum ConditionCoverage { ALL, ANY }
+
 class ItemTemplateModel {
   final String key;
   final String label;
@@ -15,6 +17,7 @@ class ItemTemplateModel {
   final ChildFormGeneratedModel value;
   final List<String> matchesItemFromList;
   final List<ItemTemplateModel> children;
+  final ConditionCoverage conditionCoverage;
   final MultimediaMetadataModel multimediaMetadata;
 
   ItemTemplateModel({
@@ -30,6 +33,7 @@ class ItemTemplateModel {
     required this.conditions,
     required this.validation,
     required this.showLastInput,
+    required this.conditionCoverage,
     required this.multimediaMetadata,
     required this.matchesItemFromList,
   });
@@ -48,6 +52,7 @@ class ItemTemplateModel {
         type: LibraryTemplateEnum.TEXT,
         checkList: CheckListModel.init(),
         value: ChildFormGeneratedModel.init(),
+        conditionCoverage: ConditionCoverage.ANY,
         multimediaMetadata: MultimediaMetadataModel.init(),
       );
 
@@ -65,6 +70,7 @@ class ItemTemplateModel {
     ChildFormGeneratedModel? value,
     List<ItemTemplateModel>? children,
     List<String>? matchesItemFromList,
+    ConditionCoverage? conditionCoverage,
     MultimediaMetadataModel? multimediaMetadata,
   }) =>
       ItemTemplateModel(
@@ -80,6 +86,7 @@ class ItemTemplateModel {
         validation: validation ?? this.validation,
         smartPhoto: smartPhoto ?? this.smartPhoto,
         showLastInput: showLastInput ?? this.showLastInput,
+        conditionCoverage: conditionCoverage ?? this.conditionCoverage,
         multimediaMetadata: multimediaMetadata ?? this.multimediaMetadata,
         matchesItemFromList: matchesItemFromList ?? this.matchesItemFromList,
       );
@@ -94,6 +101,7 @@ class ItemTemplateModel {
             : ChildFormGeneratedModel.init(),
         showLastInput: json["show_last_input"] ?? false,
         type: _generateLibraryTemplateEnum(json["type"]),
+        conditionCoverage: _generateConditionCoverageEnum(json["condition_coverage"]),
         checkList: json["check_list"] != null
             ? CheckListModel.fromJson(json["check_list"])
             : CheckListModel.init(),
@@ -131,6 +139,7 @@ class ItemTemplateModel {
         "check_list": checkList.toJson(),
         "show_last_input": showLastInput,
         "smart_photo": smartPhoto?.toJson(),
+        "condition_coverage": conditionCoverage.name,
         "multimedia_metadata": multimediaMetadata.toJson(),
         "formula": List<dynamic>.from(formula.map((x) => x.toJson())),
         "children": List<dynamic>.from(children.map((x) => x.toJson())),
@@ -474,6 +483,17 @@ LibraryTemplateEnum _generateLibraryTemplateEnum(String value) {
       return LibraryTemplateEnum.SIGNATURE;
     default:
       return LibraryTemplateEnum.TEXT;
+  }
+}
+
+ConditionCoverage _generateConditionCoverageEnum(String? value) {
+  switch (value) {
+    case 'ALL':
+      return ConditionCoverage.ALL;
+    case 'ANY':
+      return ConditionCoverage.ANY;
+    default:
+      return ConditionCoverage.ANY;
   }
 }
 
