@@ -8,6 +8,7 @@ import 'package:forms360_uikit/src/widgets/page/management_page/widget/top_menu.
 class ManagementPage extends StatelessWidget {
   const ManagementPage({
     super.key,
+    this.onPop,
     this.serviceWeb,
     required this.spacing,
     required this.assetPath,
@@ -20,22 +21,21 @@ class ManagementPage extends StatelessWidget {
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
     required this.enableGoHome,
-    this.onPop,
   });
 
   final double spacing;
   final bool? serviceWeb;
   final String assetPath;
   final Widget endContent;
+  final bool enableGoHome;
   final Widget startContent;
+  final VoidCallback? onPop;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
-  final bool enableGoHome;
-  final VoidCallback? onPop;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +43,7 @@ class ManagementPage extends StatelessWidget {
       builder: (context, constraints) {
         if (constraints.maxWidth >= Breakpoint.xdesktop) {
           return BigScreenWidget(
+            onPop: onPop,
             spacing: spacing,
             assetPath: assetPath,
             endContent: endContent,
@@ -55,7 +56,6 @@ class ManagementPage extends StatelessWidget {
             onMenuItemSelected: onMenuItemSelected,
             rowMainAxisAlignment: rowMainAxisAlignment,
             rowCrossAxisAlignment: rowCrossAxisAlignment,
-            onPop: onPop,
           );
         } else if (constraints.maxWidth >= Breakpoint.tablet &&
             constraints.maxWidth < Breakpoint.xdesktop) {
@@ -213,10 +213,12 @@ class MediumScreenWidget extends StatelessWidget {
 class BigScreenWidget extends StatelessWidget {
   const BigScreenWidget({
     super.key,
+    this.onPop,
     this.serviceWeb,
     required this.spacing,
     required this.endContent,
     required this.startContent,
+    required this.enableGoHome,
     required this.onProfileTap,
     required this.profileLetter,
     required this.selectedMenuItem,
@@ -224,23 +226,21 @@ class BigScreenWidget extends StatelessWidget {
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
     this.assetPath = 'assets/images/clients/users_background.png',
-    required this.enableGoHome,
-    this.onPop,
   });
 
   final double spacing;
   final bool? serviceWeb;
   final String assetPath;
+  final bool enableGoHome;
   final Widget endContent;
   final Widget startContent;
+  final VoidCallback? onPop;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
-  final bool enableGoHome;
-  final VoidCallback? onPop;
 
   @override
   Widget build(BuildContext context) {
@@ -258,10 +258,10 @@ class BigScreenWidget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: LeftDecoration(
+              onPop: onPop,
               assetPath: assetPath,
               startContent: startContent,
               enableGoHome: enableGoHome,
-              onPop: onPop,
             ),
           ),
           SizedBox(width: spacing),
@@ -313,15 +313,15 @@ class BigScreenWidget extends StatelessWidget {
 class LeftDecoration extends StatelessWidget {
   const LeftDecoration({
     super.key,
-    required this.startContent,
-    required this.assetPath,
-    required this.enableGoHome,
     this.onPop,
+    required this.assetPath,
+    required this.startContent,
+    required this.enableGoHome,
   });
 
-  final Widget startContent;
   final String assetPath;
   final bool enableGoHome;
+  final Widget startContent;
   final VoidCallback? onPop;
 
   @override
@@ -343,7 +343,10 @@ class LeftDecoration extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 53.0),
-              child: LogoForms(color: LogoColor.WHITE),
+              child: InkWell(
+                onTap: onPop ?? () {},
+                child: LogoForms(color: LogoColor.WHITE),
+              ),
             ),
           ],
         ),

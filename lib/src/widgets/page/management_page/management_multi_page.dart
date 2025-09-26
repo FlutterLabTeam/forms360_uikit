@@ -243,7 +243,10 @@ class LeftDecoration extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 53.0),
-              child: LogoForms(color: LogoColor.WHITE),
+              child: InkWell(
+                onTap: onPop,
+                child: LogoForms(color: LogoColor.WHITE),
+              ),
             ),
           ],
         ),
