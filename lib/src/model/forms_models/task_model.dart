@@ -6,6 +6,7 @@ class TaskModel {
   final bool taskRejected;
   final Timestamp createdAt;
   final String? taskTemplate;
+  final DocumentReference? ref;
   final Map<String, dynamic> data;
   final DocumentReference? companyRef;
   final List<TaskFieldModel> customFields;
@@ -13,6 +14,7 @@ class TaskModel {
 
   TaskModel({
     this.id,
+    this.ref,
     this.companyRef,
     this.taskTemplate,
     required this.title,
@@ -30,6 +32,7 @@ class TaskModel {
     bool? taskRejected,
     String? taskTemplate,
     Timestamp? createDate,
+    DocumentReference? ref,
     Map<String, dynamic>? data,
     DocumentReference? companyRef,
     List<TaskFieldModel>? customFields,
@@ -40,6 +43,7 @@ class TaskModel {
     }
     return TaskModel(
       id: id ?? this.id,
+      ref: ref ?? this.ref,
       data: data ?? this.data,
       title: title ?? this.title,
       createdAt: createDate ?? this.createdAt,
@@ -53,6 +57,7 @@ class TaskModel {
 
   factory TaskModel.init({DocumentReference? companyRef}) => TaskModel(
         id: null,
+        ref: null,
         title: "",
         taskRejected: false,
         companyRef: companyRef,
@@ -62,6 +67,7 @@ class TaskModel {
 
   Map<String, dynamic> toJson() {
     var json = {
+      "ref": ref,
       "createdAt": createdAt,
       "companyRef": companyRef,
       "taskTemplate": taskTemplate,
@@ -74,6 +80,7 @@ class TaskModel {
   Map<String, dynamic> toJsonHive() {
     var json = {
       "id": id,
+      "ref": ref,
       "createdAt": createdAt,
       "companyRef": companyRef,
       "taskTemplate": taskTemplate,
@@ -93,6 +100,7 @@ class TaskModel {
     return TaskModel(
       data: json,
       id: json["id"],
+      ref: json["ref"],
       title: json["title"] ?? "",
       companyRef: json["companyRef"],
       taskTemplate: json["taskTemplate"] ?? "",
@@ -105,6 +113,7 @@ class TaskModel {
 
   factory TaskModel.fromJson(json, DocumentReference taskRef) => TaskModel(
         data: json,
+        ref: taskRef,
         id: taskRef.id,
         title: json["title"] ?? "",
         companyRef: json["companyRef"],
