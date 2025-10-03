@@ -2,10 +2,11 @@ import 'package:forms360_uikit/src/theme/index_theme.dart';
 import 'package:forms360_uikit/src/widgets/index_widget.dart';
 
 //models
+export 'package:forms360_uikit/src/model/tag_model.dart';
 export 'package:forms360_uikit/src/model/input_types.dart';
 export 'package:forms360_uikit/src/model/button_type.dart';
 export 'package:forms360_uikit/src/model/pop_up_model.dart';
-export 'package:forms360_uikit/src/model/tag_model.dart';
+export 'package:forms360_uikit/src/model/task_process.dart';
 export 'package:forms360_uikit/src/model/delete_custom_enum.dart';
 
 export 'package:forms360_uikit/src/model/permission_type.dart';
