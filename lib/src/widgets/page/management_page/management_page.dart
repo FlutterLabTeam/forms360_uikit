@@ -317,12 +317,14 @@ class LeftDecoration extends StatelessWidget {
     required this.assetPath,
     required this.startContent,
     required this.enableGoHome,
+    this.hasBackButton = false,
   });
 
   final String assetPath;
   final bool enableGoHome;
   final Widget startContent;
   final VoidCallback? onPop;
+  final bool hasBackButton;
 
   @override
   Widget build(BuildContext context) {
@@ -341,6 +343,14 @@ class LeftDecoration extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
+            if (hasBackButton)
+              InkWell(
+                onTap: onPop,
+                child: Icon(
+                  Icons.chevron_left,
+                  color: Colors.white,
+                ),
+              ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 53.0),
               child: InkWell(
