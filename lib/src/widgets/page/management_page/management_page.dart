@@ -349,14 +349,6 @@ class LeftDecoration extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            if (hasBackButton)
-              InkWell(
-                onTap: onPop,
-                child: Icon(
-                  Icons.chevron_left,
-                  color: Colors.white,
-                ),
-              ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 53.0),
               child: InkWell(
@@ -367,6 +359,18 @@ class LeftDecoration extends StatelessWidget {
           ],
         ),
         Center(child: startContent),
+        if (hasBackButton)
+          Positioned(
+            top: 53,
+            left: 0,
+            child: InkWell(
+              onTap: onPop,
+              child: Icon(
+                Icons.chevron_left,
+                color: Colors.white,
+              ),
+            ),
+          ),
       ],
     );
   }
