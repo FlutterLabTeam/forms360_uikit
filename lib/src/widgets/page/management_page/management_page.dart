@@ -21,6 +21,7 @@ class ManagementPage extends StatelessWidget {
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
     required this.enableGoHome,
+    this.hasBackButton = false,
   });
 
   final double spacing;
@@ -36,6 +37,7 @@ class ManagementPage extends StatelessWidget {
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
+  final bool hasBackButton;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +58,7 @@ class ManagementPage extends StatelessWidget {
             onMenuItemSelected: onMenuItemSelected,
             rowMainAxisAlignment: rowMainAxisAlignment,
             rowCrossAxisAlignment: rowCrossAxisAlignment,
+            hasBackButton: hasBackButton,
           );
         } else if (constraints.maxWidth >= Breakpoint.tablet &&
             constraints.maxWidth < Breakpoint.xdesktop) {

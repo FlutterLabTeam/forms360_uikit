@@ -27,6 +27,7 @@ class UiPage {
     MainAxisAlignment rowMainAxisAlignment = MainAxisAlignment.start,
     CrossAxisAlignment rowCrossAxisAlignment = CrossAxisAlignment.start,
     bool enableGoHome = false,
+    bool hasBackButton = false,
     Function()? onPop,
   }) =>
       ManagementPage(
@@ -43,6 +44,7 @@ class UiPage {
         rowMainAxisAlignment: rowMainAxisAlignment,
         rowCrossAxisAlignment: rowCrossAxisAlignment,
         onPop: onPop,
+        hasBackButton: hasBackButton,
       );
 
   Widget managementMultiPage({
