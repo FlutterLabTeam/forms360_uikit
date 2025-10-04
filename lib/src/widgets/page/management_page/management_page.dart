@@ -362,11 +362,12 @@ class LeftDecoration extends StatelessWidget {
         if (hasBackButton)
           Positioned(
             top: 53,
-            left: 0,
+            left: 24,
             child: InkWell(
               onTap: onPop,
               child: Icon(
                 Icons.chevron_left,
+                size: 32,
                 color: Colors.white,
               ),
             ),
