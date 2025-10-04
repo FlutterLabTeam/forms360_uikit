@@ -225,6 +225,7 @@ class BigScreenWidget extends StatelessWidget {
     required this.onMenuItemSelected,
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
+    this.hasBackButton = false,
     this.assetPath = 'assets/images/clients/users_background.png',
   });
 
@@ -241,6 +242,7 @@ class BigScreenWidget extends StatelessWidget {
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
+  final bool hasBackButton;
 
   @override
   Widget build(BuildContext context) {
@@ -258,6 +260,7 @@ class BigScreenWidget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: LeftDecoration(
+              hasBackButton: hasBackButton,
               onPop: onPop,
               assetPath: assetPath,
               startContent: startContent,

@@ -156,6 +156,7 @@ class BigScreenWidget extends StatelessWidget {
     required this.profileLetter,
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
+    this.hasBackButton = false,
     this.assetPath = 'assets/images/clients/users_background.png',
   });
 
@@ -170,6 +171,7 @@ class BigScreenWidget extends StatelessWidget {
   final GestureTapCallback onProfileTap;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
+  final bool hasBackButton;
 
   @override
   Widget build(BuildContext context) {
@@ -191,6 +193,7 @@ class BigScreenWidget extends StatelessWidget {
               startContent: startContent,
               enableGoHome: enableGoHome,
               onPop: onPop,
+              hasBackButton: hasBackButton,
             ),
           ),
           SizedBox(width: spacing),
