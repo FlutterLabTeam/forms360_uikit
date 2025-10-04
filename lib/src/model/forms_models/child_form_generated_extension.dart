@@ -1,5 +1,3 @@
-
-
 import 'package:forms360_uikit/src/model/forms_models/generated_form_model.dart';
 import 'package:forms360_uikit/src/model/forms_models/library_template_enum.dart';
 
@@ -38,7 +36,10 @@ extension ChildFormGeneratedExtension on ChildFormGeneratedModel {
     if (type == LibraryTemplateEnum.SIGNATURE) {
       return stringValue.isNotEmpty;
     }
-  
+    if (type == LibraryTemplateEnum.PRODUCTS) {
+      return stringValue.isNotEmpty;
+    }
+
     return false;
   }
 }

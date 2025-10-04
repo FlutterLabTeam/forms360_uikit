@@ -14,6 +14,7 @@ enum LibraryTemplateEnum {
   SIGNATURE,
   SMART_PHOTO,
   FORMULA_FIELD,
+  PRODUCTS,
 }
 
 enum ValidationType {
@@ -27,7 +28,7 @@ enum ValidationType {
   IS_GREATER_THAN_NOW,
   MATCHES_ITEM_FROM_LIST,
   IS_STATIC,
-  IS_YES_DEFAULT
+  IS_YES_DEFAULT,
 }
 
 enum ConditionType {
