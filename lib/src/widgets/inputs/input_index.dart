@@ -34,15 +34,19 @@ class Inputs {
     required String hintText,
     EdgeInsets? contentPadding,
     void Function()? onIconPressed,
-    bool isSuffixIconEnabled = false,
     void Function(String)? onChanged,
+    bool isSuffixIconEnabled = false,
+    bool isPreffixIconEnabled = false,
     TextEditingController? controller,
+    final bool? showPrefixWhenUnfocused,
     void Function(String)? onFocusChanged,
     final Function(String?)? onFieldSubmitted,
-    final String? Function(String?)? validator,
     List<TextInputFormatter>? inputFormatters,
+    final String? Function(String?)? validator,
     TextInputType keyboardType = TextInputType.text,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
+    VoidCallback? onTap,
+    bool onlyRead = false,
   }) =>
       PrimaryInput(
         key: key,
@@ -68,6 +72,9 @@ class Inputs {
         onFocusChanged: onFocusChanged,
         onFieldSubmitted: onFieldSubmitted,
         isSuffixIconEnabled: isSuffixIconEnabled,
+        showPrefixWhenUnfocused: showPrefixWhenUnfocused ?? true,
+        onTap: onTap,
+        onlyRead: onlyRead,
       );
 
   Widget dropdownWritableInput({
