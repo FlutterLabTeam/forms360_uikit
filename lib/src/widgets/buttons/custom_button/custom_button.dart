@@ -53,9 +53,12 @@ class CustomButtonState extends State<CustomButton> {
             ? () async {
                 if (widget.buttonState != ButtonStateKit.disabled &&
                     !isLoading) {
-                  setState(() => isLoading = true);
-                  await widget.onPressed();
-                  setState(() => isLoading = false);
+                  final result = widget.onPressed();
+                  if (result is Future) {
+                    setState(() => isLoading = true);
+                    await result;
+                    setState(() => isLoading = false);
+                  }
                 }
               }
             : null,
