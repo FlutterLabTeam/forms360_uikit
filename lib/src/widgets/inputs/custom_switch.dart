@@ -26,6 +26,7 @@ class CustomSwitch extends StatelessWidget {
         SizedBox(
           child: Text(
             label,
+            maxLines: 5,
             style: context.secondaryText.copyWith(
               letterSpacing: 0,
               color: context.primaryColor,

@@ -29,6 +29,9 @@ class PrimaryInput extends StatefulWidget {
     this.showCounter = false,
     PrimaryInputColorKit? inputColor,
     this.prefixWidget,
+    this.showPrefixWhenUnfocused = true,
+    this.onTap,
+    this.onlyRead = false,
   }) : inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final bool isBig;
@@ -53,6 +56,9 @@ class PrimaryInput extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Widget? prefixWidget;
   final bool showCounter;
+  final bool showPrefixWhenUnfocused;
+  final VoidCallback? onTap;
+  final bool onlyRead;
   @override
   _PrimaryInputState createState() => _PrimaryInputState();
 }
@@ -62,6 +68,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
   bool _obscureText = true;
   late FocusNode _focusNode;
   String _value = "";
+  bool _hasFocus = false;
 
   @override
   void initState() {
@@ -80,6 +87,9 @@ class _PrimaryInputState extends State<PrimaryInput> {
     SchedulerBinding.instance.addPostFrameCallback(
       (_) async {
         _focusNode.addListener(() {
+          setState(() {
+            _hasFocus = _focusNode.hasFocus;
+          });
           if (!_focusNode.hasFocus) widget.onFocusChanged?.call(_value);
         });
       },
@@ -98,31 +108,41 @@ class _PrimaryInputState extends State<PrimaryInput> {
     });
   }
 
+  bool _shouldShowPrefix() {
+    if (widget.prefixWidget == null) return false;
+    
+    // Siempre mostrar el prefixWidget si está definido
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       key: widget.key,
       focusNode: _focusNode,
-      enabled: widget.enabled,
+      enabled: widget.onlyRead ? true : widget.enabled,
+      readOnly: widget.onlyRead,
+      onTap: widget.onTap,
       onChanged: (value) {
         _value = value;
         widget.onChanged?.call(value);
       },
-      onFieldSubmitted: widget.onFieldSubmitted,
       maxLength: widget.maxLength,
       controller: widget.controller,
       maxLines: !widget.isBig ? 1 : 6,
       initialValue: widget.initialValue,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
+      onFieldSubmitted: widget.onFieldSubmitted,
       autofillHints: widget.keyboardType == TextInputType.emailAddress
           ? [AutofillHints.username]
           : widget.isPassword
               ? [AutofillHints.password]
               : null,
       decoration: InputDecoration(
+        
         counterText: widget.showCounter ? null : "",
-        prefix: widget.prefixWidget,
+        prefix: _shouldShowPrefix() ? widget.prefixWidget : null,
         hintText: widget.hintText,
         labelText: widget.label,
         labelStyle: widget.textStyle ??
@@ -140,7 +160,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
                 ? Colors.black
-                : widget.enabled
+                : (widget.onlyRead || widget.enabled)
                     ? Theme.of(context).colorScheme.primary
                     : Color(0xff99B3C6),
           ),
@@ -186,8 +206,10 @@ class _PrimaryInputState extends State<PrimaryInput> {
     );
   }
 
-  Color _getEnabledColor() =>
-      widget.enabled ? _generateColorInput() : Colors.grey;
+  Color _getEnabledColor() {
+    if (widget.onlyRead) return _generateColorInput();
+    return widget.enabled ? _generateColorInput() : Colors.grey;
+  }
 
   Color _generateColorInput() {
     if (widget.inputColor == PrimaryInputColorKit.BLACK) return Colors.black;

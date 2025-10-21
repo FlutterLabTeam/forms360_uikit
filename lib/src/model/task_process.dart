@@ -1,16 +1,9 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-TaskProcessModel taskProcessModelFromJson(String str) =>
-    TaskProcessModel.fromJson(json.decode(str));
-
-String taskProcessModelToJson(TaskProcessModel data) =>
-    json.encode(data.toJson());
 
 class TaskProcessModel {
   final String id;
   final String name;
+  final String status;
   final bool isTemplate;
   final String createdBy;
   final String updatedBy;
@@ -19,11 +12,13 @@ class TaskProcessModel {
   final DateTime createdAt;
   final String? description;
   final String? templateName;
+  final DocumentReference? ref;
   final List<DocumentReference> tags;
   final DocumentReference? companyRef;
   final List<DocumentReference> tasks;
 
   TaskProcessModel({
+    this.ref,
     this.companyRef,
     required this.id,
     this.description,
@@ -31,6 +26,7 @@ class TaskProcessModel {
     required this.name,
     required this.tags,
     required this.tasks,
+    required this.status,
     this.isTemplate = false,
     required this.createdBy,
     required this.createdAt,
@@ -42,6 +38,7 @@ class TaskProcessModel {
   TaskProcessModel copyWith({
     String? id,
     String? name,
+    String? status,
     bool? isTemplate,
     String? createdBy,
     String? updatedBy,
@@ -50,15 +47,18 @@ class TaskProcessModel {
     String? description,
     DateTime? updatedAt,
     String? templateName,
+    DocumentReference? ref,
     DocumentReference? companyRef,
     List<DocumentReference>? tags,
     List<DocumentReference>? tasks,
   }) =>
       TaskProcessModel(
         id: id ?? this.id,
+        ref: ref ?? this.ref,
         name: name ?? this.name,
         tags: tags ?? this.tags,
         tasks: tasks ?? this.tasks,
+        status: status ?? this.status,
         createdBy: createdBy ?? this.createdBy,
         createdAt: createdAt ?? this.createdAt,
         updatedBy: updatedBy ?? this.updatedBy,
@@ -70,22 +70,31 @@ class TaskProcessModel {
         isSequential: isSequential ?? this.isSequential,
       );
 
-  factory TaskProcessModel.fromJson(Map<String, dynamic> json) =>
-      TaskProcessModel(
-        id: json["id"],
-        name: json["name"],
-        createdBy: json["createdBy"],
-        updatedBy: json["updatedBy"],
-        companyRef: json["companyRef"],
-        isTemplate: json["isTemplate"],
-        description: json["description"],
-        templateName: json["templateName"],
-        isSequential: json["isSequential"],
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        createdAt: DateTime.parse(json["createdAt"]),
-        tags: List<DocumentReference>.from(json["tags"].map((x) => x)),
-        tasks: List<DocumentReference>.from(json["tasks"].map((x) => x)),
-      );
+  factory TaskProcessModel.fromJson(json, DocumentReference ref) {
+
+    print(json);
+
+
+    final data = TaskProcessModel(
+      ref: ref,
+      id: json["id"],
+      name: json["name"],
+      status: json["status"] ?? "TO_DO",
+      createdBy: json["createdBy"],
+      updatedBy: json["updatedBy"],
+      companyRef: json["companyRef"],
+      isTemplate: json["isTemplate"],
+      description: json["description"],
+      templateName: json["templateName"],
+      isSequential: json["isSequential"],
+      updatedAt: DateTime.parse(json["updatedAt"]),
+      createdAt: DateTime.parse(json["createdAt"]),
+      tags: List<DocumentReference>.from(json["tags"].map((x) => x)),
+      tasks: List<DocumentReference>.from(json["tasks"].map((x) => x)),
+    );
+
+    return data;
+  }
 
 
   factory TaskProcessModel.init() =>
@@ -96,6 +105,7 @@ class TaskProcessModel {
         tasks: [],
         createdBy: "",
         updatedBy: "",
+        status: "TO_DO",
         description: "",
         templateName: "",
         isTemplate: false,
@@ -107,6 +117,7 @@ class TaskProcessModel {
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
+        "status": status,
         "createdBy": createdBy,
         "updatedBy": updatedBy,
         "companyRef": companyRef,
