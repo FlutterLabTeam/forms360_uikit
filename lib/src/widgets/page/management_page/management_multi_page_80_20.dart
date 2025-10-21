@@ -3,8 +3,8 @@ import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/logo.dart';
 import 'package:go_router/go_router.dart';
 
-class ManagementMultiPage extends StatelessWidget {
-  const ManagementMultiPage({
+class ManagementMultiPage8020 extends StatelessWidget {
+  const ManagementMultiPage8020({
     super.key,
     this.onPop,
     this.serviceWeb,
@@ -38,7 +38,7 @@ class ManagementMultiPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth >= Breakpoint.xdesktop) {
-          return BigScreenWidget(
+          return BigScreenWidget8020(
             onPop: onPop,
             spacing: spacing,
             assetPath: assetPath,
@@ -54,7 +54,7 @@ class ManagementMultiPage extends StatelessWidget {
           );
         } else if (constraints.maxWidth >= Breakpoint.tablet &&
             constraints.maxWidth < Breakpoint.xdesktop) {
-          return MediumScreenWidget(
+          return MediumScreenWidget8020(
             spacing: spacing,
             endContent: endContent,
             serviceWeb: serviceWeb,
@@ -64,7 +64,7 @@ class ManagementMultiPage extends StatelessWidget {
             rowCrossAxisAlignment: rowCrossAxisAlignment,
           );
         } else {
-          return SmallScreenWidget(
+          return SmallScreenWidget8020(
             endContent: endContent,
             serviceWeb: serviceWeb,
             onProfileTap: onProfileTap,
@@ -76,8 +76,8 @@ class ManagementMultiPage extends StatelessWidget {
   }
 }
 
-class SmallScreenWidget extends StatelessWidget {
-  const SmallScreenWidget({
+class SmallScreenWidget8020 extends StatelessWidget {
+  const SmallScreenWidget8020({
     super.key,
     this.serviceWeb,
     required this.endContent,
@@ -101,8 +101,8 @@ class SmallScreenWidget extends StatelessWidget {
   }
 }
 
-class MediumScreenWidget extends StatelessWidget {
-  const MediumScreenWidget({
+class MediumScreenWidget8020 extends StatelessWidget {
+  const MediumScreenWidget8020({
     super.key,
     this.serviceWeb,
     required this.spacing,
@@ -146,8 +146,8 @@ class MediumScreenWidget extends StatelessWidget {
   }
 }
 
-class BigScreenWidget extends StatelessWidget {
-  const BigScreenWidget({
+class BigScreenWidget8020 extends StatelessWidget {
+  const BigScreenWidget8020({
     super.key,
     this.onPop,
     this.serviceWeb,
@@ -193,19 +193,21 @@ class BigScreenWidget extends StatelessWidget {
           SizedBox(width: spacing),
           if (showStartContent) ...[
             Expanded(
-              flex: 1,
-              child: LeftDecoration(
-                assetPath: assetPath,
-                startContent: startContent,
-                enableGoHome: enableGoHome,
-                onPop: onPop,
-                hasBackButton: hasBackButton,
+              flex: 7, // 70% del espacio
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: startContent,
               ),
             ),
             SizedBox(width: spacing),
           ],
           Expanded(
-            flex: showStartContent ? 2 : 1,
+            flex: showStartContent
+                ? 3
+                : 1, // 30% del espacio cuando hay columna izquierda
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: List.generate(
@@ -220,8 +222,8 @@ class BigScreenWidget extends StatelessWidget {
   }
 }
 
-class LeftDecoration extends StatelessWidget {
-  const LeftDecoration({
+class LeftDecoration8020 extends StatelessWidget {
+  const LeftDecoration8020({
     super.key,
     required this.startContent,
     required this.assetPath,

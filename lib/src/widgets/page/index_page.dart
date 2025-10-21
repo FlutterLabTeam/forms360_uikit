@@ -5,6 +5,7 @@ import 'package:forms360_uikit/src/widgets/page/standard_page/standard_page.dart
 import 'package:forms360_uikit/src/widgets/page/management_page/dashboard_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/management_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/management_multi_page.dart';
+import 'package:forms360_uikit/src/widgets/page/management_page/management_multi_page_80_20.dart';
 
 class UiPage {
   Widget backgroundPage({
@@ -52,6 +53,7 @@ class UiPage {
     Function()? onPop,
     double spacing = 36,
     bool enableGoHome = false,
+    bool showStartContent = true,
     required Widget startContent,
     required String profileLetter,
     required List<Widget> endContent,
@@ -67,6 +69,36 @@ class UiPage {
         endContent: endContent,
         serviceWeb: serviceWeb,
         enableGoHome: enableGoHome,
+        showStartContent: showStartContent,
+        onProfileTap: onProfileTap,
+        startContent: startContent,
+        profileLetter: profileLetter,
+        rowMainAxisAlignment: rowMainAxisAlignment,
+        rowCrossAxisAlignment: rowCrossAxisAlignment,
+      );
+
+  Widget managementMultiPage8020({
+    bool? serviceWeb,
+    Function()? onPop,
+    double spacing = 36,
+    bool enableGoHome = false,
+    bool showStartContent = true,
+    required Widget startContent,
+    required String profileLetter,
+    required List<Widget> endContent,
+    required GestureTapCallback onProfileTap,
+    String assetPath = 'assets/images/clients/users_background.png',
+    MainAxisAlignment rowMainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment rowCrossAxisAlignment = CrossAxisAlignment.start,
+  }) =>
+      ManagementMultiPage8020(
+        onPop: onPop,
+        spacing: spacing,
+        assetPath: assetPath,
+        endContent: endContent,
+        serviceWeb: serviceWeb,
+        enableGoHome: enableGoHome,
+        showStartContent: showStartContent,
         onProfileTap: onProfileTap,
         startContent: startContent,
         profileLetter: profileLetter,
