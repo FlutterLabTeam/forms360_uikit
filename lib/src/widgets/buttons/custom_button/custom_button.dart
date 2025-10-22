@@ -55,9 +55,13 @@ class CustomButtonState extends State<CustomButton> {
                     !isLoading) {
                   final result = widget.onPressed();
                   if (result is Future) {
-                    setState(() => isLoading = true);
+                    if (mounted) {
+                      setState(() => isLoading = true);
+                    }
                     await result;
-                    setState(() => isLoading = false);
+                    if (mounted) {
+                      setState(() => isLoading = false);
+                    }
                   }
                 }
               }
@@ -108,9 +112,9 @@ class CustomButtonState extends State<CustomButton> {
     }
 
     return AppearanceKitTextTheme.build().button.copyWith(
-          color: textColor,
-          fontSize: widget.fontSize ?? 25,
-        );
+      color: textColor,
+      fontSize: widget.fontSize ?? 25,
+    );
   }
 
   Color _buttonColor(BuildContext context) {
