@@ -281,9 +281,13 @@ class BigScreenWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 100.0,
-                      vertical: 20,
+                    padding: EdgeInsets.only(
+                      left: (serviceWeb == true &&
+                              customMenuItems != null &&
+                              customMenuItems!.isNotEmpty)
+                          ? 16.0
+                          : 100.0,
+                      right: 100.0,
                     ),
                     child: TopMenu(
                       serviceWeb: serviceWeb,
