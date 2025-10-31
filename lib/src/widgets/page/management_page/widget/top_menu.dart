@@ -37,25 +37,30 @@ class _TopMenuState extends State<TopMenu> {
       menuList = menuItemListService;
 
     // Si serviceWeb es true y hay customMenuItems, usarlos
-    final bool useCustomItems = widget.serviceWeb == true &&
+    final bool useCustomItems =
+        widget.serviceWeb == true &&
         widget.customMenuItems != null &&
         widget.customMenuItems!.isNotEmpty;
 
     return Container(
       child: widget.isHorizontal
           ? Row(
-              children: useCustomItems
-                  ? [
-                      ...widget.customMenuItems!,
-                      Spacer(),
-                    ]
-                  : menuList
-                      .map((type) => _buildTappableMenuItem(type))
-                      .toList()
-                ..add(Spacer())
-                ..add(_buildProfileIcon()),
+              children:
+                  useCustomItems
+                        ? [
+                            ...widget.customMenuItems!,
+                            Spacer(),
+                            _buildProfileIcon(),
+                          ]
+                        : menuList
+                              .map((type) => _buildTappableMenuItem(type))
+                              .toList()
+                    ..add(Spacer())
+                    ..add(_buildProfileIcon()),
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: useCustomItems
+                  ? MainAxisAlignment.start
+                  : MainAxisAlignment.spaceEvenly,
             )
           : Container(
               height: context.sizeHeight(0.9),
@@ -75,21 +80,16 @@ class _TopMenuState extends State<TopMenu> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Container(
-                              width:
-                                  24) /* IconButton(
+                          child: Container(width: 24) /* IconButton(
                             onPressed: () => setState(() {
                               isTapped = !isTapped;
                             }),
                             icon: Icon(Icons.menu),
-                          ) */
-                          ,
+                          ) */,
                         ),
                         Text(
                           widget.selectedMenuItem.toMenuTitle,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
+                          style: Theme.of(context).textTheme.headlineMedium
                               ?.copyWith(color: Theme.of(context).primaryColor),
                         ),
                         Container(
@@ -153,42 +153,42 @@ class _TopMenuState extends State<TopMenu> {
   }
 
   List<Widget> get _columnComponents => [
-        SizedBox(height: 30),
-        MenuIcon(
-          type: MenuItemTypeKit.DASHBOARD,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 30),
-        MenuIcon(
-          type: MenuItemTypeKit.USERS,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 30),
-        MenuIcon(
-          type: MenuItemTypeKit.AUDIT,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 30),
-        MenuIcon(
-          type: MenuItemTypeKit.PERMISSIONS,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 30),
-        MenuIcon(
-          type: MenuItemTypeKit.ANNOUNCEMENT,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 30),
-        MenuIcon(
-          type: MenuItemTypeKit.INDUSTRY,
-          isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
-          onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
-        ),
-        SizedBox(height: 30),
-      ];
+    SizedBox(height: 30),
+    MenuIcon(
+      type: MenuItemTypeKit.DASHBOARD,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.DASHBOARD,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 30),
+    MenuIcon(
+      type: MenuItemTypeKit.USERS,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.USERS,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 30),
+    MenuIcon(
+      type: MenuItemTypeKit.AUDIT,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.AUDIT,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 30),
+    MenuIcon(
+      type: MenuItemTypeKit.PERMISSIONS,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.PERMISSIONS,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 30),
+    MenuIcon(
+      type: MenuItemTypeKit.ANNOUNCEMENT,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.ANNOUNCEMENT,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 30),
+    MenuIcon(
+      type: MenuItemTypeKit.INDUSTRY,
+      isSelected: widget.selectedMenuItem == MenuItemTypeKit.INDUSTRY,
+      onMenuItemSelected: (p0) => widget.onMenuItemSelected(p0),
+    ),
+    SizedBox(height: 30),
+  ];
 }
