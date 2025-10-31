@@ -58,6 +58,8 @@ class _TopMenuState extends State<TopMenu> {
               mainAxisAlignment: useCustomItems
                   ? MainAxisAlignment.start
                   : MainAxisAlignment.spaceEvenly,
+              mainAxisSize:
+                  useCustomItems ? MainAxisSize.min : MainAxisSize.max,
             )
           : Container(
               height: context.sizeHeight(0.9),
