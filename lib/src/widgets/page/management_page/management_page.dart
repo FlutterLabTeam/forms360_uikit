@@ -288,6 +288,8 @@ class BigScreenWidget extends StatelessWidget {
                           ? 16.0
                           : 100.0,
                       right: 100.0,
+                      top: 20,
+                      bottom: 20,
                     ),
                     child: TopMenu(
                       serviceWeb: serviceWeb,
