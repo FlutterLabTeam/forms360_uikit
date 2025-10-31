@@ -52,6 +52,7 @@ class _TopMenuState extends State<TopMenu> {
                 ? [
                     ...widget.customMenuItems!,
                     Spacer(),
+                    _buildProfileIcon(),
                   ]
                 : [
                     ...menuList.map((type) => _buildTappableMenuItem(type)),
