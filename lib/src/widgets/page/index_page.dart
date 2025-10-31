@@ -30,6 +30,7 @@ class UiPage {
     bool enableGoHome = false,
     bool hasBackButton = false,
     Function()? onPop,
+    List<Widget>? customMenuItems,
   }) =>
       ManagementPage(
         spacing: spacing,
@@ -46,6 +47,7 @@ class UiPage {
         rowCrossAxisAlignment: rowCrossAxisAlignment,
         onPop: onPop,
         hasBackButton: hasBackButton,
+        customMenuItems: customMenuItems,
       );
 
   Widget managementMultiPage({

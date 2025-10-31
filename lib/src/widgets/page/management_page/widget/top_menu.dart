@@ -12,6 +12,7 @@ class TopMenu extends StatefulWidget {
     required this.profileLetter,
     required this.selectedMenuItem,
     required this.onMenuItemSelected,
+    this.customMenuItems,
   });
 
   final bool? serviceWeb;
@@ -20,6 +21,7 @@ class TopMenu extends StatefulWidget {
   final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
   final Function(MenuItemTypeKit) onMenuItemSelected;
+  final List<Widget>? customMenuItems;
 
   @override
   State<TopMenu> createState() => _TopMenuState();
@@ -27,19 +29,30 @@ class TopMenu extends StatefulWidget {
 
 class _TopMenuState extends State<TopMenu> {
   bool isTapped = false;
-  List<MenuItemTypeKit> menuList =  menuItemList;
+  List<MenuItemTypeKit> menuList = menuItemList;
 
   @override
   Widget build(BuildContext context) {
+    if (widget.serviceWeb != null && widget.serviceWeb!)
+      menuList = menuItemListService;
 
-    if(widget.serviceWeb != null && widget.serviceWeb!) menuList = menuItemListService;
+    // Si serviceWeb es true y hay customMenuItems, usarlos
+    final bool useCustomItems = widget.serviceWeb == true &&
+        widget.customMenuItems != null &&
+        widget.customMenuItems!.isNotEmpty;
 
     return Container(
       child: widget.isHorizontal
           ? Row(
-              children: menuList
-                  .map((type) => _buildTappableMenuItem(type))
-                  .toList()
+              children: useCustomItems
+                  ? [
+                      ...widget.customMenuItems!,
+                      Spacer(),
+                      _buildProfileIcon(),
+                    ]
+                  : menuList
+                      .map((type) => _buildTappableMenuItem(type))
+                      .toList()
                 ..add(Spacer())
                 ..add(_buildProfileIcon()),
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,21 +76,22 @@ class _TopMenuState extends State<TopMenu> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Container(width: 24,)/* IconButton(
+                          child: Container(
+                              width:
+                                  24) /* IconButton(
                             onPressed: () => setState(() {
                               isTapped = !isTapped;
                             }),
                             icon: Icon(Icons.menu),
-                          ) */,
+                          ) */
+                          ,
                         ),
                         Text(
                           widget.selectedMenuItem.toMenuTitle,
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium
-                              ?.copyWith(
-                                color: Theme.of(context).primaryColor,
-                              ),
+                              ?.copyWith(color: Theme.of(context).primaryColor),
                         ),
                         Container(
                           margin: EdgeInsets.only(right: 16),
@@ -88,7 +102,7 @@ class _TopMenuState extends State<TopMenu> {
                             ),
                             onTap: widget.onProfileTap,
                           ).cursorGestureWithHover,
-                        )
+                        ),
                       ],
                     ),
                   ),

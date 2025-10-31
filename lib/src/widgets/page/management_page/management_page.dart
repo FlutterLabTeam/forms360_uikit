@@ -22,6 +22,7 @@ class ManagementPage extends StatelessWidget {
     required this.rowCrossAxisAlignment,
     required this.enableGoHome,
     this.hasBackButton = false,
+    this.customMenuItems,
   });
 
   final double spacing;
@@ -38,6 +39,7 @@ class ManagementPage extends StatelessWidget {
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
   final bool hasBackButton;
+  final List<Widget>? customMenuItems;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +61,7 @@ class ManagementPage extends StatelessWidget {
             rowMainAxisAlignment: rowMainAxisAlignment,
             rowCrossAxisAlignment: rowCrossAxisAlignment,
             hasBackButton: hasBackButton,
+            customMenuItems: customMenuItems,
           );
         } else if (constraints.maxWidth >= Breakpoint.tablet &&
             constraints.maxWidth < Breakpoint.xdesktop) {
@@ -230,6 +233,7 @@ class BigScreenWidget extends StatelessWidget {
     required this.rowCrossAxisAlignment,
     this.hasBackButton = false,
     this.assetPath = 'assets/images/clients/users_background.png',
+    this.customMenuItems,
   });
 
   final double spacing;
@@ -246,6 +250,7 @@ class BigScreenWidget extends StatelessWidget {
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
   final bool hasBackButton;
+  final List<Widget>? customMenuItems;
 
   @override
   Widget build(BuildContext context) {
@@ -294,6 +299,7 @@ class BigScreenWidget extends StatelessWidget {
                       profileLetter: profileLetter,
                       selectedMenuItem: selectedMenuItem,
                       onMenuItemSelected: onMenuItemSelected,
+                      customMenuItems: customMenuItems,
                     ),
                   ),
                   Expanded(
