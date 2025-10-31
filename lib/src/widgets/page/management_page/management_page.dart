@@ -161,11 +161,7 @@ class MediumScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 24.0,
-        left: 24.0,
-        bottom: 24.0,
-      ),
+      padding: const EdgeInsets.only(top: 24.0, left: 24.0, bottom: 24.0),
       child: Row(
         mainAxisAlignment: rowMainAxisAlignment,
         crossAxisAlignment: rowCrossAxisAlignment,
@@ -255,11 +251,7 @@ class BigScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 24.0,
-        left: 24.0,
-        bottom: 24.0,
-      ),
+      padding: const EdgeInsets.only(top: 24.0, left: 24.0, bottom: 24.0),
       child: Row(
         mainAxisAlignment: rowMainAxisAlignment,
         crossAxisAlignment: rowCrossAxisAlignment,
@@ -371,11 +363,7 @@ class LeftDecoration extends StatelessWidget {
             left: 24,
             child: InkWell(
               onTap: onPop,
-              child: Icon(
-                Icons.chevron_left,
-                size: 32,
-                color: Colors.white,
-              ),
+              child: Icon(Icons.chevron_left, size: 32, color: Colors.white),
             ),
           ),
       ],
