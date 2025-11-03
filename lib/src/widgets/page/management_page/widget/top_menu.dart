@@ -12,6 +12,7 @@ class TopMenu extends StatefulWidget {
     required this.profileLetter,
     required this.selectedMenuItem,
     required this.onMenuItemSelected,
+    this.customMenuItems,
   });
 
   final bool? serviceWeb;
@@ -20,6 +21,7 @@ class TopMenu extends StatefulWidget {
   final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
   final Function(MenuItemTypeKit) onMenuItemSelected;
+  final List<Widget>? customMenuItems;
 
   @override
   State<TopMenu> createState() => _TopMenuState();
@@ -27,94 +29,107 @@ class TopMenu extends StatefulWidget {
 
 class _TopMenuState extends State<TopMenu> {
   bool isTapped = false;
-  List<MenuItemTypeKit> menuList =  menuItemList;
+  List<MenuItemTypeKit> menuList = menuItemList;
 
   @override
   Widget build(BuildContext context) {
+    if (widget.serviceWeb != null && widget.serviceWeb!)
+      menuList = menuItemListService;
 
-    if(widget.serviceWeb != null && widget.serviceWeb!) menuList = menuItemListService;
+    // Si serviceWeb es true y hay customMenuItems, usarlos
+    final bool useCustomItems = widget.serviceWeb == true &&
+        widget.customMenuItems != null &&
+        widget.customMenuItems!.isNotEmpty;
 
-    return Container(
-      child: widget.isHorizontal
-          ? Row(
-              children: menuList
-                  .map((type) => _buildTappableMenuItem(type))
-                  .toList()
-                ..add(Spacer())
-                ..add(_buildProfileIcon()),
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            )
-          : Container(
-              height: context.sizeHeight(0.9),
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width - 40,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Container(width: 24,)/* IconButton(
+    return widget.isHorizontal
+        ? Row(
+            mainAxisSize: useCustomItems ? MainAxisSize.min : MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: useCustomItems
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.spaceEvenly,
+            children: useCustomItems
+                ? [
+                    ...widget.customMenuItems!,
+                    Spacer(),
+                    _buildProfileIcon(),
+                  ]
+                : [
+                    ...menuList.map((type) => _buildTappableMenuItem(type)),
+                    Spacer(),
+                    _buildProfileIcon(),
+                  ],
+          )
+        : Container(
+            height: context.sizeHeight(0.9),
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width - 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Container(
+                            width:
+                                24) /* IconButton(
                             onPressed: () => setState(() {
                               isTapped = !isTapped;
                             }),
                             icon: Icon(Icons.menu),
-                          ) */,
-                        ),
-                        Text(
-                          widget.selectedMenuItem.toMenuTitle,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(
-                                color: Theme.of(context).primaryColor,
-                              ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(right: 16),
-                          child: GestureDetector(
-                            child: AvatarCircularInitial(
-                              size: 24,
-                              name: widget.profileLetter,
-                            ),
-                            onTap: widget.onProfileTap,
-                          ).cursorGestureWithHover,
-                        )
-                      ],
-                    ),
-                  ),
-                  Visibility(
-                    visible: isTapped,
-                    child: Container(
-                      height: context.sizeHeight(0.7),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 10,
+                          ) */
+                        ,
+                      ),
+                      Text(
+                        widget.selectedMenuItem.toMenuTitle,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium
+                            ?.copyWith(color: Theme.of(context).primaryColor),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 16),
+                        child: GestureDetector(
+                          child: AvatarCircularInitial(
+                            size: 24,
+                            name: widget.profileLetter,
                           ),
-                        ],
-                        borderRadius: BorderRadius.circular(25),
+                          onTap: widget.onProfileTap,
+                        ).cursorGestureWithHover,
                       ),
-                      child: SingleChildScrollView(
-                        child: Column(children: _columnComponents),
-                      ),
+                    ],
+                  ),
+                ),
+                Visibility(
+                  visible: isTapped,
+                  child: Container(
+                    height: context.sizeHeight(0.7),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(children: _columnComponents),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-    );
+          );
   }
 
   _buildProfileIcon() {

@@ -22,6 +22,7 @@ class ManagementPage extends StatelessWidget {
     required this.rowCrossAxisAlignment,
     required this.enableGoHome,
     this.hasBackButton = false,
+    this.customMenuItems,
   });
 
   final double spacing;
@@ -38,6 +39,7 @@ class ManagementPage extends StatelessWidget {
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
   final bool hasBackButton;
+  final List<Widget>? customMenuItems;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +61,7 @@ class ManagementPage extends StatelessWidget {
             rowMainAxisAlignment: rowMainAxisAlignment,
             rowCrossAxisAlignment: rowCrossAxisAlignment,
             hasBackButton: hasBackButton,
+            customMenuItems: customMenuItems,
           );
         } else if (constraints.maxWidth >= Breakpoint.tablet &&
             constraints.maxWidth < Breakpoint.xdesktop) {
@@ -158,11 +161,7 @@ class MediumScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 24.0,
-        left: 24.0,
-        bottom: 24.0,
-      ),
+      padding: const EdgeInsets.only(top: 24.0, left: 24.0, bottom: 24.0),
       child: Row(
         mainAxisAlignment: rowMainAxisAlignment,
         crossAxisAlignment: rowCrossAxisAlignment,
@@ -230,6 +229,7 @@ class BigScreenWidget extends StatelessWidget {
     required this.rowCrossAxisAlignment,
     this.hasBackButton = false,
     this.assetPath = 'assets/images/clients/users_background.png',
+    this.customMenuItems,
   });
 
   final double spacing;
@@ -246,15 +246,12 @@ class BigScreenWidget extends StatelessWidget {
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
   final bool hasBackButton;
+  final List<Widget>? customMenuItems;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 24.0,
-        left: 24.0,
-        bottom: 24.0,
-      ),
+      padding: const EdgeInsets.only(top: 24.0, left: 24.0, bottom: 24.0),
       child: Row(
         mainAxisAlignment: rowMainAxisAlignment,
         crossAxisAlignment: rowCrossAxisAlignment,
@@ -284,9 +281,15 @@ class BigScreenWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 100.0,
-                      vertical: 20,
+                    padding: EdgeInsets.only(
+                      left: (serviceWeb == true &&
+                              customMenuItems != null &&
+                              customMenuItems!.isNotEmpty)
+                          ? 16.0
+                          : 100.0,
+                      right: 100.0,
+                      top: 20,
+                      bottom: 20,
                     ),
                     child: TopMenu(
                       serviceWeb: serviceWeb,
@@ -294,6 +297,7 @@ class BigScreenWidget extends StatelessWidget {
                       profileLetter: profileLetter,
                       selectedMenuItem: selectedMenuItem,
                       onMenuItemSelected: onMenuItemSelected,
+                      customMenuItems: customMenuItems,
                     ),
                   ),
                   Expanded(
@@ -365,11 +369,7 @@ class LeftDecoration extends StatelessWidget {
             left: 24,
             child: InkWell(
               onTap: onPop,
-              child: Icon(
-                Icons.chevron_left,
-                size: 32,
-                color: Colors.white,
-              ),
+              child: Icon(Icons.chevron_left, size: 32, color: Colors.white),
             ),
           ),
       ],
