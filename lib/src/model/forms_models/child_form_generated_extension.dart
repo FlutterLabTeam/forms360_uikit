@@ -42,4 +42,45 @@ extension ChildFormGeneratedExtension on ChildFormGeneratedModel {
 
     return false;
   }
+
+  String get generateValue {
+    if (type == LibraryTemplateEnum.DATE) {
+      return dateValue.toString();
+    }
+    if (type == LibraryTemplateEnum.BARCODE) {
+      return stringValue.toString();
+    }
+    if (type == LibraryTemplateEnum.BOOLEAN) {
+      return boolValue.toString();
+    }
+    if (type == LibraryTemplateEnum.NUMERIC) {
+      return numericalValue.toString();
+    }
+    if (type == LibraryTemplateEnum.PHOTO) {
+      return stringValue.toString();
+    }
+    if (type == LibraryTemplateEnum.VIDEO) {
+      return stringValue.toString();
+    }
+    if (type == LibraryTemplateEnum.SOUND) {
+      return stringValue.toString();
+    }
+    if (type == LibraryTemplateEnum.SELECTION_LIST) {
+      return stringValue.toString();
+    }
+    if (type == LibraryTemplateEnum.CHECK_LIST) {
+      return stringValue.toString();
+    }
+    if (type == LibraryTemplateEnum.TEXT) {
+      return stringValue.toString();
+    }
+    if (type == LibraryTemplateEnum.SIGNATURE) {
+      return stringValue.toString();
+    }
+    if (type == LibraryTemplateEnum.PRODUCTS) {
+      return stringValue.toString();
+    }
+
+    return "";
+  }
 }
