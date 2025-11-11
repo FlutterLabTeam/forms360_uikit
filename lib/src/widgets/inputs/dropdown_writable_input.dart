@@ -21,7 +21,8 @@ class DropdownWritableInput extends StatefulWidget {
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
     this.type = DropdownWritableInputType.SINGLE,
-  }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
+    this.noItemsFoundText = "No items found",
+  }) : inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final String label;
   final bool enabled;
@@ -39,6 +40,7 @@ class DropdownWritableInput extends StatefulWidget {
   final Function(List<String>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
   final Widget Function(BuildContext, String)? buildSuggestionItem;
+  final String noItemsFoundText;
 
   @override
   State<DropdownWritableInput> createState() => _DropdownWritableInputState();
@@ -113,6 +115,10 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             controller: widget.dropdownSearchFieldController,
           ),
           suggestionsCallback: (pattern) => getSuggestions(pattern),
+          noItemsFoundBuilder: (context) => Container(
+            padding: EdgeInsets.all(16),
+            child: Text(widget.noItemsFoundText),
+          ),
           itemBuilder: widget.buildSuggestionItem ??
               (context, String suggestion) {
                 if (widget.addNewItemTitle.isNotEmpty &&
