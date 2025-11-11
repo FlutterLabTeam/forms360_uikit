@@ -96,6 +96,7 @@ class Inputs {
     required TextEditingController dropdownSearchFieldController,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
     DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
+    String noItemsFoundText = "No items found",
   }) =>
       DropdownWritableInput(
         type: type,
@@ -114,6 +115,7 @@ class Inputs {
         onSuggestionSelected: onSuggestionSelected,
         onSelectedValuesChanged: onSelectedValuesChanged,
         dropdownSearchFieldController: dropdownSearchFieldController,
+        noItemsFoundText: noItemsFoundText,
       );
 
   Widget dynamicDropDown<T>({
