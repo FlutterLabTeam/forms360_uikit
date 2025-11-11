@@ -96,7 +96,7 @@ class Inputs {
     required TextEditingController dropdownSearchFieldController,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
     DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
-    String noItemsFoundText = "No items found",
+    String noItemsFoundText = "No results found",
   }) =>
       DropdownWritableInput(
         type: type,
