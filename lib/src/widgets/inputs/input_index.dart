@@ -101,6 +101,7 @@ class Inputs {
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
     DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
     FutureOr<Iterable<String>> Function(String)? onSuggestionCallback,
+    String noItemsFoundText = "No results found",
   }) =>
       DropdownWritableInput(
         type: type,
@@ -120,6 +121,7 @@ class Inputs {
         onSelectedValuesChanged: onSelectedValuesChanged,
         dropdownSearchFieldController: dropdownSearchFieldController,
         onSuggestionCallback: onSuggestionCallback,
+        noItemsFoundText: noItemsFoundText,
       );
 
   Widget dynamicDropDown<T>({
