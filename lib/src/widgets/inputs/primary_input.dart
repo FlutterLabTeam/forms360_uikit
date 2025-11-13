@@ -32,6 +32,7 @@ class PrimaryInput extends StatefulWidget {
     this.showPrefixWhenUnfocused = true,
     this.onTap,
     this.onlyRead = false,
+    this.isClickableDate = false,
   }) : inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final bool isBig;
@@ -59,6 +60,7 @@ class PrimaryInput extends StatefulWidget {
   final bool showPrefixWhenUnfocused;
   final VoidCallback? onTap;
   final bool onlyRead;
+  final bool isClickableDate;
   @override
   _PrimaryInputState createState() => _PrimaryInputState();
 }
@@ -110,7 +112,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
 
   bool _shouldShowPrefix() {
     if (widget.prefixWidget == null) return false;
-    
+
     // Siempre mostrar el prefixWidget si está definido
     return true;
   }
@@ -140,7 +142,6 @@ class _PrimaryInputState extends State<PrimaryInput> {
               ? [AutofillHints.password]
               : null,
       decoration: InputDecoration(
-        
         counterText: widget.showCounter ? null : "",
         prefix: _shouldShowPrefix() ? widget.prefixWidget : null,
         hintText: widget.hintText,
@@ -208,7 +209,9 @@ class _PrimaryInputState extends State<PrimaryInput> {
 
   Color _getEnabledColor() {
     if (widget.onlyRead) return _generateColorInput();
-    return widget.enabled ? _generateColorInput() : Colors.grey;
+    return widget.enabled || widget.isClickableDate
+        ? _generateColorInput()
+        : Colors.grey;
   }
 
   Color _generateColorInput() {

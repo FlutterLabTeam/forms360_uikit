@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
@@ -47,6 +49,7 @@ class Inputs {
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
     VoidCallback? onTap,
     bool onlyRead = false,
+    bool isClickableDate = false,
   }) =>
       PrimaryInput(
         key: key,
@@ -75,6 +78,7 @@ class Inputs {
         showPrefixWhenUnfocused: showPrefixWhenUnfocused ?? true,
         onTap: onTap,
         onlyRead: onlyRead,
+        isClickableDate: isClickableDate,
       );
 
   Widget dropdownWritableInput({
@@ -96,6 +100,7 @@ class Inputs {
     required TextEditingController dropdownSearchFieldController,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
     DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
+    FutureOr<Iterable<String>> Function(String)? onSuggestionCallback,
   }) =>
       DropdownWritableInput(
         type: type,
@@ -114,6 +119,7 @@ class Inputs {
         onSuggestionSelected: onSuggestionSelected,
         onSelectedValuesChanged: onSelectedValuesChanged,
         dropdownSearchFieldController: dropdownSearchFieldController,
+        onSuggestionCallback: onSuggestionCallback,
       );
 
   Widget dynamicDropDown<T>({

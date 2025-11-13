@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:drop_down_search_field/drop_down_search_field.dart';
@@ -21,6 +23,7 @@ class DropdownWritableInput extends StatefulWidget {
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
     this.type = DropdownWritableInputType.SINGLE,
+    this.onSuggestionCallback,
   }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final String label;
@@ -39,6 +42,7 @@ class DropdownWritableInput extends StatefulWidget {
   final Function(List<String>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
   final Widget Function(BuildContext, String)? buildSuggestionItem;
+  final FutureOr<Iterable<String>> Function(String)? onSuggestionCallback;
 
   @override
   State<DropdownWritableInput> createState() => _DropdownWritableInputState();
@@ -112,7 +116,9 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             ),
             controller: widget.dropdownSearchFieldController,
           ),
-          suggestionsCallback: (pattern) => getSuggestions(pattern),
+          suggestionsCallback: (pattern) =>
+              widget.onSuggestionCallback?.call(pattern) ??
+              getSuggestions(pattern),
           itemBuilder: widget.buildSuggestionItem ??
               (context, String suggestion) {
                 if (widget.addNewItemTitle.isNotEmpty &&
