@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 
-class ListGenerator<T> extends StatefulWidget {
+class ListGenerator<T> extends StatelessWidget {
   final List<T> list;
   final String? label;
   final IconData? icon;
@@ -16,35 +16,13 @@ class ListGenerator<T> extends StatefulWidget {
   });
 
   @override
-  State<ListGenerator<T>> createState() => _ListGeneratorState<T>();
-}
-
-class _ListGeneratorState<T> extends State<ListGenerator<T>> {
-  late final ScrollController _scrollController;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return widget.list.isNotEmpty
+    return list.isNotEmpty
         ? ScrollbarTheme(
             data: ScrollbarThemeData(
-              thumbColor: MaterialStateProperty.all(
-                context.primaryColor.withOpacity(0.5),
-              ),
+              thumbColor: MaterialStateProperty.all(context.primaryColor.withOpacity(0.5)),
             ),
             child: Scrollbar(
-              controller: _scrollController,
               thickness: 6.0,
               interactive: true,
               thumbVisibility: true,
@@ -52,10 +30,8 @@ class _ListGeneratorState<T> extends State<ListGenerator<T>> {
               radius: Radius.circular(10),
               scrollbarOrientation: ScrollbarOrientation.right,
               child: ListView.builder(
-                controller: _scrollController,
-                itemCount: widget.list.length,
-                itemBuilder: (_, int index) =>
-                    widget.itemBuilder(widget.list[index], index),
+                itemCount: list.length,
+                itemBuilder: (_, int index) => itemBuilder(list[index], index),
               ),
             ),
           )
@@ -66,17 +42,17 @@ class _ListGeneratorState<T> extends State<ListGenerator<T>> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  widget.icon ?? Icons.inbox,
+                  icon ?? Icons.inbox,
                   size: 60,
                   color: context.primaryColor,
                 ),
                 SizedBox(height: 10),
                 Text(
-                  widget.label ?? "No matching records found",
+                  label ?? "No matching records found",
                   style: FormsKit.theme.text.primary.copyWith(
                     color: context.primaryColor,
                   ),
-                ),
+                )
               ],
             ),
           );

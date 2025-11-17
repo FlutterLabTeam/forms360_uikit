@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 
-class WrapGenerator<T> extends StatefulWidget {
+class WrapGenerator<T> extends StatelessWidget {
   final List<T> list;
   final String? label;
   final IconData? icon;
@@ -24,27 +24,8 @@ class WrapGenerator<T> extends StatefulWidget {
   });
 
   @override
-  State<WrapGenerator<T>> createState() => _WrapGeneratorState<T>();
-}
-
-class _WrapGeneratorState<T> extends State<WrapGenerator<T>> {
-  late final ScrollController _scrollController;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return widget.list.isNotEmpty
+    return list.isNotEmpty
         ? ScrollbarTheme(
             data: ScrollbarThemeData(
               thumbColor: WidgetStateProperty.all(
@@ -52,7 +33,6 @@ class _WrapGeneratorState<T> extends State<WrapGenerator<T>> {
               ),
             ),
             child: Scrollbar(
-              controller: _scrollController,
               thickness: 6.0,
               interactive: true,
               thumbVisibility: true,
@@ -60,38 +40,37 @@ class _WrapGeneratorState<T> extends State<WrapGenerator<T>> {
               radius: Radius.circular(10),
               scrollbarOrientation: ScrollbarOrientation.right,
               child: SingleChildScrollView(
-                controller: _scrollController,
                 child: Wrap(
                   alignment: WrapAlignment.start,
-                  spacing: widget.spacing ?? 10,
-                  runSpacing: widget.runSpacing ?? 10,
+                  spacing: spacing ?? 10,
+                  runSpacing: runSpacing ?? 10,
                   children: List.generate(
-                    widget.list.length,
-                    (index) => widget.itemBuilder(widget.list[index], index),
+                    list.length,
+                    (index) => itemBuilder(list[index], index),
                   ),
                 ),
               ),
             ),
           )
         : Container(
-            margin: EdgeInsets.only(top: widget.topMargin!),
+            margin: EdgeInsets.only(top: topMargin!),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  widget.icon ?? Icons.inbox,
+                  icon ?? Icons.inbox,
                   size: 60,
                   color: context.primaryColor,
                 ),
                 SizedBox(height: 10),
                 Text(
-                  widget.label ?? "No matching records found",
+                  label ?? "No matching records found",
                   style: FormsKit.theme.text.primary.copyWith(
                     color: context.primaryColor,
                   ),
-                ),
+                )
               ],
             ),
           );
