@@ -108,11 +108,13 @@ class _DynamicDropdownWritableInputState<T>
           ),
           suggestionsCallback: (pattern) =>
               widget.onSuggestionCallback(pattern),
-          itemBuilder: (context, T suggestion) {
+          itemBuilder: (context, dynamic suggestion) {
             if (widget.getItemWidget != null) {
-              return ListTile(title: widget.getItemWidget!(suggestion));
+              return ListTile(title: widget.getItemWidget!(suggestion as T));
             }
-            return ListTile(title: Text(widget.convertToString(suggestion)));
+            return ListTile(
+              title: Text(widget.convertToString(suggestion as T)),
+            );
           },
           itemSeparatorBuilder: (context, index) => Divider(),
           transitionBuilder: (context, suggestionsBox, controller) {
