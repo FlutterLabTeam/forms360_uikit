@@ -141,16 +141,21 @@ class _CustomInputOtpState extends State<CustomInputOtp> {
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         cursorColor: Colors.transparent,
-        buildCounter: (
-          context, {
-          maxLength,
-          required isFocused,
-          required currentLength,
-        }) =>
-            null,
+        buildCounter:
+            (
+              context, {
+              maxLength,
+              required isFocused,
+              required currentLength,
+            }) => null,
         style: widget.controller.text == "*"
-            ? context.mobileTitleText.copyWith(color: Colors.transparent)
-            : context.mobileTitleText,
+            ? context.mobileTitleText.copyWith(
+                color: Colors.transparent,
+                fontSize: 32, // Tamaño de fuente reducido
+              )
+            : context.mobileTitleText.copyWith(
+                fontSize: 32, // Tamaño de fuente reducido
+              ),
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           filled: true,

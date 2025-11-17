@@ -46,7 +46,9 @@ class _GridViewGeneratorState<T> extends State<GridViewGenerator<T>> {
     return widget.list.isNotEmpty
         ? ScrollbarTheme(
             data: ScrollbarThemeData(
-              thumbColor: MaterialStateProperty.all(context.primaryColor.withOpacity(0.5)),
+              thumbColor: MaterialStateProperty.all(
+                context.primaryColor.withOpacity(0.5),
+              ),
             ),
             child: Scrollbar(
               controller: _scrollController,
@@ -62,7 +64,8 @@ class _GridViewGeneratorState<T> extends State<GridViewGenerator<T>> {
                 crossAxisCount: widget.crossAxisCount ?? 3,
                 mainAxisSpacing: widget.mainAxisSpacing ?? 16,
                 crossAxisSpacing: widget.crossAxisSpacing ?? 30,
-                itemBuilder: (_, int index) => widget.itemBuilder(widget.list[index], index),
+                itemBuilder: (_, int index) =>
+                    widget.itemBuilder(widget.list[index], index),
               ),
             ),
           )
@@ -83,7 +86,7 @@ class _GridViewGeneratorState<T> extends State<GridViewGenerator<T>> {
                   style: FormsKit.theme.text.primary.copyWith(
                     color: context.primaryColor,
                   ),
-                )
+                ),
               ],
             ),
           );

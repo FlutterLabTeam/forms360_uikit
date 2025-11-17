@@ -39,7 +39,9 @@ class _ListGeneratorState<T> extends State<ListGenerator<T>> {
     return widget.list.isNotEmpty
         ? ScrollbarTheme(
             data: ScrollbarThemeData(
-              thumbColor: MaterialStateProperty.all(context.primaryColor.withOpacity(0.5)),
+              thumbColor: MaterialStateProperty.all(
+                context.primaryColor.withOpacity(0.5),
+              ),
             ),
             child: Scrollbar(
               controller: _scrollController,
@@ -52,7 +54,8 @@ class _ListGeneratorState<T> extends State<ListGenerator<T>> {
               child: ListView.builder(
                 controller: _scrollController,
                 itemCount: widget.list.length,
-                itemBuilder: (_, int index) => widget.itemBuilder(widget.list[index], index),
+                itemBuilder: (_, int index) =>
+                    widget.itemBuilder(widget.list[index], index),
               ),
             ),
           )
@@ -73,7 +76,7 @@ class _ListGeneratorState<T> extends State<ListGenerator<T>> {
                   style: FormsKit.theme.text.primary.copyWith(
                     color: context.primaryColor,
                   ),
-                )
+                ),
               ],
             ),
           );
