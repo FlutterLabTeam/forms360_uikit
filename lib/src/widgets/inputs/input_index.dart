@@ -50,36 +50,35 @@ class Inputs {
     VoidCallback? onTap,
     bool onlyRead = false,
     bool isClickableDate = false,
-  }) =>
-      PrimaryInput(
-        key: key,
-        isBig: isBig,
-        label: label,
-        enabled: enabled,
-        hintText: hintText,
-        textStyle: textStyle,
-        maxLength: maxLength,
-        validator: validator,
-        onChanged: onChanged,
-        isPassword: isPassword,
-        inputColor: inputColor,
-        controller: controller,
-        suffixIcon: suffixIcon,
-        showCounter: showCounter,
-        keyboardType: keyboardType,
-        prefixWidget: prefixWidget,
-        initialValue: initialValue,
-        onIconPressed: onIconPressed,
-        contentPadding: contentPadding,
-        inputFormatters: inputFormatters,
-        onFocusChanged: onFocusChanged,
-        onFieldSubmitted: onFieldSubmitted,
-        isSuffixIconEnabled: isSuffixIconEnabled,
-        showPrefixWhenUnfocused: showPrefixWhenUnfocused ?? true,
-        onTap: onTap,
-        onlyRead: onlyRead,
-        isClickableDate: isClickableDate,
-      );
+  }) => PrimaryInput(
+    key: key,
+    isBig: isBig,
+    label: label,
+    enabled: enabled,
+    hintText: hintText,
+    textStyle: textStyle,
+    maxLength: maxLength,
+    validator: validator,
+    onChanged: onChanged,
+    isPassword: isPassword,
+    inputColor: inputColor,
+    controller: controller,
+    suffixIcon: suffixIcon,
+    showCounter: showCounter,
+    keyboardType: keyboardType,
+    prefixWidget: prefixWidget,
+    initialValue: initialValue,
+    onIconPressed: onIconPressed,
+    contentPadding: contentPadding,
+    inputFormatters: inputFormatters,
+    onFocusChanged: onFocusChanged,
+    onFieldSubmitted: onFieldSubmitted,
+    isSuffixIconEnabled: isSuffixIconEnabled,
+    showPrefixWhenUnfocused: showPrefixWhenUnfocused ?? true,
+    onTap: onTap,
+    onlyRead: onlyRead,
+    isClickableDate: isClickableDate,
+  );
 
   Widget dropdownWritableInput({
     double? fontSize,
@@ -102,27 +101,26 @@ class Inputs {
     DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
     FutureOr<Iterable<String>> Function(String)? onSuggestionCallback,
     String noItemsFoundText = "No results found",
-  }) =>
-      DropdownWritableInput(
-        type: type,
-        label: label,
-        items: items,
-        enabled: enabled,
-        fontSize: fontSize,
-        hintText: hintText,
-        validator: validator,
-        inputColor: inputColor,
-        initialValue: initialValue,
-        contentPadding: contentPadding,
-        selectedValues: selectedValues,
-        addNewItemTitle: addNewItemTitle,
-        buildSuggestionItem: buildSuggestionItem,
-        onSuggestionSelected: onSuggestionSelected,
-        onSelectedValuesChanged: onSelectedValuesChanged,
-        dropdownSearchFieldController: dropdownSearchFieldController,
-        onSuggestionCallback: onSuggestionCallback,
-        noItemsFoundText: noItemsFoundText,
-      );
+  }) => DropdownWritableInput(
+    type: type,
+    label: label,
+    items: items,
+    enabled: enabled,
+    fontSize: fontSize,
+    hintText: hintText,
+    validator: validator,
+    inputColor: inputColor,
+    initialValue: initialValue,
+    contentPadding: contentPadding,
+    selectedValues: selectedValues,
+    addNewItemTitle: addNewItemTitle,
+    buildSuggestionItem: buildSuggestionItem,
+    onSuggestionSelected: onSuggestionSelected,
+    onSelectedValuesChanged: onSelectedValuesChanged,
+    dropdownSearchFieldController: dropdownSearchFieldController,
+    onSuggestionCallback: onSuggestionCallback,
+    noItemsFoundText: noItemsFoundText,
+  );
 
   Widget dynamicDropDown<T>({
     bool enabled = true,
@@ -143,25 +141,26 @@ class Inputs {
     EdgeInsets? contentPadding,
     required String Function(T) getStringValue,
     required Function(String) onSuggestionCallback,
-  }) =>
-      DynamicDropdownWritableInput<T>(
-        getStringValue: getStringValue,
-        type: type,
-        label: label,
-        items: items,
-        enabled: enabled,
-        hintText: hintText,
-        fontSize: fontSize,
-        validator: validator,
-        inputColor: inputColor,
-        initialValue: initialValue,
-        selectedValues: selectedValues,
-        contentPadding: contentPadding,
-        onSuggestionSelected: onSuggestionSelected,
-        onSuggestionCallback: onSuggestionCallback,
-        onSelectedValuesChanged: onSelectedValuesChanged,
-        dropdownSearchFieldController: dropdownSearchFieldController,
-      );
+    Widget Function(dynamic)? getItemWidget,
+  }) => DynamicDropdownWritableInput<T>(
+    getStringValue: getStringValue,
+    type: type,
+    label: label,
+    items: items,
+    enabled: enabled,
+    hintText: hintText,
+    fontSize: fontSize,
+    validator: validator,
+    inputColor: inputColor,
+    initialValue: initialValue,
+    selectedValues: selectedValues,
+    contentPadding: contentPadding,
+    onSuggestionSelected: onSuggestionSelected,
+    onSuggestionCallback: onSuggestionCallback,
+    onSelectedValuesChanged: onSelectedValuesChanged,
+    dropdownSearchFieldController: dropdownSearchFieldController,
+    getItemWidget: getItemWidget,
+  );
 
   Widget otpInput({
     double? fontSizeWidth,
@@ -169,33 +168,27 @@ class Inputs {
     Function(String)? onSubmit,
     PlatformAlertType? platform,
     required List<TextEditingController> controllers,
-  }) =>
-      platform == PlatformAlertType.WEB
-          ? OtpInput(
-              onSubmit: onSubmit,
-              platform: platform,
-              controllers: controllers,
-              fontSizeWidth: fontSizeWidth,
-              fontSizeHeight: fontSizeHeight,
-            )
-          : OtpInputMobile(
-              onSubmit: onSubmit,
-              platform: platform,
-              controllers: controllers,
-              fontSizeWidth: fontSizeWidth,
-              fontSizeHeight: fontSizeHeight,
-            );
+  }) => platform == PlatformAlertType.WEB
+      ? OtpInput(
+          onSubmit: onSubmit,
+          platform: platform,
+          controllers: controllers,
+          fontSizeWidth: fontSizeWidth,
+          fontSizeHeight: fontSizeHeight,
+        )
+      : OtpInputMobile(
+          onSubmit: onSubmit,
+          platform: platform,
+          controllers: controllers,
+          fontSizeWidth: fontSizeWidth,
+          fontSizeHeight: fontSizeHeight,
+        );
 
   Widget checkBox({
     required bool state,
     required Function(bool) onTap,
     bool enabled = true,
-  }) =>
-      CheckBox(
-        onTap: onTap,
-        state: state,
-        enabled: enabled,
-      );
+  }) => CheckBox(onTap: onTap, state: state, enabled: enabled);
 
   Widget searchInput({
     int? maxLength,
@@ -205,15 +198,14 @@ class Inputs {
     final void Function(String)? onChanged,
     required TextEditingController controller,
     final String? Function(String?)? validator,
-  }) =>
-      SearchInput(
-        label: label,
-        hintText: hintText,
-        validator: validator,
-        maxLength: maxLength,
-        controller: controller,
-        onChanged: onChanged,
-      );
+  }) => SearchInput(
+    label: label,
+    hintText: hintText,
+    validator: validator,
+    maxLength: maxLength,
+    controller: controller,
+    onChanged: onChanged,
+  );
   Widget dateInput({
     double? fontSize,
     required String label,
@@ -225,19 +217,18 @@ class Inputs {
     required GestureTapCallback? onTap,
     required TextEditingController controller,
     required String? Function(String?)? validator,
-  }) =>
-      DateInput(
-        label: label,
-        onTap: onTap,
-        width: width,
-        fontSize: fontSize,
-        hintText: hintText,
-        maxLength: maxLength,
-        validator: validator,
-        controller: controller,
-        onTapOutside: onTapOutside,
-        isClearButtonVisible: isClearButtonVisible,
-      );
+  }) => DateInput(
+    label: label,
+    onTap: onTap,
+    width: width,
+    fontSize: fontSize,
+    hintText: hintText,
+    maxLength: maxLength,
+    validator: validator,
+    controller: controller,
+    onTapOutside: onTapOutside,
+    isClearButtonVisible: isClearButtonVisible,
+  );
 
   Widget tagInput<T>({
     String addText = 'Add',
@@ -249,18 +240,17 @@ class Inputs {
     double? itemHeight,
     double? itemWidth,
     bool showAddButton = false,
-  }) =>
-      TagWidget<T>(
-        onTap: onTap,
-        tagList: tagList,
-        onTapAdd: onTapAdd,
-        addText: addText,
-        itemHeight: itemHeight,
-        itemWidth: itemWidth,
-        showAddButton: showAddButton,
-        selectedTag: selectedTag,
-        allText: allText ?? 'All',
-      );
+  }) => TagWidget<T>(
+    onTap: onTap,
+    tagList: tagList,
+    onTapAdd: onTapAdd,
+    addText: addText,
+    itemHeight: itemHeight,
+    itemWidth: itemWidth,
+    showAddButton: showAddButton,
+    selectedTag: selectedTag,
+    allText: allText ?? 'All',
+  );
 
   Widget customForm({
     required String? title,
@@ -269,15 +259,14 @@ class Inputs {
     required List<Widget> children,
     Future<void> Function()? onValidationFailed,
     required Future<void> Function() onValidationSuccess,
-  }) =>
-      CustomForm(
-        title: title,
-        children: children,
-        buttonText: buttonText,
-        description: description,
-        onValidationFailed: onValidationFailed,
-        onValidationSuccess: onValidationSuccess,
-      );
+  }) => CustomForm(
+    title: title,
+    children: children,
+    buttonText: buttonText,
+    description: description,
+    onValidationFailed: onValidationFailed,
+    onValidationSuccess: onValidationSuccess,
+  );
 
   Widget popUpTextInput({
     required String label,
@@ -293,31 +282,26 @@ class Inputs {
     int? maxLength,
     double? height,
     Widget? prefixWidget,
-  }) =>
-      PopUpTextInput(
-        label: label,
-        hintText: hintText,
-        controller: controller,
-        onChanged: onChanged,
-        validator: validator,
-        isSuffixIconEnabled: isSuffixIconEnabled,
-        suffixeIcon: suffixeIcon,
-        suffixIconOnPressed: suffixIconOnPressed,
-        width: width,
-        isEnabled: isEnabled,
-        maxLength: maxLength,
-        height: height,
-        prefixWidget: prefixWidget,
-      );
+  }) => PopUpTextInput(
+    label: label,
+    hintText: hintText,
+    controller: controller,
+    onChanged: onChanged,
+    validator: validator,
+    isSuffixIconEnabled: isSuffixIconEnabled,
+    suffixeIcon: suffixeIcon,
+    suffixIconOnPressed: suffixIconOnPressed,
+    width: width,
+    isEnabled: isEnabled,
+    maxLength: maxLength,
+    height: height,
+    prefixWidget: prefixWidget,
+  );
 
   Widget popUpRowTextFields(
     CustomFormFieldModel field1,
     CustomFormFieldModel field2,
-  ) =>
-      PopUpRowTextInputs(
-        field1: field1,
-        field2: field2,
-      );
+  ) => PopUpRowTextInputs(field1: field1, field2: field2);
 
   Widget phoneInput({
     int? maxLength,
@@ -331,20 +315,19 @@ class Inputs {
     required PhoneController controller,
     final String? Function(PhoneNumber?)? validator,
     required Function(PhoneNumber)? onCountryCodeChanged,
-  }) =>
-      PhoneInput(
-        label: label,
-        hintText: hintText,
-        isEnabled: isEnabled,
-        validator: validator,
-        maxLength: maxLength,
-        controller: controller,
-        suffixeIcon: suffixeIcon,
-        initialValue: initialValue,
-        isSuffixIconEnabled: isSuffixIconEnabled,
-        suffixIconOnPressed: suffixIconOnPressed,
-        onCountryCodeChanged: onCountryCodeChanged,
-      );
+  }) => PhoneInput(
+    label: label,
+    hintText: hintText,
+    isEnabled: isEnabled,
+    validator: validator,
+    maxLength: maxLength,
+    controller: controller,
+    suffixeIcon: suffixeIcon,
+    initialValue: initialValue,
+    isSuffixIconEnabled: isSuffixIconEnabled,
+    suffixIconOnPressed: suffixIconOnPressed,
+    onCountryCodeChanged: onCountryCodeChanged,
+  );
 
   Widget customSwitch({
     required bool value,
@@ -352,14 +335,13 @@ class Inputs {
     bool disabled = false,
     required Function(bool) onTap,
     MainAxisAlignment? mainAxisAlignment,
-  }) =>
-      CustomSwitch(
-        onTap: onTap,
-        value: value,
-        label: label,
-        disabled: disabled,
-        mainAxisAlignment: mainAxisAlignment,
-      );
+  }) => CustomSwitch(
+    onTap: onTap,
+    value: value,
+    label: label,
+    disabled: disabled,
+    mainAxisAlignment: mainAxisAlignment,
+  );
 
   Widget primaryDateInput({
     double? fontSize,
@@ -377,22 +359,21 @@ class Inputs {
     required TextEditingController controller,
     required String? Function(String?)? validator,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
-  }) =>
-      PrimaryDateInput(
-        label: label,
-        onTap: onTap,
-        enabled: enabled,
-        hintText: hintText,
-        fontSize: fontSize,
-        maxLength: maxLength,
-        textStyle: textStyle,
-        validator: validator,
-        controller: controller,
-        inputColor: inputColor,
-        initialValue: initialValue,
-        onTapOutside: onTapOutside,
-        onIconPressed: onIconPressed,
-        contentPadding: contentPadding,
-        isClearButtonVisible: isClearButtonVisible,
-      );
+  }) => PrimaryDateInput(
+    label: label,
+    onTap: onTap,
+    enabled: enabled,
+    hintText: hintText,
+    fontSize: fontSize,
+    maxLength: maxLength,
+    textStyle: textStyle,
+    validator: validator,
+    controller: controller,
+    inputColor: inputColor,
+    initialValue: initialValue,
+    onTapOutside: onTapOutside,
+    onIconPressed: onIconPressed,
+    contentPadding: contentPadding,
+    isClearButtonVisible: isClearButtonVisible,
+  );
 }
