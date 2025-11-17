@@ -149,13 +149,8 @@ class _CustomInputOtpState extends State<CustomInputOtp> {
               required currentLength,
             }) => null,
         style: widget.controller.text == "*"
-            ? context.mobileTitleText.copyWith(
-                color: Colors.transparent,
-                fontSize: 32, // Tamaño de fuente reducido
-              )
-            : context.mobileTitleText.copyWith(
-                fontSize: 32, // Tamaño de fuente reducido
-              ),
+            ? context.mobileTitleText.copyWith(color: Colors.transparent)
+            : context.mobileTitleText,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           filled: true,

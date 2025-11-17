@@ -152,10 +152,10 @@ class _CustomInputOtpMobileState extends State<CustomInputOtpMobile> {
         style: widget.controller.text == "*"
             ? context.mobileTitleText.copyWith(
                 color: Colors.transparent,
-                fontSize: 26, // Tamaño de fuente reducido
+                fontSize: 34, // Tamaño de fuente reducido
               )
             : context.mobileTitleText.copyWith(
-                fontSize: 26, // Tamaño de fuente reducido
+                fontSize: 34, // Tamaño de fuente reducido
               ),
         textAlign: TextAlign.center,
         decoration: InputDecoration(
