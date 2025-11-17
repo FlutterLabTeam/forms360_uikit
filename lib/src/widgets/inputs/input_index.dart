@@ -137,7 +137,7 @@ class Inputs {
     EdgeInsets? contentPadding,
     required String Function(T) getStringValue,
     required Function(String) onSuggestionCallback,
-    Widget Function(T)? getItemWidget,
+    Widget Function(dynamic)? getItemWidget,
   }) =>
       DynamicDropdownWritableInput<T>(
         getStringValue: getStringValue,

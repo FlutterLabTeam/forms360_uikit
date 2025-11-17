@@ -40,7 +40,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
   final TextEditingController dropdownSearchFieldController;
   final String Function(T) getStringValue;
   final Function(String) onSuggestionCallback;
-  final Widget Function(T)? getItemWidget;
+  final Widget Function(dynamic)? getItemWidget;
 
   /// Converts an item of type T into a String using the provided getStringValue function.
   String convertToString<T>(item) {
@@ -110,7 +110,7 @@ class _DynamicDropdownWritableInputState<T>
               widget.onSuggestionCallback(pattern),
           itemBuilder: (context, dynamic suggestion) {
             if (widget.getItemWidget != null) {
-              return ListTile(title: widget.getItemWidget!(suggestion as T));
+              return ListTile(title: widget.getItemWidget!(suggestion));
             }
             return ListTile(
               title: Text(widget.convertToString(suggestion as T)),
