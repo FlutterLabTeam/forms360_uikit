@@ -21,6 +21,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
     required this.getStringValue,
     required this.onSuggestionCallback,
     this.type = DropdownWritableInputType.SINGLE,
+    this.getItemWidget,
   }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final String label;
@@ -39,6 +40,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
   final TextEditingController dropdownSearchFieldController;
   final String Function(T) getStringValue;
   final Function(String) onSuggestionCallback;
+  final Widget Function(dynamic)? getItemWidget;
 
   /// Converts an item of type T into a String using the provided getStringValue function.
   String convertToString<T>(item) {
@@ -72,10 +74,10 @@ class _DynamicDropdownWritableInputState<T>
           textFieldConfiguration: TextFieldConfiguration(
             enabled: widget.enabled,
             style: AppearanceKitTextTheme.build().input.copyWith(
-                  color: _generateColor(),
-                  fontSize: widget.fontSize,
-                  fontWeight: FontWeight.w400,
-                ),
+              color: _generateColor(),
+              fontSize: widget.fontSize,
+              fontWeight: FontWeight.w400,
+            ),
             cursorColor: _generateColor(),
             decoration: InputDecoration(
               labelText: widget.label,
@@ -94,20 +96,25 @@ class _DynamicDropdownWritableInputState<T>
                 borderSide: BorderSide(color: _generateColor()),
               ),
               hintStyle: AppearanceKitTextTheme.build().input.copyWith(
-                    color: _generateColor(),
-                    fontSize: widget.fontSize,
-                  ),
+                color: _generateColor(),
+                fontSize: widget.fontSize,
+              ),
               labelStyle: AppearanceKitTextTheme.build().input.copyWith(
-                    color: _generateColor(),
-                    fontSize: widget.fontSize,
-                  ),
+                color: _generateColor(),
+                fontSize: widget.fontSize,
+              ),
             ),
             controller: widget.dropdownSearchFieldController,
           ),
           suggestionsCallback: (pattern) =>
               widget.onSuggestionCallback(pattern),
-          itemBuilder: (context, T suggestion) {
-            return ListTile(title: Text(widget.convertToString(suggestion)));
+          itemBuilder: (context, dynamic suggestion) {
+            if (widget.getItemWidget != null) {
+              return ListTile(title: widget.getItemWidget!(suggestion));
+            }
+            return ListTile(
+              title: Text(widget.convertToString(suggestion as T)),
+            );
           },
           itemSeparatorBuilder: (context, index) => Divider(),
           transitionBuilder: (context, suggestionsBox, controller) {
@@ -127,13 +134,14 @@ class _DynamicDropdownWritableInputState<T>
               }
               widget.onSuggestionSelected(suggestion);
             } else {
-              widget.dropdownSearchFieldController.text =
-                  widget.convertToString(suggestion);
+              widget.dropdownSearchFieldController.text = widget
+                  .convertToString(suggestion);
               widget.onSuggestionSelected(suggestion);
             }
           },
           suggestionsBoxController: suggestionBoxController,
-          validator: widget.validator ??
+          validator:
+              widget.validator ??
               (value) {
                 if (value!.isEmpty &&
                     widget.type == DropdownWritableInputType.SINGLE) {
@@ -148,28 +156,26 @@ class _DynamicDropdownWritableInputState<T>
         if (widget.selectedValues.isNotEmpty)
           Wrap(
             spacing: 5.0,
-            children: List<Widget>.generate(
-              widget.selectedValues.length,
-              (int index) {
-                return Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Chip(
-                    label: Text(widget.selectedValues[index],
-                        style: TextStyle(
-                          fontSize: widget.fontSize,
-                        )),
-                    onDeleted: () {
-                      widget.selectedValues
-                          .remove(widget.selectedValues[index]);
-                      setState(() {});
-                      if (widget.onSelectedValuesChanged != null) {
-                        widget.onSelectedValuesChanged!(widget.selectedValues);
-                      }
-                    },
+            children: List<Widget>.generate(widget.selectedValues.length, (
+              int index,
+            ) {
+              return Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Chip(
+                  label: Text(
+                    widget.selectedValues[index],
+                    style: TextStyle(fontSize: widget.fontSize),
                   ),
-                );
-              },
-            ).toList(),
+                  onDeleted: () {
+                    widget.selectedValues.remove(widget.selectedValues[index]);
+                    setState(() {});
+                    if (widget.onSelectedValuesChanged != null) {
+                      widget.onSelectedValuesChanged!(widget.selectedValues);
+                    }
+                  },
+                ),
+              );
+            }).toList(),
           ),
       ],
     );

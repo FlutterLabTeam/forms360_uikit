@@ -41,10 +41,10 @@ class _CustomInputOtpMobileState extends State<CustomInputOtpMobile> {
       widget.controller.text = "*";
       widget.controller.selection = TextSelection.collapsed(offset: 1);
     }
-    
+
     // Escuchar cambios en el controlador
     widget.controller.addListener(_onControllerChanged);
-    
+
     // Escuchar cuando se obtiene el foco
     widget.focusNode?.addListener(_onFocusChanged);
   }
@@ -71,13 +71,13 @@ class _CustomInputOtpMobileState extends State<CustomInputOtpMobile> {
     if (widget.controller.text.isEmpty && _isInitialized) {
       widget.controller.text = "*";
       widget.controller.selection = TextSelection.collapsed(offset: 1);
-      
+
       // Navegar al input anterior
       int currentIndex = widget.allControllers.indexOf(widget.controller);
       if (currentIndex > 0) {
         widget.allFocusNodes[currentIndex - 1].requestFocus();
       }
-      
+
       setState(() {}); // Actualizar UI
     } else {
       // Actualizar UI para cualquier cambio en el controlador
@@ -117,7 +117,7 @@ class _CustomInputOtpMobileState extends State<CustomInputOtpMobile> {
         widget.allFocusNodes[currentIndex - 1].requestFocus();
       }
     }
-    
+
     // Actualizar UI después de cualquier cambio
     setState(() {});
   }
@@ -142,16 +142,21 @@ class _CustomInputOtpMobileState extends State<CustomInputOtpMobile> {
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         cursorColor: Colors.transparent, // Cursor transparente
-        buildCounter: (
-          context, {
-          maxLength,
-          required isFocused,
-          required currentLength,
-        }) =>
-            null,
-        style: widget.controller.text == "*" 
-            ? context.mobileTitleText.copyWith(color: Colors.transparent)
-            : context.mobileTitleText,
+        buildCounter:
+            (
+              context, {
+              maxLength,
+              required isFocused,
+              required currentLength,
+            }) => null,
+        style: widget.controller.text == "*"
+            ? context.mobileTitleText.copyWith(
+                color: Colors.transparent,
+                fontSize: 34, // Tamaño de fuente reducido
+              )
+            : context.mobileTitleText.copyWith(
+                fontSize: 34, // Tamaño de fuente reducido
+              ),
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           filled: true,

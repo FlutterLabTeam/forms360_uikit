@@ -143,6 +143,7 @@ class Inputs {
     EdgeInsets? contentPadding,
     required String Function(T) getStringValue,
     required Function(String) onSuggestionCallback,
+    Widget Function(dynamic)? getItemWidget,
   }) =>
       DynamicDropdownWritableInput<T>(
         getStringValue: getStringValue,
@@ -161,6 +162,7 @@ class Inputs {
         onSuggestionCallback: onSuggestionCallback,
         onSelectedValuesChanged: onSelectedValuesChanged,
         dropdownSearchFieldController: dropdownSearchFieldController,
+        getItemWidget: getItemWidget,
       );
 
   Widget otpInput({
