@@ -5,14 +5,14 @@ import 'package:forms360_uikit/src/widgets/page/standard_page/standard_page.dart
 import 'package:forms360_uikit/src/widgets/page/management_page/dashboard_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/management_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/management_multi_page.dart';
-import 'package:forms360_uikit/src/widgets/page/management_page/management_multi_page_80_20.dart';
 
 class UiPage {
   Widget backgroundPage({
     required Widget child,
     required String image,
     String labelPage = "",
-  }) => BackgroundPage(child: child, image: image, labelPage: labelPage);
+  }) =>
+      BackgroundPage(child: child, image: image, labelPage: labelPage);
 
   Widget managementPage({
     bool? serviceWeb,
@@ -29,31 +29,29 @@ class UiPage {
     bool enableGoHome = false,
     bool hasBackButton = false,
     Function()? onPop,
-    List<Widget>? customMenuItems,
-  }) => ManagementPage(
-    spacing: spacing,
-    assetPath: assetPath,
-    endContent: endContent,
-    serviceWeb: serviceWeb,
-    enableGoHome: enableGoHome,
-    onProfileTap: onProfileTap,
-    startContent: startContent,
-    profileLetter: profileLetter,
-    selectedMenuItem: selectedMenuItem,
-    onMenuItemSelected: onMenuItemSelected,
-    rowMainAxisAlignment: rowMainAxisAlignment,
-    rowCrossAxisAlignment: rowCrossAxisAlignment,
-    onPop: onPop,
-    hasBackButton: hasBackButton,
-    customMenuItems: customMenuItems,
-  );
+  }) =>
+      ManagementPage(
+        spacing: spacing,
+        assetPath: assetPath,
+        endContent: endContent,
+        serviceWeb: serviceWeb,
+        enableGoHome: enableGoHome,
+        onProfileTap: onProfileTap,
+        startContent: startContent,
+        profileLetter: profileLetter,
+        selectedMenuItem: selectedMenuItem,
+        onMenuItemSelected: onMenuItemSelected,
+        rowMainAxisAlignment: rowMainAxisAlignment,
+        rowCrossAxisAlignment: rowCrossAxisAlignment,
+        onPop: onPop,
+        hasBackButton: hasBackButton,
+      );
 
   Widget managementMultiPage({
     bool? serviceWeb,
     Function()? onPop,
     double spacing = 36,
     bool enableGoHome = false,
-    bool showStartContent = true,
     required Widget startContent,
     required String profileLetter,
     required List<Widget> endContent,
@@ -61,48 +59,20 @@ class UiPage {
     String assetPath = 'assets/images/clients/users_background.png',
     MainAxisAlignment rowMainAxisAlignment = MainAxisAlignment.start,
     CrossAxisAlignment rowCrossAxisAlignment = CrossAxisAlignment.start,
-  }) => ManagementMultiPage(
-    onPop: onPop,
-    spacing: spacing,
-    assetPath: assetPath,
-    endContent: endContent,
-    serviceWeb: serviceWeb,
-    enableGoHome: enableGoHome,
-    showStartContent: showStartContent,
-    onProfileTap: onProfileTap,
-    startContent: startContent,
-    profileLetter: profileLetter,
-    rowMainAxisAlignment: rowMainAxisAlignment,
-    rowCrossAxisAlignment: rowCrossAxisAlignment,
-  );
-
-  Widget managementMultiPage8020({
-    bool? serviceWeb,
-    Function()? onPop,
-    double spacing = 36,
-    bool enableGoHome = false,
-    bool showStartContent = true,
-    required Widget startContent,
-    required String profileLetter,
-    required List<Widget> endContent,
-    required GestureTapCallback onProfileTap,
-    String assetPath = 'assets/images/clients/users_background.png',
-    MainAxisAlignment rowMainAxisAlignment = MainAxisAlignment.start,
-    CrossAxisAlignment rowCrossAxisAlignment = CrossAxisAlignment.start,
-  }) => ManagementMultiPage8020(
-    onPop: onPop,
-    spacing: spacing,
-    assetPath: assetPath,
-    endContent: endContent,
-    serviceWeb: serviceWeb,
-    enableGoHome: enableGoHome,
-    showStartContent: showStartContent,
-    onProfileTap: onProfileTap,
-    startContent: startContent,
-    profileLetter: profileLetter,
-    rowMainAxisAlignment: rowMainAxisAlignment,
-    rowCrossAxisAlignment: rowCrossAxisAlignment,
-  );
+  }) =>
+      ManagementMultiPage(
+        onPop: onPop,
+        spacing: spacing,
+        assetPath: assetPath,
+        endContent: endContent,
+        serviceWeb: serviceWeb,
+        enableGoHome: enableGoHome,
+        onProfileTap: onProfileTap,
+        startContent: startContent,
+        profileLetter: profileLetter,
+        rowMainAxisAlignment: rowMainAxisAlignment,
+        rowCrossAxisAlignment: rowCrossAxisAlignment,
+      );
 
   Widget dashboardPage({
     double spacing = 36,
@@ -112,15 +82,16 @@ class UiPage {
     required GestureTapCallback onProfileTap,
     required MenuItemTypeKit selectedMenuItem,
     required Function(MenuItemTypeKit) onMenuItemSelected,
-  }) => DashboardPage(
-    spacing: spacing,
-    serviceWeb: serviceWeb,
-    endContent: endContent,
-    onProfileTap: onProfileTap,
-    profileLetter: profileLetter,
-    selectedMenuItem: selectedMenuItem,
-    onMenuItemSelected: onMenuItemSelected,
-  );
+  }) =>
+      DashboardPage(
+        spacing: spacing,
+        serviceWeb: serviceWeb,
+        endContent: endContent,
+        onProfileTap: onProfileTap,
+        profileLetter: profileLetter,
+        selectedMenuItem: selectedMenuItem,
+        onMenuItemSelected: onMenuItemSelected,
+      );
 
   Widget endContentWidget({
     required Widget content,
@@ -132,15 +103,16 @@ class UiPage {
     bool isLoading = false,
     String? retryButtonText,
     List<Widget>? settingsWidgets,
-  }) => EndContentWidget(
-    content: content,
-    onSearch: onSearch,
-    searchLabel: searchLabel,
-    titleWidget: titleWidget,
-    retryButtonText: retryButtonText,
-    isLoading: isLoading,
-    errorMessage: errorMessage,
-    retryCallback: retryCallBack,
-    settingsWidgets: settingsWidgets,
-  );
+  }) =>
+      EndContentWidget(
+        content: content,
+        onSearch: onSearch,
+        searchLabel: searchLabel,
+        titleWidget: titleWidget,
+        retryButtonText: retryButtonText,
+        isLoading: isLoading,
+        errorMessage: errorMessage,
+        retryCallback: retryCallBack,
+        settingsWidgets: settingsWidgets,
+      );
 }

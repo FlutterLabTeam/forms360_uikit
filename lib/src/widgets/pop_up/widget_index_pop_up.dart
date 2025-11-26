@@ -6,7 +6,7 @@ import 'package:forms360_uikit/src/widgets/pop_up/question_pop_up.dart';
 class WidgetIndexPopUp {
   Widget deletePopUp({
     required String title,
-    required Function() onTap,
+    required Future<void> Function() onTap,
     required String description,
     PlatformAlertType? platformType,
     String? buttonText,

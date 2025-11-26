@@ -481,8 +481,6 @@ LibraryTemplateEnum _generateLibraryTemplateEnum(String value) {
       return LibraryTemplateEnum.FORMULA_FIELD;
     case 'SIGNATURE':
       return LibraryTemplateEnum.SIGNATURE;
-    case 'TIME':
-      return LibraryTemplateEnum.TIME;
     default:
       return LibraryTemplateEnum.TEXT;
   }

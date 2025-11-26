@@ -5,7 +5,7 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 
 class DeleteCustomPopUp extends StatelessWidget {
   final String title;
-  final Function() onTap;
+  final Future<void> Function() onTap;
   final String description;
   final String? buttonText;
   final PlatformAlertType? platformType;

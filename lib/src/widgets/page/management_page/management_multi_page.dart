@@ -14,7 +14,6 @@ class ManagementMultiPage extends StatelessWidget {
     required this.startContent,
     required this.onProfileTap,
     required this.enableGoHome,
-    required this.showStartContent,
     required this.profileLetter,
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
@@ -24,7 +23,6 @@ class ManagementMultiPage extends StatelessWidget {
   final bool? serviceWeb;
   final String assetPath;
   final bool enableGoHome;
-  final bool showStartContent;
   final VoidCallback? onPop;
   final Widget startContent;
   final String profileLetter;
@@ -47,7 +45,6 @@ class ManagementMultiPage extends StatelessWidget {
             startContent: startContent,
             onProfileTap: onProfileTap,
             enableGoHome: enableGoHome,
-            showStartContent: showStartContent,
             profileLetter: profileLetter,
             rowMainAxisAlignment: rowMainAxisAlignment,
             rowCrossAxisAlignment: rowCrossAxisAlignment,
@@ -156,7 +153,6 @@ class BigScreenWidget extends StatelessWidget {
     required this.startContent,
     required this.onProfileTap,
     required this.enableGoHome,
-    required this.showStartContent,
     required this.profileLetter,
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
@@ -168,7 +164,6 @@ class BigScreenWidget extends StatelessWidget {
   final bool? serviceWeb;
   final String assetPath;
   final bool enableGoHome;
-  final bool showStartContent;
   final VoidCallback? onPop;
   final Widget startContent;
   final String profileLetter;
@@ -191,21 +186,19 @@ class BigScreenWidget extends StatelessWidget {
         crossAxisAlignment: rowCrossAxisAlignment,
         children: [
           SizedBox(width: spacing),
-          if (showStartContent) ...[
-            Expanded(
-              flex: 1,
-              child: LeftDecoration(
-                assetPath: assetPath,
-                startContent: startContent,
-                enableGoHome: enableGoHome,
-                onPop: onPop,
-                hasBackButton: hasBackButton,
-              ),
-            ),
-            SizedBox(width: spacing),
-          ],
           Expanded(
-            flex: showStartContent ? 2 : 1,
+            flex: 1,
+            child: LeftDecoration(
+              assetPath: assetPath,
+              startContent: startContent,
+              enableGoHome: enableGoHome,
+              onPop: onPop,
+              hasBackButton: hasBackButton,
+            ),
+          ),
+          SizedBox(width: spacing),
+          Expanded(
+            flex: 2,
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: List.generate(

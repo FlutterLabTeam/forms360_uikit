@@ -1,7 +1,6 @@
 enum LibraryTemplateEnum {
   TEXT,
   DATE,
-  TIME,
   PHOTO,
   VIDEO,
   SOUND,

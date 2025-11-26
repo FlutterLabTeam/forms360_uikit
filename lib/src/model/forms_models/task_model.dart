@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:forms360_uikit/src/model/clock_location.dart';
 
 class TaskModel {
   final String? id;
@@ -8,6 +9,8 @@ class TaskModel {
   final String? taskTemplate;
   final DocumentReference? ref;
   final Map<String, dynamic> data;
+  final ClockLocation clockInLocation;
+  final ClockLocation clockOutLocation;
   final DocumentReference? companyRef;
   final List<TaskFieldModel> customFields;
   final List<RecurringStatusModel> recurringStatus;
@@ -22,6 +25,8 @@ class TaskModel {
     this.taskRejected = false,
     required this.createdAt,
     this.customFields = const [],
+    required this.clockInLocation,
+    required this.clockOutLocation,
     this.recurringStatus = const [],
   });
 
@@ -35,6 +40,8 @@ class TaskModel {
     DocumentReference? ref,
     Map<String, dynamic>? data,
     DocumentReference? companyRef,
+    ClockLocation? clockInLocation,
+    ClockLocation? clockOutLocation,
     List<TaskFieldModel>? customFields,
     List<RecurringStatusModel>? recurringStatus,
   }) {
@@ -51,7 +58,9 @@ class TaskModel {
       taskRejected: taskRejected ?? this.taskRejected,
       taskTemplate: taskTemplate ?? this.taskTemplate,
       customFields: customFields ?? this.customFields,
+      clockInLocation: clockInLocation ?? this.clockInLocation,
       recurringStatus: recurringStatus ?? this.recurringStatus,
+      clockOutLocation: clockOutLocation ?? this.clockOutLocation,
     );
   }
 
@@ -63,6 +72,8 @@ class TaskModel {
         companyRef: companyRef,
         recurringStatus: const [],
         createdAt: Timestamp.now(),
+        clockInLocation: ClockLocation.init(),
+        clockOutLocation: ClockLocation.init(),
       );
 
   Map<String, dynamic> toJson() {
@@ -71,6 +82,8 @@ class TaskModel {
       "createdAt": createdAt,
       "companyRef": companyRef,
       "taskTemplate": taskTemplate,
+      "clockInLocation": clockInLocation.toJson(),
+      "clockOutLocation": clockOutLocation.toJson(),
       "recurringStatus": recurringStatus.map((e) => e.toJson()).toList(),
     };
     json.addAll(data);
@@ -84,6 +97,8 @@ class TaskModel {
       "createdAt": createdAt,
       "companyRef": companyRef,
       "taskTemplate": taskTemplate,
+      "clockInLocation": clockInLocation.toJsonHive(),
+      "clockOutLocation": clockOutLocation.toJsonHive(),
       "recurringStatus": recurringStatus.map((e) => e.toJson()).toList(),
     };
 
@@ -106,6 +121,8 @@ class TaskModel {
       taskTemplate: json["taskTemplate"] ?? "",
       taskRejected: json["taskRejected"] ?? false,
       createdAt: json["createdAt"] ?? Timestamp.now(),
+      clockInLocation: json["clockInLocation"] != null ? ClockLocation.fromJsonHive(json["clockInLocation"]) : ClockLocation.init(),
+      clockOutLocation: json["clockOutLocation"] != null ?  ClockLocation.fromJsonHive(json["clockOutLocation"]) : ClockLocation.init(),
       customFields: json["customFields"] != null ? List<TaskFieldModel>.from(json["customFields"].map((e) => TaskFieldModel.fromJson(e))) : [],
       recurringStatus: json["recurringStatus"] != null ? List<RecurringStatusModel>.from(json["recurringStatus"].map((e) => RecurringStatusModel.fromJson(e))) : [],
     );
@@ -119,16 +136,11 @@ class TaskModel {
         companyRef: json["companyRef"],
         taskTemplate: json["taskTemplate"] ?? "",
         taskRejected: json["taskRejected"] ?? false,
-        recurringStatus: json["recurringStatus"] != null
-            ? List<RecurringStatusModel>.from(
-                json["recurringStatus"]
-                    .map((e) => RecurringStatusModel.fromJson(e)),
-              )
-            : [],
         createdAt: json["createdAt"] ?? Timestamp.now(),
-        customFields: List<TaskFieldModel>.from(
-          json.keys.map((key) => TaskFieldModel(key: key, title: key)),
-        ),
+        customFields: List<TaskFieldModel>.from(json.keys.map((key) => TaskFieldModel(key: key, title: key))),
+        clockInLocation: json["clockInLocation"] != null ? ClockLocation.fromJson(json["clockInLocation"]) : ClockLocation.init(),
+        clockOutLocation: json["clockOutLocation"] != null ? ClockLocation.fromJson(json["clockOutLocation"]) : ClockLocation.init(),
+        recurringStatus: json["recurringStatus"] != null? List<RecurringStatusModel>.from(json["recurringStatus"].map((e) => RecurringStatusModel.fromJson(e))) : [],
       );
 
   factory TaskModel.fromJsonChild(
@@ -140,11 +152,9 @@ class TaskModel {
         taskTemplate: json["taskTemplate"] ?? "",
         taskRejected: json["taskRejected"] ?? false,
         createdAt: json["createdAt"] ?? Timestamp.now(),
-        customFields: List<TaskFieldModel>.from(
-          json.keys.map(
-            (key) => TaskFieldModel(key: key, title: key),
-          ),
-        ),
+        customFields: List<TaskFieldModel>.from(json.keys.map((key) => TaskFieldModel(key: key, title: key))),
+        clockInLocation: json["clockInLocation"] != null ? ClockLocation.fromJson(json["clockInLocation"]) : ClockLocation.init(),
+        clockOutLocation: json["clockOutLocation"] != null ? ClockLocation.fromJson(json["clockOutLocation"]) : ClockLocation.init(),
       );
 
   factory TaskModel.fromTemplateJson(Map<String, dynamic> json) => TaskModel(
@@ -153,11 +163,9 @@ class TaskModel {
         taskTemplate: json["taskTemplate"] ?? "",
         taskRejected: json["taskRejected"] ?? false,
         createdAt: json["createdAt"] ?? Timestamp.now(),
-        customFields:
-            List<TaskFieldModel>.from(json.keys.map((key) => TaskFieldModel(
-                  key: key,
-                  title: key,
-                ))),
+        customFields: List<TaskFieldModel>.from(json.keys.map((key) => TaskFieldModel(key: key,title: key,))),
+        clockInLocation: json["clockInLocation"] != null ? ClockLocation.fromJson(json["clockInLocation"]) : ClockLocation.init(),
+        clockOutLocation: json["clockOutLocation"] != null ? ClockLocation.fromJson(json["clockOutLocation"]) : ClockLocation.init(),
       );
 }
 

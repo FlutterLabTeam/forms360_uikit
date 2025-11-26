@@ -698,7 +698,7 @@ class WidgetbookApp extends StatelessWidget {
                     child: _popUp.deletePopUp(
                       title: 'Delete Item',
                       description: 'Are you sure you want to delete this item?',
-                      onTap: () {},
+                      onTap: () async {},
                     ),
                   ),
                 ),

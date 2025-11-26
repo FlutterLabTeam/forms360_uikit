@@ -283,10 +283,6 @@ LibraryTemplateEnum generateTypeFromString(String type) {
       return LibraryTemplateEnum.SMART_PHOTO;
     case "SIGNATURE":
       return LibraryTemplateEnum.SIGNATURE;
-    case "PRODUCTS":
-      return LibraryTemplateEnum.PRODUCTS;
-    case "TIME":
-      return LibraryTemplateEnum.TIME;
     default:
       return LibraryTemplateEnum.TEXT;
   }
