@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:drop_down_search_field/drop_down_search_field.dart';
@@ -21,7 +23,9 @@ class DropdownWritableInput extends StatefulWidget {
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
     this.type = DropdownWritableInputType.SINGLE,
-  }) : this.inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
+    this.noItemsFoundText = "No items found",
+    this.onSuggestionCallback,
+  }) : inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final String label;
   final bool enabled;
@@ -39,6 +43,8 @@ class DropdownWritableInput extends StatefulWidget {
   final Function(List<String>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
   final Widget Function(BuildContext, String)? buildSuggestionItem;
+  final FutureOr<Iterable<String>> Function(String)? onSuggestionCallback;
+  final String noItemsFoundText;
 
   @override
   State<DropdownWritableInput> createState() => _DropdownWritableInputState();
@@ -78,13 +84,14 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             enabled: widget.enabled,
             cursorColor: _generateColor(),
             style: AppearanceKitTextTheme.build().input.copyWith(
-                  color: _generateColorInput(),
-                  fontSize: 20,
-                ),
+              color: _generateColorInput(),
+              fontSize: 20,
+            ),
             decoration: InputDecoration(
               labelText: widget.label,
               hintText: widget.hintText,
-              contentPadding: widget.contentPadding ??
+              contentPadding:
+                  widget.contentPadding ??
                   EdgeInsets.only(
                     top: 18,
                     bottom: 22,
@@ -103,25 +110,31 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
               disabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: _generateColor()),
               ),
-              labelStyle: AppearanceKitTextTheme.build()
-                  .input
-                  .copyWith(color: _generateColorInput(), fontSize: 20),
-              hintStyle: AppearanceKitTextTheme.build()
-                  .input
-                  .copyWith(color: _generateColorInput(), fontSize: 20),
+              labelStyle: AppearanceKitTextTheme.build().input.copyWith(
+                color: _generateColorInput(),
+                fontSize: 20,
+              ),
+              hintStyle: AppearanceKitTextTheme.build().input.copyWith(
+                color: _generateColorInput(),
+                fontSize: 20,
+              ),
             ),
             controller: widget.dropdownSearchFieldController,
           ),
-          suggestionsCallback: (pattern) => getSuggestions(pattern),
-          itemBuilder: widget.buildSuggestionItem ??
+          suggestionsCallback: (pattern) =>
+              widget.onSuggestionCallback?.call(pattern) ??
+              getSuggestions(pattern),
+          noItemsFoundBuilder: (context) => Container(
+            padding: EdgeInsets.all(16),
+            child: Text(widget.noItemsFoundText),
+          ),
+          itemBuilder:
+              widget.buildSuggestionItem ??
               (context, String suggestion) {
                 if (widget.addNewItemTitle.isNotEmpty &&
                     suggestion == widget.addNewItemTitle) {
                   return ListTile(
-                    title: Text(
-                      suggestion,
-                      textAlign: TextAlign.center,
-                    ),
+                    title: Text(suggestion, textAlign: TextAlign.center),
                     titleAlignment: ListTileTitleAlignment.center,
                   );
                 }
@@ -156,7 +169,8 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
             }
           },
           suggestionsBoxController: suggestionBoxController,
-          validator: widget.validator ??
+          validator:
+              widget.validator ??
               (value) {
                 if (value!.isEmpty &&
                     widget.type == DropdownWritableInputType.SINGLE) {
@@ -171,29 +185,26 @@ class _DropdownWritableInputState extends State<DropdownWritableInput> {
         if (widget.selectedValues.isNotEmpty)
           Wrap(
             spacing: 5.0,
-            children: List<Widget>.generate(
-              widget.selectedValues.length,
-              (int index) {
-                return Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Chip(
-                    label: Text(
-                      widget.selectedValues[index],
-                      style: TextStyle(fontSize: widget.fontSize),
-                    ),
-                    onDeleted: () {
-                      widget.selectedValues.remove(
-                        widget.selectedValues[index],
-                      );
-                      setState(() {});
-                      if (widget.onSelectedValuesChanged != null) {
-                        widget.onSelectedValuesChanged!(widget.selectedValues);
-                      }
-                    },
+            children: List<Widget>.generate(widget.selectedValues.length, (
+              int index,
+            ) {
+              return Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Chip(
+                  label: Text(
+                    widget.selectedValues[index],
+                    style: TextStyle(fontSize: widget.fontSize),
                   ),
-                );
-              },
-            ).toList(),
+                  onDeleted: () {
+                    widget.selectedValues.remove(widget.selectedValues[index]);
+                    setState(() {});
+                    if (widget.onSelectedValuesChanged != null) {
+                      widget.onSelectedValuesChanged!(widget.selectedValues);
+                    }
+                  },
+                ),
+              );
+            }).toList(),
           ),
       ],
     );
