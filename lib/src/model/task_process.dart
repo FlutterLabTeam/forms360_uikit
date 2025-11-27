@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:forms360_uikit/src/model/clock_location.dart';
 
 class TaskProcessModel {
   final String id;
@@ -15,6 +16,8 @@ class TaskProcessModel {
   final DocumentReference? ref;
   final List<DocumentReference> tags;
   final DocumentReference? companyRef;
+  final ClockLocation clockInLocation;
+  final ClockLocation clockOutLocation;
   final List<DocumentReference> tasks;
 
   TaskProcessModel({
@@ -27,6 +30,8 @@ class TaskProcessModel {
     required this.tags,
     required this.tasks,
     required this.status,
+    required this.clockInLocation,
+    required this.clockOutLocation,
     this.isTemplate = false,
     required this.createdBy,
     required this.createdAt,
@@ -51,6 +56,8 @@ class TaskProcessModel {
     DocumentReference? companyRef,
     List<DocumentReference>? tags,
     List<DocumentReference>? tasks,
+    ClockLocation? clockInLocation,
+    ClockLocation? clockOutLocation,
   }) =>
       TaskProcessModel(
         id: id ?? this.id,
@@ -68,6 +75,8 @@ class TaskProcessModel {
         description: description ?? this.description,
         templateName: templateName ?? this.templateName,
         isSequential: isSequential ?? this.isSequential,
+        clockInLocation: clockInLocation ?? this.clockInLocation,
+        clockOutLocation: clockOutLocation ?? this.clockOutLocation,
       );
 
   factory TaskProcessModel.fromJson(json, DocumentReference ref) {
