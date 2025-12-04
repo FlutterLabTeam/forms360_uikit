@@ -21,27 +21,31 @@ extension MenuIconTypeExtension on MenuItemTypeKit {
         return Icon(Icons.library_books, color: Colors.blue);
       case MenuItemTypeKit.TAG:
         return Icon(Icons.library_books, color: Colors.blue);
+      case MenuItemTypeKit.REPORTS:
+        return Icon(Icons.analytics, color: Colors.blue);
     }
   }
 
   Icon get iconUnselected {
     switch (this) {
       case MenuItemTypeKit.DASHBOARD:
-        return Icon(Icons.dashboard, color: Colors.grey);
+        return Icon(Icons.dashboard_outlined, color: Colors.grey);
       case MenuItemTypeKit.USERS:
-        return Icon(Icons.people, color: Colors.grey);
+        return Icon(Icons.people_outline, color: Colors.grey);
       case MenuItemTypeKit.AUDIT:
         return Icon(Icons.history, color: Colors.grey);
       case MenuItemTypeKit.PERMISSIONS:
-        return Icon(Icons.security, color: Colors.grey);
+        return Icon(Icons.security_outlined, color: Colors.grey);
       case MenuItemTypeKit.ANNOUNCEMENT:
-        return Icon(Icons.notifications, color: Colors.grey);
+        return Icon(Icons.notifications_outlined, color: Colors.grey);
       case MenuItemTypeKit.INDUSTRY:
-        return Icon(Icons.business, color: Colors.grey);
+        return Icon(Icons.business_outlined, color: Colors.grey);
       case MenuItemTypeKit.LIBRARY:
-        return Icon(Icons.library_books, color: Colors.grey);
+        return Icon(Icons.library_books_outlined, color: Colors.grey);
       case MenuItemTypeKit.TAG:
-        return Icon(Icons.library_books, color: Colors.grey);
+        return Icon(Icons.library_books_outlined, color: Colors.grey);
+      case MenuItemTypeKit.REPORTS:
+        return Icon(Icons.analytics_outlined, color: Colors.grey);
     }
   }
 }
@@ -65,6 +69,8 @@ extension MenuIconTypeStringExtension on MenuItemTypeKit {
         return 'Library';
       case MenuItemTypeKit.TAG:
         return 'Library';
+      case MenuItemTypeKit.REPORTS:
+        return "Reports";
     }
   }
 }

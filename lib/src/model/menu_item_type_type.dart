@@ -1,12 +1,13 @@
 enum MenuItemTypeKit {
+  TAG,
   USERS,
   AUDIT,
+  REPORTS,
   LIBRARY,
   INDUSTRY,
   DASHBOARD,
   PERMISSIONS,
   ANNOUNCEMENT,
-  TAG,
 }
 
 final List<MenuItemTypeKit> menuItemList = [
@@ -16,6 +17,7 @@ final List<MenuItemTypeKit> menuItemList = [
   MenuItemTypeKit.PERMISSIONS,
   MenuItemTypeKit.ANNOUNCEMENT,
   MenuItemTypeKit.LIBRARY,
+  MenuItemTypeKit.REPORTS,
 ];
 
 final List<MenuItemTypeKit> menuItemListService = [];

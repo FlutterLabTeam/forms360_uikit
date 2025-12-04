@@ -31,11 +31,20 @@ class ClockLocation {
         timestamp: timestamp ?? this.timestamp,
       );
 
-  factory ClockLocation.fromJson(Map<String, dynamic> json) => ClockLocation(
-        timestamp: json["timestamp"]?.toDate(),
-        latitude: json["latitude"]?.toDouble(),
-        longitude: json["longitude"]?.toDouble(),
+  factory ClockLocation.fromJson(Map<String, dynamic> json) {
+
+    final time = json["timestamp"];
+    final latitude = json["latitude"];
+    final longitude = json["longitude"];
+
+    
+
+    return ClockLocation(
+        timestamp: time is DateTime ? time : time?.toDate(),
+        latitude: latitude?.toDouble(),
+        longitude: longitude?.toDouble(),
       );
+  }
 
   factory ClockLocation.fromJsonHive(Map<String, dynamic> json) =>
       ClockLocation(
