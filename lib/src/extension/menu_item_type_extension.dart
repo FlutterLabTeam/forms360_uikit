@@ -23,6 +23,12 @@ extension MenuIconTypeExtension on MenuItemTypeKit {
         return Icon(Icons.library_books, color: Colors.blue);
       case MenuItemTypeKit.REPORTS:
         return Icon(Icons.analytics, color: Colors.blue);
+      case MenuItemTypeKit.DATASOURCE:
+        return Icon(Icons.folder, color: Colors.grey);
+      case MenuItemTypeKit.CLIENT:
+        return Icon(Icons.person, color: Colors.grey);
+      case MenuItemTypeKit.PRODUCT:
+        return Icon(Icons.fact_check, color: Colors.grey);
     }
   }
 
@@ -46,6 +52,12 @@ extension MenuIconTypeExtension on MenuItemTypeKit {
         return Icon(Icons.library_books_outlined, color: Colors.grey);
       case MenuItemTypeKit.REPORTS:
         return Icon(Icons.analytics_outlined, color: Colors.grey);
+      case MenuItemTypeKit.DATASOURCE:
+        return Icon(Icons.folder_outlined, color: Colors.grey);
+      case MenuItemTypeKit.CLIENT:
+        return Icon(Icons.person_2_outlined, color: Colors.grey);
+      case MenuItemTypeKit.PRODUCT:
+        return Icon(Icons.fact_check_outlined, color: Colors.grey);
     }
   }
 }
@@ -55,6 +67,8 @@ extension MenuIconTypeStringExtension on MenuItemTypeKit {
     switch (this) {
       case MenuItemTypeKit.DASHBOARD:
         return 'Dashboard';
+      case MenuItemTypeKit.DATASOURCE:
+        return 'Data source';
       case MenuItemTypeKit.USERS:
         return 'Users';
       case MenuItemTypeKit.AUDIT:
@@ -71,6 +85,10 @@ extension MenuIconTypeStringExtension on MenuItemTypeKit {
         return 'Library';
       case MenuItemTypeKit.REPORTS:
         return "Reports";
+      case MenuItemTypeKit.CLIENT:
+        return "Client";
+      case MenuItemTypeKit.PRODUCT:
+        return "Product";
     }
   }
 }
