@@ -70,7 +70,6 @@ class _PrimaryInputState extends State<PrimaryInput> {
   bool _obscureText = true;
   late FocusNode _focusNode;
   String _value = "";
-  bool _hasFocus = false;
 
   @override
   void initState() {
@@ -86,16 +85,11 @@ class _PrimaryInputState extends State<PrimaryInput> {
       autofillHints = [AutofillHints.password];
     }
 
-    SchedulerBinding.instance.addPostFrameCallback(
-      (_) async {
-        _focusNode.addListener(() {
-          setState(() {
-            _hasFocus = _focusNode.hasFocus;
-          });
-          if (!_focusNode.hasFocus) widget.onFocusChanged?.call(_value);
-        });
-      },
-    );
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _focusNode.addListener(() {
+        if (!_focusNode.hasFocus) widget.onFocusChanged?.call(_value);
+      });
+    });
   }
 
   @override
@@ -139,34 +133,39 @@ class _PrimaryInputState extends State<PrimaryInput> {
       autofillHints: widget.keyboardType == TextInputType.emailAddress
           ? [AutofillHints.username]
           : widget.isPassword
-              ? [AutofillHints.password]
-              : null,
+          ? [AutofillHints.password]
+          : null,
       decoration: InputDecoration(
         counterText: widget.showCounter ? null : "",
-        prefix: _shouldShowPrefix() ? widget.prefixWidget : null,
+        prefixIcon: _shouldShowPrefix() ? widget.prefixWidget : null,
         hintText: widget.hintText,
         labelText: widget.label,
-        labelStyle: widget.textStyle ??
-            AppearanceKitTextTheme.build()
-                .input
-                .copyWith(color: _getEnabledColor(), fontSize: 20),
+        labelStyle:
+            widget.textStyle ??
+            AppearanceKitTextTheme.build().input.copyWith(
+              color: _getEnabledColor(),
+              fontSize: 20,
+            ),
         fillColor: widget.inputColor == PrimaryInputColorKit.TRANSPARENT
             ? Colors.transparent
             : null,
-        hintStyle: widget.textStyle ??
-            AppearanceKitTextTheme.build()
-                .input
-                .copyWith(color: _getEnabledColor(), fontSize: 20),
+        hintStyle:
+            widget.textStyle ??
+            AppearanceKitTextTheme.build().input.copyWith(
+              color: _getEnabledColor(),
+              fontSize: 20,
+            ),
         border: OutlineInputBorder(
           borderSide: BorderSide(
             color: widget.inputColor == PrimaryInputColorKit.BLACK
                 ? Colors.black
                 : (widget.onlyRead || widget.enabled)
-                    ? Theme.of(context).colorScheme.primary
-                    : Color(0xff99B3C6),
+                ? Theme.of(context).colorScheme.primary
+                : Color(0xff99B3C6),
           ),
         ),
-        contentPadding: widget.contentPadding ??
+        contentPadding:
+            widget.contentPadding ??
             EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: _getEnabledColor()),
@@ -186,24 +185,26 @@ class _PrimaryInputState extends State<PrimaryInput> {
                 onPressed: _togglePasswordVisibility,
               )
             : widget.isSuffixIconEnabled
-                ? GestureDetector(
-                    child: Icon(
-                      widget.suffixIcon!.icon,
-                      size: 32,
-                      color: widget.suffixIcon!.color,
-                    ),
-                    onTap: widget.onIconPressed,
-                  )
-                : null,
+            ? GestureDetector(
+                child: Icon(
+                  widget.suffixIcon!.icon,
+                  size: 32,
+                  color: widget.suffixIcon!.color,
+                ),
+                onTap: widget.onIconPressed,
+              )
+            : null,
       ),
       validator: widget.validator,
       cursorColor: _getEnabledColor(),
       textInputAction: TextInputAction.done,
       obscureText: widget.isPassword ? _obscureText : false,
-      style: widget.textStyle ??
-          AppearanceKitTextTheme.build()
-              .input
-              .copyWith(color: _getEnabledColor(), fontSize: 20),
+      style:
+          widget.textStyle ??
+          AppearanceKitTextTheme.build().input.copyWith(
+            color: _getEnabledColor(),
+            fontSize: 20,
+          ),
     );
   }
 

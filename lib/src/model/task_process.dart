@@ -72,19 +72,16 @@ class TaskProcessModel {
 
   factory TaskProcessModel.fromJson(json, DocumentReference ref) {
 
-    print(json);
-
-
     final data = TaskProcessModel(
       ref: ref,
       id: json["id"],
       name: json["name"],
-      status: json["status"] ?? "TO_DO",
       createdBy: json["createdBy"],
       updatedBy: json["updatedBy"],
       companyRef: json["companyRef"],
       isTemplate: json["isTemplate"],
       description: json["description"],
+      status: json["status"] ?? "TO_DO",
       templateName: json["templateName"],
       isSequential: json["isSequential"],
       updatedAt: DateTime.parse(json["updatedAt"]),
