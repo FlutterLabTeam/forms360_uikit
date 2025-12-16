@@ -5,9 +5,9 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 class _WebScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-      };
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+  };
 }
 
 class ListGenerator<T> extends StatefulWidget {
@@ -50,7 +50,9 @@ class _ListGeneratorState<T> extends State<ListGenerator<T>> {
             behavior: _WebScrollBehavior(),
             child: ScrollbarTheme(
               data: ScrollbarThemeData(
-                thumbColor: MaterialStateProperty.all(context.primaryColor.withOpacity(0.5)),
+                thumbColor: MaterialStateProperty.all(
+                  context.primaryColor.withOpacity(0.5),
+                ),
               ),
               child: Scrollbar(
                 controller: _scrollController,
@@ -63,7 +65,8 @@ class _ListGeneratorState<T> extends State<ListGenerator<T>> {
                 child: ListView.builder(
                   controller: _scrollController,
                   itemCount: widget.list.length,
-                  itemBuilder: (_, int index) => widget.itemBuilder(widget.list[index], index),
+                  itemBuilder: (_, int index) =>
+                      widget.itemBuilder(widget.list[index], index),
                 ),
               ),
             ),
@@ -85,7 +88,7 @@ class _ListGeneratorState<T> extends State<ListGenerator<T>> {
                   style: FormsKit.theme.text.primary.copyWith(
                     color: context.primaryColor,
                   ),
-                )
+                ),
               ],
             ),
           );

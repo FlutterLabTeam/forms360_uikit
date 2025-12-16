@@ -6,9 +6,9 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 class _WebScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-      };
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+  };
 }
 
 class GridViewGenerator<T> extends StatefulWidget {
@@ -57,7 +57,9 @@ class _GridViewGeneratorState<T> extends State<GridViewGenerator<T>> {
             behavior: _WebScrollBehavior(),
             child: ScrollbarTheme(
               data: ScrollbarThemeData(
-                thumbColor: MaterialStateProperty.all(context.primaryColor.withOpacity(0.5)),
+                thumbColor: MaterialStateProperty.all(
+                  context.primaryColor.withOpacity(0.5),
+                ),
               ),
               child: Scrollbar(
                 controller: _scrollController,
@@ -73,7 +75,8 @@ class _GridViewGeneratorState<T> extends State<GridViewGenerator<T>> {
                   crossAxisCount: widget.crossAxisCount ?? 3,
                   mainAxisSpacing: widget.mainAxisSpacing ?? 16,
                   crossAxisSpacing: widget.crossAxisSpacing ?? 30,
-                  itemBuilder: (_, int index) => widget.itemBuilder(widget.list[index], index),
+                  itemBuilder: (_, int index) =>
+                      widget.itemBuilder(widget.list[index], index),
                 ),
               ),
             ),
@@ -95,7 +98,7 @@ class _GridViewGeneratorState<T> extends State<GridViewGenerator<T>> {
                   style: FormsKit.theme.text.primary.copyWith(
                     color: context.primaryColor,
                   ),
-                )
+                ),
               ],
             ),
           );

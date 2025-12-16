@@ -5,9 +5,9 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 class _WebScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-      };
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+  };
 }
 
 class WrapGenerator<T> extends StatefulWidget {
@@ -103,7 +103,7 @@ class _WrapGeneratorState<T> extends State<WrapGenerator<T>> {
                   style: FormsKit.theme.text.primary.copyWith(
                     color: context.primaryColor,
                   ),
-                )
+                ),
               ],
             ),
           );

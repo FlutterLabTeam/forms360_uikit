@@ -37,21 +37,22 @@ class ManagementMultiPage8020 extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth >= Breakpoint.xdesktop) {
-          return BigScreenWidget8020(
-            onPop: onPop,
-            spacing: spacing,
-            assetPath: assetPath,
-            endContent: endContent,
-            serviceWeb: serviceWeb,
-            startContent: startContent,
-            onProfileTap: onProfileTap,
-            enableGoHome: enableGoHome,
-            showStartContent: showStartContent,
-            profileLetter: profileLetter,
-            rowMainAxisAlignment: rowMainAxisAlignment,
-            rowCrossAxisAlignment: rowCrossAxisAlignment,
-          );
+        //  if (constraints.maxWidth >= Breakpoint.xdesktop) {
+        return BigScreenWidget8020(
+          onPop: onPop,
+          spacing: spacing,
+          assetPath: assetPath,
+          endContent: endContent,
+          serviceWeb: serviceWeb,
+          startContent: startContent,
+          onProfileTap: onProfileTap,
+          enableGoHome: enableGoHome,
+          showStartContent: showStartContent,
+          profileLetter: profileLetter,
+          rowMainAxisAlignment: rowMainAxisAlignment,
+          rowCrossAxisAlignment: rowCrossAxisAlignment,
+        );
+        /*
         } else if (constraints.maxWidth >= Breakpoint.tablet &&
             constraints.maxWidth < Breakpoint.xdesktop) {
           return MediumScreenWidget8020(
@@ -71,6 +72,7 @@ class ManagementMultiPage8020 extends StatelessWidget {
             profileLetter: profileLetter,
           );
         }
+        */
       },
     );
   }
@@ -93,10 +95,7 @@ class SmallScreenWidget8020 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List.generate(
-        endContent.length,
-        (index) => endContent[index],
-      ),
+      children: List.generate(endContent.length, (index) => endContent[index]),
     );
   }
 }
@@ -124,11 +123,7 @@ class MediumScreenWidget8020 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 24.0,
-        left: 24.0,
-        bottom: 24.0,
-      ),
+      padding: const EdgeInsets.only(top: 24.0, left: 24.0, bottom: 24.0),
       child: Row(
         mainAxisAlignment: rowMainAxisAlignment,
         crossAxisAlignment: rowCrossAxisAlignment,
@@ -181,11 +176,7 @@ class BigScreenWidget8020 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 24.0,
-        left: 24.0,
-        bottom: 24.0,
-      ),
+      padding: const EdgeInsets.only(top: 24.0, left: 24.0, bottom: 24.0),
       child: Row(
         mainAxisAlignment: rowMainAxisAlignment,
         crossAxisAlignment: rowCrossAxisAlignment,
@@ -258,10 +249,7 @@ class LeftDecoration8020 extends StatelessWidget {
             if (hasBackButton)
               InkWell(
                 onTap: onPop,
-                child: Icon(
-                  Icons.chevron_left,
-                  color: Colors.white,
-                ),
+                child: Icon(Icons.chevron_left, color: Colors.white),
               ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 53.0),
