@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/logo.dart';
 
 class ManagementMultiPage8020 extends StatelessWidget {
