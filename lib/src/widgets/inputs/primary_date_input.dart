@@ -43,70 +43,89 @@ class PrimaryDateInput extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: AbsorbPointer(
-        child: TextFormField(
-          key: key,
-          enabled: enabled,
-          maxLength: maxLength,
-          controller: controller,
-          initialValue: initialValue,
-          decoration: InputDecoration(
-            counterText: "",
-            prefixIcon: Icon(
-              Icons.date_range,
-              color: _generateColorInput(context),
-            ),
-            hintText: hintText,
-            labelText: label,
-            labelStyle: textStyle ?? 
-                AppearanceKitTextTheme.build().input.copyWith(
-                  color: _generateColorInput(context), 
-                  fontSize: fontSize ?? 20
-                ),
-            fillColor: inputColor == PrimaryInputColorKit.TRANSPARENT ? Colors.transparent : null,
-            hintStyle: textStyle ??
-                AppearanceKitTextTheme.build()
-                    .input
-                    .copyWith(color: _generateColorInput(context), fontSize: fontSize ?? 20),
-            border: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: inputColor == PrimaryInputColorKit.BLACK
-                    ? Colors.black
-                    : enabled
-                        ? Theme.of(context).colorScheme.primary
-                        : Color(0xff99B3C6),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: 60),
+          child: TextFormField(
+            key: key,
+            enabled: enabled,
+            maxLength: maxLength,
+            maxLines: 1,
+            controller: controller,
+            initialValue: initialValue,
+            decoration: InputDecoration(
+              counterText: "",
+              isDense: true,
+              prefixIcon: Icon(
+                Icons.date_range,
+                color: _generateColorInput(context),
               ),
+              hintText: hintText,
+              labelText: label,
+              labelStyle:
+                  textStyle ??
+                  AppearanceKitTextTheme.build().input.copyWith(
+                    color: _generateColorInput(context),
+                    fontSize: 20,
+                  ),
+              fillColor: inputColor == PrimaryInputColorKit.TRANSPARENT
+                  ? Colors.transparent
+                  : null,
+              hintStyle:
+                  textStyle ??
+                  AppearanceKitTextTheme.build().input.copyWith(
+                    color: _generateColorInput(context),
+                    fontSize: 20,
+                  ),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: inputColor == PrimaryInputColorKit.BLACK
+                      ? Colors.black
+                      : enabled
+                      ? Theme.of(context).colorScheme.primary
+                      : Color(0xff99B3C6),
+                ),
+              ),
+              contentPadding:
+                  contentPadding ??
+                  EdgeInsets.only(
+                    top: 18,
+                    bottom: 22,
+                    left: 19.21,
+                    right: 19.21,
+                  ),
+              disabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: _generateColorInput(context)),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: _generateColorInput(context)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: _generateColorInput(context)),
+              ),
+              suffixIcon:
+                  isClearButtonVisible && controller?.text.isNotEmpty == true
+                  ? IconButton(
+                      icon: Icon(
+                        Icons.clear,
+                        color: _generateColorInput(context),
+                      ),
+                      onPressed: () {
+                        controller?.clear();
+                        onTapOutside?.call();
+                      },
+                    )
+                  : null,
             ),
-            contentPadding: contentPadding ??
-                EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
-            disabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: _generateColorInput(context)),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: _generateColorInput(context)),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: _generateColorInput(context)),
-            ),
-            suffixIcon: isClearButtonVisible && controller?.text.isNotEmpty == true
-                ? IconButton(
-                    icon: Icon(
-                      Icons.clear,
-                      color: _generateColorInput(context),
-                    ),
-                    onPressed: () {
-                      controller?.clear();
-                      onTapOutside?.call();
-                    },
-                  )
-                : null,
+            validator: validator,
+            cursorColor: _generateColorInput(context),
+            textInputAction: TextInputAction.done,
+            style:
+                textStyle ??
+                AppearanceKitTextTheme.build().input.copyWith(
+                  color: _generateColorInput(context),
+                  fontSize: 20,
+                ),
           ),
-          validator: validator,
-          cursorColor: _generateColorInput(context),
-          textInputAction: TextInputAction.done,
-          style: textStyle ??
-              AppearanceKitTextTheme.build()
-                  .input
-                  .copyWith(color: _generateColorInput(context), fontSize: fontSize ?? 20),
         ),
       ),
     );
@@ -118,4 +137,4 @@ class PrimaryDateInput extends StatelessWidget {
     if (inputColor == PrimaryInputColorKit.TRANSPARENT) return Colors.white;
     return Theme.of(context).colorScheme.primary;
   }
-} 
+}

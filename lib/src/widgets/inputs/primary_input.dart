@@ -33,6 +33,7 @@ class PrimaryInput extends StatefulWidget {
     this.onTap,
     this.onlyRead = false,
     this.isClickableDate = false,
+    this.height,
   }) : inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final bool isBig;
@@ -61,6 +62,7 @@ class PrimaryInput extends StatefulWidget {
   final VoidCallback? onTap;
   final bool onlyRead;
   final bool isClickableDate;
+  final double? height;
   @override
   _PrimaryInputState createState() => _PrimaryInputState();
 }
@@ -113,7 +115,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    final textField = TextFormField(
       key: widget.key,
       focusNode: _focusNode,
       enabled: widget.onlyRead ? true : widget.enabled,
@@ -137,6 +139,7 @@ class _PrimaryInputState extends State<PrimaryInput> {
           : null,
       decoration: InputDecoration(
         counterText: widget.showCounter ? null : "",
+        isDense: widget.height == null,
         prefixIcon: _shouldShowPrefix() ? widget.prefixWidget : null,
         hintText: widget.hintText,
         labelText: widget.label,
@@ -164,9 +167,16 @@ class _PrimaryInputState extends State<PrimaryInput> {
                 : Color(0xff99B3C6),
           ),
         ),
-        contentPadding:
-            widget.contentPadding ??
-            EdgeInsets.only(top: 18, bottom: 22, left: 19.21, right: 19.21),
+        contentPadding: widget.height != null
+            ? (widget.contentPadding ??
+                  EdgeInsets.symmetric(vertical: 0, horizontal: 19.21))
+            : (widget.contentPadding ??
+                  EdgeInsets.only(
+                    top: 18,
+                    bottom: 22,
+                    left: 19.21,
+                    right: 19.21,
+                  )),
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: _getEnabledColor()),
         ),
@@ -197,15 +207,35 @@ class _PrimaryInputState extends State<PrimaryInput> {
       ),
       validator: widget.validator,
       cursorColor: _getEnabledColor(),
+      cursorHeight: widget.height != null ? 20 : null,
       textInputAction: TextInputAction.done,
       obscureText: widget.isPassword ? _obscureText : false,
-      style:
-          widget.textStyle ??
-          AppearanceKitTextTheme.build().input.copyWith(
-            color: _getEnabledColor(),
-            fontSize: 20,
-          ),
+      style: widget.height != null
+          ? (widget.textStyle ??
+                AppearanceKitTextTheme.build().input.copyWith(
+                  color: _getEnabledColor(),
+                  fontSize: 20,
+                  height: widget.height! / 20,
+                ))
+          : (widget.textStyle ??
+                AppearanceKitTextTheme.build().input.copyWith(
+                  color: _getEnabledColor(),
+                  fontSize: 20,
+                )),
     );
+
+    if (widget.height != null) {
+      return Container(
+        height: widget.height,
+        constraints: BoxConstraints(
+          minHeight: widget.height!,
+          maxHeight: widget.height!,
+        ),
+        child: textField,
+      );
+    }
+
+    return textField;
   }
 
   Color _getEnabledColor() {

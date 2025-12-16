@@ -14,6 +14,7 @@ class DateInput extends StatelessWidget {
     required this.controller,
     required this.onTapOutside,
     required this.isClearButtonVisible,
+    this.backgroundColor = const Color(0xFFF5F7FA),
   });
 
   final String label;
@@ -26,6 +27,7 @@ class DateInput extends StatelessWidget {
   final void Function()? onTapOutside;
   final TextEditingController controller;
   final String? Function(String?)? validator;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class DateInput extends StatelessWidget {
       height: 60,
       width: width,
       padding: EdgeInsets.symmetric(horizontal: 4),
-      color: Color(0xFFF5F7FA),
+      color: backgroundColor,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,11 +51,11 @@ class DateInput extends StatelessWidget {
                     maxLength: maxLength,
                     controller: controller,
                     decoration: InputDecoration(
-                      hoverColor: Color(0xFFF5F7FA),
-                      focusColor: Color(0xFFF5F7FA),
+                      hoverColor: backgroundColor,
+                      focusColor: backgroundColor,
                       counterText: "",
                       filled: true,
-                      fillColor: Color(0xFFF5F7FA),
+                      fillColor: backgroundColor,
                       prefixIcon: Icon(
                         Icons.date_range,
                         color: Theme.of(context).colorScheme.primary,
@@ -72,21 +74,15 @@ class DateInput extends StatelessWidget {
                       ),
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
-                        borderSide: BorderSide(
-                          color: Color(0xFFF5F7FA),
-                        ),
+                        borderSide: BorderSide(color: Color(0xFFF5F7FA)),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
-                        borderSide: BorderSide(
-                          color: Color(0xFFF5F7FA),
-                        ),
+                        borderSide: BorderSide(color: Color(0xFFF5F7FA)),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
-                        borderSide: BorderSide(
-                          color: Color(0xFFF5F7FA),
-                        ),
+                        borderSide: BorderSide(color: Color(0xFFF5F7FA)),
                       ),
                     ),
                     cursorHeight: 16,

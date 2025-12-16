@@ -50,6 +50,7 @@ class Inputs {
     VoidCallback? onTap,
     bool onlyRead = false,
     bool isClickableDate = false,
+    double? height,
   }) => PrimaryInput(
     key: key,
     isBig: isBig,
@@ -78,6 +79,7 @@ class Inputs {
     onTap: onTap,
     onlyRead: onlyRead,
     isClickableDate: isClickableDate,
+    height: height,
   );
 
   Widget dropdownWritableInput({
@@ -217,6 +219,7 @@ class Inputs {
     required GestureTapCallback? onTap,
     required TextEditingController controller,
     required String? Function(String?)? validator,
+    Color? backgroundColor,
   }) => DateInput(
     label: label,
     onTap: onTap,
@@ -228,6 +231,7 @@ class Inputs {
     controller: controller,
     onTapOutside: onTapOutside,
     isClearButtonVisible: isClearButtonVisible,
+    backgroundColor: backgroundColor,
   );
 
   Widget tagInput<T>({
