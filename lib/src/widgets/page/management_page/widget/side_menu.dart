@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/avatar_circular_initial.dart';
+import 'package:forms360_uikit/src/widgets/page/management_page/widget/logo.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({
@@ -25,12 +26,11 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu> {
-  List<MenuItemTypeKit> menuList = menuItemList;
-
   @override
   Widget build(BuildContext context) {
-    if (widget.serviceWeb != null && widget.serviceWeb!)
-      menuList = menuItemListService;
+    final menuList = (widget.serviceWeb ?? false)
+        ? menuItemListService
+        : menuItemList;
     return Container(
       height: double.infinity,
       margin: EdgeInsets.symmetric(
@@ -42,22 +42,40 @@ class _SideMenuState extends State<SideMenu> {
         color: context.surfaceColor,
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
-      child: Stack(
+      child: Column(
         children: [
-          SingleChildScrollView(
-            child: Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
-              child: Column(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: InkWell(
+              onTap: () => widget.onMenuItemSelected(MenuItemTypeKit.DASHBOARD),
+              borderRadius: BorderRadius.circular(30),
+              child: Container(
+                width: 40,
+                height: 40,
+                child: LogoForms(
+                  color: (widget.serviceWeb ?? false)
+                      ? LogoColor.WEB
+                      : LogoColor.PRIMARY,
+                ),
+              ),
+            ).cursorGestureWithHover,
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 15),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: menuList
-                      .map((type) => _buildTappableMenuItem(type))
-                      .toList()
-                    ..add(
-                      SizedBox(height: 42),
-                    )),
+                  children:
+                      menuList
+                          .map((type) => _buildTappableMenuItem(type))
+                          .toList()
+                        ..add(SizedBox(height: 42)),
+                ),
+              ),
             ),
           ),
-          Align(alignment: Alignment.bottomCenter, child: _buildProfileIcon())
+          _buildProfileIcon(),
         ],
       ),
     );
@@ -66,7 +84,7 @@ class _SideMenuState extends State<SideMenu> {
   GestureDetector _buildProfileIcon() {
     return GestureDetector(
       child: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(8.0),
         child: AvatarCircularInitial(
           backgroundColor: AvatarBackgroundColor.HARD_GREEN,
           name: widget.profileLetter,
@@ -89,7 +107,7 @@ class _SideMenuState extends State<SideMenu> {
             isSelected: widget.selectedMenuItem == item,
             onMenuItemSelected: widget.onMenuItemSelected,
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 20),
         ],
       ),
     );

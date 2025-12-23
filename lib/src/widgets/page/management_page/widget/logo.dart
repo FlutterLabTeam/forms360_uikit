@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum LogoColor { PRIMARY, WHITE }
+enum LogoColor { PRIMARY, WHITE, WEB }
 
 class LogoForms extends StatelessWidget {
   const LogoForms({super.key, this.color = LogoColor.PRIMARY});
@@ -16,6 +16,8 @@ class LogoForms extends StatelessWidget {
     switch (lColor) {
       case LogoColor.WHITE:
         return 'assets/brand/raios360_white.png';
+      case LogoColor.WEB:
+        return 'assets/icons_web/formIcon.png';
       default:
         return 'assets/brand/logo.png';
     }

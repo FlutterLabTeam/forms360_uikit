@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/logo.dart';
+import 'package:forms360_uikit/src/widgets/page/management_page/widget/side_menu.dart';
+import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 
 class ManagementMultiPage8020 extends StatelessWidget {
   const ManagementMultiPage8020({
@@ -10,11 +13,13 @@ class ManagementMultiPage8020 extends StatelessWidget {
     required this.spacing,
     required this.assetPath,
     required this.endContent,
-    required this.startContent,
+    this.startContent,
     required this.onProfileTap,
     required this.enableGoHome,
     required this.showStartContent,
     required this.profileLetter,
+    required this.selectedMenuItem,
+    required this.onMenuItemSelected,
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
   });
@@ -25,33 +30,39 @@ class ManagementMultiPage8020 extends StatelessWidget {
   final bool enableGoHome;
   final bool showStartContent;
   final VoidCallback? onPop;
-  final Widget startContent;
+  final Widget? startContent;
   final String profileLetter;
   final List<Widget> endContent;
   final GestureTapCallback onProfileTap;
+  final MenuItemTypeKit selectedMenuItem;
+  final Function(MenuItemTypeKit) onMenuItemSelected;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        //  if (constraints.maxWidth >= Breakpoint.xdesktop) {
-        return BigScreenWidget8020(
-          onPop: onPop,
-          spacing: spacing,
-          assetPath: assetPath,
-          endContent: endContent,
-          serviceWeb: serviceWeb,
-          startContent: startContent,
-          onProfileTap: onProfileTap,
-          enableGoHome: enableGoHome,
-          showStartContent: showStartContent,
-          profileLetter: profileLetter,
-          rowMainAxisAlignment: rowMainAxisAlignment,
-          rowCrossAxisAlignment: rowCrossAxisAlignment,
-        );
-        /*
+    return Container(
+      color: context.surfaceContainerColor.withOpacity(0.4),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          //  if (constraints.maxWidth >= Breakpoint.xdesktop) {
+          return BigScreenWidget8020(
+            onPop: onPop,
+            spacing: spacing,
+            assetPath: assetPath,
+            endContent: endContent,
+            serviceWeb: serviceWeb,
+            startContent: startContent,
+            onProfileTap: onProfileTap,
+            enableGoHome: enableGoHome,
+            showStartContent: showStartContent,
+            profileLetter: profileLetter,
+            selectedMenuItem: selectedMenuItem,
+            onMenuItemSelected: onMenuItemSelected,
+            rowMainAxisAlignment: rowMainAxisAlignment,
+            rowCrossAxisAlignment: rowCrossAxisAlignment,
+          );
+          /*
         } else if (constraints.maxWidth >= Breakpoint.tablet &&
             constraints.maxWidth < Breakpoint.xdesktop) {
           return MediumScreenWidget8020(
@@ -72,7 +83,8 @@ class ManagementMultiPage8020 extends StatelessWidget {
           );
         }
         */
-      },
+        },
+      ),
     );
   }
 }
@@ -147,11 +159,13 @@ class BigScreenWidget8020 extends StatelessWidget {
     this.serviceWeb,
     required this.spacing,
     required this.endContent,
-    required this.startContent,
+    this.startContent,
     required this.onProfileTap,
     required this.enableGoHome,
     required this.showStartContent,
     required this.profileLetter,
+    required this.selectedMenuItem,
+    required this.onMenuItemSelected,
     required this.rowMainAxisAlignment,
     required this.rowCrossAxisAlignment,
     this.hasBackButton = false,
@@ -164,40 +178,51 @@ class BigScreenWidget8020 extends StatelessWidget {
   final bool enableGoHome;
   final bool showStartContent;
   final VoidCallback? onPop;
-  final Widget startContent;
+  final Widget? startContent;
   final String profileLetter;
   final List<Widget> endContent;
   final GestureTapCallback onProfileTap;
+  final MenuItemTypeKit selectedMenuItem;
+  final Function(MenuItemTypeKit) onMenuItemSelected;
   final MainAxisAlignment rowMainAxisAlignment;
   final CrossAxisAlignment rowCrossAxisAlignment;
   final bool hasBackButton;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 24.0, left: 24.0, bottom: 24.0),
-      child: Row(
-        mainAxisAlignment: rowMainAxisAlignment,
-        crossAxisAlignment: rowCrossAxisAlignment,
-        children: [
-          SizedBox(width: spacing),
-          if (showStartContent) ...[
-            Expanded(
-              flex: 7, // 70% del espacio
+    return Row(
+      mainAxisAlignment: rowMainAxisAlignment,
+      crossAxisAlignment: rowCrossAxisAlignment,
+      children: [
+        SideMenu(
+          serviceWeb: serviceWeb,
+          onProfileTap: onProfileTap,
+          profileLetter: profileLetter,
+          selectedMenuItem: selectedMenuItem,
+          onMenuItemSelected: onMenuItemSelected,
+        ),
+        if (showStartContent && startContent != null) ...[
+          Expanded(
+            flex: 7, // 70% del espacio
+            child: Padding(
+              padding: const EdgeInsets.only(top: 24.0, bottom: 24.0),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(25),
                 ),
-                child: startContent,
+                child: startContent!,
               ),
             ),
-            SizedBox(width: spacing),
-          ],
-          Expanded(
-            flex: showStartContent
-                ? 3
-                : 1, // 30% del espacio cuando hay columna izquierda
+          ),
+          SizedBox(width: spacing),
+        ],
+        Expanded(
+          flex: (showStartContent && startContent != null)
+              ? 3
+              : 1, // 30% del espacio cuando hay columna izquierda
+          child: Padding(
+            padding: const EdgeInsets.only(top: 24.0, bottom: 24.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: List.generate(
@@ -206,8 +231,9 @@ class BigScreenWidget8020 extends StatelessWidget {
               ),
             ),
           ),
-        ],
-      ),
+        ),
+        SizedBox(width: spacing),
+      ],
     );
   }
 }

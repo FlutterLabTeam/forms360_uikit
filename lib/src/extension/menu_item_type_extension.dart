@@ -3,62 +3,74 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 
 extension MenuIconTypeExtension on MenuItemTypeKit {
-  Icon get iconSelected {
+  IconData get iconDataSelected {
     switch (this) {
       case MenuItemTypeKit.DASHBOARD:
-        return Icon(Icons.dashboard, color: Colors.blue);
+        return Icons.dashboard;
       case MenuItemTypeKit.USERS:
-        return Icon(Icons.people, color: Colors.blue);
+        return Icons.people;
       case MenuItemTypeKit.AUDIT:
-        return Icon(Icons.history, color: Colors.blue);
+        return Icons.history;
       case MenuItemTypeKit.PERMISSIONS:
-        return Icon(Icons.security, color: Colors.blue);
+        return Icons.security;
       case MenuItemTypeKit.ANNOUNCEMENT:
-        return Icon(Icons.notifications, color: Colors.blue);
+        return Icons.notifications;
       case MenuItemTypeKit.INDUSTRY:
-        return Icon(Icons.business, color: Colors.blue);
+        return Icons.business;
       case MenuItemTypeKit.LIBRARY:
-        return Icon(Icons.library_books, color: Colors.blue);
+        return Icons.library_books;
       case MenuItemTypeKit.TAG:
-        return Icon(Icons.library_books, color: Colors.blue);
+        return Icons.library_books;
       case MenuItemTypeKit.REPORTS:
-        return Icon(Icons.analytics, color: Colors.blue);
+        return Icons.analytics;
       case MenuItemTypeKit.DATASOURCE:
-        return Icon(Icons.folder, color: Colors.grey);
+        return Icons.folder;
       case MenuItemTypeKit.CLIENT:
-        return Icon(Icons.person, color: Colors.grey);
+        return Icons.person;
       case MenuItemTypeKit.PRODUCT:
-        return Icon(Icons.fact_check, color: Colors.grey);
+        return Icons.fact_check;
+      case MenuItemTypeKit.TASK:
+        return Icons.task_alt_outlined;
     }
   }
 
-  Icon get iconUnselected {
+  IconData get iconDataUnselected {
     switch (this) {
       case MenuItemTypeKit.DASHBOARD:
-        return Icon(Icons.dashboard_outlined, color: Colors.grey);
+        return Icons.dashboard_outlined;
       case MenuItemTypeKit.USERS:
-        return Icon(Icons.people_outline, color: Colors.grey);
+        return Icons.people_outline;
       case MenuItemTypeKit.AUDIT:
-        return Icon(Icons.history, color: Colors.grey);
+        return Icons.history;
       case MenuItemTypeKit.PERMISSIONS:
-        return Icon(Icons.security_outlined, color: Colors.grey);
+        return Icons.security_outlined;
       case MenuItemTypeKit.ANNOUNCEMENT:
-        return Icon(Icons.notifications_outlined, color: Colors.grey);
+        return Icons.notifications_outlined;
       case MenuItemTypeKit.INDUSTRY:
-        return Icon(Icons.business_outlined, color: Colors.grey);
+        return Icons.business_outlined;
       case MenuItemTypeKit.LIBRARY:
-        return Icon(Icons.library_books_outlined, color: Colors.grey);
+        return Icons.library_books_outlined;
       case MenuItemTypeKit.TAG:
-        return Icon(Icons.library_books_outlined, color: Colors.grey);
+        return Icons.library_books_outlined;
       case MenuItemTypeKit.REPORTS:
-        return Icon(Icons.analytics_outlined, color: Colors.grey);
+        return Icons.analytics_outlined;
       case MenuItemTypeKit.DATASOURCE:
-        return Icon(Icons.folder_outlined, color: Colors.grey);
+        return Icons.folder_outlined;
       case MenuItemTypeKit.CLIENT:
-        return Icon(Icons.person_2_outlined, color: Colors.grey);
+        return Icons.person_2_outlined;
       case MenuItemTypeKit.PRODUCT:
-        return Icon(Icons.fact_check_outlined, color: Colors.grey);
+        return Icons.fact_check_outlined;
+      case MenuItemTypeKit.TASK:
+        return Icons.task_alt_outlined;
     }
+  }
+
+  Icon get iconSelected {
+    return Icon(iconDataSelected, color: Colors.blue);
+  }
+
+  Icon get iconUnselected {
+    return Icon(iconDataUnselected, color: Colors.grey);
   }
 }
 
@@ -76,7 +88,7 @@ extension MenuIconTypeStringExtension on MenuItemTypeKit {
       case MenuItemTypeKit.PERMISSIONS:
         return 'Permissions';
       case MenuItemTypeKit.ANNOUNCEMENT:
-        return 'Notify';
+        return 'Announce';
       case MenuItemTypeKit.INDUSTRY:
         return 'Industry';
       case MenuItemTypeKit.LIBRARY:
@@ -89,6 +101,8 @@ extension MenuIconTypeStringExtension on MenuItemTypeKit {
         return "Client";
       case MenuItemTypeKit.PRODUCT:
         return "Product";
+      case MenuItemTypeKit.TASK:
+        return "Task";
     }
   }
 }

@@ -18,27 +18,31 @@ class MenuIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-      isSelected && onMenuItemSelected == null
+      onTap: () => isSelected && onMenuItemSelected == null
           ? null
           : onMenuItemSelected!(type),
       child: Container(
         color: Colors.transparent,
-        width: 76,
+        width: 48,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 24,
-              height: 24,
-              child: isSelected ? type.iconSelected : type.iconUnselected,
+              width: 22,
+              height: 22,
+              child: Icon(
+                isSelected ? type.iconDataSelected : type.iconDataUnselected,
+                color: isSelected ? context.primaryColor : Color(0xFFA3B2BC),
+                size: 22,
+              ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 8),
             Text(
               type.toMenuTitle,
+              textAlign: TextAlign.center,
               style: TextStyle(
-                color: isSelected ? Color(0xFF1E5C8B) : Color(0xFFA3B2BC),
-                fontSize: 12,
+                color: isSelected ? context.primaryColor : Color(0xFFA3B2BC),
+                fontSize: 10,
               ),
             ),
           ],

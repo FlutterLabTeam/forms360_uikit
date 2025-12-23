@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/logo.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/top_menu.dart';
+import 'package:forms360_uikit/src/widgets/page/management_page/widget/side_menu.dart';
 
 class ManagementPage extends StatelessWidget {
   const ManagementPage({
@@ -12,7 +14,7 @@ class ManagementPage extends StatelessWidget {
     required this.spacing,
     required this.assetPath,
     required this.endContent,
-    required this.startContent,
+    this.startContent,
     required this.onProfileTap,
     required this.profileLetter,
     required this.selectedMenuItem,
@@ -22,6 +24,13 @@ class ManagementPage extends StatelessWidget {
     required this.enableGoHome,
     this.hasBackButton = false,
     this.customMenuItems,
+    this.title = '',
+    this.secondTitle = '',
+    this.thirdTitle = '',
+    this.selectedTabIndex = 0,
+    this.onTitleTap,
+    this.onSecondTitleTap,
+    this.onThirdTitleTap,
   });
 
   final double spacing;
@@ -29,7 +38,7 @@ class ManagementPage extends StatelessWidget {
   final String assetPath;
   final Widget endContent;
   final bool enableGoHome;
-  final Widget startContent;
+  final Widget? startContent;
   final VoidCallback? onPop;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
@@ -39,53 +48,57 @@ class ManagementPage extends StatelessWidget {
   final Function(MenuItemTypeKit) onMenuItemSelected;
   final bool hasBackButton;
   final List<Widget>? customMenuItems;
+  final String title;
+  final String secondTitle;
+  final String thirdTitle;
+  final int selectedTabIndex;
+  final VoidCallback? onTitleTap;
+  final VoidCallback? onSecondTitleTap;
+  final VoidCallback? onThirdTitleTap;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth >= Breakpoint.xdesktop) {
-          return BigScreenWidget(
-            onPop: onPop,
-            spacing: spacing,
-            assetPath: assetPath,
-            endContent: endContent,
-            serviceWeb: serviceWeb,
-            startContent: startContent,
-            onProfileTap: onProfileTap,
-            enableGoHome: enableGoHome,
-            profileLetter: profileLetter,
-            selectedMenuItem: selectedMenuItem,
-            onMenuItemSelected: onMenuItemSelected,
-            rowMainAxisAlignment: rowMainAxisAlignment,
-            rowCrossAxisAlignment: rowCrossAxisAlignment,
-            hasBackButton: hasBackButton,
-            customMenuItems: customMenuItems,
-          );
-        } else if (constraints.maxWidth >= Breakpoint.tablet &&
-            constraints.maxWidth < Breakpoint.xdesktop) {
-          return MediumScreenWidget(
-            spacing: spacing,
-            endContent: endContent,
-            serviceWeb: serviceWeb,
-            onProfileTap: onProfileTap,
-            profileLetter: profileLetter,
-            selectedMenuItem: selectedMenuItem,
-            onMenuItemSelected: onMenuItemSelected,
-            rowMainAxisAlignment: rowMainAxisAlignment,
-            rowCrossAxisAlignment: rowCrossAxisAlignment,
-          );
-        } else {
-          return SmallScreenWidget(
-            endContent: endContent,
-            serviceWeb: serviceWeb,
-            onProfileTap: onProfileTap,
-            profileLetter: profileLetter,
-            selectedMenuItem: selectedMenuItem,
-            onMenuItemSelected: onMenuItemSelected,
-          );
-        }
-      },
+    return Container(
+      color: context.surfaceContainerColor.withOpacity(0.4),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth >= Breakpoint.tablet) {
+            return BigScreenWidget(
+              title: title,
+              secondTitle: secondTitle,
+              thirdTitle: thirdTitle,
+              selectedTabIndex: selectedTabIndex,
+              onTitleTap: onTitleTap,
+              onSecondTitleTap: onSecondTitleTap,
+              onThirdTitleTap: onThirdTitleTap,
+              onPop: onPop,
+              spacing: spacing,
+              assetPath: assetPath,
+              endContent: endContent,
+              serviceWeb: serviceWeb,
+              startContent: startContent,
+              onProfileTap: onProfileTap,
+              enableGoHome: enableGoHome,
+              profileLetter: profileLetter,
+              selectedMenuItem: selectedMenuItem,
+              onMenuItemSelected: onMenuItemSelected,
+              rowMainAxisAlignment: rowMainAxisAlignment,
+              rowCrossAxisAlignment: rowCrossAxisAlignment,
+              hasBackButton: hasBackButton,
+              customMenuItems: customMenuItems,
+            );
+          } else {
+            return SmallScreenWidget(
+              endContent: endContent,
+              serviceWeb: serviceWeb,
+              onProfileTap: onProfileTap,
+              profileLetter: profileLetter,
+              selectedMenuItem: selectedMenuItem,
+              onMenuItemSelected: onMenuItemSelected,
+            );
+          }
+        },
+      ),
     );
   }
 }
@@ -133,84 +146,6 @@ class SmallScreenWidget extends StatelessWidget {
   }
 }
 
-class MediumScreenWidget extends StatelessWidget {
-  const MediumScreenWidget({
-    super.key,
-    this.serviceWeb,
-    required this.spacing,
-    required this.endContent,
-    required this.onProfileTap,
-    required this.profileLetter,
-    required this.selectedMenuItem,
-    required this.onMenuItemSelected,
-    required this.rowMainAxisAlignment,
-    required this.rowCrossAxisAlignment,
-  });
-
-  final double spacing;
-  final bool? serviceWeb;
-  final Widget endContent;
-  final String profileLetter;
-  final GestureTapCallback onProfileTap;
-  final MenuItemTypeKit selectedMenuItem;
-  final MainAxisAlignment rowMainAxisAlignment;
-  final CrossAxisAlignment rowCrossAxisAlignment;
-  final Function(MenuItemTypeKit) onMenuItemSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 24.0, left: 24.0, bottom: 24.0),
-      child: Row(
-        mainAxisAlignment: rowMainAxisAlignment,
-        crossAxisAlignment: rowCrossAxisAlignment,
-        children: [
-          SizedBox(width: spacing),
-          Flexible(
-            flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  bottomLeft: Radius.circular(25),
-                ),
-                color: Colors.white,
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 100.0,
-                      vertical: 20,
-                    ),
-                    child: TopMenu(
-                      serviceWeb: serviceWeb,
-                      onProfileTap: onProfileTap,
-                      profileLetter: profileLetter,
-                      selectedMenuItem: selectedMenuItem,
-                      onMenuItemSelected: onMenuItemSelected,
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 100.0,
-                        right: 100.0,
-                        bottom: 40,
-                      ),
-                      child: endContent,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class BigScreenWidget extends StatelessWidget {
   const BigScreenWidget({
     super.key,
@@ -218,7 +153,7 @@ class BigScreenWidget extends StatelessWidget {
     this.serviceWeb,
     required this.spacing,
     required this.endContent,
-    required this.startContent,
+    this.startContent,
     required this.enableGoHome,
     required this.onProfileTap,
     required this.profileLetter,
@@ -229,6 +164,13 @@ class BigScreenWidget extends StatelessWidget {
     this.hasBackButton = false,
     this.assetPath = 'assets/images/clients/users_background.png',
     this.customMenuItems,
+    required this.title,
+    required this.secondTitle,
+    this.thirdTitle = '',
+    this.selectedTabIndex = 0,
+    this.onTitleTap,
+    this.onSecondTitleTap,
+    this.onThirdTitleTap,
   });
 
   final double spacing;
@@ -236,7 +178,7 @@ class BigScreenWidget extends StatelessWidget {
   final String assetPath;
   final bool enableGoHome;
   final Widget endContent;
-  final Widget startContent;
+  final Widget? startContent;
   final VoidCallback? onPop;
   final String profileLetter;
   final GestureTapCallback onProfileTap;
@@ -246,65 +188,81 @@ class BigScreenWidget extends StatelessWidget {
   final Function(MenuItemTypeKit) onMenuItemSelected;
   final bool hasBackButton;
   final List<Widget>? customMenuItems;
+  final String title;
+  final String secondTitle;
+  final String thirdTitle;
+  final int selectedTabIndex;
+  final VoidCallback? onTitleTap;
+  final VoidCallback? onSecondTitleTap;
+  final VoidCallback? onThirdTitleTap;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 24.0, left: 24.0, bottom: 24.0),
-      child: Row(
-        mainAxisAlignment: rowMainAxisAlignment,
-        crossAxisAlignment: rowCrossAxisAlignment,
-        children: [
-          SizedBox(width: spacing),
-          Expanded(
-            flex: 1,
-            child: LeftDecoration(
-              hasBackButton: hasBackButton,
-              onPop: onPop,
-              assetPath: assetPath,
-              startContent: startContent,
-              enableGoHome: enableGoHome,
-            ),
-          ),
-          SizedBox(width: spacing),
-          Flexible(
-            flex: 2,
+    return Row(
+      mainAxisAlignment: rowMainAxisAlignment,
+      crossAxisAlignment: rowCrossAxisAlignment,
+      children: [
+        SideMenu(
+          serviceWeb: serviceWeb,
+          onProfileTap: onProfileTap,
+          profileLetter: profileLetter,
+          selectedMenuItem: selectedMenuItem,
+          onMenuItemSelected: onMenuItemSelected,
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 24.0, bottom: 24.0),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(25),
                   bottomLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
                 ),
                 color: Colors.white,
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: (serviceWeb == true &&
-                              customMenuItems != null &&
-                              customMenuItems!.isNotEmpty)
-                          ? 16.0
-                          : 100.0,
-                      right: 100.0,
-                      top: 20,
-                      bottom: 20,
+                  SizedBox(height: 32),
+                  if (title.isNotEmpty) ...[
+                    Padding(
+                      padding: EdgeInsets.only(left: 70),
+                      child: Row(
+                        children: [
+                          _TabTitle(
+                            title: title,
+                            isSelected: selectedTabIndex == 0,
+                            onTap: onTitleTap,
+                          ),
+                          if (secondTitle.isNotEmpty) ...[
+                            SizedBox(width: 24),
+                            _TabTitle(
+                              title: secondTitle,
+                              isSelected: selectedTabIndex == 1,
+                              onTap: onSecondTitleTap,
+                            ),
+                          ],
+                          if (thirdTitle.isNotEmpty) ...[
+                            SizedBox(width: 24),
+                            _TabTitle(
+                              title: thirdTitle,
+                              isSelected: selectedTabIndex == 2,
+                              onTap: onThirdTitleTap,
+                            ),
+                          ],
+                        ],
+                      ),
                     ),
-                    child: TopMenu(
-                      serviceWeb: serviceWeb,
-                      onProfileTap: onProfileTap,
-                      profileLetter: profileLetter,
-                      selectedMenuItem: selectedMenuItem,
-                      onMenuItemSelected: onMenuItemSelected,
-                      customMenuItems: customMenuItems,
-                    ),
-                  ),
+                  ],
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 100.0,
+                      padding: EdgeInsets.only(
+                        left: 80.0,
                         right: 100.0,
                         bottom: 40,
+                        top: 20,
                       ),
                       child: endContent,
                     ),
@@ -313,65 +271,38 @@ class BigScreenWidget extends StatelessWidget {
               ),
             ),
           ),
-        ],
-      ),
+        ),
+        SizedBox(width: spacing),
+      ],
     );
   }
 }
 
-class LeftDecoration extends StatelessWidget {
-  const LeftDecoration({
-    super.key,
-    this.onPop,
-    required this.assetPath,
-    required this.startContent,
-    required this.enableGoHome,
-    this.hasBackButton = false,
-  });
+class _TabTitle extends StatelessWidget {
+  const _TabTitle({required this.title, required this.isSelected, this.onTap});
 
-  final String assetPath;
-  final bool enableGoHome;
-  final Widget startContent;
-  final VoidCallback? onPop;
-  final bool hasBackButton;
+  final String title;
+  final bool isSelected;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: Image.asset(assetPath).image,
-            ),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 2),
+        child: Text(
+          title,
+          style: context.primaryText.copyWith(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            color: isSelected
+                ? context.primaryColor
+                : context.primaryColor.withOpacity(0.4),
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 53.0),
-              child: InkWell(
-                onTap: onPop ?? () {},
-                child: LogoForms(color: LogoColor.WHITE),
-              ),
-            ),
-          ],
-        ),
-        Center(child: startContent),
-        if (hasBackButton)
-          Positioned(
-            top: 53,
-            left: 24,
-            child: InkWell(
-              onTap: onPop,
-              child: Icon(Icons.chevron_left, size: 32, color: Colors.white),
-            ),
-          ),
-      ],
-    );
+      ),
+    ).cursorGestureWithHover;
   }
 }

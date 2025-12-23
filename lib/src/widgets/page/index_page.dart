@@ -5,9 +5,26 @@ import 'package:forms360_uikit/src/widgets/page/standard_page/standard_page.dart
 import 'package:forms360_uikit/src/widgets/page/management_page/dashboard_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/management_page.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/management_multi_page.dart';
+import 'package:forms360_uikit/src/widgets/page/management_page/widget/side_menu.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/management_multi_page_80_20.dart';
 
 class UiPage {
+  Widget sideMenu({
+    bool? serviceWeb = false,
+    bool isHorizontal = false,
+    required String profileLetter,
+    required GestureTapCallback onProfileTap,
+    required MenuItemTypeKit selectedMenuItem,
+    required Function(MenuItemTypeKit) onMenuItemSelected,
+  }) => SideMenu(
+    serviceWeb: serviceWeb,
+    isHorizontal: isHorizontal,
+    onProfileTap: onProfileTap,
+    profileLetter: profileLetter,
+    selectedMenuItem: selectedMenuItem,
+    onMenuItemSelected: onMenuItemSelected,
+  );
+
   Widget backgroundPage({
     required Widget child,
     required String image,
@@ -18,7 +35,7 @@ class UiPage {
     bool? serviceWeb,
     double spacing = 36,
     required Widget endContent,
-    required Widget startContent,
+    Widget? startContent,
     required String profileLetter,
     required GestureTapCallback onProfileTap,
     required MenuItemTypeKit selectedMenuItem,
@@ -30,24 +47,37 @@ class UiPage {
     bool hasBackButton = false,
     Function()? onPop,
     List<Widget>? customMenuItems,
-  }) =>
-      ManagementPage(
-        spacing: spacing,
-        assetPath: assetPath,
-        endContent: endContent,
-        serviceWeb: serviceWeb,
-        enableGoHome: enableGoHome,
-        onProfileTap: onProfileTap,
-        startContent: startContent,
-        profileLetter: profileLetter,
-        selectedMenuItem: selectedMenuItem,
-        onMenuItemSelected: onMenuItemSelected,
-        rowMainAxisAlignment: rowMainAxisAlignment,
-        rowCrossAxisAlignment: rowCrossAxisAlignment,
-        onPop: onPop,
-        hasBackButton: hasBackButton,
-        customMenuItems: customMenuItems,
-      );
+    String title = '',
+    String secondTitle = '',
+    String thirdTitle = '',
+    int selectedTabIndex = 0,
+    VoidCallback? onTitleTap,
+    VoidCallback? onSecondTitleTap,
+    VoidCallback? onThirdTitleTap,
+  }) => ManagementPage(
+    spacing: spacing,
+    assetPath: assetPath,
+    endContent: endContent,
+    serviceWeb: serviceWeb,
+    enableGoHome: enableGoHome,
+    onProfileTap: onProfileTap,
+    startContent: startContent,
+    profileLetter: profileLetter,
+    selectedMenuItem: selectedMenuItem,
+    onMenuItemSelected: onMenuItemSelected,
+    rowMainAxisAlignment: rowMainAxisAlignment,
+    rowCrossAxisAlignment: rowCrossAxisAlignment,
+    onPop: onPop,
+    hasBackButton: hasBackButton,
+    customMenuItems: customMenuItems,
+    title: title,
+    secondTitle: secondTitle,
+    thirdTitle: thirdTitle,
+    selectedTabIndex: selectedTabIndex,
+    onTitleTap: onTitleTap,
+    onSecondTitleTap: onSecondTitleTap,
+    onThirdTitleTap: onThirdTitleTap,
+  );
 
   Widget managementMultiPage({
     bool? serviceWeb,
@@ -55,28 +85,31 @@ class UiPage {
     double spacing = 36,
     bool enableGoHome = false,
     bool showStartContent = true,
-    required Widget startContent,
+    Widget? startContent,
     required String profileLetter,
     required List<Widget> endContent,
     required GestureTapCallback onProfileTap,
+    required MenuItemTypeKit selectedMenuItem,
+    required Function(MenuItemTypeKit) onMenuItemSelected,
     String assetPath = 'assets/images/clients/users_background.png',
     MainAxisAlignment rowMainAxisAlignment = MainAxisAlignment.start,
     CrossAxisAlignment rowCrossAxisAlignment = CrossAxisAlignment.start,
-  }) =>
-      ManagementMultiPage(
-        onPop: onPop,
-        spacing: spacing,
-        assetPath: assetPath,
-        endContent: endContent,
-        serviceWeb: serviceWeb,
-        enableGoHome: enableGoHome,
-        showStartContent: showStartContent,
-        onProfileTap: onProfileTap,
-        startContent: startContent,
-        profileLetter: profileLetter,
-        rowMainAxisAlignment: rowMainAxisAlignment,
-        rowCrossAxisAlignment: rowCrossAxisAlignment,
-      );
+  }) => ManagementMultiPage(
+    onPop: onPop,
+    spacing: spacing,
+    assetPath: assetPath,
+    endContent: endContent,
+    serviceWeb: serviceWeb,
+    enableGoHome: enableGoHome,
+    showStartContent: showStartContent,
+    onProfileTap: onProfileTap,
+    startContent: startContent,
+    profileLetter: profileLetter,
+    selectedMenuItem: selectedMenuItem,
+    onMenuItemSelected: onMenuItemSelected,
+    rowMainAxisAlignment: rowMainAxisAlignment,
+    rowCrossAxisAlignment: rowCrossAxisAlignment,
+  );
 
   Widget managementMultiPage8020({
     bool? serviceWeb,
@@ -84,28 +117,31 @@ class UiPage {
     double spacing = 36,
     bool enableGoHome = false,
     bool showStartContent = true,
-    required Widget startContent,
+    Widget? startContent,
     required String profileLetter,
     required List<Widget> endContent,
     required GestureTapCallback onProfileTap,
+    required MenuItemTypeKit selectedMenuItem,
+    required Function(MenuItemTypeKit) onMenuItemSelected,
     String assetPath = 'assets/images/clients/users_background.png',
     MainAxisAlignment rowMainAxisAlignment = MainAxisAlignment.start,
     CrossAxisAlignment rowCrossAxisAlignment = CrossAxisAlignment.start,
-  }) =>
-      ManagementMultiPage8020(
-        onPop: onPop,
-        spacing: spacing,
-        assetPath: assetPath,
-        endContent: endContent,
-        serviceWeb: serviceWeb,
-        enableGoHome: enableGoHome,
-        showStartContent: showStartContent,
-        onProfileTap: onProfileTap,
-        startContent: startContent,
-        profileLetter: profileLetter,
-        rowMainAxisAlignment: rowMainAxisAlignment,
-        rowCrossAxisAlignment: rowCrossAxisAlignment,
-      );
+  }) => ManagementMultiPage8020(
+    onPop: onPop,
+    spacing: spacing,
+    assetPath: assetPath,
+    endContent: endContent,
+    serviceWeb: serviceWeb,
+    enableGoHome: enableGoHome,
+    showStartContent: showStartContent,
+    onProfileTap: onProfileTap,
+    startContent: startContent,
+    profileLetter: profileLetter,
+    selectedMenuItem: selectedMenuItem,
+    onMenuItemSelected: onMenuItemSelected,
+    rowMainAxisAlignment: rowMainAxisAlignment,
+    rowCrossAxisAlignment: rowCrossAxisAlignment,
+  );
 
   Widget dashboardPage({
     double spacing = 36,
@@ -115,16 +151,15 @@ class UiPage {
     required GestureTapCallback onProfileTap,
     required MenuItemTypeKit selectedMenuItem,
     required Function(MenuItemTypeKit) onMenuItemSelected,
-  }) =>
-      DashboardPage(
-        spacing: spacing,
-        serviceWeb: serviceWeb,
-        endContent: endContent,
-        onProfileTap: onProfileTap,
-        profileLetter: profileLetter,
-        selectedMenuItem: selectedMenuItem,
-        onMenuItemSelected: onMenuItemSelected,
-      );
+  }) => DashboardPage(
+    spacing: spacing,
+    serviceWeb: serviceWeb,
+    endContent: endContent,
+    onProfileTap: onProfileTap,
+    profileLetter: profileLetter,
+    selectedMenuItem: selectedMenuItem,
+    onMenuItemSelected: onMenuItemSelected,
+  );
 
   Widget endContentWidget({
     required Widget content,
@@ -136,16 +171,15 @@ class UiPage {
     bool isLoading = false,
     String? retryButtonText,
     List<Widget>? settingsWidgets,
-  }) =>
-      EndContentWidget(
-        content: content,
-        onSearch: onSearch,
-        searchLabel: searchLabel,
-        titleWidget: titleWidget,
-        retryButtonText: retryButtonText,
-        isLoading: isLoading,
-        errorMessage: errorMessage,
-        retryCallback: retryCallBack,
-        settingsWidgets: settingsWidgets,
-      );
+  }) => EndContentWidget(
+    content: content,
+    onSearch: onSearch,
+    searchLabel: searchLabel,
+    titleWidget: titleWidget,
+    retryButtonText: retryButtonText,
+    isLoading: isLoading,
+    errorMessage: errorMessage,
+    retryCallback: retryCallBack,
+    settingsWidgets: settingsWidgets,
+  );
 }

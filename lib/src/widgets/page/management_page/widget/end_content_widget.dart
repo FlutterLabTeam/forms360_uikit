@@ -14,17 +14,18 @@ class EndContentWidget extends ConsumerStatefulWidget {
   final Function retryCallback;
   final List<Widget>? settingsWidgets;
 
-  const EndContentWidget(
-      {super.key,
-      this.onSearch,
-      this.searchLabel = 'Search',
-      this.retryButtonText = 'Retry',
-      this.titleWidget,
-      this.errorMessage,
-      this.isLoading = false,
-      this.settingsWidgets,
-      required this.content,
-      required this.retryCallback});
+  const EndContentWidget({
+    super.key,
+    this.onSearch,
+    this.searchLabel = 'Search',
+    this.retryButtonText = 'Retry',
+    this.titleWidget,
+    this.errorMessage,
+    this.isLoading = false,
+    this.settingsWidgets,
+    required this.content,
+    required this.retryCallback,
+  });
 
   @override
   _EndContentWidgetState createState() => _EndContentWidgetState();
@@ -49,24 +50,26 @@ class _EndContentWidgetState extends ConsumerState<EndContentWidget> {
       children: [
         _buildSearchAndSettings(),
         SizedBox(height: 20),
-        ...buildContentTitle(),
+        //...buildContentTitle(),
         Expanded(
           child: widget.isLoading
               ? Center(
                   child: Container(
-                      width: 50,
-                      height: 50,
-                      child: CircularProgressIndicator()))
+                    width: 50,
+                    height: 50,
+                    child: CircularProgressIndicator(),
+                  ),
+                )
               : widget.errorMessage == null
-                  ? widget.content
-                  : ErrorRetryWidget(
-                      textColor: context.surfaceColor,
-                      errorMessage: widget.errorMessage!,
-                      onRetry: () {
-                        widget.retryCallback();
-                      },
-                      retryButtonText: widget.retryButtonText!,
-                    ),
+              ? widget.content
+              : ErrorRetryWidget(
+                  textColor: context.surfaceColor,
+                  errorMessage: widget.errorMessage!,
+                  onRetry: () {
+                    widget.retryCallback();
+                  },
+                  retryButtonText: widget.retryButtonText!,
+                ),
         ),
       ],
     );
@@ -85,23 +88,22 @@ class _EndContentWidgetState extends ConsumerState<EndContentWidget> {
         if (widget.settingsWidgets != null &&
             widget.settingsWidgets!.isNotEmpty)
           Row(
-              children: widget.settingsWidgets!
-                  .map((widget) => Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: widget,
-                      ))
-                  .toList()),
+            children: widget.settingsWidgets!
+                .map(
+                  (widget) => Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: widget,
+                  ),
+                )
+                .toList(),
+          ),
       ],
     );
   }
 
   buildContentTitle() {
     return widget.titleWidget != null
-        ? [
-            SizedBox(height: 20),
-            widget.titleWidget!,
-            SizedBox(height: 10),
-          ]
+        ? [SizedBox(height: 20), widget.titleWidget!, SizedBox(height: 10)]
         : [Container()];
   }
 

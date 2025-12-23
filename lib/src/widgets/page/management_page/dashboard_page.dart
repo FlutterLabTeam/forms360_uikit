@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/top_menu.dart';
@@ -26,30 +27,33 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth >= Breakpoint.xdesktop ||
-            (constraints.maxWidth >= Breakpoint.tablet &&
-                constraints.maxWidth < Breakpoint.xdesktop)) {
-          return BigScreenWidget(
-            spacing: spacing,
-            serviceWeb: serviceWeb,
-            endContent: endContent,
-            onProfileTap: onProfileTap,
-            profileLetter: profileLetter,
-            selectedMenuItem: selectedMenuItem,
-            onMenuItemSelected: onMenuItemSelected,
-          );
-        } else {
-          return SmallScreenWidget(
-            endContent: endContent,
-            onProfileTap: onProfileTap,
-            profileLetter: profileLetter,
-            selectedMenuItem: selectedMenuItem,
-            onMenuItemSelected: onMenuItemSelected,
-          );
-        }
-      },
+    return Container(
+      color: context.surfaceContainerColor.withOpacity(0.4),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth >= Breakpoint.xdesktop ||
+              (constraints.maxWidth >= Breakpoint.tablet &&
+                  constraints.maxWidth < Breakpoint.xdesktop)) {
+            return BigScreenWidget(
+              spacing: spacing,
+              serviceWeb: serviceWeb,
+              endContent: endContent,
+              onProfileTap: onProfileTap,
+              profileLetter: profileLetter,
+              selectedMenuItem: selectedMenuItem,
+              onMenuItemSelected: onMenuItemSelected,
+            );
+          } else {
+            return SmallScreenWidget(
+              endContent: endContent,
+              onProfileTap: onProfileTap,
+              profileLetter: profileLetter,
+              selectedMenuItem: selectedMenuItem,
+              onMenuItemSelected: onMenuItemSelected,
+            );
+          }
+        },
+      ),
     );
   }
 }
@@ -78,7 +82,7 @@ class SmallScreenWidget extends StatelessWidget {
         children: [
           Padding(
             child: endContent,
-            padding: const EdgeInsets.only(top: 100.0, right: 24,),
+            padding: const EdgeInsets.only(top: 100.0, right: 24),
           ),
           TopMenu(
             isHorizontal: false,
