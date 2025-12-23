@@ -26,7 +26,10 @@ Future<dynamic> generalPopUp(
                 ),
                 Center(
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 5,
+                    margin: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05,
+                    ),
+                    width: MediaQuery.of(context).size.width,
                     constraints: BoxConstraints(
                       maxWidth: generateSize(popUpSize),
                     ),
@@ -35,7 +38,7 @@ Future<dynamic> generalPopUp(
                       borderRadius: BorderRadius.circular(26),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(26.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -51,7 +54,7 @@ Future<dynamic> generalPopUp(
                                         ),
                                         onPressed: () => context.pop(context),
                                       )
-                                    : Container()
+                                    : Container(),
                               ],
                             ),
                             Padding(
@@ -64,7 +67,7 @@ Future<dynamic> generalPopUp(
                                 child: child,
                                 width: double.infinity,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),

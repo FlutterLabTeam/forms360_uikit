@@ -8,6 +8,8 @@ class PrimaryInput extends StatefulWidget {
   const PrimaryInput({
     super.key,
     this.label,
+    this.onTap,
+    this.height,
     this.onChanged,
     this.maxLength,
     this.validator,
@@ -16,38 +18,43 @@ class PrimaryInput extends StatefulWidget {
     this.suffixIcon,
     this.initialValue,
     this.keyboardType,
+    this.prefixWidget,
     this.onIconPressed,
     required this.isBig,
     this.contentPadding,
+    this.onFocusChanged,
     this.inputFormatters,
     required this.enabled,
+    this.onlyRead = false,
     this.onFieldSubmitted,
-    this.onFocusChanged,
     required this.hintText,
     required this.isPassword,
-    this.isSuffixIconEnabled = false,
     this.showCounter = false,
-    PrimaryInputColorKit? inputColor,
-    this.prefixWidget,
-    this.showPrefixWhenUnfocused = true,
-    this.onTap,
-    this.onlyRead = false,
     this.isClickableDate = false,
-    this.height,
+    this.isSuffixIconEnabled = false,
+    PrimaryInputColorKit? inputColor,
+    this.showPrefixWhenUnfocused = true,
   }) : inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
 
   final bool isBig;
   final bool enabled;
   final String? label;
+  final bool onlyRead;
   final int? maxLength;
+  final double? height;
   final String hintText;
   final bool isPassword;
+  final bool showCounter;
   final Icon? suffixIcon;
+  final VoidCallback? onTap;
   final TextStyle? textStyle;
   final String? initialValue;
+  final Widget? prefixWidget;
+  final bool isClickableDate;
   final bool isSuffixIconEnabled;
   final EdgeInsets? contentPadding;
   final TextInputType? keyboardType;
+  final bool showPrefixWhenUnfocused;
   final void Function()? onIconPressed;
   final PrimaryInputColorKit inputColor;
   final void Function(String)? onChanged;
@@ -56,13 +63,7 @@ class PrimaryInput extends StatefulWidget {
   final Function(String?)? onFieldSubmitted;
   final void Function(String)? onFocusChanged;
   final List<TextInputFormatter>? inputFormatters;
-  final Widget? prefixWidget;
-  final bool showCounter;
-  final bool showPrefixWhenUnfocused;
-  final VoidCallback? onTap;
-  final bool onlyRead;
-  final bool isClickableDate;
-  final double? height;
+  
   @override
   _PrimaryInputState createState() => _PrimaryInputState();
 }

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/error_retry_widget.dart';
 
 class EndContentWidget extends ConsumerStatefulWidget {
   final Function(String)? onSearch;
-  final String searchLabel;
-  final Widget content;
-  final Widget? titleWidget;
-  final String? retryButtonText;
   final bool isLoading;
+  final Widget content;
+  final String searchLabel;
+  final Widget? titleWidget;
   final String? errorMessage;
   final Function retryCallback;
+  final String? retryButtonText;
   final List<Widget>? settingsWidgets;
 
   const EndContentWidget({
