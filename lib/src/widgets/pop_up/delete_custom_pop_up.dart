@@ -14,7 +14,7 @@ class DeleteCustomPopUp extends StatelessWidget {
     super.key,
     this.buttonText,
     this.platformType,
-    required this.onTap,
+    required this.onTap, 
     required this.title,
     required this.description,
   });

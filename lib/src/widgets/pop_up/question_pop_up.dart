@@ -3,27 +3,32 @@ import 'package:forms360_uikit/forms360_uikit.dart';
 
 class QuestionPopUp extends StatelessWidget {
   final String title;
-  final Function() onYesTap;
+  final String noText;
+  final String yesText;
   final Function() onNoTap;
   final String description;
-  final String yesText;
-  final String noText;
+  final Function() onYesTap;
+  final PlatformAlertType? platformType;
 
   const QuestionPopUp({
     super.key,
-    required this.onYesTap,
-    required this.onNoTap,
+    this.platformType,
     required this.title,
-    required this.description,
-    required this.yesText,
     required this.noText,
+    required this.onNoTap,
+    required this.yesText,
+    required this.onYesTap,
+    required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(title, style: context.largeText),
+        Text(title, 
+        
+          style: platformType == PlatformAlertType.WEB ? context.largeText : context.mobileTitleText,
+        ),
         SizedBox(height: 20),
         Text(
           description,
