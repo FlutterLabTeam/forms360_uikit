@@ -31,6 +31,8 @@ extension MenuIconTypeExtension on MenuItemTypeKit {
         return Icons.fact_check;
       case MenuItemTypeKit.TASK:
         return Icons.task_alt_outlined;
+      case MenuItemTypeKit.SETTINGS:
+        return Icons.settings;
     }
   }
 
@@ -62,6 +64,8 @@ extension MenuIconTypeExtension on MenuItemTypeKit {
         return Icons.fact_check_outlined;
       case MenuItemTypeKit.TASK:
         return Icons.task_alt_outlined;
+      case MenuItemTypeKit.SETTINGS:
+        return Icons.settings_outlined;
     }
   }
 
@@ -103,6 +107,8 @@ extension MenuIconTypeStringExtension on MenuItemTypeKit {
         return "Product";
       case MenuItemTypeKit.TASK:
         return "Task";
+      case MenuItemTypeKit.SETTINGS:
+        return "Settings";
     }
   }
 }

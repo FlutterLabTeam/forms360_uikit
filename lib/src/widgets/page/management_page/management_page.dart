@@ -23,7 +23,6 @@ class ManagementPage extends StatelessWidget {
     required this.rowCrossAxisAlignment,
     required this.enableGoHome,
     this.hasBackButton = false,
-    this.customMenuItems,
     this.title = '',
     this.secondTitle = '',
     this.thirdTitle = '',
@@ -47,7 +46,6 @@ class ManagementPage extends StatelessWidget {
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
   final bool hasBackButton;
-  final List<Widget>? customMenuItems;
   final String title;
   final String secondTitle;
   final String thirdTitle;
@@ -85,7 +83,6 @@ class ManagementPage extends StatelessWidget {
               rowMainAxisAlignment: rowMainAxisAlignment,
               rowCrossAxisAlignment: rowCrossAxisAlignment,
               hasBackButton: hasBackButton,
-              customMenuItems: customMenuItems,
             );
           } else {
             return SmallScreenWidget(
@@ -163,7 +160,6 @@ class BigScreenWidget extends StatelessWidget {
     required this.rowCrossAxisAlignment,
     this.hasBackButton = false,
     this.assetPath = 'assets/images/clients/users_background.png',
-    this.customMenuItems,
     required this.title,
     required this.secondTitle,
     this.thirdTitle = '',
@@ -187,7 +183,6 @@ class BigScreenWidget extends StatelessWidget {
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Function(MenuItemTypeKit) onMenuItemSelected;
   final bool hasBackButton;
-  final List<Widget>? customMenuItems;
   final String title;
   final String secondTitle;
   final String thirdTitle;
@@ -198,82 +193,82 @@ class BigScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: rowMainAxisAlignment,
-      crossAxisAlignment: rowCrossAxisAlignment,
-      children: [
-        SideMenu(
-          serviceWeb: serviceWeb,
-          onProfileTap: onProfileTap,
-          profileLetter: profileLetter,
-          selectedMenuItem: selectedMenuItem,
-          onMenuItemSelected: onMenuItemSelected,
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 24.0, bottom: 24.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  bottomLeft: Radius.circular(25),
-                  topRight: Radius.circular(25),
-                  bottomRight: Radius.circular(25),
+    return Container(
+      color: context.surfaceContainerColor.withOpacity(0.4),
+      padding: const EdgeInsets.fromLTRB(16, 40, 16, 8),
+      child: Row(
+        mainAxisAlignment: rowMainAxisAlignment,
+        crossAxisAlignment: rowCrossAxisAlignment,
+        children: [
+          SideMenu(
+            serviceWeb: serviceWeb,
+            onProfileTap: onProfileTap,
+            profileLetter: profileLetter,
+            selectedMenuItem: selectedMenuItem,
+            onMenuItemSelected: onMenuItemSelected,
+          ),
+          const SizedBox(width: 20),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 24.0, bottom: 24.0),
+              child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  color: Colors.white,
                 ),
-                color: Colors.white,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 32),
-                  if (title.isNotEmpty) ...[
-                    Padding(
-                      padding: EdgeInsets.only(left: 70),
-                      child: Row(
-                        children: [
-                          _TabTitle(
-                            title: title,
-                            isSelected: selectedTabIndex == 0,
-                            onTap: onTitleTap,
-                          ),
-                          if (secondTitle.isNotEmpty) ...[
-                            SizedBox(width: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 32),
+                    if (title.isNotEmpty) ...[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 70),
+                        child: Row(
+                          children: [
                             _TabTitle(
-                              title: secondTitle,
-                              isSelected: selectedTabIndex == 1,
-                              onTap: onSecondTitleTap,
+                              title: title,
+                              isSelected: selectedTabIndex == 0,
+                              onTap: onTitleTap,
                             ),
+                            if (secondTitle.isNotEmpty) ...[
+                              const SizedBox(width: 24),
+                              _TabTitle(
+                                title: secondTitle,
+                                isSelected: selectedTabIndex == 1,
+                                onTap: onSecondTitleTap,
+                              ),
+                            ],
+                            if (thirdTitle.isNotEmpty) ...[
+                              const SizedBox(width: 24),
+                              _TabTitle(
+                                title: thirdTitle,
+                                isSelected: selectedTabIndex == 2,
+                                onTap: onThirdTitleTap,
+                              ),
+                            ],
                           ],
-                          if (thirdTitle.isNotEmpty) ...[
-                            SizedBox(width: 24),
-                            _TabTitle(
-                              title: thirdTitle,
-                              isSelected: selectedTabIndex == 2,
-                              onTap: onThirdTitleTap,
-                            ),
-                          ],
-                        ],
+                        ),
+                      ),
+                    ],
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 80.0,
+                          right: 100.0,
+                          bottom: 40,
+                          top: 20,
+                        ),
+                        child: endContent,
                       ),
                     ),
                   ],
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        left: 80.0,
-                        right: 100.0,
-                        bottom: 40,
-                        top: 20,
-                      ),
-                      child: endContent,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
-        ),
-        SizedBox(width: spacing),
-      ],
+          SizedBox(width: spacing),
+        ],
+      ),
     );
   }
 }

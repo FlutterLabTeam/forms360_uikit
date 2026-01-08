@@ -12,6 +12,7 @@ enum MenuItemTypeKit {
   PERMISSIONS,
   ANNOUNCEMENT,
   TASK,
+  SETTINGS,
 }
 
 final List<MenuItemTypeKit> menuItemList = [
@@ -24,14 +25,17 @@ final List<MenuItemTypeKit> menuItemList = [
   MenuItemTypeKit.DATASOURCE,
   MenuItemTypeKit.PERMISSIONS,
   MenuItemTypeKit.ANNOUNCEMENT,
+  MenuItemTypeKit.SETTINGS,
 ];
 
 final List<MenuItemTypeKit> menuItemListService = [
   MenuItemTypeKit.TASK,
   MenuItemTypeKit.CLIENT,
+  MenuItemTypeKit.USERS,
   MenuItemTypeKit.LIBRARY,
   MenuItemTypeKit.ANNOUNCEMENT,
   MenuItemTypeKit.DATASOURCE,
   MenuItemTypeKit.PRODUCT,
   MenuItemTypeKit.REPORTS,
+  MenuItemTypeKit.SETTINGS,
 ];

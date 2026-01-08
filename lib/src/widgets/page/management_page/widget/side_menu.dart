@@ -66,11 +66,10 @@ class _SideMenuState extends State<SideMenu> {
                 margin: EdgeInsets.symmetric(vertical: 15),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children:
-                      menuList
-                          .map((type) => _buildTappableMenuItem(type))
-                          .toList()
-                        ..add(SizedBox(height: 42)),
+                  children: <Widget>[
+                    ...menuList.map((type) => _buildTappableMenuItem(type)),
+                    const SizedBox(height: 42),
+                  ],
                 ),
               ),
             ),
