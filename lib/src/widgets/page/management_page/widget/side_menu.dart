@@ -30,10 +30,9 @@ class SideMenu extends StatefulWidget {
 class _SideMenuState extends State<SideMenu> {
   @override
   Widget build(BuildContext context) {
-    final menuList = widget.menuItems ??
-        ((widget.serviceWeb ?? false)
-            ? menuItemListService
-            : menuItemList);
+    final menuList =
+        widget.menuItems ??
+        ((widget.serviceWeb ?? false) ? menuItemListService : menuItemList);
     return Container(
       height: double.infinity,
       margin: EdgeInsets.symmetric(
@@ -83,17 +82,20 @@ class _SideMenuState extends State<SideMenu> {
     );
   }
 
-  GestureDetector _buildProfileIcon() {
+  Widget _buildProfileIcon() {
     return GestureDetector(
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        child: AvatarCircularInitial(
-          backgroundColor: AvatarBackgroundColor.HARD_GREEN,
-          name: widget.profileLetter,
-          size: 24,
-        ),
-      ).cursorGestureWithHover,
       onTap: widget.onProfileTap,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          child: AvatarCircularInitial(
+            backgroundColor: AvatarBackgroundColor.HARD_GREEN,
+            name: widget.profileLetter,
+            size: 24,
+          ),
+        ),
+      ),
     );
   }
 
