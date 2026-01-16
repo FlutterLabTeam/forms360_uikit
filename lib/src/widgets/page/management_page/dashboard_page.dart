@@ -15,6 +15,7 @@ class DashboardPage extends StatelessWidget {
     required this.profileLetter,
     required this.selectedMenuItem,
     required this.onMenuItemSelected,
+    this.menuItems,
   });
 
   final double spacing;
@@ -24,6 +25,7 @@ class DashboardPage extends StatelessWidget {
   final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
   final Function(MenuItemTypeKit) onMenuItemSelected;
+  final List<MenuItemTypeKit>? menuItems;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,7 @@ class DashboardPage extends StatelessWidget {
               profileLetter: profileLetter,
               selectedMenuItem: selectedMenuItem,
               onMenuItemSelected: onMenuItemSelected,
+              menuItems: menuItems,
             );
           } else {
             return SmallScreenWidget(
@@ -107,6 +110,7 @@ class BigScreenWidget extends StatelessWidget {
     required this.profileLetter,
     required this.selectedMenuItem,
     required this.onMenuItemSelected,
+    this.menuItems,
   });
 
   final double spacing;
@@ -116,12 +120,14 @@ class BigScreenWidget extends StatelessWidget {
   final GestureTapCallback onProfileTap;
   final MenuItemTypeKit selectedMenuItem;
   final Function(MenuItemTypeKit) onMenuItemSelected;
+  final List<MenuItemTypeKit>? menuItems;
 
   @override
   Widget build(BuildContext context) {
     return DashboardResponsiveTwoColumnLayout(
       startContent: SideMenu(
         serviceWeb: serviceWeb,
+        menuItems: menuItems,
         onProfileTap: onProfileTap,
         profileLetter: profileLetter,
         selectedMenuItem: selectedMenuItem,

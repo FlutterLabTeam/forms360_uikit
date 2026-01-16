@@ -41,10 +41,10 @@ class _TopMenuState extends State<TopMenu> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              ...menuList.map((type) => _buildTappableMenuItem(type)),
+                    ...menuList.map((type) => _buildTappableMenuItem(type)),
               const Spacer(),
-              _buildProfileIcon(),
-            ],
+                    _buildProfileIcon(),
+                  ],
           )
         : Container(
             height: context.sizeHeight(0.9),
