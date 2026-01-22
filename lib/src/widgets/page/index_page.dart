@@ -53,6 +53,7 @@ class UiPage {
     VoidCallback? onTitleTap,
     VoidCallback? onSecondTitleTap,
     VoidCallback? onThirdTitleTap,
+    List<MenuItemTypeKit>? menuItems,
   }) => ManagementPage(
     spacing: spacing,
     assetPath: assetPath,
@@ -75,6 +76,7 @@ class UiPage {
     onTitleTap: onTitleTap,
     onSecondTitleTap: onSecondTitleTap,
     onThirdTitleTap: onThirdTitleTap,
+    menuItems: menuItems,
   );
 
   Widget managementMultiPage({
@@ -149,6 +151,7 @@ class UiPage {
     required GestureTapCallback onProfileTap,
     required MenuItemTypeKit selectedMenuItem,
     required Function(MenuItemTypeKit) onMenuItemSelected,
+    List<MenuItemTypeKit>? menuItems,
   }) => DashboardPage(
     spacing: spacing,
     serviceWeb: serviceWeb,
@@ -157,6 +160,7 @@ class UiPage {
     profileLetter: profileLetter,
     selectedMenuItem: selectedMenuItem,
     onMenuItemSelected: onMenuItemSelected,
+    menuItems: menuItems,
   );
 
   Widget endContentWidget({

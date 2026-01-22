@@ -39,3 +39,11 @@ final List<MenuItemTypeKit> menuItemListService = [
   MenuItemTypeKit.REPORTS,
   MenuItemTypeKit.SETTINGS,
 ];
+
+final List<MenuItemTypeKit> menuItemListPlatform = [
+  MenuItemTypeKit.USERS,
+  MenuItemTypeKit.AUDIT,
+  MenuItemTypeKit.PERMISSIONS,
+  MenuItemTypeKit.ANNOUNCEMENT,
+  MenuItemTypeKit.TAG,
+];

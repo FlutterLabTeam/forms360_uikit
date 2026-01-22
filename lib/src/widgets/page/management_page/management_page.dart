@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';
-import 'package:forms360_uikit/src/widgets/page/management_page/widget/logo.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/top_menu.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/side_menu.dart';
 
@@ -30,6 +29,7 @@ class ManagementPage extends StatelessWidget {
     this.onTitleTap,
     this.onSecondTitleTap,
     this.onThirdTitleTap,
+    this.menuItems,
   });
 
   final double spacing;
@@ -53,6 +53,7 @@ class ManagementPage extends StatelessWidget {
   final VoidCallback? onTitleTap;
   final VoidCallback? onSecondTitleTap;
   final VoidCallback? onThirdTitleTap;
+  final List<MenuItemTypeKit>? menuItems;
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +84,7 @@ class ManagementPage extends StatelessWidget {
               rowMainAxisAlignment: rowMainAxisAlignment,
               rowCrossAxisAlignment: rowCrossAxisAlignment,
               hasBackButton: hasBackButton,
+              menuItems: menuItems,
             );
           } else {
             return SmallScreenWidget(
@@ -167,6 +169,7 @@ class BigScreenWidget extends StatelessWidget {
     this.onTitleTap,
     this.onSecondTitleTap,
     this.onThirdTitleTap,
+    this.menuItems,
   });
 
   final double spacing;
@@ -190,6 +193,7 @@ class BigScreenWidget extends StatelessWidget {
   final VoidCallback? onTitleTap;
   final VoidCallback? onSecondTitleTap;
   final VoidCallback? onThirdTitleTap;
+  final List<MenuItemTypeKit>? menuItems;
 
   @override
   Widget build(BuildContext context) {
@@ -202,6 +206,7 @@ class BigScreenWidget extends StatelessWidget {
         children: [
           SideMenu(
             serviceWeb: serviceWeb,
+            menuItems: menuItems,
             onProfileTap: onProfileTap,
             profileLetter: profileLetter,
             selectedMenuItem: selectedMenuItem,
