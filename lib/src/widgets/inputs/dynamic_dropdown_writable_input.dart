@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
 import 'package:drop_down_search_field/drop_down_search_field.dart';
@@ -13,13 +15,13 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
     this.contentPadding,
     required this.label,
     required this.hintText,
-    PrimaryInputColorKit? inputColor,
     this.onSelectedValuesChanged,
+    required this.getStringValue,
     this.selectedValues = const [],
+    PrimaryInputColorKit? inputColor,
+    required this.onSuggestionCallback,
     required this.onSuggestionSelected,
     required this.dropdownSearchFieldController,
-    required this.getStringValue,
-    required this.onSuggestionCallback,
     this.type = DropdownWritableInputType.SINGLE,
     this.getItemWidget,
   }) : inputColor = inputColor ?? PrimaryInputColorKit.BLUE;
@@ -39,7 +41,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
   final Function(List<T>)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
   final String Function(T) getStringValue;
-  final Function(String) onSuggestionCallback;
+  final FutureOr<List<T>> Function(String) onSuggestionCallback;
   final Widget Function(dynamic)? getItemWidget;
 
   /// Converts an item of type T into a String using the provided getStringValue function.
@@ -59,7 +61,9 @@ class _DynamicDropdownWritableInputState<T>
   @override
   void initState() {
     if (widget.initialValue != null) {
-      widget.dropdownSearchFieldController.text = widget.initialValue!;
+      widget.dropdownSearchFieldController.text = widget.convertToString(
+        widget.initialValue!,
+      );
     }
     super.initState();
   }
@@ -107,7 +111,7 @@ class _DynamicDropdownWritableInputState<T>
             controller: widget.dropdownSearchFieldController,
           ),
           suggestionsCallback: (pattern) =>
-              widget.onSuggestionCallback(pattern),
+              widget.onSuggestionCallback(pattern) as FutureOr<Iterable<T>>,
           itemBuilder: (context, dynamic suggestion) {
             if (widget.getItemWidget != null) {
               return ListTile(title: widget.getItemWidget!(suggestion));
@@ -163,7 +167,7 @@ class _DynamicDropdownWritableInputState<T>
                 padding: const EdgeInsets.all(2.0),
                 child: Chip(
                   label: Text(
-                    widget.selectedValues[index],
+                    widget.convertToString(widget.selectedValues[index]),
                     style: TextStyle(fontSize: widget.fontSize),
                   ),
                   onDeleted: () {
