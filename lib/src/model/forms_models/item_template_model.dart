@@ -485,6 +485,8 @@ LibraryTemplateEnum _generateLibraryTemplateEnum(String value) {
       return LibraryTemplateEnum.TIME;
     case 'PRODUCTS':
       return LibraryTemplateEnum.PRODUCTS;
+    case 'TABLE':
+      return LibraryTemplateEnum.TABLE;
     default:
       return LibraryTemplateEnum.TEXT;
   }

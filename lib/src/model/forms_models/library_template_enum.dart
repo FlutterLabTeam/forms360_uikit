@@ -16,6 +16,7 @@ enum LibraryTemplateEnum {
   SMART_PHOTO,
   FORMULA_FIELD,
   PRODUCTS,
+  TABLE
 }
 
 enum ValidationType {
