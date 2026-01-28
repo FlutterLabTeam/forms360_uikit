@@ -41,6 +41,7 @@ export 'package:forms360_uikit/src/widgets/items/tag_item.dart';
 export 'package:phone_form_field/phone_form_field.dart';
 
 //model
+export 'package:forms360_uikit/src/model/forms_models/form_attachment_model.dart';
 export 'package:forms360_uikit/src/model/forms_models/generated_form_model.dart';
 export 'package:forms360_uikit/src/model/forms_models/library_template_enum.dart';
 export 'package:forms360_uikit/src/model/forms_models/child_form_generated_extension.dart';

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:forms360_uikit/src/model/forms_models/form_attachment_model.dart';
 import 'package:forms360_uikit/src/model/forms_models/form_template_enum.dart';
 
 class FormTemplateModel {
@@ -20,6 +21,7 @@ class FormTemplateModel {
   final DocumentReference? creatorRef;
   final DocumentReference? userSelected;
   final List<ItemTemplateModel> children;
+  final List<FormAttachmentModel> attachments;
 
   FormTemplateModel({
     this.ref,
@@ -39,6 +41,7 @@ class FormTemplateModel {
     required this.enabledMetadata,
     required this.requireApproval,
     required this.requiredSubmission,
+    this.attachments = const [],
   });
 
   factory FormTemplateModel.init() => FormTemplateModel(
@@ -46,6 +49,7 @@ class FormTemplateModel {
         title: '',
         version: 0,
         children: [],
+        attachments: [],
         userRef: null,
         isActive: true,
         description: '',
@@ -79,6 +83,7 @@ class FormTemplateModel {
     FormTemplateStatusEnum? status,
     DocumentReference? userSelected,
     List<ItemTemplateModel>? children,
+    List<FormAttachmentModel>? attachments,
   }) =>
       FormTemplateModel(
         ref: ref ?? this.ref,
@@ -87,6 +92,7 @@ class FormTemplateModel {
         version: version ?? this.version,
         userRef: userRef ?? this.userRef,
         children: children ?? this.children,
+        attachments: attachments ?? this.attachments,
         isActive: isActive ?? this.isActive,
         isDeleted: isDeleted ?? this.isDeleted,
         createdAt: createdAt ?? this.createdAt,
@@ -121,6 +127,12 @@ class FormTemplateModel {
         children: List<ItemTemplateModel>.from(
           json["children"]?.map((x) => ItemTemplateModel.fromJson(x)) ?? [],
         ),
+        attachments: List<FormAttachmentModel>.from(
+          json["attachments"]
+                  ?.map((x) => FormAttachmentModel.fromJson(
+                      Map<String, dynamic>.from(x as Map)))
+              ?? [],
+        ),
       );
 
   factory FormTemplateModel.fromJsonHive(json) => FormTemplateModel(
@@ -143,9 +155,15 @@ class FormTemplateModel {
         children: List<ItemTemplateModel>.from(
           json["children"]?.map((x) => ItemTemplateModel.fromJson(x)) ?? [],
         ),
+        attachments: List<FormAttachmentModel>.from(
+          json["attachments"]
+                  ?.map((x) => FormAttachmentModel.fromJson(
+                      Map<String, dynamic>.from(x as Map)))
+              ?? [],
+        ),
       );
 
-        Map<String, dynamic> toJsonHive() => {
+  Map<String, dynamic> toJsonHive() => {
         "ref": ref,
         "title": title,
         "version": version,
@@ -163,6 +181,8 @@ class FormTemplateModel {
         "require_approval": requireApproval,
         "required_submission": requiredSubmission,
         "children": List<dynamic>.from(children.map((x) => x.toJson())),
+        "attachments":
+            List<dynamic>.from(attachments.map((x) => x.toJson())),
       };
 
   Map<String, dynamic> toJson() => {
@@ -182,6 +202,8 @@ class FormTemplateModel {
         "require_approval": requireApproval,
         "required_submission": requiredSubmission,
         "children": List<dynamic>.from(children.map((x) => x.toJson())),
+        "attachments":
+            List<dynamic>.from(attachments.map((x) => x.toJson())),
       };
 }
 
