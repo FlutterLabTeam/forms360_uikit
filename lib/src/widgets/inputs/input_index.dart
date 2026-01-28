@@ -116,12 +116,12 @@ class Inputs {
     contentPadding: contentPadding,
     selectedValues: selectedValues,
     addNewItemTitle: addNewItemTitle,
+    noItemsFoundText: noItemsFoundText,
     buildSuggestionItem: buildSuggestionItem,
     onSuggestionSelected: onSuggestionSelected,
+    onSuggestionCallback: onSuggestionCallback,
     onSelectedValuesChanged: onSelectedValuesChanged,
     dropdownSearchFieldController: dropdownSearchFieldController,
-    onSuggestionCallback: onSuggestionCallback,
-    noItemsFoundText: noItemsFoundText,
   );
 
   Widget dynamicDropDown<T>({
@@ -142,7 +142,7 @@ class Inputs {
     double? fontSize,
     EdgeInsets? contentPadding,
     required String Function(T) getStringValue,
-    required Function(String) onSuggestionCallback,
+    required FutureOr<List<T>> Function(String) onSuggestionCallback,
     Widget Function(dynamic)? getItemWidget,
   }) => DynamicDropdownWritableInput<T>(
     getStringValue: getStringValue,
