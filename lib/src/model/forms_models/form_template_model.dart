@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:forms360_uikit/src/model/forms_models/form_template_enum.dart';
 
 class FormTemplateModel {

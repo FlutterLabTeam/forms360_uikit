@@ -39,6 +39,9 @@ extension ChildFormGeneratedExtension on ChildFormGeneratedModel {
     if (type == LibraryTemplateEnum.PRODUCTS) {
       return stringValue.isNotEmpty;
     }
+    if (type == LibraryTemplateEnum.DATASOURCE) {
+      return stringValue.isNotEmpty;
+    }
 
     return false;
   }
@@ -79,6 +82,9 @@ extension ChildFormGeneratedExtension on ChildFormGeneratedModel {
       return stringValue.toString();
     }
     if (type == LibraryTemplateEnum.PRODUCTS) {
+      return stringValue.toString();
+    }
+    if (type == LibraryTemplateEnum.DATASOURCE) {
       return stringValue.toString();
     }
 

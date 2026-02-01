@@ -12,6 +12,7 @@ class GeneratedFormModel {
   final DocumentReference? formRef;
   final DocumentReference? companyRef;
   final DocumentReference? createdByRef;
+  final List<TableItemModel> childrenTable;
   final Map<String, dynamic> deviceMetadata;
   final List<ChildFormGeneratedModel> children;
 
@@ -26,6 +27,7 @@ class GeneratedFormModel {
     required this.createdAt,
     required this.updatedAt,
     required this.hasJailbreak,
+    required this.childrenTable,
     required this.deviceMetadata,
     required this.hashFormGenerated,
   });
@@ -41,23 +43,24 @@ class GeneratedFormModel {
     DocumentReference? formRef,
     DocumentReference? companyRef,
     DocumentReference? createdByRef,
+    List<TableItemModel>? childrenTable,
     Map<String, dynamic>? deviceMetadata,
     List<ChildFormGeneratedModel>? children,
-  }) =>
-      GeneratedFormModel(
-        ref: ref ?? this.ref,
-        hasVPN: hasVPN ?? this.hasVPN,
-        taskRef: taskRef ?? this.taskRef,
-        formRef: formRef ?? this.formRef,
-        children: children ?? this.children,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-        companyRef: companyRef ?? this.companyRef,
-        hasJailbreak: hasJailbreak ?? this.hasJailbreak,
-        createdByRef: createdByRef ?? this.createdByRef,
-        deviceMetadata: deviceMetadata ?? this.deviceMetadata,
-        hashFormGenerated: hashFormGenerated ?? this.hashFormGenerated,
-      );
+  }) => GeneratedFormModel(
+    ref: ref ?? this.ref,
+    hasVPN: hasVPN ?? this.hasVPN,
+    taskRef: taskRef ?? this.taskRef,
+    formRef: formRef ?? this.formRef,
+    children: children ?? this.children,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    companyRef: companyRef ?? this.companyRef,
+    hasJailbreak: hasJailbreak ?? this.hasJailbreak,
+    createdByRef: createdByRef ?? this.createdByRef,
+    childrenTable: childrenTable ?? this.childrenTable,
+    deviceMetadata: deviceMetadata ?? this.deviceMetadata,
+    hashFormGenerated: hashFormGenerated ?? this.hashFormGenerated,
+  );
 
   factory GeneratedFormModel.fromJson(
     Map<String, dynamic> json,
@@ -75,17 +78,16 @@ class GeneratedFormModel {
       updatedAt: json["updated_at"]?.toDate() ?? DateTime.now(),
       createdAt: json["created_at"]?.toDate() ?? DateTime.now(),
       deviceMetadata: Map<String, dynamic>.from(json["device_metadata"] ?? {}),
-      children: List<ChildFormGeneratedModel>.from(
-        json["children"].map(
-          (x) => ChildFormGeneratedModel.fromJson(x),
-        ),
-      ),
+      childrenTable: json["children_table"] != null ? List<TableItemModel>.from(
+        json["children_table"].map((x) => TableItemModel.fromJson(x)),
+      ) : [],
+      children: json["children"] != null ? List<ChildFormGeneratedModel>.from(
+        json["children"].map((x) => ChildFormGeneratedModel.fromJson(x)),
+      ) : [],
     );
   }
 
-  factory GeneratedFormModel.fromJsonHive(
-    Map<String, dynamic> json,
-  ) {
+  factory GeneratedFormModel.fromJsonHive(Map<String, dynamic> json) {
     return GeneratedFormModel(
       ref: json["ref"],
       hasVPN: json["hasVPN"],
@@ -99,56 +101,60 @@ class GeneratedFormModel {
       createdAt: json["created_at"] ?? DateTime.now(),
       deviceMetadata: Map<String, dynamic>.from(json["device_metadata"] ?? {}),
       children: List<ChildFormGeneratedModel>.from(
-        json["children"].map(
-          (x) => ChildFormGeneratedModel.fromJson(x),
-        ),
+        json["children"].map((x) => ChildFormGeneratedModel.fromJson(x)),
+      ),
+      childrenTable: List<TableItemModel>.from(
+        json["children_table"].map((x) => TableItemModel.fromJson(x)),
       ),
     );
   }
 
   factory GeneratedFormModel.init() => GeneratedFormModel(
-        ref: null,
-        children: [],
-        taskRef: null,
-        hasVPN: false,
-        formRef: null,
-        companyRef: null,
-        createdByRef: null,
-        deviceMetadata: {},
-        hasJailbreak: false,
-        hashFormGenerated: "",
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      );
+    ref: null,
+    children: [],
+    taskRef: null,
+    hasVPN: false,
+    formRef: null,
+    companyRef: null,
+    childrenTable: [],
+    createdByRef: null,
+    deviceMetadata: {},
+    hasJailbreak: false,
+    hashFormGenerated: "",
+    createdAt: DateTime.now(),
+    updatedAt: DateTime.now(),
+  );
 
   Map<String, dynamic> toJson() => {
-        "hasVPN": hasVPN,
-        "form_ref": formRef,
-        "task_ref": taskRef,
-        "created_at": createdAt,
-        "company_ref": companyRef,
-        "updated_at": DateTime.now(),
-        "has_jailbreak": hasJailbreak,
-        "created_by_ref": createdByRef,
-        "device_metadata": deviceMetadata,
-        "hash_form_generated": hashFormGenerated,
-        "children": List<dynamic>.from(children.map((x) => x.toJson())),
-      };
+    "hasVPN": hasVPN,
+    "form_ref": formRef,
+    "task_ref": taskRef,
+    "created_at": createdAt,
+    "company_ref": companyRef,
+    "updated_at": DateTime.now(),
+    "has_jailbreak": hasJailbreak,
+    "created_by_ref": createdByRef,
+    "device_metadata": deviceMetadata,
+    "hash_form_generated": hashFormGenerated,
+    "children": List<dynamic>.from(children.map((x) => x.toJson())),
+    "children_table": List<dynamic>.from(childrenTable.map((x) => x.toJson())),
+  };
 
   Map<String, dynamic> toJsonHive() => {
-        "ref": ref,
-        "hasVPN": hasVPN,
-        "form_ref": formRef,
-        "task_ref": taskRef,
-        "created_at": createdAt,
-        "company_ref": companyRef,
-        "updated_at": DateTime.now(),
-        "has_jailbreak": hasJailbreak,
-        "created_by_ref": createdByRef,
-        "device_metadata": deviceMetadata,
-        "hash_form_generated": hashFormGenerated,
-        "children": List<dynamic>.from(children.map((x) => x.toJson())),
-      };
+    "ref": ref,
+    "hasVPN": hasVPN,
+    "form_ref": formRef,
+    "task_ref": taskRef,
+    "created_at": createdAt,
+    "company_ref": companyRef,
+    "updated_at": DateTime.now(),
+    "has_jailbreak": hasJailbreak,
+    "created_by_ref": createdByRef,
+    "device_metadata": deviceMetadata,
+    "hash_form_generated": hashFormGenerated,
+    "children": List<dynamic>.from(children.map((x) => x.toJson())),
+    "children_table": List<dynamic>.from(childrenTable.map((x) => x.toJson())),
+  };
 }
 
 class ChildFormGeneratedModel {
@@ -190,20 +196,19 @@ class ChildFormGeneratedModel {
     LibraryTemplateEnum? type,
     Map<String, dynamic>? mapValue,
     List<ChildFormGeneratedModel>? childrenValue,
-  }) =>
-      ChildFormGeneratedModel(
-        type: type ?? this.type,
-        fieldKey: fieldKey ?? this.fieldKey,
-        mapValue: mapValue ?? this.mapValue,
-        boolValue: boolValue ?? this.boolValue,
-        dateValue: dateValue ?? this.dateValue,
-        listValue: listValue ?? this.listValue,
-        mediaValue: mediaValue ?? this.mediaValue,
-        stringValue: stringValue ?? this.stringValue,
-        childrenValue: childrenValue ?? this.childrenValue,
-        numericalValue: numericalValue ?? this.numericalValue,
-        smartPhotoValue: smartPhotoValue ?? this.smartPhotoValue,
-      );
+  }) => ChildFormGeneratedModel(
+    type: type ?? this.type,
+    fieldKey: fieldKey ?? this.fieldKey,
+    mapValue: mapValue ?? this.mapValue,
+    boolValue: boolValue ?? this.boolValue,
+    dateValue: dateValue ?? this.dateValue,
+    listValue: listValue ?? this.listValue,
+    mediaValue: mediaValue ?? this.mediaValue,
+    stringValue: stringValue ?? this.stringValue,
+    childrenValue: childrenValue ?? this.childrenValue,
+    numericalValue: numericalValue ?? this.numericalValue,
+    smartPhotoValue: smartPhotoValue ?? this.smartPhotoValue,
+  );
 
   factory ChildFormGeneratedModel.fromJson(Map<String, dynamic> json) =>
       ChildFormGeneratedModel(
@@ -217,38 +222,89 @@ class ChildFormGeneratedModel {
         listValue: List<String>.from(json["list_value"] ?? []),
         mediaValue: List<String>.from(json["media_value"] ?? []),
         mapValue: Map<String, dynamic>.from(json["map_value"] ?? {}),
-        childrenValue: List<ChildFormGeneratedModel>.from(json["children_value"]
-            .map((x) => ChildFormGeneratedModel.fromJson(x))),
+        childrenValue: List<ChildFormGeneratedModel>.from(
+          json["children_value"].map(
+            (x) => ChildFormGeneratedModel.fromJson(x),
+          ),
+        ),
       );
 
   factory ChildFormGeneratedModel.init() => ChildFormGeneratedModel(
-        fieldKey: "",
-        mapValue: {},
-        listValue: [],
-        mediaValue: [],
-        dateValue: null,
-        stringValue: "",
-        boolValue: null,
-        childrenValue: [],
-        numericalValue: 0,
-        smartPhotoValue: "",
-        type: LibraryTemplateEnum.TEXT,
-      );
+    fieldKey: "",
+    mapValue: {},
+    listValue: [],
+    mediaValue: [],
+    dateValue: null,
+    stringValue: "",
+    boolValue: null,
+    childrenValue: [],
+    numericalValue: 0,
+    smartPhotoValue: "",
+    type: LibraryTemplateEnum.TEXT,
+  );
 
   Map<String, dynamic> toJson() => {
-        "type": type.name,
-        "map_value": mapValue,
-        "field_key": fieldKey,
-        "date_value": dateValue,
-        "bool_value": boolValue,
-        "string_value": stringValue,
-        "numerical_value": numericalValue,
-        "smart_photo_value": smartPhotoValue,
-        "list_value": List<dynamic>.from(listValue.map((x) => x)),
-        "media_value": List<dynamic>.from(mediaValue.map((x) => x)),
-        "children_value":
-            List<dynamic>.from(childrenValue.map((x) => x.toJson())),
-      };
+    "type": type.name,
+    "map_value": mapValue,
+    "field_key": fieldKey,
+    "date_value": dateValue,
+    "bool_value": boolValue,
+    "string_value": stringValue,
+    "numerical_value": numericalValue,
+    "smart_photo_value": smartPhotoValue,
+    "list_value": List<dynamic>.from(listValue.map((x) => x)),
+    "media_value": List<dynamic>.from(mediaValue.map((x) => x)),
+    "children_value": List<dynamic>.from(childrenValue.map((x) => x.toJson())),
+  };
+}
+
+class TableItemModel {
+  final String fieldKey;
+  final String tableKey;
+  final LibraryTemplateEnum type;
+  final List<ChildFormGeneratedModel> childrenValue;  
+
+  TableItemModel({
+    required this.type,
+    required this.fieldKey,
+    required this.tableKey,
+    required this.childrenValue,
+  });
+
+  TableItemModel copyWith({
+    String? fieldKey,
+    String? tableKey,
+    LibraryTemplateEnum? type,
+    List<ChildFormGeneratedModel>? childrenValue,
+  }) => TableItemModel(
+    type: type ?? this.type,
+    fieldKey: fieldKey ?? this.fieldKey,
+    childrenValue: childrenValue ?? this.childrenValue,
+    tableKey: tableKey ?? this.tableKey,
+  );
+
+  Map<String, dynamic> toJson() => {
+    "type": type.name,
+    "field_key": fieldKey,
+    "table_key": tableKey,
+    "children_value": List<dynamic>.from(childrenValue.map((x) => x.toJson())),
+  };
+
+  factory TableItemModel.fromJson(Map<String, dynamic> json) => TableItemModel(
+    fieldKey: json["field_key"] ?? "",
+    tableKey: json["table_key"] ?? "",
+    type: generateTypeFromString(json["type"] ?? ""),
+    childrenValue: List<ChildFormGeneratedModel>.from(
+      json["children_value"].map((x) => ChildFormGeneratedModel.fromJson(x)),
+    ),
+  );
+
+  factory TableItemModel.init() => TableItemModel(
+    fieldKey: "",
+    tableKey: "",
+    childrenValue: [],
+    type: LibraryTemplateEnum.TABLE,
+  );
 }
 
 LibraryTemplateEnum generateTypeFromString(String type) {
@@ -285,8 +341,12 @@ LibraryTemplateEnum generateTypeFromString(String type) {
       return LibraryTemplateEnum.SIGNATURE;
     case "PRODUCTS":
       return LibraryTemplateEnum.PRODUCTS;
+    case "DATASOURCE":
+      return LibraryTemplateEnum.DATASOURCE;
     case "TIME":
       return LibraryTemplateEnum.TIME;
+    case "TABLE":
+      return LibraryTemplateEnum.TABLE;
     default:
       return LibraryTemplateEnum.TEXT;
   }
