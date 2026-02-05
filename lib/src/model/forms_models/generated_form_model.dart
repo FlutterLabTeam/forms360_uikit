@@ -13,6 +13,7 @@ class GeneratedFormModel {
   final DocumentReference? companyRef;
   final DocumentReference? createdByRef;
   final List<TableItemModel> childrenTable;
+  final List<ProductItemModel> childrenProducts;
   final Map<String, dynamic> deviceMetadata;
   final List<ChildFormGeneratedModel> children;
 
@@ -28,6 +29,7 @@ class GeneratedFormModel {
     required this.updatedAt,
     required this.hasJailbreak,
     required this.childrenTable,
+    required this.childrenProducts,
     required this.deviceMetadata,
     required this.hashFormGenerated,
   });
@@ -44,6 +46,7 @@ class GeneratedFormModel {
     DocumentReference? companyRef,
     DocumentReference? createdByRef,
     List<TableItemModel>? childrenTable,
+    List<ProductItemModel>? childrenProducts,
     Map<String, dynamic>? deviceMetadata,
     List<ChildFormGeneratedModel>? children,
   }) => GeneratedFormModel(
@@ -58,6 +61,7 @@ class GeneratedFormModel {
     hasJailbreak: hasJailbreak ?? this.hasJailbreak,
     createdByRef: createdByRef ?? this.createdByRef,
     childrenTable: childrenTable ?? this.childrenTable,
+    childrenProducts: childrenProducts ?? this.childrenProducts,
     deviceMetadata: deviceMetadata ?? this.deviceMetadata,
     hashFormGenerated: hashFormGenerated ?? this.hashFormGenerated,
   );
@@ -80,6 +84,9 @@ class GeneratedFormModel {
       deviceMetadata: Map<String, dynamic>.from(json["device_metadata"] ?? {}),
       childrenTable: json["children_table"] != null ? List<TableItemModel>.from(
         json["children_table"].map((x) => TableItemModel.fromJson(x)),
+      ) : [],
+      childrenProducts: json["children_products"] != null ? List<ProductItemModel>.from(
+        json["children_products"].map((x) => ProductItemModel.fromJson(x)),
       ) : [],
       children: json["children"] != null ? List<ChildFormGeneratedModel>.from(
         json["children"].map((x) => ChildFormGeneratedModel.fromJson(x)),
@@ -106,6 +113,9 @@ class GeneratedFormModel {
       childrenTable: List<TableItemModel>.from(
         json["children_table"].map((x) => TableItemModel.fromJson(x)),
       ),
+      childrenProducts: json["children_products"] != null ? List<ProductItemModel>.from(
+        json["children_products"].map((x) => ProductItemModel.fromJson(x)),
+      ) : [],
     );
   }
 
@@ -117,6 +127,7 @@ class GeneratedFormModel {
     formRef: null,
     companyRef: null,
     childrenTable: [],
+    childrenProducts: [],
     createdByRef: null,
     deviceMetadata: {},
     hasJailbreak: false,
@@ -138,6 +149,7 @@ class GeneratedFormModel {
     "hash_form_generated": hashFormGenerated,
     "children": List<dynamic>.from(children.map((x) => x.toJson())),
     "children_table": List<dynamic>.from(childrenTable.map((x) => x.toJson())),
+    "children_products": List<dynamic>.from(childrenProducts.map((x) => x.toJson())),
   };
 
   Map<String, dynamic> toJsonHive() => {
@@ -154,6 +166,7 @@ class GeneratedFormModel {
     "hash_form_generated": hashFormGenerated,
     "children": List<dynamic>.from(children.map((x) => x.toJson())),
     "children_table": List<dynamic>.from(childrenTable.map((x) => x.toJson())),
+    "children_products": List<dynamic>.from(childrenProducts.map((x) => x.toJson())),
   };
 }
 
@@ -304,6 +317,55 @@ class TableItemModel {
     tableKey: "",
     childrenValue: [],
     type: LibraryTemplateEnum.TABLE,
+  );
+}
+
+class ProductItemModel {
+  final String productKey;
+  final String fieldKey;
+  final int quantity;
+  final List<ChildFormGeneratedModel> childrenValue;
+
+  ProductItemModel({
+    required this.productKey,
+    required this.fieldKey,
+    required this.quantity,
+    required this.childrenValue,
+  });
+
+  ProductItemModel copyWith({
+    String? productKey,
+    String? fieldKey,
+    int? quantity,
+    List<ChildFormGeneratedModel>? childrenValue,
+  }) => ProductItemModel(
+    productKey: productKey ?? this.productKey,
+    fieldKey: fieldKey ?? this.fieldKey,
+    quantity: quantity ?? this.quantity,
+    childrenValue: childrenValue ?? this.childrenValue,
+  );
+
+  Map<String, dynamic> toJson() => {
+    "product_key": productKey,
+    "field_key": fieldKey,
+    "quantity": quantity,
+    "children_value": List<dynamic>.from(childrenValue.map((x) => x.toJson())),
+  };
+
+  factory ProductItemModel.fromJson(Map<String, dynamic> json) => ProductItemModel(
+    productKey: json["product_key"] ?? "",
+    fieldKey: json["field_key"] ?? "",
+    quantity: json["quantity"] ?? 0,
+    childrenValue: List<ChildFormGeneratedModel>.from(
+      (json["children_value"] ?? []).map((x) => ChildFormGeneratedModel.fromJson(x)),
+    ),
+  );
+
+  factory ProductItemModel.init() => ProductItemModel(
+    productKey: "",
+    fieldKey: "",
+    quantity: 0,
+    childrenValue: [],
   );
 }
 

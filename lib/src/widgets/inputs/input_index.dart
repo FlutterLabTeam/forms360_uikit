@@ -134,7 +134,7 @@ class Inputs {
     List<T> selectedValues = const [],
     final String? Function(T?)? validator,
     required Function(T) onSuggestionSelected,
-    Function(List<T>)? onSelectedValuesChanged,
+    Function(List)? onSelectedValuesChanged,
     required TextEditingController dropdownSearchFieldController,
     PrimaryInputColorKit inputColor = PrimaryInputColorKit.BLUE,
     DropdownWritableInputType type = DropdownWritableInputType.SINGLE,

@@ -38,7 +38,7 @@ class DynamicDropdownWritableInput<T> extends StatefulWidget {
   final EdgeInsetsGeometry? contentPadding;
   final String? Function(T?)? validator;
   final Function(T) onSuggestionSelected;
-  final Function(List<T>)? onSelectedValuesChanged;
+  final Function(List)? onSelectedValuesChanged;
   final TextEditingController dropdownSearchFieldController;
   final String Function(T) getStringValue;
   final FutureOr<List<T>> Function(String) onSuggestionCallback;
