@@ -38,7 +38,7 @@ Future<dynamic> generalPopUp(
                       borderRadius: BorderRadius.circular(26),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 20),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,

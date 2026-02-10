@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:forms360_uikit/forms360_uikit.dart';
-import 'package:forms360_uikit/src/model/screen_breakpoints.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/logo.dart';
 import 'package:forms360_uikit/src/widgets/page/management_page/widget/side_menu.dart';
 import 'package:forms360_uikit/src/model/menu_item_type_type.dart';

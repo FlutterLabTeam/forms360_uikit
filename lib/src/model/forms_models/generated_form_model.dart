@@ -242,6 +242,14 @@ class ChildFormGeneratedModel {
         ),
       );
 
+
+  factory ChildFormGeneratedModel.fromProducts(ProductItemModel product) =>
+      ChildFormGeneratedModel.init().copyWith(
+        fieldKey: product.fieldKey,
+        type: LibraryTemplateEnum.PRODUCTS,  
+        childrenValue: product.childrenValue,
+      );
+
   factory ChildFormGeneratedModel.init() => ChildFormGeneratedModel(
     fieldKey: "",
     mapValue: {},
